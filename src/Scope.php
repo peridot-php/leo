@@ -21,6 +21,7 @@ use Peridot\Scope\Scope as PeridotScope;
  * @property Scope at
  * @property Scope of
  * @property Scope same
+ * @property Scope not
  */
 class Scope extends PeridotScope
 {
@@ -45,6 +46,11 @@ class Scope extends PeridotScope
     ];
 
     /**
+     * @var bool
+     */
+    protected $negated = false;
+
+    /**
      * Initialize LeoScope with chainable properties
      */
     public function __construct()
@@ -52,5 +58,26 @@ class Scope extends PeridotScope
         foreach ($this->chainables as $property) {
             $this->$property = $this;
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNegated()
+    {
+        return $this->negated;
+    }
+
+    /**
+     * @param $property
+     * @return mixed|void
+     */
+    public function &__get($property)
+    {
+        if ($property == 'not') {
+            $this->negated = true;
+            return $this;
+        }
+        return parent::__get($property);
     }
 } 

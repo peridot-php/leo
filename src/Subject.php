@@ -19,6 +19,7 @@ use Peridot\Scope\ScopeTrait;
  * @property Scope at
  * @property Scope of
  * @property Scope same
+ * @property Scope not
  */
 class Subject 
 {
