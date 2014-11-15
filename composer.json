@@ -1,0 +1,22 @@
+{
+    "name": "peridot-php/leo",
+    "description": "Next level assertion library for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian Scaturro",
+            "email": "scaturrob@gmail.com"
+        }
+    ],
+    "require": {
+        "peridot-php/peridot-scope": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Peridot\\Leo\\": "src/"
+        }
+    },
+    "require-dev": {
+        "peridot-php/peridot-jumpstart": "~1.0"
+    }
+}
