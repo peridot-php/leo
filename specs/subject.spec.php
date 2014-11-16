@@ -14,11 +14,4 @@ describe('Subject', function () {
             assert($actual == "hello", "expected 'hello', got '$actual'");
         });
     });
-
-    describe('->__get()', function() {
-        it("should delegate to scope", function() {
-            $scope = $this->subject->to;
-            assert($scope === $this->subject->getScope(), "should delegate __get to scope");
-        });
-    });
 });

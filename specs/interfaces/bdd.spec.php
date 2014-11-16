@@ -1,15 +1,15 @@
 <?php
-use Peridot\Leo\Scope;
+use Peridot\Leo\Interfaces\Bdd;
 
-describe('Scope', function() {
+describe('Bdd', function() {
     beforeEach(function() {
-        $this->scope = new Scope();
+        $this->scope = new Bdd();
     });
 
     /**
      * Test scope's chainable properties
      */
-    include 'shared/is-chainable-scope.php';
+    include __DIR__ . '/../shared/is-chainable-scope.php';
 
     context('when ->not is accessed', function() {
         it('should set the negated flag and return self', function() {
