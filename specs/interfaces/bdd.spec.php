@@ -30,28 +30,4 @@ describe('Bdd', function() {
             assert($scope === $this->interface, 'non object return from flag should return interface');
         });
     });
-
-    describe('->a()', function() {
-        it('should perform a type assertion', function() {
-            $exception = null;
-            try {
-                $this->interface->setSubject([])->a('string');
-            } catch (\Exception $e) {
-                $exception = $e;
-            }
-            assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
-        });
-    });
-
-    describe('->an()', function() {
-        it('should perform a type assertion', function() {
-            $exception = null;
-            try {
-                $this->interface->setSubject([])->an('string');
-            } catch (\Exception $e) {
-                $exception = $e;
-            }
-            assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
-        });
-    });
 });
