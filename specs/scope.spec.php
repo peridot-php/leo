@@ -24,7 +24,7 @@ describe('Scope', function() {
             $flag = $this->getProphet()->prophesize('Peridot\Leo\Flag\FlagInterface');
             $flag->getId()->willReturn('zoom');
             $flag->__invoke($this->scope)->willReturn(null);
-            $this->scope->addFlag($flag->reveal());
+            $this->scope->setFlag($flag->reveal());
 
             $scope = $this->scope->zoom;
             assert($scope === $this->scope, 'non object return from flag should return scope');

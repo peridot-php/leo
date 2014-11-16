@@ -62,7 +62,7 @@ class Scope extends PeridotScope
         foreach ($this->chainables as $property) {
             $this->$property = $this;
         }
-        $this->addFlag(new NotFlag());
+        $this->setFlag(new NotFlag());
     }
 
     /**
@@ -80,7 +80,7 @@ class Scope extends PeridotScope
      * @param FlagInterface $flag
      * @return $this
      */
-    public function addFlag(FlagInterface $flag)
+    public function setFlag(FlagInterface $flag)
     {
         $this->flags[$flag->getId()] = $flag;
         return $this;
