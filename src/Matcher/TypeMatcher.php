@@ -1,6 +1,17 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Interfaces\AbstractBaseInterface;
+
+/**
+ * TypeMatcher supports 'a' and 'an' validations for type
+ * assertions, as well as adds 'a' and 'an' language chains.
+ *
+ * @property AbstractBaseInterface $a
+ * @property AbstractBaseInterface $an
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class TypeMatcher extends AbstractBaseMatcher
 {
     /**
@@ -12,7 +23,7 @@ class TypeMatcher extends AbstractBaseMatcher
      */
     public function a($type)
     {
-        $this->validate($type, gettype($this->getSubject()));
+        $this->validate($type, gettype($this->getInterface()->getSubject()));
     }
 
     /**
@@ -23,5 +34,19 @@ class TypeMatcher extends AbstractBaseMatcher
     public function an($type)
     {
         $this->a($type);
+    }
+
+    /**
+     * Adds 'a' and 'an' as language chains.
+     *
+     * @param string $name
+     * @return mixed|\Peridot\Leo\Interfaces\AbstractBaseInterface
+     */
+    public function &__get($name)
+    {
+        if (preg_match('/an?/', $name)) {
+            return $this->getInterface();
+        }
+        return parent::__get($name);
     }
 } 

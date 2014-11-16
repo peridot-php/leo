@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Interfaces\AbstractBaseInterface;
 use Peridot\Scope\Scope;
 
 abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
@@ -19,11 +20,11 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
     /**
      * Return the subject of the assertion.
      *
-     * @return mixed
+     * @return AbstractBaseInterface
      */
-    public function getSubject()
+    public function getInterface()
     {
-        return $this->peridotGetParentScope()->getSubject();
+        return $this->peridotGetParentScope();
     }
 
     /**

@@ -54,4 +54,11 @@ describe('TypeMatcher', function() {
             assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
         });
     });
+
+    context('when using "a" as a language chain', function() {
+        it("should return the TypeMatcher's parent", function() {
+            $interface = $this->matcher->a;
+            assert($interface === $this->interface, "a as language chain should return parent");
+        });
+    });
 });
