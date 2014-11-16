@@ -57,4 +57,19 @@ class Bdd extends AbstractBaseInterface
         }
         $this->setFlag(new NotFlag());
     }
+
+    public function a($type)
+    {
+        $actual = gettype($this->getActual());
+        if ($actual == $type) {
+            return;
+        }
+        throw new \Exception("Expected $type, got $actual");
+    }
+
+    
+    public function an($type)
+    {
+        $this->a($type);
+    }
 } 
