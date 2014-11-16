@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo;
 
+use Peridot\Leo\Flag\FlagInterface;
+use Peridot\Leo\Flag\NotFlag;
 use Peridot\Scope\Scope as PeridotScope;
 
 /**
@@ -9,19 +11,20 @@ use Peridot\Scope\Scope as PeridotScope;
  *
  * @package Peridot\Leo
  *
- * @property Scope to
- * @property Scope be
- * @property Scope been
- * @property Scope is
- * @property Scope that
- * @property Scope and
- * @property Scope has
- * @property Scope have
- * @property Scope with
- * @property Scope at
- * @property Scope of
- * @property Scope same
- * @property Scope not
+ * @property Scope $to
+ * @property Scope $be
+ * @property Scope $been
+ * @property Scope $is
+ * @property Scope $that
+ * @property Scope $and
+ * @property Scope $has
+ * @property Scope $have
+ * @property Scope $with
+ * @property Scope $at
+ * @property Scope $of
+ * @property Scope $same
+ * @property Scope $not
+ * @property bool $negated
  */
 class Scope extends PeridotScope
 {
@@ -46,18 +49,20 @@ class Scope extends PeridotScope
     ];
 
     /**
-     * @var bool
+     * @var array
      */
-    protected $negated = false;
+    protected $flags;
 
     /**
      * Initialize LeoScope with chainable properties
      */
     public function __construct()
     {
+        $this->flags = [];
         foreach ($this->chainables as $property) {
             $this->$property = $this;
         }
+        $this->addFlag(new NotFlag());
     }
 
     /**
@@ -65,7 +70,20 @@ class Scope extends PeridotScope
      */
     public function isNegated()
     {
+        if (!isset($this->negated)) {
+            return false;
+        }
         return $this->negated;
+    }
+
+    /**
+     * @param FlagInterface $flag
+     * @return $this
+     */
+    public function addFlag(FlagInterface $flag)
+    {
+        $this->flags[$flag->getId()] = $flag;
+        return $this;
     }
 
     /**
@@ -74,9 +92,8 @@ class Scope extends PeridotScope
      */
     public function &__get($property)
     {
-        if ($property == 'not') {
-            $this->negated = true;
-            return $this;
+        if (isset($this->flags[$property])) {
+            return call_user_func($this->flags[$property], $this);
         }
         return parent::__get($property);
     }
