@@ -12,6 +12,11 @@ class AbstractBaseInterface extends Scope
     protected $flags = [];
 
     /**
+     * @var mixed
+     */
+    protected $actual;
+
+    /**
      * @return bool
      */
     public function isNegated()
@@ -46,5 +51,26 @@ class AbstractBaseInterface extends Scope
             return $result;
         }
         return parent::__get($property);
+    }
+
+    /**
+     * Return the actual value being asserted against
+     *
+     * @return mixed
+     */
+    public function getActual()
+    {
+        return $this->actual;
+    }
+
+    /**
+     * Set the value to assert against
+     *
+     * @param mixed $actual
+     */
+    public function setActual($actual)
+    {
+        $this->actual = $actual;
+        return $this;
     }
 } 

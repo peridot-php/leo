@@ -3,18 +3,18 @@ use Peridot\Leo\Interfaces\Bdd;
 
 describe('Bdd', function() {
     beforeEach(function() {
-        $this->scope = new Bdd();
+        $this->interface = new Bdd();
     });
 
     /**
      * Test scope's chainable properties
      */
-    include __DIR__ . '/../shared/is-chainable-scope.php';
+    include __DIR__ . '/../shared/is-interface.php';
 
     context('when ->not is accessed', function() {
         it('should set the negated flag and return self', function() {
-            $scope = $this->scope->not;
-            assert($scope === $this->scope, "should return self");
+            $scope = $this->interface->not;
+            assert($scope === $this->interface, "should return self");
             assert($scope->isNegated(), "scope should be negated");
         });
     });
@@ -23,11 +23,11 @@ describe('Bdd', function() {
         it('should return the scope', function() {
             $flag = $this->getProphet()->prophesize('Peridot\Leo\Flag\FlagInterface');
             $flag->getId()->willReturn('zoom');
-            $flag->__invoke($this->scope)->willReturn(null);
-            $this->scope->setFlag($flag->reveal());
+            $flag->__invoke($this->interface)->willReturn(null);
+            $this->interface->setFlag($flag->reveal());
 
-            $scope = $this->scope->zoom;
-            assert($scope === $this->scope, 'non object return from flag should return scope');
+            $scope = $this->interface->zoom;
+            assert($scope === $this->interface, 'non object return from flag should return interface');
         });
     });
 });
