@@ -14,9 +14,10 @@ interface MatcherInterface
     /**
      * Return a formatted message for this matcher.
      *
-     * @param mixed$expected
-     * @param mixed $actual
+     * @param mixed $expected the expected value
+     * @param mixed $actual the actual value
+     * @param bool $negated weather the assertion has been negated
      * @return string
      */
-    public function getMessage($expected, $actual);
+    public function getMessage($expected, $actual, $negated);
 } 

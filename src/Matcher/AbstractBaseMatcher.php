@@ -37,21 +37,17 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
      */
     public function validate($expected, $actual)
     {
-        if ($this->isMatch($expected, $actual)) {
+        $validation = $this->isMatch($expected, $actual);
+        $negated = $this->getInterface()->isNegated();
+
+        if ($negated) {
+            $validation = !$validation;
+        }
+
+        if ($validation) {
             return;
         }
-        throw new \Exception($this->getMessage($expected, $actual));
-    }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @return string
-     */
-    public function getMessage($expected, $actual)
-    {
-        return "Expected $expected, got $actual";
+        throw new \Exception($this->getMessage($expected, $actual, $negated));
     }
 }

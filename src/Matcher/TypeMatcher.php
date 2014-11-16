@@ -49,4 +49,20 @@ class TypeMatcher extends AbstractBaseMatcher
         }
         return parent::__get($name);
     }
-} 
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param mixed $expected the expected value
+     * @param mixed $actual the actual value
+     * @param bool $negated weather the assertion has been negated
+     * @return string
+     */
+    public function getMessage($expected, $actual, $negated = false)
+    {
+        if ($negated) {
+            return "Expected a type other than $expected";
+        }
+        return "Expected $expected, got $actual";
+    }
+}

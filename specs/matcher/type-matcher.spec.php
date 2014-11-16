@@ -15,6 +15,14 @@ describe('TypeMatcher', function() {
             $actual = $this->matcher->getMessage("array", "string");
             assert($expected == $actual, "Expected '$expected', got $actual");
         });
+
+        context('when interface has been negated', function() {
+            it('should return an appropriate message', function() {
+                $expected = "Expected a type other than array";
+                $actual = $this->matcher->getMessage("array", "array", true);
+                assert($expected == $actual, "Expected $expected, got $actual");
+            });
+        });
     });
 
     describe('->isMatch()', function() {
@@ -40,6 +48,20 @@ describe('TypeMatcher', function() {
             }
             assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
         });
+
+        context('when interface has been negated', function() {
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->setSubject([]);
+                    $this->interface->negated = true;
+                    $this->matcher->a('array');
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
+            });
+        });
     });
 
     describe('->an()', function() {
@@ -54,6 +76,7 @@ describe('TypeMatcher', function() {
             assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
         });
     });
+
 
     context('when using "a" as a language chain', function() {
         it("should return the TypeMatcher's parent", function() {
