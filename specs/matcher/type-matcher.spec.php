@@ -11,21 +11,20 @@ describe('TypeMatcher', function() {
 
     describe('->getMessage()', function() {
         it("should return a formated success message", function() {
-            $this->matcher->match("string");
             $expected = "Expected array, got string";
             $actual = $this->matcher->getMessage("array", "string");
             assert($expected == $actual, "Expected '$expected', got $actual");
         });
     });
 
-    describe('->match()', function() {
+    describe('->isMatch()', function() {
         it('should return true when subject is expected value', function() {
-            $match = $this->matcher->match('array');
+            $match = $this->matcher->isMatch('array', 'array');
             assert($match, "should have matched array type");
         });
 
         it('should return false when the subject is not expected value', function() {
-            $match = $this->matcher->match('string');
+            $match = $this->matcher->isMatch('string', 'array');
             assert(!$match, "should not have matched string type");
         });
     });

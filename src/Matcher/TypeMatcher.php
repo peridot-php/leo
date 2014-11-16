@@ -1,31 +1,27 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
-use Peridot\Scope\Scope;
-
-class TypeMatcher extends Scope
+class TypeMatcher extends AbstractBaseMatcher
 {
+    /**
+     * Assert that the passed in type is the same
+     * as the assertion subject.
+     *
+     * @param $type
+     * @throws \Exception
+     */
     public function a($type)
     {
-        if ($this->match($type)) {
-            return;
-        }
-        throw new \Exception($this->getMessage($type, $this->actual));
+        $this->validate($type, gettype($this->getSubject()));
     }
 
+    /**
+     * An alias for the 'a' validation.
+     *
+     * @param $type
+     */
     public function an($type)
     {
         $this->a($type);
-    }
-
-    public function match($expected)
-    {
-        $this->actual = gettype($this->peridotGetParentScope()->getSubject());
-        return $this->actual === $expected;
-    }
-
-    public function getMessage($expected, $actual)
-    {
-        return "Expected $expected, got $actual";
     }
 } 
