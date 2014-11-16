@@ -71,10 +71,10 @@ describe('->same', function() {
     });
 });
 
-describe('actual value', function () {
+describe('assertion subject', function () {
     it('should be accessible', function () {
-        $this->interface->setActual("hello");
-        $actual = $this->interface->getActual();
-        assert($actual == "hello", "expected 'hello', got '$actual'");
+        $this->interface->setSubject("hello");
+        $subject = $this->interface->getSubject();
+        assert($subject == "hello", "expected 'hello', got '$subject'");
     });
 });

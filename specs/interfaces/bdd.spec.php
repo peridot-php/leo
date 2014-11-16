@@ -3,7 +3,7 @@ use Peridot\Leo\Interfaces\Bdd;
 
 describe('Bdd', function() {
     beforeEach(function() {
-        $this->interface = new Bdd();
+        $this->interface = new Bdd([]);
     });
 
     /**
@@ -35,11 +35,11 @@ describe('Bdd', function() {
         it('should perform a type assertion', function() {
             $exception = null;
             try {
-                $this->interface->setActual([])->a('string');
+                $this->interface->setSubject([])->a('string');
             } catch (\Exception $e) {
                 $exception = $e;
             }
-            assert($exception->getMessage() == "Expected string, got array");
+            assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
         });
     });
 
@@ -47,11 +47,11 @@ describe('Bdd', function() {
         it('should perform a type assertion', function() {
             $exception = null;
             try {
-                $this->interface->setActual([])->an('string');
+                $this->interface->setSubject([])->an('string');
             } catch (\Exception $e) {
                 $exception = $e;
             }
-            assert($exception->getMessage() == "Expected string, got array");
+            assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
         });
     });
 });

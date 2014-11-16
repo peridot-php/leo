@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Flag\FlagInterface;
+use Peridot\Leo\Matcher\TypeMatcher;
 use Peridot\Scope\Scope;
 
 class AbstractBaseInterface extends Scope
@@ -14,7 +15,20 @@ class AbstractBaseInterface extends Scope
     /**
      * @var mixed
      */
-    protected $actual;
+    protected $subject;
+
+    /**
+     * @var array
+     */
+    protected $matchers = [];
+
+    /**
+     * @param mixed $subject
+     */
+    public function __construct($subject)
+    {
+        $this->subject = $subject;
+    }
 
     /**
      * @return bool
@@ -54,23 +68,31 @@ class AbstractBaseInterface extends Scope
     }
 
     /**
-     * Return the actual value being asserted against
+     * Return the subject being asserted against
      *
      * @return mixed
      */
-    public function getActual()
+    public function getSubject()
     {
-        return $this->actual;
+        return $this->subject;
     }
 
     /**
-     * Set the value to assert against
+     * Set the subject to assert against
      *
      * @param mixed $actual
      */
-    public function setActual($actual)
+    public function setSubject($subject)
     {
-        $this->actual = $actual;
+        $this->subject = $subject;
         return $this;
+    }
+
+    /**
+     * @param TypeMatcher $matcher
+     */
+    public function addMatcher(TypeMatcher $matcher)
+    {
+        $this->peridotAddChildScope($matcher);
     }
 } 

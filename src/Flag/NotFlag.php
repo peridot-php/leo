@@ -1,7 +1,8 @@
 <?php
 namespace Peridot\Leo\Flag;
 
-use Peridot\Leo\Scope;
+
+use Peridot\Scope\Scope;
 
 class NotFlag implements FlagInterface
 {

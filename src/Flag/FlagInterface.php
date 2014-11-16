@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo\Flag;
 
-use Peridot\Leo\Scope;
+use Peridot\Scope\Scope;
 
 /**
  * FlagInterface is the main interface for setting state

@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Flag\NotFlag;
+use Peridot\Leo\Matcher\TypeMatcher;
 use Peridot\Leo\Scope;
 
 /**
@@ -50,26 +51,15 @@ class Bdd extends AbstractBaseInterface
     /**
      * Initialize BDD interface with chainable properties
      */
-    public function __construct()
+    public function __construct($subject)
     {
+        parent::__construct($subject);
+
         foreach ($this->chainables as $property) {
             $this->$property = $this;
         }
+
         $this->setFlag(new NotFlag());
-    }
-
-    public function a($type)
-    {
-        $actual = gettype($this->getActual());
-        if ($actual == $type) {
-            return;
-        }
-        throw new \Exception("Expected $type, got $actual");
-    }
-
-    
-    public function an($type)
-    {
-        $this->a($type);
+        $this->addMatcher(new TypeMatcher($subject));
     }
 } 
