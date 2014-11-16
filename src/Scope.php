@@ -93,7 +93,11 @@ class Scope extends PeridotScope
     public function &__get($property)
     {
         if (isset($this->flags[$property])) {
-            return call_user_func($this->flags[$property], $this);
+            $result = call_user_func($this->flags[$property], $this);
+            if (! is_object($result)) {
+                return $this;
+            }
+            return $result;
         }
         return parent::__get($property);
     }

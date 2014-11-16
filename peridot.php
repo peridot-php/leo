@@ -1,6 +1,7 @@
 <?php
 
 use Evenement\EventEmitterInterface;
+use Peridot\Plugin\Prophecy\ProphecyPlugin;
 use Peridot\Plugin\Watcher\WatcherPlugin;
 use Peridot\Reporter\CodeCoverageReporters;
 use Peridot\Reporter\Dot\DotReporterPlugin;
@@ -16,5 +17,5 @@ return function(EventEmitterInterface $emitter) {
     $coverage = new CodeCoverageReporters($emitter);
     $coverage->register();
 
-    //$prophecy = new ProphecyPlugin($emitter);
+    $prophecy = new ProphecyPlugin($emitter);
 };

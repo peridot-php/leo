@@ -17,6 +17,7 @@
         }
     },
     "require-dev": {
-        "peridot-php/peridot-jumpstart": "~1.0"
+        "peridot-php/peridot-jumpstart": "~1.0",
+        "peridot-php/peridot-prophecy-plugin": "~1.0"
     }
 }
