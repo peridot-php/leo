@@ -25,6 +25,9 @@ use Peridot\Leo\Scope;
  * @property Bdd $same
  * @property Bdd $not
  * @property Bdd $negated
+ *
+ * @method void an() an(string $type, string $message = "") validates the type of a subject
+ * @method void a() a(string $type, string $message = "") validates the type of a subject
  */
 class Bdd extends AbstractBaseInterface
 {
