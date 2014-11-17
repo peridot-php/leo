@@ -63,7 +63,7 @@ describe('TypeMatcher', function() {
                 assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
             });
 
-            context('when interface has been negated', function() {
+            context('and interface has been negated', function() {
                 it('should throw an exception when the match succeeds', function() {
                     $exception = null;
                     try {
