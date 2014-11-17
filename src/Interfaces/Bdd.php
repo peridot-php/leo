@@ -2,12 +2,10 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Flag\NotFlag;
-use Peridot\Leo\Matcher\TypeMatcher;
-use Peridot\Leo\Scope;
 
 /**
- * The Leo Scope contains the chainable interface
- * and is the main entry point for making assertions.
+ * The BDD interface contains a chainable interface that enhances
+ * the readability of expectations.
  *
  * @package Peridot\Leo
  *
@@ -63,6 +61,5 @@ class Bdd extends AbstractBaseInterface
         }
 
         $this->setFlag(new NotFlag());
-        $this->addMatcher(new TypeMatcher($subject));
     }
 } 

@@ -28,6 +28,8 @@ class AbstractBaseInterface extends Scope
     public function __construct($subject)
     {
         $this->subject = $subject;
+
+        $this->addMatcher(new TypeMatcher($subject));
     }
 
     /**

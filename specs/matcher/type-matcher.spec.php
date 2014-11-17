@@ -1,4 +1,5 @@
 <?php
+use Peridot\Leo\Interfaces\Assert;
 use Peridot\Leo\Interfaces\Bdd;
 use Peridot\Leo\Matcher\TypeMatcher;
 
@@ -102,6 +103,48 @@ describe('TypeMatcher', function() {
             it("should return the TypeMatcher's parent", function() {
                 $interface = $this->matcher->an;
                 assert($interface === $this->interface, "an as language chain should return parent");
+            });
+        });
+    });
+
+    context('when interface is an Assert interface', function() {
+        beforeEach(function() {
+            $this->interface = new Assert([]);
+            $this->matcher->peridotSetParentScope($this->interface);
+        });
+
+        describe('->typeOf()', function() {
+            it('should throw an exception when match fails', function() {
+                $exception = null;
+                try {
+                    $this->matcher->typeOf([], 'string');
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
+            });
+
+            it('should allow an optional user message', function() {
+                $exception = null;
+                $expected = "should have been a string";
+                try {
+                    $this->matcher->typeOf([], 'string', $expected);
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
+            });
+        });
+
+        context('and assert method begins with not', function() {
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->matcher->notTypeOf([], 'array');
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
             });
         });
     });

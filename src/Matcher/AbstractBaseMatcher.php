@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Interfaces\AbstractBaseInterface;
+use Peridot\Leo\Interfaces\Assert;
 use Peridot\Leo\Interfaces\Bdd;
 use Peridot\Scope\Scope;
 
@@ -69,6 +70,10 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
         if ($this->getInterface() instanceof Bdd) {
             return $this->asBdd($name, $arguments);
         }
+
+        if ($this->getInterface() instanceof Assert) {
+            return $this->asAssert($name, $arguments);
+        }
         return parent::__call($name, $arguments);
     }
 
@@ -80,4 +85,13 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
      * @return mixed
      */
     abstract protected function asBdd($methodName, $arguments);
+
+    /**
+     * Define how a matcher responds to an Assert interface.
+     *
+     * @param $methodName
+     * @param $arguments
+     * @return mixed
+     */
+    abstract protected function asAssert($methodName, $arguments);
 }
