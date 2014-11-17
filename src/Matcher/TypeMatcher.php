@@ -9,32 +9,17 @@ use Peridot\Leo\Interfaces\AbstractBaseInterface;
  *
  * @property AbstractBaseInterface $a
  * @property AbstractBaseInterface $an
+ * @method void an() an(string $type) validates the type of a subject
+ * @method void a() a(string $type) validates the type of a subject
  *
  * @package Peridot\Leo\Matcher
  */
 class TypeMatcher extends AbstractBaseMatcher
 {
     /**
-     * Assert that the passed in type is the same
-     * as the assertion subject.
-     *
-     * @param $type
-     * @throws \Exception
+     * @var string
      */
-    public function a($type)
-    {
-        $this->validate($type, gettype($this->getInterface()->getSubject()));
-    }
-
-    /**
-     * An alias for the 'a' validation.
-     *
-     * @param $type
-     */
-    public function an($type)
-    {
-        $this->a($type);
-    }
+    private static $pattern = '/an?/';
 
     /**
      * Adds 'a' and 'an' as language chains.
@@ -44,7 +29,7 @@ class TypeMatcher extends AbstractBaseMatcher
      */
     public function &__get($name)
     {
-        if (preg_match('/an?/', $name)) {
+        if (preg_match(self::$pattern, $name)) {
             return $this->getInterface();
         }
         return parent::__get($name);
@@ -64,5 +49,29 @@ class TypeMatcher extends AbstractBaseMatcher
             return "Expected a type other than $expected";
         }
         return "Expected $expected, got $actual";
+    }
+
+    /**
+     * Validate the type against the subject.
+     *
+     * @param string $type
+     */
+    protected function validateType($type)
+    {
+        $this->validate($type, gettype($this->getInterface()->getSubject()));
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param $methodName
+     * @param $arguments
+     * @return mixed
+     */
+    protected function asBdd($methodName, $arguments)
+    {
+        if (preg_match(self::$pattern, $methodName)) {
+            return call_user_func_array([$this, 'validateType'], $arguments);
+        }
     }
 }

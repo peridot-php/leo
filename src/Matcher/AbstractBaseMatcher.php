@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Interfaces\AbstractBaseInterface;
+use Peridot\Leo\Interfaces\Bdd;
 use Peridot\Scope\Scope;
 
 abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
@@ -50,4 +51,28 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
 
         throw new \Exception($this->getMessage($expected, $actual, $negated));
     }
+
+    /**
+     * Checks interface and calls appropriate interface definition
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        if ($this->getInterface() instanceof Bdd) {
+            return $this->asBdd($name, $arguments);
+        }
+        return parent::__call($name, $arguments);
+    }
+
+    /**
+     * Define how a matcher responds to a Bdd interface.
+     *
+     * @param $methodName
+     * @param $arguments
+     * @return mixed
+     */
+    abstract protected function asBdd($methodName, $arguments);
 }
