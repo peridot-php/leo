@@ -52,4 +52,18 @@ describe('InclusionMatcher', function() {
             });
         });
     });
+
+    describe('->getMessage()', function() {
+        it('should return a formatted success message', function() {
+            $message = $this->matcher->getMessage(1, 'array');
+            assert($message == "Expected array to contain 1", "should have formatted success message");
+        });
+
+        context('when message is negated', function() {
+            it('should return a formatted negated message', function() {
+                $message = $this->matcher->getMessage(1, 'string', true);
+                assert($message == "Expected string not to contain 1", "should have formatted negated message");
+            });
+        });
+    });
 });

@@ -36,18 +36,21 @@ class InclusionMatcher extends AbstractBaseMatcher
      * @param bool $negated weather the assertion has been negated
      * @return string
      */
-    public function getMessage($expected, $actual, $negated)
+    public function getMessage($expected, $actual, $negated = false)
     {
-        // TODO: Implement getMessage() method.
+        if ($negated) {
+            return "Expected $actual not to contain $expected";
+        }
+        return "Expected $actual to contain $expected";
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param mixed $expected
+     * @param mixed $needle
      * @return bool
      */
-    public function isMatch($expected)
+    public function isMatch($needle)
     {
         $subject = $this->getInterface()->getSubject();
         $isHaystack = is_array($subject) || is_string($subject);
@@ -57,11 +60,11 @@ class InclusionMatcher extends AbstractBaseMatcher
 
         $result = false;
         if (is_array($subject)) {
-            $result = in_array($expected, $subject);
+            $result = in_array($needle, $subject);
         }
 
         if (is_string($subject)) {
-            $result = strpos($subject, $expected) !== false;
+            $result = strpos($subject, $needle) !== false;
         }
 
         return $result;

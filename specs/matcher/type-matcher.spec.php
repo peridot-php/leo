@@ -11,7 +11,7 @@ describe('TypeMatcher', function() {
     });
 
     describe('->getMessage()', function() {
-        it("should return a formated success message", function() {
+        it("should return a formatted success message", function() {
             $expected = "Expected array, got string";
             $actual = $this->matcher->getMessage("array", "string");
             assert($expected == $actual, "Expected '$expected', got $actual");
