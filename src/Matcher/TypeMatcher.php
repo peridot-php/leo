@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Interfaces\AbstractBaseInterface;
+use Peridot\Leo\Interfaces\Bdd;
 
 /**
  * TypeMatcher supports 'a' and 'an' validations for type
@@ -29,7 +30,8 @@ class TypeMatcher extends AbstractBaseMatcher
      */
     public function &__get($name)
     {
-        if (preg_match(self::$pattern, $name)) {
+        $isChainable = $this->getInterface() instanceof Bdd && preg_match(self::$pattern, $name);
+        if ($isChainable) {
             return $this->getInterface();
         }
         return parent::__get($name);

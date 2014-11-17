@@ -85,5 +85,12 @@ describe('TypeMatcher', function() {
                 assert($interface === $this->interface, "a as language chain should return parent");
             });
         });
+
+        context('when using "an" as a language chain', function() {
+            it("should return the TypeMatcher's parent", function() {
+                $interface = $this->matcher->an;
+                assert($interface === $this->interface, "an as language chain should return parent");
+            });
+        });
     });
 });
