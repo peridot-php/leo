@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Behavior\Bdd\IncludeBehavior;
+use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
 
@@ -63,5 +65,16 @@ class Bdd extends AbstractBaseInterface
 
         $this->setFlag(new NotFlag());
         $this->setBehavior(new TypeBehavior($this));
+        $this->setBehavior(new InclusionBehavior($this));
     }
+
+    public function __call($name, $arguments)
+    {
+        if ($name == "include") {
+            return call_user_func_array([$this, 'contain'], $arguments);
+        }
+        return parent::__call($name, $arguments);
+    }
+
+
 } 

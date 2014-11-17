@@ -40,6 +40,17 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
     /**
      * {@inheritdoc}
      *
+     * @param $subject
+     * @return mixed|void
+     */
+    public function setSubject($subject)
+    {
+        $this->actual = $subject;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
      * @return mixed
      */
     public function getActual()

@@ -78,4 +78,55 @@ describe('Bdd', function() {
             assert($interface === $this->interface, "an as language chain should return interface");
         });
     });
+
+    describe('->include()', function() {
+        it('should throw exception when match fails', function() {
+            $exception = null;
+            try {
+                $this->interface->setSubject([1,2,3])->include(4);
+            } catch (Exception $e) {
+                $exception = $e;
+            }
+            assert(!is_null($exception), "exception should have been thrown");
+        });
+
+        it('should allow an optional user message', function() {
+            $exception = null;
+            $expected = "should have been included";
+            try {
+                $this->interface->setSubject([1,2,3])->include(4, $expected);
+            } catch (\Exception $e) {
+                $exception = $e;
+            }
+            assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
+        });
+
+        context('and interface has been negated', function() {
+            beforeEach(function() {
+                $this->interface = new Bdd([1,2,3]);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->not->include(1);
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected array not to contain 1", "should not have been {$exception->getMessage()}");
+            });
+        });
+    });
+
+    describe('->contain()', function() {
+        it('should throw exception when match fails', function() {
+            $exception = null;
+            try {
+                $this->interface->setSubject([1,2,3])->contain(4);
+            } catch (Exception $e) {
+                $exception = $e;
+            }
+            assert(!is_null($exception), "exception should have been thrown");
+        });
+    });
 });
