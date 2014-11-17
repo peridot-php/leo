@@ -25,9 +25,13 @@ use Peridot\Leo\Flag\NotFlag;
  * @property Bdd $same
  * @property Bdd $not
  * @property Bdd $negated
+ * @property Bdd $a
+ * @property Bdd $an
  *
  * @method void an() an(string $type, string $message = "") validates the type of a subject
  * @method void a() a(string $type, string $message = "") validates the type of a subject
+ * @method void include() include(mixed $needle, string $message = "") validates that a subject contains the needle
+ * @method void contain() contain(mixed $needle, string $message = "") validates that a subject contains the needle
  */
 class Bdd extends AbstractBaseInterface
 {
