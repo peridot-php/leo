@@ -1,7 +1,6 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
-use Peridot\Leo\Behavior\Bdd\IncludeBehavior;
 use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
