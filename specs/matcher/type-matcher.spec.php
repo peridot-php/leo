@@ -50,6 +50,18 @@ describe('TypeMatcher', function() {
                 assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
             });
 
+            it('should allow an optional user message', function() {
+                $exception = null;
+                $expected = "should have been a string";
+                try {
+                    $this->interface->setSubject([]);
+                    $this->matcher->a('string', $expected);
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
+            });
+
             context('when interface has been negated', function() {
                 it('should throw an exception when the match succeeds', function() {
                     $exception = null;

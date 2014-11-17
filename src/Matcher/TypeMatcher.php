@@ -10,8 +10,8 @@ use Peridot\Leo\Interfaces\Bdd;
  *
  * @property AbstractBaseInterface $a
  * @property AbstractBaseInterface $an
- * @method void an() an(string $type) validates the type of a subject
- * @method void a() a(string $type) validates the type of a subject
+ * @method void an() an(string $type, string $message = "") validates the type of a subject
+ * @method void a() a(string $type, string $message = "") validates the type of a subject
  *
  * @package Peridot\Leo\Matcher
  */
@@ -57,10 +57,11 @@ class TypeMatcher extends AbstractBaseMatcher
      * Validate the type against the subject.
      *
      * @param string $type
+     * @param string $message
      */
-    protected function validateType($type)
+    protected function validateType($type, $message = '')
     {
-        $this->validate($type, gettype($this->getInterface()->getSubject()));
+        $this->validate($type, gettype($this->getInterface()->getSubject()), $message);
     }
 
     /**

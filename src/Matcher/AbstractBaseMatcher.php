@@ -34,9 +34,10 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
      *
      * @param $type
      * @param $actual
+     * @param string $message - an optional message
      * @throws \Exception
      */
-    public function validate($expected, $actual)
+    public function validate($expected, $actual, $message = "")
     {
         $validation = $this->isMatch($expected, $actual);
         $negated = $this->getInterface()->isNegated();
@@ -49,7 +50,11 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
             return;
         }
 
-        throw new \Exception($this->getMessage($expected, $actual, $negated));
+        if (! $message) {
+            $message = $this->getMessage($expected, $actual, $negated);
+        }
+
+        throw new \Exception($message);
     }
 
     /**
