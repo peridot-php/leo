@@ -73,17 +73,6 @@ class TypeMatcher extends AbstractBaseMatcher
     }
 
     /**
-     * Validate the type against the subject.
-     *
-     * @param string $type
-     * @param string $message
-     */
-    protected function validateType($type, $message = '')
-    {
-        $this->validate($type, $message);
-    }
-
-    /**
      * {@inheritdoc}
      *
      * @param $methodName
@@ -93,7 +82,7 @@ class TypeMatcher extends AbstractBaseMatcher
     protected function asBdd($methodName, $arguments)
     {
         if (preg_match(self::$bddPattern, $methodName)) {
-            return call_user_func_array([$this, 'validateType'], $arguments);
+            return call_user_func_array([$this, 'validate'], $arguments);
         }
     }
 
@@ -116,6 +105,6 @@ class TypeMatcher extends AbstractBaseMatcher
 
         $this->getInterface()->setSubject($arguments[0]);
         $arguments = array_slice($arguments, 1);
-        return call_user_func_array([$this, 'validateType'], $arguments);
+        return call_user_func_array([$this, 'validate'], $arguments);
     }
 }

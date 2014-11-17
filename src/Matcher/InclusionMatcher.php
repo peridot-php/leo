@@ -3,9 +3,12 @@ namespace Peridot\Leo\Matcher;
 
 class InclusionMatcher extends AbstractBaseMatcher
 {
+    private static $bddPattern = '/^include|contain$/';
+
+    private static $assertPattern = '/^(not)?(?:i|I)nclude$/';
 
     /**
-     * Define how a matcher responds to a Bdd interface.
+     * {@inheritdoc}
      *
      * @param $methodName
      * @param $arguments
@@ -13,7 +16,9 @@ class InclusionMatcher extends AbstractBaseMatcher
      */
     protected function asBdd($methodName, $arguments)
     {
-        // TODO: Implement asBdd() method.
+        if (preg_match(self::$bddPattern, $methodName)) {
+            return call_user_func_array([$this, 'validate'], $arguments);
+        }
     }
 
     /**
@@ -60,10 +65,12 @@ class InclusionMatcher extends AbstractBaseMatcher
 
         $result = false;
         if (is_array($subject)) {
+            $this->actual = 'array';
             $result = in_array($needle, $subject);
         }
 
         if (is_string($subject)) {
+            $this->actual = 'string';
             $result = strpos($subject, $needle) !== false;
         }
 
