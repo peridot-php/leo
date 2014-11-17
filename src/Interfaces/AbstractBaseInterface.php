@@ -2,7 +2,6 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Flag\FlagInterface;
-use Peridot\Leo\Matcher\TypeMatcher;
 use Peridot\Scope\Scope;
 
 class AbstractBaseInterface extends Scope
@@ -18,18 +17,11 @@ class AbstractBaseInterface extends Scope
     protected $subject;
 
     /**
-     * @var array
-     */
-    protected $matchers = [];
-
-    /**
      * @param mixed $subject
      */
     public function __construct($subject)
     {
         $this->subject = $subject;
-
-        $this->addMatcher(new TypeMatcher($subject));
     }
 
     /**
@@ -50,6 +42,16 @@ class AbstractBaseInterface extends Scope
     public function setFlag(FlagInterface $flag)
     {
         $this->flags[$flag->getId()] = $flag;
+        return $this;
+    }
+
+    /**
+     * @param Scope $scope
+     * @return $this
+     */
+    public function setBehavior(Scope $scope)
+    {
+        $this->peridotAddChildScope($scope);
         return $this;
     }
 
@@ -88,13 +90,5 @@ class AbstractBaseInterface extends Scope
     {
         $this->subject = $subject;
         return $this;
-    }
-
-    /**
-     * @param TypeMatcher $matcher
-     */
-    public function addMatcher(TypeMatcher $matcher)
-    {
-        $this->peridotAddChildScope($matcher);
     }
 } 

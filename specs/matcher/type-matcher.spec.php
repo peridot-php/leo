@@ -1,13 +1,11 @@
 <?php
 use Peridot\Leo\Interfaces\Assert;
-use Peridot\Leo\Interfaces\Bdd;
 use Peridot\Leo\Matcher\TypeMatcher;
 
 describe('TypeMatcher', function() {
     beforeEach(function() {
-        $this->interface = new Bdd([]);
         $this->matcher = new TypeMatcher();
-        $this->matcher->peridotSetParentScope($this->interface);
+        $this->matcher->setSubject([]);
     });
 
     describe('->getMessage()', function() {
@@ -38,114 +36,12 @@ describe('TypeMatcher', function() {
         });
     });
 
-    context('when interface is a Bdd interface', function() {
-        describe('->a()', function() {
-            it('should throw an exception when match fails', function() {
-                $exception = null;
-                try {
-                    $this->interface->setSubject([]);
-                    $this->matcher->a('string');
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
-            });
-
-            it('should allow an optional user message', function() {
-                $exception = null;
-                $expected = "should have been a string";
-                try {
-                    $this->interface->setSubject([]);
-                    $this->matcher->a('string', $expected);
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
-            });
-
-            context('and interface has been negated', function() {
-                it('should throw an exception when the match succeeds', function() {
-                    $exception = null;
-                    try {
-                        $this->interface->setSubject([]);
-                        $this->interface->negated = true;
-                        $this->matcher->a('array');
-                    } catch (\Exception $e) {
-                        $exception = $e;
-                    }
-                    assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
-                });
-            });
-        });
-
-        describe('->an()', function() {
-            it('should throw an exception when match fails', function() {
-                $exception = null;
-                try {
-                    $this->interface->setSubject([]);
-                    $this->matcher->an('string');
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
-            });
-        });
-
-
-        context('when using "a" as a language chain', function() {
-            it("should return the TypeMatcher's parent", function() {
-                $interface = $this->matcher->a;
-                assert($interface === $this->interface, "a as language chain should return parent");
-            });
-        });
-
-        context('when using "an" as a language chain', function() {
-            it("should return the TypeMatcher's parent", function() {
-                $interface = $this->matcher->an;
-                assert($interface === $this->interface, "an as language chain should return parent");
-            });
-        });
-    });
-
     context('when interface is an Assert interface', function() {
         beforeEach(function() {
             $this->interface = new Assert([]);
             $this->matcher->peridotSetParentScope($this->interface);
         });
 
-        describe('->typeOf()', function() {
-            it('should throw an exception when match fails', function() {
-                $exception = null;
-                try {
-                    $this->matcher->typeOf([], 'string');
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == "Expected string, got array", "should not have been {$exception->getMessage()}");
-            });
 
-            it('should allow an optional user message', function() {
-                $exception = null;
-                $expected = "should have been a string";
-                try {
-                    $this->matcher->typeOf([], 'string', $expected);
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
-            });
-        });
-
-        context('and assert method begins with not', function() {
-            it('should throw an exception when the match succeeds', function() {
-                $exception = null;
-                try {
-                    $this->matcher->notTypeOf([], 'array');
-                } catch (\Exception $e) {
-                    $exception = $e;
-                }
-                assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
-            });
-        });
     });
 });

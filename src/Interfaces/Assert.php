@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Behavior\Assert\TypeBehavior;
+
 /**
  * Assert is a traditional assert style interface.
  *
@@ -11,5 +13,10 @@ namespace Peridot\Leo\Interfaces;
  */
 class Assert extends AbstractBaseInterface
 {
+    public function __construct($subject = null)
+    {
+        parent::__construct($subject);
 
+        $this->setBehavior(new TypeBehavior());
+    }
 } 
