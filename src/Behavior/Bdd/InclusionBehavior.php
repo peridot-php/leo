@@ -22,6 +22,13 @@ class InclusionBehavior extends Scope
         $this->interface = $interface;
     }
 
+    /**
+     * Validate against the InclusionMatcher
+     *
+     * @param $expected
+     * @param string $message
+     * @throws \Exception
+     */
     public function contain($expected, $message = "")
     {
         $this->matcher->validate($expected, $this->interface->isNegated(), $message);

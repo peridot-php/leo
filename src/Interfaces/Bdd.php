@@ -68,6 +68,14 @@ class Bdd extends AbstractBaseInterface
         $this->setBehavior(new InclusionBehavior($this));
     }
 
+    /**
+     * Include is an alias for the contain behavior. A method named "include" cannot
+     * be defined by traditional means, so it is setup here to delegate to the contain behavior.
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
     public function __call($name, $arguments)
     {
         if ($name == "include") {
@@ -75,6 +83,4 @@ class Bdd extends AbstractBaseInterface
         }
         return parent::__call($name, $arguments);
     }
-
-
 } 
