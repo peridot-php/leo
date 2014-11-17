@@ -55,8 +55,15 @@ class InclusionMatcher extends AbstractBaseMatcher
             throw new \InvalidArgumentException("Subject must be an array or string");
         }
 
+        $result = false;
         if (is_array($subject)) {
-            return in_array($expected, $subject);
+            $result = in_array($expected, $subject);
         }
+
+        if (is_string($subject)) {
+            $result = strpos($subject, $expected) !== false;
+        }
+
+        return $result;
     }
 }

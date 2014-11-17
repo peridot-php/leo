@@ -35,5 +35,21 @@ describe('InclusionMatcher', function() {
                 assert(!$match, "should not have found 4 in array");
             });
         });
+
+        context('when subject is a string', function() {
+            beforeEach(function() {
+                $this->interface->getSubject()->willReturn('hello');
+            });
+
+            it('should return true if item is in string', function() {
+                $match = $this->matcher->isMatch('ell');
+                assert($match, "should have found 'ell' substring");
+            });
+
+            it('should return false if item is not in string', function() {
+                $match = $this->matcher->isMatch('beep');
+                assert(!$match, "should not have found 'beep' substring");
+            });
+        });
     });
 });
