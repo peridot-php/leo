@@ -9,7 +9,7 @@ interface MatcherInterface
      * @param mixed $expected
      * @return bool
      */
-    public function isMatch($expected, $actual);
+    public function isMatch($expected);
 
     /**
      * Return a formatted message for this matcher.

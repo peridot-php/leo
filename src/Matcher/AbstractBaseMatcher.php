@@ -9,17 +9,6 @@ use Peridot\Scope\Scope;
 abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
 {
     /**
-     * {@inheritdoc}
-     *
-     * @param mixed $expected
-     * @return bool
-     */
-    public function isMatch($expected, $actual)
-    {
-        return $expected === $actual;
-    }
-
-    /**
      * Return the subject of the assertion.
      *
      * @return AbstractBaseInterface
@@ -34,13 +23,12 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
      * fails.
      *
      * @param $type
-     * @param $actual
      * @param string $message - an optional message
      * @throws \Exception
      */
-    public function validate($expected, $actual, $message = "")
+    public function validate($expected, $message = "")
     {
-        $validation = $this->isMatch($expected, $actual);
+        $validation = $this->isMatch($expected);
         $negated = $this->getInterface()->isNegated();
 
         if ($negated) {
@@ -52,7 +40,7 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
         }
 
         if (! $message) {
-            $message = $this->getMessage($expected, $actual, $negated);
+            $message = $this->getMessage($expected, $this->actual, $negated);
         }
 
         throw new \Exception($message);
@@ -76,6 +64,14 @@ abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
         }
         return parent::__call($name, $arguments);
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param mixed $expected
+     * @return bool
+     */
+    abstract public function isMatch($expected);
 
     /**
      * Define how a matcher responds to a Bdd interface.

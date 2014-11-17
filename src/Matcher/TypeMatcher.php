@@ -61,6 +61,18 @@ class TypeMatcher extends AbstractBaseMatcher
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @param mixed $expected
+     * @return bool
+     */
+    public function isMatch($expected)
+    {
+        $this->actual = gettype($this->getInterface()->getSubject());
+        return $this->actual === $expected;
+    }
+
+    /**
      * Validate the type against the subject.
      *
      * @param string $type
@@ -68,7 +80,7 @@ class TypeMatcher extends AbstractBaseMatcher
      */
     protected function validateType($type, $message = '')
     {
-        $this->validate($type, gettype($this->getInterface()->getSubject()), $message);
+        $this->validate($type, $message);
     }
 
     /**
@@ -106,6 +118,4 @@ class TypeMatcher extends AbstractBaseMatcher
         $arguments = array_slice($arguments, 1);
         return call_user_func_array([$this, 'validateType'], $arguments);
     }
-
-
 }

@@ -28,12 +28,12 @@ describe('TypeMatcher', function() {
 
     describe('->isMatch()', function() {
         it('should return true when subject is expected value', function() {
-            $match = $this->matcher->isMatch('array', 'array');
+            $match = $this->matcher->isMatch('array');
             assert($match, "should have matched array type");
         });
 
         it('should return false when the subject is not expected value', function() {
-            $match = $this->matcher->isMatch('string', 'array');
+            $match = $this->matcher->isMatch('string');
             assert(!$match, "should not have matched string type");
         });
     });
