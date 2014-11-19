@@ -52,4 +52,4 @@ class TypeBehavior extends Scope
     {
         $this->a($expected, $message);
     }
-} 
+}

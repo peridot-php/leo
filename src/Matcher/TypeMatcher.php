@@ -1,5 +1,6 @@
 <?php
 namespace Peridot\Leo\Matcher;
+
 /**
  * @package Peridot\Leo\Matcher
  */

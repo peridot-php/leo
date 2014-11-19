@@ -19,4 +19,4 @@ class Assert extends AbstractBaseInterface
 
         $this->setBehavior(new TypeBehavior());
     }
-} 
+}

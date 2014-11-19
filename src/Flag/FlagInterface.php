@@ -24,4 +24,4 @@ interface FlagInterface
      * @return mixed
      */
     public function __invoke(Scope $scope);
-} 
+}

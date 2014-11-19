@@ -33,4 +33,4 @@ class InclusionBehavior extends Scope
     {
         $this->matcher->validate($expected, $this->interface->isNegated(), $message);
     }
-} 
+}

@@ -47,4 +47,4 @@ interface MatcherInterface
      * @return mixed
      */
     public function getActual();
-} 
+}

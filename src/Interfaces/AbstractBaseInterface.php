@@ -91,4 +91,4 @@ class AbstractBaseInterface extends Scope
         $this->subject = $subject;
         return $this;
     }
-} 
+}

@@ -86,4 +86,4 @@ class Bdd extends AbstractBaseInterface
         }
         return parent::__call($name, $arguments);
     }
-} 
+}

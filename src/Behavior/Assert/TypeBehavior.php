@@ -45,4 +45,4 @@ class TypeBehavior extends Scope
             ->setSubject($subject)
             ->validate($expected, true, $message);
     }
-} 
+}
