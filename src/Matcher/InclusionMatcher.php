@@ -33,11 +33,6 @@ class InclusionMatcher extends AbstractBaseMatcher
     public function isMatch($needle)
     {
         $subject = $this->getActual();
-        $isHaystack = is_array($subject) || is_string($subject);
-        if (! $isHaystack) {
-            throw new \InvalidArgumentException("Subject must be an array or string");
-        }
-
         $result = false;
         if (is_array($subject)) {
             $result = in_array($needle, $subject);
@@ -48,5 +43,21 @@ class InclusionMatcher extends AbstractBaseMatcher
         }
 
         return $result;
+    }
+
+    /**
+     * Ensures the subject is an array or string and returns
+     * it.
+     *
+     * @return array|string
+     */
+    public function getActual()
+    {
+        $subject = parent::getActual();
+        $isHaystack = is_array($subject) || is_string($subject);
+        if (! $isHaystack) {
+            throw new \InvalidArgumentException("Subject must be an array or string");
+        }
+        return $subject;
     }
 }
