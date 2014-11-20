@@ -1,9 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
-use Peridot\Scope\Scope;
-
-abstract class AbstractBaseMatcher extends Scope implements MatcherInterface
+abstract class AbstractBaseMatcher implements MatcherInterface
 {
     /**
      * @var mixed
