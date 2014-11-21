@@ -1,29 +1,12 @@
 <?php
 namespace Peridot\Leo\Behavior\Bdd;
 
-use Peridot\Leo\Interfaces\AbstractBaseInterface;
-use Peridot\Leo\Matcher\InclusionMatcher;
-use Peridot\Scope\Scope;
+use Peridot\Leo\Behavior\MatcherBehavior;
 
-class InclusionBehavior extends Scope
+class InclusionBehavior extends MatcherBehavior
 {
     /**
-     * @var InclusionMatcher
-     */
-    protected $matcher;
-
-    /**
-     * @param AbstractBaseInterface $interface
-     */
-    public function __construct(AbstractBaseInterface $interface)
-    {
-        $this->matcher = new InclusionMatcher();
-        $this->matcher->setSubject($interface->getSubject());
-        $this->interface = $interface;
-    }
-
-    /**
-     * Validate against the InclusionMatcher
+     * Validate against the InclusionMatcher.
      *
      * @param $expected
      * @param string $message
@@ -31,6 +14,6 @@ class InclusionBehavior extends Scope
      */
     public function contain($expected, $message = "")
     {
-        $this->matcher->validate($expected, $this->interface->isNegated(), $message);
+        $this->validate($expected, $message);
     }
 }

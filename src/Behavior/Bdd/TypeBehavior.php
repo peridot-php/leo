@@ -1,11 +1,10 @@
 <?php
 namespace Peridot\Leo\Behavior\Bdd;
 
+use Peridot\Leo\Behavior\MatcherBehavior;
 use Peridot\Leo\Interfaces\AbstractBaseInterface;
-use Peridot\Leo\Matcher\TypeMatcher;
-use Peridot\Scope\Scope;
 
-class TypeBehavior extends Scope
+class TypeBehavior extends MatcherBehavior
 {
     /**
      * @var AbstractBaseInterface
@@ -18,20 +17,12 @@ class TypeBehavior extends Scope
     public $an;
 
     /**
-     * @var TypeMatcher
-     */
-    protected $matcher;
-
-    /**
      * @param AbstractBaseInterface $interface
      */
-    public function __construct(AbstractBaseInterface $interface)
+    public function extend(AbstractBaseInterface $interface)
     {
-        $this->matcher = new TypeMatcher();
-        $this->matcher->setSubject($interface->getSubject());
-        $this->interface = $interface;
-        $this->a = $this->interface;
-        $this->an = $this->interface;
+        $this->a = $interface;
+        $this->an = $interface;
     }
 
     /**
@@ -41,7 +32,7 @@ class TypeBehavior extends Scope
      */
     public function a($expected, $message = "")
     {
-        $this->matcher->validate($expected, $this->interface->isNegated(), $message);
+        $this->validate($expected, $message);
     }
 
     /**

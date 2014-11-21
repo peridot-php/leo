@@ -26,6 +26,6 @@ class InclusionBehavior extends MatcherBehavior
      */
     public function notInclude($haystack, $needle, $message = "")
     {
-        $this->negate($haystack, $needle, $message);
+        $this->negate()->contain($haystack, $needle, $message);
     }
 }

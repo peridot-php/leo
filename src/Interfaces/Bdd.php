@@ -4,6 +4,8 @@ namespace Peridot\Leo\Interfaces;
 use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
+use Peridot\Leo\Matcher\InclusionMatcher;
+use Peridot\Leo\Matcher\TypeMatcher;
 
 /**
  * The BDD interface contains a chainable interface that enhances
@@ -67,8 +69,8 @@ class Bdd extends AbstractBaseInterface
         }
 
         $this->setFlag(new NotFlag());
-        $this->setBehavior(new TypeBehavior($this));
-        $this->setBehavior(new InclusionBehavior($this));
+        $this->setBehavior(new TypeBehavior(new TypeMatcher(), $this));
+        $this->setBehavior(new InclusionBehavior(new InclusionMatcher(), $this));
     }
 
     /**

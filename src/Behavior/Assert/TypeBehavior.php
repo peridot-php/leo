@@ -26,6 +26,6 @@ class TypeBehavior extends MatcherBehavior
      */
     public function notTypeOf($subject, $expectedType, $message = "")
     {
-        $this->negate($subject, $expectedType, $message);
+        $this->negate()->typeOf($subject, $expectedType, $message);
     }
 }

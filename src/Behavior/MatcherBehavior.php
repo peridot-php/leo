@@ -6,6 +6,13 @@ use Peridot\Leo\Interfaces\NullInterface;
 use Peridot\Leo\Matcher\MatcherInterface;
 use Peridot\Scope\Scope;
 
+/**
+ * MatcherBehavior is the base class for Leo's default
+ * matching behaviors. It extends scope to mix in methods
+ * for matching and interface extension.
+ *
+ * @package Peridot\Leo\Behavior
+ */
 abstract class MatcherBehavior extends Scope
 {
     /**
@@ -25,28 +32,6 @@ abstract class MatcherBehavior extends Scope
     }
 
     /**
-     * Validate that the expected value is matched against
-     * subject.
-     *
-     * @param $subject
-     * @param $expected
-     * @param string $message
-     */
-    public function validate($subject, $expected, $message = "")
-    {
-        $subject = $this->interface->getSubject();
-        $expected = func_get_arg(0);
-        $message = func_get_arg(1);
-        if (func_num_args() == 3) {
-            $subject = func_get_arg(0);
-            $expected = func_get_arg(1);
-            $message = func_get_arg(2);
-        }
-        $this->matcher->setSubject($subject);
-        $this->matcher->validate($expected, false, $message);
-    }
-
-    /**
      * Validate that the expected value does not match against
      * the subject.
      *
@@ -54,18 +39,22 @@ abstract class MatcherBehavior extends Scope
      * @param $expected
      * @param string $message
      */
+    public function validate()
+    {
+        list($subject, $expected, $message) = $this->getValidateArguments(func_get_args());
+        $this->matcher->setSubject($subject);
+        $this->matcher->validate($expected, $this->interface->isNegated(), $message);
+    }
+
+    /**
+     * Negate the behavior's interface.
+     *
+     * @return $this
+     */
     public function negate()
     {
-        $subject = $this->interface->getSubject();
-        $expected = func_get_arg(0);
-        $message = func_get_arg(1);
-        if (func_num_args() == 3) {
-            $subject = func_get_arg(0);
-            $expected = func_get_arg(1);
-            $message = func_get_arg(2);
-        }
-        $this->matcher->setSubject($subject);
-        $this->matcher->validate($expected, true, $message);
+        $this->interface->negated = true;
+        return $this;
     }
 
     /**
@@ -76,5 +65,20 @@ abstract class MatcherBehavior extends Scope
     public function extend(AbstractBaseInterface $interface)
     {
 
+    }
+
+    /**
+     * Get args for matching.
+     *
+     * @param $args
+     * @return array
+     */
+    protected function getValidateArguments($args)
+    {
+        if (count($args) === 3) {
+            return $args;
+        }
+        array_unshift($args, $this->interface->getSubject());
+        return $args;
     }
 } 
