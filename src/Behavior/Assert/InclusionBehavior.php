@@ -1,47 +1,31 @@
 <?php
 namespace Peridot\Leo\Behavior\Assert;
 
-use Peridot\Leo\Interfaces\AbstractBaseInterface;
-use Peridot\Leo\Matcher\InclusionMatcher;
-use Peridot\Scope\Scope;
+use Peridot\Leo\Behavior\MatcherBehavior;
 
-class InclusionBehavior extends Scope
+class InclusionBehavior extends MatcherBehavior
 {
     /**
-     * @var InclusionMatcher
-     */
-    protected $matcher;
-
-    /**
-     * @param AbstractBaseInterface $interface
-     */
-    public function __construct()
-    {
-        $this->matcher = new InclusionMatcher();
-    }
-
-    /**
-     * @param $haystack
-     * @param $needle
+     * Validate haystack does include needle.
+     *
+     * @param array|string $haystack
+     * @param mixed $needle
      * @param string $message
      */
     public function contain($haystack, $needle, $message = "")
     {
-        $this->matcher
-            ->setSubject($haystack)
-            ->validate($needle, false, $message);
+        $this->validate($haystack, $needle, $message);
     }
 
     /**
-     * @param $subject
-     * @param $expected
+     * Validate haystack does not include needle.
+     *
+     * @param array|string $haystack
+     * @param mixed $needle
      * @param string $message
-     * @throws \Exception
      */
     public function notInclude($haystack, $needle, $message = "")
     {
-        $this->matcher
-            ->setSubject($haystack)
-            ->validate($needle, true, $message);
+        $this->negate($haystack, $needle, $message);
     }
 }

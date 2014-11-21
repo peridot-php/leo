@@ -1,48 +1,31 @@
 <?php
 namespace Peridot\Leo\Behavior\Assert;
 
-use Peridot\Leo\Interfaces\AbstractBaseInterface;
-use Peridot\Leo\Matcher\TypeMatcher;
-use Peridot\Scope\Scope;
+use Peridot\Leo\Behavior\MatcherBehavior;
 
-class TypeBehavior extends Scope
+class TypeBehavior extends MatcherBehavior
 {
     /**
-     * @var TypeMatcher
+     * Validate that the subject is of the expected type.
+     *
+     * @param mixed $subject
+     * @param string $expectedType
+     * @param string $message
      */
-    protected $matcher;
-
-    /**
-     * @param AbstractBaseInterface $interface
-     */
-    public function __construct()
+    public function typeOf($subject, $expectedType, $message = "")
     {
-        $this->matcher = new TypeMatcher();
+        $this->validate($subject, $expectedType, $message);
     }
 
     /**
+     * Validate that the subject is not the expected type.
+     *
      * @param $subject
-     * @param $expected
+     * @param $expectedType
      * @param string $message
-     * @throws \Exception
      */
-    public function typeOf($subject, $expected, $message = "")
+    public function notTypeOf($subject, $expectedType, $message = "")
     {
-        $this->matcher
-            ->setSubject($subject)
-            ->validate($expected, false, $message);
-    }
-
-    /**
-     * @param $subject
-     * @param $expected
-     * @param string $message
-     * @throws \Exception
-     */
-    public function notTypeOf($subject, $expected, $message = "")
-    {
-        $this->matcher
-            ->setSubject($subject)
-            ->validate($expected, true, $message);
+        $this->negate($subject, $expectedType, $message);
     }
 }

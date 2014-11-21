@@ -3,6 +3,8 @@ namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Behavior\Assert\InclusionBehavior;
 use Peridot\Leo\Behavior\Assert\TypeBehavior;
+use Peridot\Leo\Matcher\InclusionMatcher;
+use Peridot\Leo\Matcher\TypeMatcher;
 
 /**
  * Assert is a traditional assert style interface.
@@ -21,8 +23,8 @@ class Assert extends AbstractBaseInterface
     {
         parent::__construct($subject);
 
-        $this->setBehavior(new TypeBehavior());
-        $this->setBehavior(new InclusionBehavior());
+        $this->setBehavior(new TypeBehavior(new TypeMatcher()));
+        $this->setBehavior(new InclusionBehavior(new InclusionMatcher()));
     }
 
     /**
