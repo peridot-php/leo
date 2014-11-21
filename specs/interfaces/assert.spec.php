@@ -31,17 +31,52 @@ describe('Assert', function() {
             }
             assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
         });
+
+        context('and assert method begins with not', function() {
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->notTypeOf([], 'array');
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
+            });
+        });
     });
 
-    context('and assert method begins with not', function() {
-        it('should throw an exception when the match succeeds', function() {
+    describe('->include()', function() {
+        it('should throw an exception when match fails', function() {
             $exception = null;
             try {
-                $this->interface->notTypeOf([], 'array');
+                $this->interface->include(['hello', 'world'], 'goodbye');
             } catch (\Exception $e) {
                 $exception = $e;
             }
-            assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
+            assert(!is_null($exception), "should not have been {$exception->getMessage()}");
+        });
+
+        it('should allow an optional user message', function() {
+            $exception = null;
+            $expected = "should have been included";
+            try {
+                $this->interface->include(['hello'], 'world', $expected);
+            } catch (\Exception $e) {
+                $exception = $e;
+            }
+            assert($exception->getMessage() == $expected, "should not have been {$exception->getMessage()}");
+        });
+
+        context('and assert method begins with not', function() {
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->notInclude(['hello'], 'hello');
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert(!is_null($exception), "should not have been {$exception->getMessage()}");
+            });
         });
     });
 });

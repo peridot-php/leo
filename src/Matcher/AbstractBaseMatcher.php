@@ -39,11 +39,12 @@ abstract class AbstractBaseMatcher implements MatcherInterface
      * {@inheritdoc}
      *
      * @param $subject
-     * @return mixed|void
+     * @return $this
      */
     public function setSubject($subject)
     {
         $this->actual = $subject;
+        return $this;
     }
 
     /**
