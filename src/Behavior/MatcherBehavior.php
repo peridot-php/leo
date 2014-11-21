@@ -81,4 +81,4 @@ abstract class MatcherBehavior extends Scope
         array_unshift($args, $this->interface->getSubject());
         return $args;
     }
-} 
+}
