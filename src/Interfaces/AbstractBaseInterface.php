@@ -46,6 +46,18 @@ class AbstractBaseInterface extends Scope
     }
 
     /**
+     * @param $id
+     * @return null
+     */
+    public function getFlag($id)
+    {
+        if (! isset($this->flags[$id])) {
+            return null;
+        }
+        return $this->flags[$id];
+    }
+
+    /**
      * @param Scope $scope
      * @return $this
      */
