@@ -95,14 +95,34 @@ function generate_shared() {
     generate_for_all(
         [$assertShared, $bddShared],
         ['specs/shared/assert/behavior.tpl', 'specs/shared/bdd/behavior.tpl'],
-        "has-{{behavior}}-behavior.spec.php"
+        "has-{{behavior}}-behavior.php"
     );
+}
+
+/**
+ * Generate a matcher spec
+ */
+function generate_matcher_spec() {
+    global $matcherSpecs;
+    generate_for_all(
+        [$matcherSpecs],
+        ['specs/matcher/spec.tpl'],
+        "{{behavior}}-matcher.spec.php"
+    );
+}
+
+/**
+ * Generate all specs for a behavior
+ */
+function generate_specs() {
+    generate_behavior_specs();
+    generate_shared();
+    generate_matcher_spec();
 }
 
 /**
  * Execute behavior generation
  */
 writeln(PHP_EOL . "Generating behavior for behavior: $behavior");
-generate_behavior_specs();
-generate_shared();
+generate_specs();
 writeln("Finished generating for behavior: $behavior");
