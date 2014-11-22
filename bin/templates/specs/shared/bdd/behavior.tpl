@@ -1,3 +1,4 @@
+<?php
 xdescribe('->{{behavior}}()', function() {
     it('should throw exception when match fails', function() {
         $exception = null;
