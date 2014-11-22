@@ -1,0 +1,75 @@
+#!/usr/bin/env php
+<?php
+$args = $argv;
+$root = dirname(__DIR__);
+$specs = $root . '/specs';
+$src = $root . '/src';
+$behavior = $args[1];
+
+/**************************
+ * Spec destinations
+ **************************/
+$assertBehaviorSpecs = $specs . '/behaviors/assert';
+$bddBehaviorSpecs = $specs . '/behaviors/bdd';
+$assertShared = $specs . '/shared/behaviors/assert';
+$bddShared = $specs . '/shared/behaviors/bdd';
+$matcherSpecs = $specs . '/matcher';
+
+/**************************
+ * Source destinations
+ **************************/
+$assertBehavior = $src . '/Behavior/Assert';
+$bddBehavior = $src . '/Behavior/Bdd';
+$matcher = $src . '/Matcher';
+
+/**
+ * Return a rendered template.
+ *
+ * @param $path
+ * @param $vars
+ * @return mixed|string
+ */
+function template($path, $vars) {
+    $rootTemplatePath = __DIR__ . '/templates/';
+    $path = $rootTemplatePath . $path;
+    $contents = file_get_contents($path);
+
+    foreach($vars as $var => $value) {
+        $contents = str_replace('{{' . $var . '}}', $value, $contents);
+    }
+    return $contents;
+}
+
+/**
+ * Write line to stdout
+ *
+ * @param $message
+ */
+function writeln($message) {
+    fwrite(STDOUT, $message . PHP_EOL);
+}
+
+/**
+ * Generate behavior specs
+ *
+ * @param $behavior
+ */
+function generateBehaviorSpecs($behavior) {
+    global $assertBehaviorSpecs, $bddBehaviorSpecs;
+    $tpls = array_map(function($path) use ($behavior) {
+        return template($path, ['name' => ucfirst($behavior), 'behavior' => $behavior]);
+    }, ['specs/behaviors/assert/spec.tpl', 'specs/behaviors/bdd/spec.tpl']);
+
+    $dests = [$assertBehaviorSpecs, $bddBehaviorSpecs];
+    for ($i = 0; $i < count($dests); $i++) {
+        $file = $dests[$i] . "/$behavior-behavior.spec.php";
+        writeln("Creating $file");
+        file_put_contents($file, $tpls[$i]);
+    }
+}
+
+/**
+ * Execute behavior generation
+ */
+generateBehaviorSpecs($behavior);
+writeln("Finished generating for behavior: $behavior");
