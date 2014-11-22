@@ -36,6 +36,7 @@ use Peridot\Leo\Matcher\TypeMatcher;
  * @method void a() a(string $type, string $message = "") validates the type of a subject
  * @method void include() include(mixed $needle, string $message = "") validates that a subject contains the needle
  * @method void contain() contain(mixed $needle, string $message = "") validates that a subject contains the needle
+ * @method void ok() ok() validates that a subject is truthy
  */
 class Bdd extends AbstractBaseInterface
 {

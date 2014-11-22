@@ -32,6 +32,23 @@ describe('Bdd', function() {
                 assert($exception->getMessage() == "Expected a type other than array", "should not have been {$exception->getMessage()}");
             });
         });
+
+        describe('->ok()', function() {
+
+            beforeEach(function() {
+                $this->interface = new Bdd(true);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->not->ok();
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected value to not be truthy", "should not have been {$exception->getMessage()}");
+            });
+        });
     });
 
     describe('->include()', function() {
