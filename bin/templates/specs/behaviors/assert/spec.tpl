@@ -2,7 +2,7 @@
 use Peridot\Leo\Behavior\Assert\{{name}}Behavior;
 use Peridot\Leo\Matcher\{{name}}Matcher;
 
-describe('Assert\{{name}}Behavior', function() {
+xdescribe('Assert\{{name}}Behavior', function() {
 
     beforeEach(function() {
         $matcher = new {{name}}Matcher();

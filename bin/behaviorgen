@@ -50,26 +50,59 @@ function writeln($message) {
 }
 
 /**
- * Generate behavior specs
+ * Generate files for all destinations based on the passed
+ * in template paths.
  *
- * @param $behavior
+ * @param $dests
+ * @param $tpls
+ * @param $destTpl
  */
-function generateBehaviorSpecs($behavior) {
-    global $assertBehaviorSpecs, $bddBehaviorSpecs;
-    $tpls = array_map(function($path) use ($behavior) {
-        return template($path, ['name' => ucfirst($behavior), 'behavior' => $behavior]);
-    }, ['specs/behaviors/assert/spec.tpl', 'specs/behaviors/bdd/spec.tpl']);
+function generate_for_all($dests, $tpls, $destTpl) {
+    global $behavior;
+    $name = ucfirst($behavior);
+    $tpls = array_map(function($path) use ($behavior, $name) {
+        return template($path, ['name' => $name, 'behavior' => $behavior]);
+    }, $tpls);
 
-    $dests = [$assertBehaviorSpecs, $bddBehaviorSpecs];
+
     for ($i = 0; $i < count($dests); $i++) {
-        $file = $dests[$i] . "/$behavior-behavior.spec.php";
+        $file = $dests[$i] . "/" . str_replace('{{behavior}}', $behavior, $destTpl);
+        $file = str_replace('{{name}}', $name, $file);
         writeln("Creating $file");
         file_put_contents($file, $tpls[$i]);
     }
 }
 
 /**
+ * Generate behavior specs
+ *
+ * @param $behavior
+ */
+function generate_behavior_specs() {
+    global $assertBehaviorSpecs, $bddBehaviorSpecs;
+    generate_for_all(
+        [$assertBehaviorSpecs, $bddBehaviorSpecs],
+        ['specs/behaviors/assert/spec.tpl', 'specs/behaviors/bdd/spec.tpl'],
+        "{{behavior}}-behavior.spec.php"
+    );
+}
+
+/**
+ * Generate shared behaviors for sor behavior specs and interface specs.
+ */
+function generate_shared() {
+    global $assertShared, $bddShared;
+    generate_for_all(
+        [$assertShared, $bddShared],
+        ['specs/shared/assert/behavior.tpl', 'specs/shared/bdd/behavior.tpl'],
+        "has-{{behavior}}-behavior.spec.php"
+    );
+}
+
+/**
  * Execute behavior generation
  */
-generateBehaviorSpecs($behavior);
+writeln(PHP_EOL . "Generating behavior for behavior: $behavior");
+generate_behavior_specs();
+generate_shared();
 writeln("Finished generating for behavior: $behavior");
