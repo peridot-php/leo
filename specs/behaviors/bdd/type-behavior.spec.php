@@ -3,7 +3,7 @@ use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Interfaces\NullInterface;
 use Peridot\Leo\Matcher\TypeMatcher;
 
-describe('TypeBehavior', function() {
+describe('Bdd\TypeBehavior', function() {
 
     beforeEach(function() {
         $matcher = new TypeMatcher();

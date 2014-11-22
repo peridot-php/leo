@@ -3,7 +3,7 @@ use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Interfaces\NullInterface;
 use Peridot\Leo\Matcher\InclusionMatcher;
 
-describe('InclusionBehavior', function() {
+describe('Bdd\InclusionBehavior', function() {
 
     beforeEach(function() {
         $matcher = new InclusionMatcher();
