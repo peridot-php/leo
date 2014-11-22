@@ -11,6 +11,7 @@ describe('Bdd', function() {
     include __DIR__ . '/../shared/is-interface.php';
     include __DIR__ . '/../shared/is-bdd-interface.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-type-behavior.php';
+    include __DIR__ . '/../shared/behaviors/bdd/has-inclusion-behavior.php';
 
     describe('->not', function() {
         it('should set the negated flag and return self', function() {
