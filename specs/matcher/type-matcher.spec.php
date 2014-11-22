@@ -35,13 +35,4 @@ describe('TypeMatcher', function() {
             assert(!$match, "should not have matched string type");
         });
     });
-
-    context('when interface is an Assert interface', function() {
-        beforeEach(function() {
-            $this->interface = new Assert([]);
-            $this->matcher->peridotSetParentScope($this->interface);
-        });
-
-
-    });
 });
