@@ -13,6 +13,8 @@ describe('Bdd', function() {
     include __DIR__ . '/../shared/behaviors/bdd/has-type-behavior.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-inclusion-behavior.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-ok-behavior.php';
+    include __DIR__ . '/../shared/behaviors/bdd/has-true-behavior.php';
+    include __DIR__ . '/../shared/behaviors/bdd/has-false-behavior.php';
 
     describe('->not', function() {
         it('should set the negated flag and return self', function() {
@@ -64,6 +66,23 @@ describe('Bdd', function() {
                     $exception = $e;
                 }
                 assert($exception->getMessage() == "Expected value to not be true", "should not have been {$exception->getMessage()}");
+            });
+        });
+
+        describe('->true()', function() {
+
+            beforeEach(function() {
+                $this->interface = new Bdd(false);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->not->false();
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected value to not be false", "should not have been {$exception->getMessage()}");
             });
         });
     });

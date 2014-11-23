@@ -1,10 +1,12 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Behavior\Assert\FalseBehavior;
 use Peridot\Leo\Behavior\Assert\InclusionBehavior;
 use Peridot\Leo\Behavior\Assert\OkBehavior;
 use Peridot\Leo\Behavior\Assert\TrueBehavior;
 use Peridot\Leo\Behavior\Assert\TypeBehavior;
+use Peridot\Leo\Matcher\FalseMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\OkMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
@@ -22,6 +24,8 @@ use Peridot\Leo\Matcher\TypeMatcher;
  * @method void notOk() notOk(mixed $subject, string $message ="") validates a value is not truthy
  * @method void true() true(mixed $subject, string $message = "") validates that a value is true
  * @method void notTrue notTrue(mixed $subject, string $message = "") validates that a value is not true
+ * @method void false() false(mixed $subject, string $message = "") validates that a value is false
+ * @method void notFalse() notFalse(mixed $subject, string $message = "") validates that a value is not false
  *
  * @package Peridot\Leo\Interfaces
  */
@@ -35,6 +39,7 @@ class Assert extends AbstractBaseInterface
         $this->setBehavior(new InclusionBehavior(new InclusionMatcher()));
         $this->setBehavior(new OkBehavior(new OkMatcher()));
         $this->setBehavior(new TrueBehavior(new TrueMatcher()));
+        $this->setBehavior(new FalseBehavior(new FalseMatcher()));
     }
 
     /**
