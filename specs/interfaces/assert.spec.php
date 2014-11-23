@@ -14,6 +14,7 @@ describe('Assert', function() {
     include __DIR__ . '/../shared/behaviors/assert/has-type-behavior.php';
     include __DIR__ . '/../shared/behaviors/assert/has-inclusion-behavior.php';
     include __DIR__ . '/../shared/behaviors/assert/has-ok-behavior.php';
+    include __DIR__ . '/../shared/behaviors/assert/has-true-behavior.php';
 
     describe('->include()', function() {
         it('should throw an exception when match fails', function() {

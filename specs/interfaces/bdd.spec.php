@@ -49,6 +49,23 @@ describe('Bdd', function() {
                 assert($exception->getMessage() == "Expected value to not be truthy", "should not have been {$exception->getMessage()}");
             });
         });
+
+        describe('->true()', function() {
+
+            beforeEach(function() {
+                $this->interface = new Bdd(true);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->not->true();
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected value to not be true", "should not have been {$exception->getMessage()}");
+            });
+        });
     });
 
     describe('->include()', function() {

@@ -9,7 +9,7 @@ class {{name}}Behavior extends MatcherBehavior
      * @param $subject
      * @param string $message
      */
-    public function {{behavior}}($subject, $actual, $message)
+    public function {{behavior}}($subject, $actual, $message = "")
     {
         $this->validate($subject, $actual, $message);
     }
