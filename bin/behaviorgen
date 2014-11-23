@@ -133,9 +133,29 @@ function generate_behaviors() {
 }
 
 /**
+ * Generate a matcher
+ */
+function generate_matcher() {
+    global $matcher;
+    generate_for_all(
+        [$matcher],
+        ['src/Matcher/class.tpl'],
+        "{{name}}Matcher.php"
+    );
+}
+
+/**
+ * Generate all source files
+ */
+function generate_source() {
+    generate_behaviors();
+    generate_matcher();
+}
+
+/**
  * Execute behavior generation
  */
 writeln(PHP_EOL . "Generating behavior for behavior: $behavior");
 generate_specs();
-generate_behaviors();
+generate_source();
 writeln("Finished generating for behavior: $behavior");
