@@ -10,7 +10,7 @@ class OkBehavior extends MatcherBehavior
      */
     public function ok($message = "")
     {
-        return $this->validate(null, $message);
+        $this->validate(null, $message);
     }
 
     /**

@@ -121,8 +121,21 @@ function generate_specs() {
 }
 
 /**
+ * Generate behaviors
+ */
+function generate_behaviors() {
+    global $assertBehavior, $bddBehavior;
+    generate_for_all(
+        [$assertBehavior, $bddBehavior],
+        ['src/Behavior/Assert/class.tpl', 'src/Behavior/Bdd/class.tpl'],
+        "{{name}}Behavior.php"
+    );
+}
+
+/**
  * Execute behavior generation
  */
 writeln(PHP_EOL . "Generating behavior for behavior: $behavior");
 generate_specs();
+generate_behaviors();
 writeln("Finished generating for behavior: $behavior");
