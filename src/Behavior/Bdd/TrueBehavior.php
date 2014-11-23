@@ -10,4 +10,4 @@ class TrueBehavior extends SelfMatcherBehavior
     {
         $this->validate(null, $message);
     }
-} 
+}

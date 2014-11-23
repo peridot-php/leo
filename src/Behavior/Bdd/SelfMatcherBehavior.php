@@ -11,7 +11,6 @@ abstract class SelfMatcherBehavior extends MatcherBehavior
      */
     protected function getValidateArguments($args)
     {
-        $val = 1;
         return [$this->interface->getSubject(), null, $args[1]];
     }
-} 
+}

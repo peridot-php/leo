@@ -22,4 +22,4 @@ class EmptyBehavior extends MatcherBehavior
     {
         $this->negate()->validate($subject, null, $message);
     }
-} 
+}

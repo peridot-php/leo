@@ -22,4 +22,4 @@ class NullBehavior extends MatcherBehavior
     {
         $this->negate()->validate($subject, null, $message);
     }
-} 
+}

@@ -22,4 +22,4 @@ class OkBehavior extends MatcherBehavior
     {
         $this->negate()->validate($subject, null, $message);
     }
-} 
+}

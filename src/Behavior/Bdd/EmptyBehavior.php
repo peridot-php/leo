@@ -10,4 +10,4 @@ class EmptyBehavior extends SelfMatcherBehavior
     {
         $this->validate(null, $message);
     }
-} 
+}

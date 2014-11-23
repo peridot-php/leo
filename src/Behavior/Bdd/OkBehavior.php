@@ -10,4 +10,4 @@ class OkBehavior extends SelfMatcherBehavior
     {
         $this->validate(null, $message);
     }
-} 
+}
