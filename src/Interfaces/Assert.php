@@ -1,12 +1,14 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Behavior\Assert\EmptyBehavior;
 use Peridot\Leo\Behavior\Assert\FalseBehavior;
 use Peridot\Leo\Behavior\Assert\InclusionBehavior;
 use Peridot\Leo\Behavior\Assert\NullBehavior;
 use Peridot\Leo\Behavior\Assert\OkBehavior;
 use Peridot\Leo\Behavior\Assert\TrueBehavior;
 use Peridot\Leo\Behavior\Assert\TypeBehavior;
+use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -30,6 +32,8 @@ use Peridot\Leo\Matcher\TypeMatcher;
  * @method void notFalse() notFalse(mixed $subject, string $message = "") validates that a value is not false
  * @method void null() null(mixed $subject, string $message = "") validates that a value is null
  * @method void notNull() notNull(mixed $subject, string $message = "") validates that a value is not null
+ * @method void empty() empty(mixed $subject, string $message = "") validates that a value is empty
+ * @method void notEmpty() notEmpty(mixed $subject, string $message = "") validates that a value is not empty
  *
  * @package Peridot\Leo\Interfaces
  */
@@ -45,6 +49,7 @@ class Assert extends AbstractBaseInterface
         $this->setBehavior(new TrueBehavior(new TrueMatcher()));
         $this->setBehavior(new FalseBehavior(new FalseMatcher()));
         $this->setBehavior(new NullBehavior(new NullMatcher()));
+        $this->setBehavior(new EmptyBehavior(new EmptyMatcher()));
     }
 
     /**
@@ -60,6 +65,11 @@ class Assert extends AbstractBaseInterface
         if ($name == "include") {
             return call_user_func_array([$this, 'contain'], $arguments);
         }
+
+        if ($name == "empty") {
+            return call_user_func_array([$this, 'emtee'], $arguments);
+        }
+
         return parent::__call($name, $arguments);
     }
 }

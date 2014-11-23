@@ -17,6 +17,16 @@ describe('Bdd', function() {
     include __DIR__ . '/../shared/behaviors/bdd/has-false-behavior.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-null-behavior.php';
 
+    context('when using a non-empty subject', function() {
+
+        beforeEach(function() {
+            $this->interface = new Bdd([1,2,3]);
+            $this->subject = $this->interface;
+        });
+
+        include __DIR__ . '/../shared/behaviors/bdd/has-empty-behavior.php';
+    });
+
     describe('->not', function() {
         it('should set the negated flag and return self', function() {
             $scope = $this->interface->not;
@@ -129,6 +139,40 @@ describe('Bdd', function() {
                     $exception = $e;
                 }
                 assert($exception->getMessage() == "Expected array not to contain 1", "should not have been {$exception->getMessage()}");
+            });
+        });
+    });
+
+    describe('->empty()', function() {
+
+        beforeEach(function() {
+            $this->subject = new Bdd([1,2,3]);
+        });
+
+        it('should throw exception when match fails', function() {
+            $exception = null;
+            try {
+                $this->subject->empty();
+            } catch (Exception $e) {
+                $exception = $e;
+            }
+            assert(!is_null($exception), "exception should have been thrown");
+        });
+
+        context('and subject has been negated', function() {
+
+            beforeEach(function() {
+                $this->subject = new Bdd([]);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->subject->not->empty();
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected value to not be empty", "should not have been {$exception->getMessage()}");
             });
         });
     });

@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Behavior\Bdd\EmptyBehavior;
 use Peridot\Leo\Behavior\Bdd\FalseBehavior;
 use Peridot\Leo\Behavior\Bdd\NullBehavior;
 use Peridot\Leo\Behavior\Bdd\TrueBehavior;
@@ -8,6 +9,7 @@ use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Behavior\Bdd\OkBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
+use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -46,6 +48,7 @@ use Peridot\Leo\Matcher\TypeMatcher;
  * @method void true() true() validates that a subject is true
  * @method void false() false() validates that a subject is false
  * @method void null() null() validates that a subject is null
+ * @method void empty() empty() validates that a subject is empty
  */
 class Bdd extends AbstractBaseInterface
 {
@@ -87,11 +90,12 @@ class Bdd extends AbstractBaseInterface
         $this->setBehavior(new TrueBehavior(new TrueMatcher(), $this));
         $this->setBehavior(new FalseBehavior(new FalseMatcher(), $this));
         $this->setBehavior(new NullBehavior(new NullMatcher(), $this));
+        $this->setBehavior(new EmptyBehavior(new EmptyMatcher(), $this));
     }
 
     /**
-     * Include is an alias for the contain behavior. A method named "include" cannot
-     * be defined by traditional means, so it is setup here to delegate to the contain behavior.
+     * __call is defined to cover reserved word cases for various assertions, such as
+     * include and empty.
      *
      * @param $name
      * @param $arguments
@@ -99,9 +103,15 @@ class Bdd extends AbstractBaseInterface
      */
     public function __call($name, $arguments)
     {
+
         if ($name == "include") {
             return call_user_func_array([$this, 'contain'], $arguments);
         }
+
+        if ($name == "empty") {
+            return call_user_func_array([$this, 'emtee'], $arguments);
+        }
+
         return parent::__call($name, $arguments);
     }
 }
