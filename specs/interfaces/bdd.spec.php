@@ -128,7 +128,7 @@ describe('Bdd', function() {
                 } catch (\Exception $e) {
                     $exception = $e;
                 }
-                assert($exception->getMessage() == "Expected values to be different", "should not have been {$exception->getMessage()}");
+                assert($exception->getMessage() == "Expected stdClass Object\n(\n) not to equal stdClass Object\n(\n)", "should not have been {$exception->getMessage()}");
             });
         });
     });

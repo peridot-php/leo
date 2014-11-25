@@ -58,6 +58,26 @@ abstract class AbstractBaseMatcher implements MatcherInterface
     }
 
     /**
+     * Return a string representation of an object.
+     *
+     * @param mixed $obj
+     */
+    protected function objectToString($obj)
+    {
+        if ($obj === true) {
+            return 'true';
+        } elseif ($obj === false) {
+            return 'false';
+        } elseif ($obj === null) {
+            return 'null';
+        } elseif (is_string($obj)) {
+            return "\"$obj\"";
+        }
+
+        return rtrim(print_r($obj, true));
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @param mixed $expected

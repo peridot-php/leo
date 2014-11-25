@@ -16,10 +16,12 @@ class EqualMatcher extends AbstractBaseMatcher
      */
     public function getMessage($expected, $actual, $negated = false)
     {
+        $expected = $this->objectToString($expected);
+        $actual = $this->objectToString($actual);
         if ($negated) {
-            return "Expected values to be different";
+            return "Expected $expected not to equal $actual";
         }
-        return "Expected values to be the same";
+        return "Expected $expected, got $actual";
     }
 
     /**

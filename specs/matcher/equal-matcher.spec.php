@@ -23,15 +23,15 @@ describe('EqualMatcher', function() {
 
     describe('->getMessage()', function() {
         it("should return a formatted success message", function() {
-            $expected = "Expected values to be the same";
-            $actual = $this->matcher->getMessage(null, null, false);
-            assert($expected == $actual, "Expected '$expected', got $actual");
+            $expected = 'Expected "ham", got "turkey"';
+            $actual = $this->matcher->getMessage("ham", "turkey", false);
+            assert($expected == $actual, "Expected $expected, got $actual");
         });
 
         context('when interface has been negated', function() {
             it('should return an appropriate message', function() {
-                $expected = "Expected values to be different";
-                $actual = $this->matcher->getMessage(null, null, true);
+                $expected = 'Expected "turkey" not to equal "turkey"';
+                $actual = $this->matcher->getMessage("turkey", "turkey", true);
                 assert($expected == $actual, "Expected $expected, got $actual");
             });
         });
