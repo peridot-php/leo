@@ -43,13 +43,13 @@ class Assert extends AbstractBaseInterface
     {
         parent::__construct($subject);
 
-        $this->setBehavior(new TypeBehavior(new TypeMatcher()));
-        $this->setBehavior(new InclusionBehavior(new InclusionMatcher()));
-        $this->setBehavior(new OkBehavior(new OkMatcher()));
-        $this->setBehavior(new TrueBehavior(new TrueMatcher()));
-        $this->setBehavior(new FalseBehavior(new FalseMatcher()));
-        $this->setBehavior(new NullBehavior(new NullMatcher()));
-        $this->setBehavior(new EmptyBehavior(new EmptyMatcher()));
+        $this->addBehavior(new TypeBehavior(new TypeMatcher()));
+        $this->addBehavior(new InclusionBehavior(new InclusionMatcher()));
+        $this->addBehavior(new OkBehavior(new OkMatcher()));
+        $this->addBehavior(new TrueBehavior(new TrueMatcher()));
+        $this->addBehavior(new FalseBehavior(new FalseMatcher()));
+        $this->addBehavior(new NullBehavior(new NullMatcher()));
+        $this->addBehavior(new EmptyBehavior(new EmptyMatcher()));
     }
 
     /**

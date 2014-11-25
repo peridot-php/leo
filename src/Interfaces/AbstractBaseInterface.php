@@ -61,7 +61,7 @@ class AbstractBaseInterface extends Scope
      * @param Scope $scope
      * @return $this
      */
-    public function setBehavior(Scope $scope)
+    public function addBehavior(Scope $scope)
     {
         $this->peridotAddChildScope($scope);
         return $this;

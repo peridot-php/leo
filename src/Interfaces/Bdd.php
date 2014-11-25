@@ -84,13 +84,13 @@ class Bdd extends AbstractBaseInterface
         }
 
         $this->setFlag(new NotFlag());
-        $this->setBehavior(new TypeBehavior(new TypeMatcher(), $this));
-        $this->setBehavior(new InclusionBehavior(new InclusionMatcher(), $this));
-        $this->setBehavior(new OkBehavior(new OkMatcher(), $this));
-        $this->setBehavior(new TrueBehavior(new TrueMatcher(), $this));
-        $this->setBehavior(new FalseBehavior(new FalseMatcher(), $this));
-        $this->setBehavior(new NullBehavior(new NullMatcher(), $this));
-        $this->setBehavior(new EmptyBehavior(new EmptyMatcher(), $this));
+        $this->addBehavior(new TypeBehavior(new TypeMatcher(), $this));
+        $this->addBehavior(new InclusionBehavior(new InclusionMatcher(), $this));
+        $this->addBehavior(new OkBehavior(new OkMatcher(), $this));
+        $this->addBehavior(new TrueBehavior(new TrueMatcher(), $this));
+        $this->addBehavior(new FalseBehavior(new FalseMatcher(), $this));
+        $this->addBehavior(new NullBehavior(new NullMatcher(), $this));
+        $this->addBehavior(new EmptyBehavior(new EmptyMatcher(), $this));
     }
 
     /**
