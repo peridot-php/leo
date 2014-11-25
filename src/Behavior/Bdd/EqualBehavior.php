@@ -12,4 +12,4 @@ class EqualBehavior extends MatcherBehavior
     {
         $this->validate($expected, $message);
     }
-} 
+}

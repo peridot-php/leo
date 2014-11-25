@@ -22,4 +22,4 @@ class EqualBehavior extends MatcherBehavior
     {
         $this->negate()->validate($subject, $actual, $message);
     }
-} 
+}
