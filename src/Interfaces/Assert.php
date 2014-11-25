@@ -36,6 +36,8 @@ use Peridot\Leo\Matcher\TypeMatcher;
  * @method void notNull() notNull(mixed $subject, string $message = "") validates that a value is not null
  * @method void empty() empty(mixed $subject, string $message = "") validates that a value is empty
  * @method void notEmpty() notEmpty(mixed $subject, string $message = "") validates that a value is not empty
+ * @method void equal() equal(mixed $actual, mixed $expected, string $message = "") validates that two values are the same
+ * @method void notEqual() notEqual(mixed $actual, mixed $expected, string $message = "") validates that two values are not the same
  *
  * @package Peridot\Leo\Interfaces
  */

@@ -114,6 +114,23 @@ describe('Bdd', function() {
                 assert($exception->getMessage() == "Expected value to not be null", "should not have been {$exception->getMessage()}");
             });
         });
+
+        describe('->equal()', function() {
+            beforeEach(function() {
+                $this->obj = new stdClass();
+                $this->interface = new Bdd($this->obj);
+            });
+
+            it('should throw an exception when the match succeeds', function() {
+                $exception = null;
+                try {
+                    $this->interface->not->equal($this->obj);
+                } catch (\Exception $e) {
+                    $exception = $e;
+                }
+                assert($exception->getMessage() == "Expected values to be different", "should not have been {$exception->getMessage()}");
+            });
+        });
     });
 
     describe('->include()', function() {
