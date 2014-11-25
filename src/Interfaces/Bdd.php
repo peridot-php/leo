@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Behavior\Bdd\EmptyBehavior;
+use Peridot\Leo\Behavior\Bdd\EqualBehavior;
 use Peridot\Leo\Behavior\Bdd\FalseBehavior;
 use Peridot\Leo\Behavior\Bdd\NullBehavior;
 use Peridot\Leo\Behavior\Bdd\TrueBehavior;
@@ -10,6 +11,7 @@ use Peridot\Leo\Behavior\Bdd\OkBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
 use Peridot\Leo\Matcher\EmptyMatcher;
+use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -91,6 +93,7 @@ class Bdd extends AbstractBaseInterface
         $this->addBehavior(new FalseBehavior(new FalseMatcher(), $this));
         $this->addBehavior(new NullBehavior(new NullMatcher(), $this));
         $this->addBehavior(new EmptyBehavior(new EmptyMatcher(), $this));
+        $this->addBehavior(new EqualBehavior(new EqualMatcher(), $this));
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Behavior\Assert\EmptyBehavior;
+use Peridot\Leo\Behavior\Assert\EqualBehavior;
 use Peridot\Leo\Behavior\Assert\FalseBehavior;
 use Peridot\Leo\Behavior\Assert\InclusionBehavior;
 use Peridot\Leo\Behavior\Assert\NullBehavior;
@@ -9,6 +10,7 @@ use Peridot\Leo\Behavior\Assert\OkBehavior;
 use Peridot\Leo\Behavior\Assert\TrueBehavior;
 use Peridot\Leo\Behavior\Assert\TypeBehavior;
 use Peridot\Leo\Matcher\EmptyMatcher;
+use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -50,6 +52,7 @@ class Assert extends AbstractBaseInterface
         $this->addBehavior(new FalseBehavior(new FalseMatcher()));
         $this->addBehavior(new NullBehavior(new NullMatcher()));
         $this->addBehavior(new EmptyBehavior(new EmptyMatcher()));
+        $this->addBehavior(new EqualBehavior(new EqualMatcher()));
     }
 
     /**

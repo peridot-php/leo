@@ -17,6 +17,7 @@ describe('Assert', function() {
     include __DIR__ . '/../shared/behaviors/assert/has-true-behavior.php';
     include __DIR__ . '/../shared/behaviors/assert/has-false-behavior.php';
     include __DIR__ . '/../shared/behaviors/assert/has-null-behavior.php';
+    include __DIR__ . '/../shared/behaviors/assert/has-equal-behavior.php';
 
     context('when using a non-empty subject', function() {
 

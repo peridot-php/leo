@@ -16,6 +16,7 @@ describe('Bdd', function() {
     include __DIR__ . '/../shared/behaviors/bdd/has-true-behavior.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-false-behavior.php';
     include __DIR__ . '/../shared/behaviors/bdd/has-null-behavior.php';
+    include __DIR__ . '/../shared/behaviors/bdd/has-equal-behavior.php';
 
     context('when using a non-empty subject', function() {
 
