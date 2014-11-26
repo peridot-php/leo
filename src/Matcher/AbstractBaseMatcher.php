@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Formatter\ObjectFormatter;
+
 abstract class AbstractBaseMatcher implements MatcherInterface
 {
     /**
@@ -64,17 +66,8 @@ abstract class AbstractBaseMatcher implements MatcherInterface
      */
     protected function objectToString($obj)
     {
-        if ($obj === true) {
-            return 'true';
-        } elseif ($obj === false) {
-            return 'false';
-        } elseif ($obj === null) {
-            return 'null';
-        } elseif (is_string($obj)) {
-            return "\"$obj\"";
-        }
-
-        return rtrim(print_r($obj, true));
+        $formatter = new ObjectFormatter();
+        return $formatter->format($obj);
     }
 
     /**
