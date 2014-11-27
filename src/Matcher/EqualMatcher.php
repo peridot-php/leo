@@ -2,36 +2,24 @@
 namespace Peridot\Leo\Matcher;
 
 /**
+ * Class EqualMatcher
  * @package Peridot\Leo\Matcher
  */
-class EqualMatcher extends AbstractBaseMatcher
+class EqualMatcher extends AbstractMatcher
 {
     /**
-     * {@inheritdoc}
-     *
-     * @param mixed $expected the expected value
-     * @param mixed $actual the actual value
-     * @param bool $negated weather the assertion has been negated
-     * @return string
-     */
-    public function getMessage($expected, $actual, $negated = false)
-    {
-        $expected = $this->formatter->format($expected);
-        $actual = $this->formatter->format($actual);
-        if ($negated) {
-            return "Expected $expected not to equal $actual";
-        }
-        return "Expected $expected, got $actual";
-    }
-
-    /**
-     * {@inheritdoc}
+     * Determine if two values are strictly equal.
      *
      * @param mixed $expected
+     * @param mixed $actual
      * @return bool
      */
-    public function isMatch($expected)
+    public function match($expected, $actual)
     {
-        return $this->getActual() === $expected;
+        $result = $expected === $actual;
+        if ($this->isNegated()) {
+            return !$result;
+        }
+        return $result;
     }
 }

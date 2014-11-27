@@ -1,50 +1,34 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+/**
+ * Interface MatcherInterface determines if two values
+ * match against a criteria.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 interface MatcherInterface
 {
     /**
-     * Match the actual value against the expected value
-     *
      * @param mixed $expected
+     * @param mixed $actual
      * @return bool
      */
-    public function isMatch($expected);
+    public function match($expected, $actual);
 
     /**
-     * Validation throws an exception if a match fails.
+     * Invert the matching criteria. If not negated, the matcher
+     * will become negated. If negated the matcher will revert
+     * to a normal state.
      *
-     * @param mixed $expected
-     * @param bool $negated whether or not the match should be negated
-     * @param string $message
-     * @return mixed
-     * @throws \Exception
+     * @return MatcherInterface
      */
-    public function validate($expected, $negated, $message = '');
+    public function invert();
 
     /**
-     * Return a formatted message for this matcher.
+     * Return if the matcher is negated.
      *
-     * @param mixed $expected the expected value
-     * @param mixed $actual the actual value
-     * @param bool $negated weather the assertion has been negated
-     * @return string
+     * @return bool
      */
-    public function getMessage($expected, $actual, $negated);
-
-    /**
-     * Given a subject this method sets the actual value being
-     * matched against.
-     *
-     * @param $value
-     * @return mixed
-     */
-    public function setSubject($subject);
-
-    /**
-     * Return the value to match against.
-     *
-     * @return mixed
-     */
-    public function getActual();
+    public function isNegated();
 }
