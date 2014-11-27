@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Matcher\Template\TemplateInterface;
+
 /**
  * Interface MatcherInterface determines if two values
  * match against a criteria.
@@ -31,4 +33,9 @@ interface MatcherInterface
      * @return bool
      */
     public function isNegated();
+
+    /**
+     * @return TemplateInterface
+     */
+    public function getTemplate();
 }
