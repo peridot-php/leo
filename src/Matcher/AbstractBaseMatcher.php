@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
-use Peridot\Leo\Formatter\ObjectFormatter;
+use Peridot\Leo\Formatter\ObjectFormatterInterface;
 
 abstract class AbstractBaseMatcher implements MatcherInterface
 {
@@ -9,6 +9,19 @@ abstract class AbstractBaseMatcher implements MatcherInterface
      * @var mixed
      */
     protected $actual;
+
+    /**
+     * @var ObjectFormatterInterface
+     */
+    protected $formatter;
+
+    /**
+     * @param ObjectFormatterInterface $formatter
+     */
+    public function __construct(ObjectFormatterInterface $formatter)
+    {
+        $this->formatter = $formatter;
+    }
 
     /**
      * Validate the match and throw an exception if validation
@@ -57,17 +70,6 @@ abstract class AbstractBaseMatcher implements MatcherInterface
     public function getActual()
     {
         return $this->actual;
-    }
-
-    /**
-     * Return a string representation of an object.
-     *
-     * @param mixed $obj
-     */
-    protected function objectToString($obj)
-    {
-        $formatter = new ObjectFormatter();
-        return $formatter->format($obj);
     }
 
     /**

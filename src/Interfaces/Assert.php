@@ -9,6 +9,7 @@ use Peridot\Leo\Behavior\Assert\NullBehavior;
 use Peridot\Leo\Behavior\Assert\OkBehavior;
 use Peridot\Leo\Behavior\Assert\TrueBehavior;
 use Peridot\Leo\Behavior\Assert\TypeBehavior;
+use Peridot\Leo\Formatter\ObjectFormatter;
 use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
@@ -47,14 +48,16 @@ class Assert extends AbstractBaseInterface
     {
         parent::__construct($subject);
 
-        $this->addBehavior(new TypeBehavior(new TypeMatcher()));
-        $this->addBehavior(new InclusionBehavior(new InclusionMatcher()));
-        $this->addBehavior(new OkBehavior(new OkMatcher()));
-        $this->addBehavior(new TrueBehavior(new TrueMatcher()));
-        $this->addBehavior(new FalseBehavior(new FalseMatcher()));
-        $this->addBehavior(new NullBehavior(new NullMatcher()));
-        $this->addBehavior(new EmptyBehavior(new EmptyMatcher()));
-        $this->addBehavior(new EqualBehavior(new EqualMatcher()));
+        $formatter = new ObjectFormatter();
+
+        $this->addBehavior(new TypeBehavior(new TypeMatcher($formatter)));
+        $this->addBehavior(new InclusionBehavior(new InclusionMatcher($formatter)));
+        $this->addBehavior(new OkBehavior(new OkMatcher($formatter)));
+        $this->addBehavior(new TrueBehavior(new TrueMatcher($formatter)));
+        $this->addBehavior(new FalseBehavior(new FalseMatcher($formatter)));
+        $this->addBehavior(new NullBehavior(new NullMatcher($formatter)));
+        $this->addBehavior(new EmptyBehavior(new EmptyMatcher($formatter)));
+        $this->addBehavior(new EqualBehavior(new EqualMatcher($formatter)));
     }
 
     /**

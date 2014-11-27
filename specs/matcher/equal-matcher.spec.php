@@ -1,10 +1,11 @@
 <?php
+use Peridot\Leo\Formatter\ObjectFormatter;
 use Peridot\Leo\Matcher\EqualMatcher;
 
 describe('EqualMatcher', function() {
     beforeEach(function() {
         $this->subject = new stdClass();
-        $this->matcher = new EqualMatcher();
+        $this->matcher = new EqualMatcher(new ObjectFormatter());
     });
 
     describe('->isMatch()', function() {

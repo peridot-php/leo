@@ -2,10 +2,12 @@
 namespace Peridot\Leo\Formatter;
 
 /**
- * Class ObjectFormatter
+ * The ObjectFormatter is the default object formatter
+ * for Leo.
+ *
  * @package Peridot\Leo\Formatter
  */
-class ObjectFormatter 
+class ObjectFormatter implements ObjectFormatterInterface
 {
     /**
      * @return string

@@ -1,12 +1,13 @@
 <?php
 use Peridot\Leo\Behavior\Bdd\EqualBehavior;
+use Peridot\Leo\Formatter\ObjectFormatter;
 use Peridot\Leo\Interfaces\NullInterface;
 use Peridot\Leo\Matcher\EqualMatcher;
 
 describe('Bdd\EqualBehavior', function() {
 
     beforeEach(function() {
-        $matcher = new EqualMatcher();
+        $matcher = new EqualMatcher(new ObjectFormatter());
         $this->interface = new NullInterface();
         $this->interface->setSubject([]);
         $this->subject = new EqualBehavior($matcher, $this->interface);

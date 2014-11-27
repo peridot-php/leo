@@ -10,6 +10,7 @@ use Peridot\Leo\Behavior\Bdd\InclusionBehavior;
 use Peridot\Leo\Behavior\Bdd\OkBehavior;
 use Peridot\Leo\Behavior\Bdd\TypeBehavior;
 use Peridot\Leo\Flag\NotFlag;
+use Peridot\Leo\Formatter\ObjectFormatter;
 use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\FalseMatcher;
@@ -86,15 +87,17 @@ class Bdd extends AbstractBaseInterface
             $this->$property = $this;
         }
 
+        $formatter = new ObjectFormatter();
+
         $this->setFlag(new NotFlag());
-        $this->addBehavior(new TypeBehavior(new TypeMatcher(), $this));
-        $this->addBehavior(new InclusionBehavior(new InclusionMatcher(), $this));
-        $this->addBehavior(new OkBehavior(new OkMatcher(), $this));
-        $this->addBehavior(new TrueBehavior(new TrueMatcher(), $this));
-        $this->addBehavior(new FalseBehavior(new FalseMatcher(), $this));
-        $this->addBehavior(new NullBehavior(new NullMatcher(), $this));
-        $this->addBehavior(new EmptyBehavior(new EmptyMatcher(), $this));
-        $this->addBehavior(new EqualBehavior(new EqualMatcher(), $this));
+        $this->addBehavior(new TypeBehavior(new TypeMatcher($formatter), $this));
+        $this->addBehavior(new InclusionBehavior(new InclusionMatcher($formatter), $this));
+        $this->addBehavior(new OkBehavior(new OkMatcher($formatter), $this));
+        $this->addBehavior(new TrueBehavior(new TrueMatcher($formatter), $this));
+        $this->addBehavior(new FalseBehavior(new FalseMatcher($formatter), $this));
+        $this->addBehavior(new NullBehavior(new NullMatcher($formatter), $this));
+        $this->addBehavior(new EmptyBehavior(new EmptyMatcher($formatter), $this));
+        $this->addBehavior(new EqualBehavior(new EqualMatcher($formatter), $this));
     }
 
     /**

@@ -1,11 +1,12 @@
 <?php
 use Peridot\Leo\Behavior\Assert\EqualBehavior;
+use Peridot\Leo\Formatter\ObjectFormatter;
 use Peridot\Leo\Matcher\EqualMatcher;
 
 describe('Assert\EqualBehavior', function() {
 
     beforeEach(function() {
-        $matcher = new EqualMatcher();
+        $matcher = new EqualMatcher(new ObjectFormatter());
         $this->subject = new EqualBehavior($matcher);
     });
 
