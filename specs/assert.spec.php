@@ -1,9 +1,9 @@
 <?php
-use Peridot\Leo\Assert;
+use Peridot\Leo\AssertInterface;
 
 describe('assert', function() {
     beforeEach(function() {
-        $this->assert = new Assert();
+        $this->assert = new AssertInterface();
     });
 
     describe('->equal()', function() {

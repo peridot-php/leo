@@ -1,6 +1,6 @@
 <?php
-use Peridot\Leo\LeoInterface;
+use Peridot\Leo\BddInterface;
 
 function expect($actual) {
-    return new LeoInterface($actual);
+    return new BddInterface($actual);
 }
