@@ -9,7 +9,7 @@ describe('expect', function() {
         it('should throw an exception when objects are different', function() {
             $actual = new stdClass;
             $expected = new stdClass;
-            $interface = expect($obj)->to;
+            $interface = expect($actual)->to;
             expect([$interface, 'equal'])->with($expected)->to->throw('Exception');
         });
     });
