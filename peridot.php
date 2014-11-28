@@ -7,6 +7,8 @@ use Peridot\Reporter\CodeCoverageReporters;
 use Peridot\Reporter\Dot\DotReporterPlugin;
 use Peridot\Reporter\ListReporter\ListReporterPlugin;
 
+require_once 'src/bdd.interface.php';
+
 return function(EventEmitterInterface $emitter) {
     $watcher = new WatcherPlugin($emitter);
     $watcher->track(__DIR__ . '/src');
@@ -19,3 +21,4 @@ return function(EventEmitterInterface $emitter) {
 
     $prophecy = new ProphecyPlugin($emitter);
 };
+
