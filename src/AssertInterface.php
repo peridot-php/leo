@@ -2,6 +2,7 @@
 namespace Peridot\Leo;
 
 use \Exception;
+use Peridot\Leo\Formatter\Formatter;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 
@@ -17,21 +18,26 @@ class AssertInterface
 
     public function __construct()
     {
+        $this->formatter = new Formatter();
     }
 
     public function equal($actual, $expected)
     {
         $matcher = new EqualMatcher($expected);
-        if (! $matcher->match($actual)->isMatch()) {
-            throw new \Exception("Expected $expected, got $actual");
+        $match = $matcher->match($actual);
+        $this->formatter->setMatch($match);
+        if (! $match->isMatch()) {
+            throw new \Exception($this->formatter->getMessage($matcher->getTemplate()));
         }
     }
 
     public function same($actual, $expected)
     {
         $matcher = new SameMatcher($expected);
-        if (! $matcher->match($actual)->isMatch()) {
-            throw new Exception("nope");
+        $match = $matcher->match($actual);
+        $this->formatter->setMatch($match);
+        if (! $match->isMatch()) {
+            throw new Exception($this->formatter->getMessage($matcher->getTemplate()));
         }
     }
 

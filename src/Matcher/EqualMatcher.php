@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 class EqualMatcher extends AbstractMatcher
@@ -24,6 +25,9 @@ class EqualMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        // TODO: Implement getDefaultTemplate() method.
+        return new ArrayTemplate([
+            'default' => 'Expected {{expected}}, got {{actual}}',
+            'negated' => 'Expected {{expected}} not to equal {{actual}}'
+        ]);
     }
 }

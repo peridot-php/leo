@@ -14,9 +14,9 @@ class Formatter
     /**
      * @param Match $match
      */
-    public function __construct(Match $match)
+    public function __construct()
     {
-        $this->match = $match;
+
     }
 
     /**
@@ -52,7 +52,7 @@ class Formatter
             : $template->getDefaultTemplate();
 
         foreach ($vars as $name => $value) {
-            $tpl = str_replace('{{' . $name . '}}', $value, $tpl);
+            $tpl = str_replace('{{' . $name . '}}', $this->objectToString($value), $tpl);
         }
 
         return $tpl;

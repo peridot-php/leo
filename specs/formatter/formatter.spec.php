@@ -5,8 +5,7 @@ use Peridot\Leo\Matcher\Template\ArrayTemplate;
 
 describe('Formatter', function() {
     beforeEach(function() {
-        $match = new Match(false, 4, 3, false);
-        $this->formatter = new Formatter($match);
+        $this->formatter = new Formatter();
     });
 
     describe('->objectToString()', function() {
@@ -48,7 +47,8 @@ describe('Formatter', function() {
         });
 
         it('should return a default message based on a template', function() {
-            $message = $this->formatter->getMessage($this->template);
+            $match = new Match(false, 4, 3, false);
+            $message = $this->formatter->setMatch($match)->getMessage($this->template);
             expect($message)->to->equal('Expected 4, got 3');
         });
 
