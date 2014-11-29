@@ -3,7 +3,7 @@ namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
-abstract class AbstractMatcher
+abstract class AbstractMatcher implements MatcherInterface
 {
     /**
      * @var mixed
@@ -78,13 +78,6 @@ abstract class AbstractMatcher
         $this->template = $template;
         return $this;
     }
-
-    /**
-     * Return a default template if none was set.
-     *
-     * @return TemplateInterface
-     */
-    abstract public function getDefaultTemplate();
 
     /**
      * The actual matching algorithm for the matcher.
