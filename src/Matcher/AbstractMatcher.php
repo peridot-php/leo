@@ -40,15 +40,15 @@ abstract class AbstractMatcher
 
     /**
      * @param $actual
-     * @return bool
+     * @return Match
      */
     public function match($actual)
     {
-        $result = $this->doMatch($actual);
+        $isMatch = $this->doMatch($actual);
         if ($this->isNegated()) {
-            return !$result;
+            $isMatch = !$isMatch;
         }
-        return $result;
+        return new Match($isMatch, $this->expected, $actual, $this->isNegated());
     }
 
     /**

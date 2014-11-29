@@ -22,7 +22,7 @@ class AssertInterface
     public function equal($actual, $expected)
     {
         $matcher = new EqualMatcher($expected);
-        if (! $matcher->match($actual)) {
+        if (! $matcher->match($actual)->isMatch()) {
             throw new \Exception("Expected $expected, got $actual");
         }
     }
@@ -30,7 +30,7 @@ class AssertInterface
     public function same($actual, $expected)
     {
         $matcher = new SameMatcher($expected);
-        if (! $matcher->match($actual)) {
+        if (! $matcher->match($actual)->isMatch()) {
             throw new Exception("nope");
         }
     }

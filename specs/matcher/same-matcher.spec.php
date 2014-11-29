@@ -9,13 +9,13 @@ describe('SameMatcher', function() {
     });
 
     describe('->match()', function() {
-        it('should return true if actual value is the same as expected', function() {
-            expect($this->matcher->match($this->expected))->to->equal(true);
+        it('should return true result if actual value is the same as expected', function() {
+            expect($this->matcher->match($this->expected)->isMatch())->to->equal(true);
         });
 
         context('when inverted', function() {
-            it('should return false if actual value is the same as expected', function() {
-                expect($this->matcher->invert()->match($this->expected))->to->equal(false);
+            it('should return false result if actual value is the same as expected', function() {
+                expect($this->matcher->invert()->match($this->expected)->isMatch())->to->equal(false);
             });
         });
     });
