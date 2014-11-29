@@ -4,6 +4,7 @@ namespace Peridot\Leo;
 use \Exception;
 use Peridot\Leo\Formatter\Formatter;
 use Peridot\Leo\Matcher\EqualMatcher;
+use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 
 class AssertInterface
@@ -41,18 +42,14 @@ class AssertInterface
         }
     }
 
-    public function throws(callable $actual, $exceptionType, $exceptionMessage = '')
+    public function throws(callable $func, $exceptionType, $exceptionMessage = '')
     {
-        try {
-            call_user_func_array($actual, $this->arguments);
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            if ($exceptionMessage && $exceptionMessage != $message) {
-                throw new Exception("wrong exception message");
-            }
-            if (!$e instanceof $exceptionType) {
-                throw new Exception("no exception");
-            }
+        $matcher = new ExceptionMatcher($func);
+        $matcher->setExpectedMessage($exceptionMessage);
+        $match = $matcher->match($exceptionType);
+        $this->formatter->setMatch($match);
+        if (! $match->isMatch()) {
+            throw new Exception($this->formatter->getMessage($matcher->getTemplate()));
         }
     }
     
