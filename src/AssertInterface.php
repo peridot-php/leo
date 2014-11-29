@@ -21,7 +21,7 @@ class AssertInterface
     public function equal($actual, $expected)
     {
         if ($actual != $expected) {
-            throw new \Exception("nope");
+            throw new \Exception("Expected $expected, got $actual");
         }
     }
 
@@ -33,11 +33,15 @@ class AssertInterface
         }
     }
 
-    public function throws(callable $actual, $exceptionType)
+    public function throws(callable $actual, $exceptionType, $exceptionMessage = '')
     {
         try {
             call_user_func_array($actual, $this->arguments);
         } catch (Exception $e) {
+            $message = $e->getMessage();
+            if ($exceptionMessage && $exceptionMessage != $message) {
+                throw new Exception("wrong exception message");
+            }
             if (!$e instanceof $exceptionType) {
                 throw new Exception("no exception");
             }

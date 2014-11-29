@@ -14,6 +14,10 @@ describe('assert', function() {
         it('should throw exception when values are not loosely equal', function() {
             $this->assert->with(4, 3)->throws([$this->assert, 'equal'], 'Exception');
         });
+
+        it('should throw a formatted exception message', function() {
+            $this->assert->with(4, 3)->throws([$this->assert, 'equal'], 'Exception', 'Expected 3, got 4');
+        });
     });
 
     describe('->throws', function() {
