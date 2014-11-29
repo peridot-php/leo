@@ -1,6 +1,7 @@
 <?php
 use Peridot\Leo\Formatter\Formatter;
 use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\Template\ArrayTemplate;
 
 describe('Formatter', function() {
     beforeEach(function() {
@@ -34,6 +35,27 @@ describe('Formatter', function() {
             $obj->first = "brian";
             $string = $this->formatter->objectToString($obj);
             expect($string)->to->equal("stdClass Object\n(\n    [first] => brian\n)");
+        });
+    });
+
+    describe('->getMessage()', function() {
+
+        beforeEach(function() {
+            $this->template = new ArrayTemplate([
+                'default' => 'Expected {{expected}}, got {{actual}}',
+                'negated' => 'Expected {{expected}} not to be {{actual}}'
+            ]);
+        });
+
+        it('should return a default message based on a template', function() {
+            $message = $this->formatter->getMessage($this->template);
+            expect($message)->to->equal('Expected 4, got 3');
+        });
+
+        it('should return a negated message based on a template', function() {
+            $match = new Match(false, 4, 4, true);
+            $message = $this->formatter->setMatch($match)->getMessage($this->template);
+            expect($message)->to->equal('Expected 4 not to be 4');
         });
     });
 });

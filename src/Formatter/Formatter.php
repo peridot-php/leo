@@ -2,6 +2,7 @@
 namespace Peridot\Leo\Formatter;
 
 use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 class Formatter
 {
@@ -16,6 +17,45 @@ class Formatter
     public function __construct(Match $match)
     {
         $this->match = $match;
+    }
+
+    /**
+     * @return Match
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
+
+    /**
+     * @param Match $match
+     */
+    public function setMatch(Match $match)
+    {
+        $this->match = $match;
+        return $this;
+    }
+
+    /**
+     * @param TemplateInterface $template
+     * @return mixed|string
+     */
+    public function getMessage(TemplateInterface $template)
+    {
+        $vars = [
+            'expected' => $this->match->getExpected(),
+            'actual' => $this->match->getActual()
+        ];
+
+        $tpl = $this->match->isNegated()
+            ? $template->getNegatedTemplate()
+            : $template->getDefaultTemplate();
+
+        foreach ($vars as $name => $value) {
+            $tpl = str_replace('{{' . $name . '}}', $value, $tpl);
+        }
+
+        return $tpl;
     }
 
     /**
