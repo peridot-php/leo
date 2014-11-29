@@ -2,6 +2,7 @@
 namespace Peridot\Leo;
 
 use \Exception;
+use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 
 class AssertInterface
@@ -20,7 +21,8 @@ class AssertInterface
 
     public function equal($actual, $expected)
     {
-        if ($actual != $expected) {
+        $matcher = new EqualMatcher($expected);
+        if (! $matcher->match($actual)) {
             throw new \Exception("Expected $expected, got $actual");
         }
     }
@@ -28,7 +30,7 @@ class AssertInterface
     public function same($actual, $expected)
     {
         $matcher = new SameMatcher($expected);
-        if (!$matcher->match($actual)) {
+        if (! $matcher->match($actual)) {
             throw new Exception("nope");
         }
     }
