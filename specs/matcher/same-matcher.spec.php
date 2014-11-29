@@ -2,7 +2,6 @@
 use Peridot\Leo\Matcher\SameMatcher;
 
 describe('SameMatcher', function() {
-
     beforeEach(function() {
         $this->expected = new stdClass;
         $this->matcher = new SameMatcher($this->expected);
@@ -19,13 +18,4 @@ describe('SameMatcher', function() {
             });
         });
     });
-
-    describe('->invert()', function() {
-        it('should toggle negated status', function() {
-            expect($this->matcher->isNegated())->to->equal(false);
-            $this->matcher->invert();
-            expect($this->matcher->isNegated())->to->equal(true);
-        });
-    });
-
 });

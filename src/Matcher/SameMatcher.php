@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Matcher\Template\TemplateInterface;
+
 class SameMatcher extends AbstractMatcher
 {
     /**
@@ -11,4 +13,14 @@ class SameMatcher extends AbstractMatcher
     {
         return $this->expected === $actual;
     }
-} 
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return TemplateInterface
+     */
+    public function getDefaultTemplate()
+    {
+        // TODO: Implement getDefaultTemplate() method.
+    }
+}
