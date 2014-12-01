@@ -4,7 +4,7 @@ namespace Peridot\Leo\Formatter;
 use Peridot\Leo\Matcher\Match;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
-class Formatter
+class Formatter implements FormatterInterface
 {
     /**
      * @var Match

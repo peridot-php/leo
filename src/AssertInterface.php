@@ -45,6 +45,7 @@ class AssertInterface
     public function throws(callable $func, $exceptionType, $exceptionMessage = '')
     {
         $matcher = new ExceptionMatcher($func);
+        $matcher->setArguments($this->arguments);
         $matcher->setExpectedMessage($exceptionMessage);
         $match = $matcher->match($exceptionType);
         $this->formatter->setMatch($match);

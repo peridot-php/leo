@@ -108,8 +108,8 @@ class ExceptionMatcher extends AbstractMatcher
     public function getDefaultTemplate()
     {
         $template = new ArrayTemplate([
-            'default' => 'Expected type of exception {{expected}} to be {{actual}}',
-            'negated' => 'Expected type of exception {{expected}} not to be {{actual}}'
+            'default' => 'Expected exception of type {{actual}}',
+            'negated' => 'Expected type of exception not to be {{actual}}'
         ]);
 
         return $template;
@@ -132,12 +132,14 @@ class ExceptionMatcher extends AbstractMatcher
      * {@inheritdoc}
      *
      * @param $actual
-     * @return mixed
+     * @return bool
      */
     protected function doMatch($actual)
     {
+        $this->validateCallable();
         try {
             call_user_func_array($this->expected, $this->arguments);
+            return false;
         } catch (\Exception $e) {
             $message = $e->getMessage();
             if ($this->expectedMessage && $this->expectedMessage != $message) {
@@ -149,5 +151,18 @@ class ExceptionMatcher extends AbstractMatcher
             }
         }
         return true;
+    }
+
+    /**
+     * Validate that expected is indeed a valid callable.
+     *
+     * @throws \BadFunctionCallException
+     */
+    protected function validateCallable()
+    {
+        if (!is_callable($this->expected)) {
+            $expected = rtrim(print_r($this->expected, true));
+            throw new \BadFunctionCallException("Invalid callable " . $expected . " given");
+        }
     }
 }
