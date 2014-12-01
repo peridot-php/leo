@@ -1,11 +1,10 @@
 <?php
 namespace Peridot\Leo;
 
-use \Exception;
-use Peridot\Leo\Formatter\Formatter;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
+use Peridot\Leo\Responder\ResponderInterface;
 
 class AssertInterface
 {
@@ -17,29 +16,32 @@ class AssertInterface
      */
     protected $arguments = [];
 
-    public function __construct()
+    /**
+     * @var ResponderInterface
+     */
+    protected $responder;
+
+    public function __construct(ResponderInterface $responder)
     {
-        $this->formatter = new Formatter();
+        $this->responder = $responder;
     }
 
     public function equal($actual, $expected)
     {
         $matcher = new EqualMatcher($expected);
-        $match = $matcher->match($actual);
-        $this->formatter->setMatch($match);
-        if (! $match->isMatch()) {
-            throw new \Exception($this->formatter->getMessage($matcher->getTemplate()));
-        }
+        $this->responder->respond(
+            $matcher->match($actual),
+            $matcher->getTemplate()
+        );
     }
 
     public function same($actual, $expected)
     {
         $matcher = new SameMatcher($expected);
-        $match = $matcher->match($actual);
-        $this->formatter->setMatch($match);
-        if (! $match->isMatch()) {
-            throw new Exception($this->formatter->getMessage($matcher->getTemplate()));
-        }
+        $this->responder->respond(
+            $matcher->match($actual),
+            $matcher->getTemplate()
+        );
     }
 
     public function throws(callable $func, $exceptionType, $exceptionMessage = '')
@@ -47,11 +49,10 @@ class AssertInterface
         $matcher = new ExceptionMatcher($func);
         $matcher->setArguments($this->arguments);
         $matcher->setExpectedMessage($exceptionMessage);
-        $match = $matcher->match($exceptionType);
-        $this->formatter->setMatch($match);
-        if (! $match->isMatch()) {
-            throw new Exception($this->formatter->getMessage($matcher->getTemplate()));
-        }
+        $this->responder->respond(
+            $matcher->match($exceptionType),
+            $matcher->getTemplate()
+        );
     }
     
     public function with()

@@ -21,6 +21,20 @@ describe('ExceptionMatcher', function() {
             expect($result->isMatch())->to->equal(false);
         });
 
+        it('should throw exception if callable is not valid', function() {
+            $obj = new stdClass();
+            $matcher = new ExceptionMatcher([$obj, 'nope']);
+            expect([$matcher, 'match'])->with('DomainException')->to->throw('BadFunctionCallException');
+        });
+
+        it('should return false when function throws no exception', function() {
+            $matcher = new ExceptionMatcher(function() {
+
+            });
+            $result = $matcher->match('Exception');
+            expect($result->isMatch())->to->equal(false);
+        });
+
         context('when inverted', function() {
             it('should return true result if exceptions are different', function() {
                 $result = $this->matcher->invert()->match('RuntimeException');

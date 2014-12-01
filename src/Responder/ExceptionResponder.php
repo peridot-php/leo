@@ -27,6 +27,10 @@ class ExceptionResponder implements ResponderInterface
      */
     public function respond(Match $match, TemplateInterface $template)
     {
+        if ($match->isMatch()) {
+            return;
+        }
+
         $this->formatter->setMatch($match);
         $message = $this->formatter->getMessage($template);
         throw new Exception($message);

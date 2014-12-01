@@ -1,14 +1,27 @@
 <?php
 namespace Peridot\Leo;
 
+use Peridot\Leo\Responder\ResponderInterface;
+
 class BddInterface extends AssertInterface
 {
+    /**
+     * @var BddInterface
+     */
     public $to;
+
+    /**
+     * @var mixed
+     */
     protected $actual;
 
-    public function __construct($actual)
+    /**
+     * @param ResponderInterface $responder
+     * @param mixed $actual
+     */
+    public function __construct(ResponderInterface $responder, $actual)
     {
-        parent::__construct();
+        parent::__construct($responder);
         $this->to = $this;
         $this->setActual($actual);
     }
