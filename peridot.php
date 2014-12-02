@@ -7,7 +7,7 @@ use Peridot\Reporter\CodeCoverageReporters;
 use Peridot\Reporter\Dot\DotReporterPlugin;
 use Peridot\Reporter\ListReporter\ListReporterPlugin;
 
-require_once 'src/bdd.interface.php';
+require_once 'src/Interfaces/bdd.interface.php';
 
 return function(EventEmitterInterface $emitter) {
     $watcher = new WatcherPlugin($emitter);

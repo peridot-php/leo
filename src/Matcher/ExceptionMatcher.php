@@ -14,6 +14,11 @@ class ExceptionMatcher extends AbstractMatcher
     /**
      * @var string
      */
+    protected $type;
+
+    /**
+     * @var string
+     */
     protected $expectedMessage = "";
 
     /**
@@ -31,9 +36,9 @@ class ExceptionMatcher extends AbstractMatcher
     /**
      * @param callable $expected
      */
-    public function __construct(callable $expected)
+    public function __construct($exceptionType)
     {
-        $this->expected = $expected;
+        $this->expected = $exceptionType;
     }
 
     /**
@@ -108,8 +113,8 @@ class ExceptionMatcher extends AbstractMatcher
     public function getDefaultTemplate()
     {
         $template = new ArrayTemplate([
-            'default' => 'Expected exception of type {{actual}}',
-            'negated' => 'Expected type of exception not to be {{actual}}'
+            'default' => 'Expected exception of type {{expected}}',
+            'negated' => 'Expected type of exception not to be {{expected}}'
         ]);
 
         return $template;
@@ -136,9 +141,9 @@ class ExceptionMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        $this->validateCallable();
+        $this->validateCallable($actual);
         try {
-            call_user_func_array($this->expected, $this->arguments);
+            call_user_func_array($actual, $this->arguments);
             return false;
         } catch (\Exception $e) {
             $message = $e->getMessage();
@@ -146,7 +151,7 @@ class ExceptionMatcher extends AbstractMatcher
                 $this->setMessage($message);
                 return false;
             }
-            if (!$e instanceof $actual) {
+            if (!$e instanceof $this->expected) {
                 return false;
             }
         }
@@ -158,11 +163,11 @@ class ExceptionMatcher extends AbstractMatcher
      *
      * @throws \BadFunctionCallException
      */
-    protected function validateCallable()
+    protected function validateCallable($callable)
     {
-        if (!is_callable($this->expected)) {
-            $expected = rtrim(print_r($this->expected, true));
-            throw new \BadFunctionCallException("Invalid callable " . $expected . " given");
+        if (!is_callable($callable)) {
+            $callable = rtrim(print_r($callable, true));
+            throw new \BadFunctionCallException("Invalid callable " . $callable . " given");
         }
     }
 }

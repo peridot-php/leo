@@ -2,7 +2,7 @@
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 
-describe('ExceptionMatcher', function() {
+xdescribe('ExceptionMatcher', function() {
 
     beforeEach(function() {
         $this->matcher = new ExceptionMatcher(function() {
