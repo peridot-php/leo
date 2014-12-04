@@ -24,6 +24,10 @@ foreach ($chains as $chain) {
     });
 }
 
+$this->addProperty('not', function() {
+    return $this->flag('not', true);
+});
+
 $this->addMethod('equal', function($expected) {
     return new SameMatcher($expected);
 });

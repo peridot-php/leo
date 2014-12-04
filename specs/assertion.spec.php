@@ -34,4 +34,16 @@ describe('Assertion', function() {
             })->to->throw('DomainException');
         });
     });
+
+    describe('->flag()', function() {
+        it('should act as getter and setter', function() {
+            $this->assertion->flag('not', true);
+            expect($this->assertion->flag('not'))->to->equal(true);
+        });
+
+        it('should return null if flag does not exist', function() {
+            $flag = $this->assertion->flag('nope');
+            expect(is_null($flag))->to->equal(true);
+        });
+    });
 });

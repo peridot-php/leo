@@ -1,6 +1,6 @@
 <?php
 describe('expect', function() {
-    describe('to->equal()', function() {
+    describe('->equal()', function() {
         it('should match objects that are the same', function() {
             $obj = new stdClass;
             expect($obj)->to->equal($obj);
@@ -12,9 +12,19 @@ describe('expect', function() {
             $interface = expect($actual)->to;
             expect([$interface, 'equal'])->with($expected)->to->throw('Exception');
         });
+
+        context('when negated', function() {
+            it('should throw an exception if values are equal', function() {
+                $actual = $expected = new stdClass;
+                $assertion = expect($actual)->not->to;
+                expect(function() use ($assertion, $expected) {
+                    $assertion->equal($expected);
+                })->to->throw('Exception');
+            });
+        });
     });
 
-    describe('to->throw()', function() {
+    describe('->throw()', function() {
         it('should match when function throws exception', function() {
             expect(function() {
                 throw new Exception("ooooops");

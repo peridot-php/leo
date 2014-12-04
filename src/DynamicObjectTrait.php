@@ -14,6 +14,11 @@ trait DynamicObjectTrait
     protected $properties = [];
 
     /**
+     * @var array
+     */
+    protected $flags = [];
+
+    /**
      * @param $name
      * @param callable $method
      * @return $this
@@ -47,5 +52,19 @@ trait DynamicObjectTrait
 
         $factory = $this->properties[$name];
         return $factory();
+    }
+
+    /**
+     * @return $this
+     */
+    public function flag()
+    {
+        $args = func_get_args();
+        $num = count($args);
+        if ($num > 1) {
+            $this->flags[$args[0]] = $args[1];
+            return $this;
+        }
+        return $this->flags[$args[0]];
     }
 }

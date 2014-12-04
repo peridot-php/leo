@@ -80,6 +80,10 @@ class Assertion
         $method = $this->methods[$method];
         $matcher = call_user_func_array($method, $args);
 
+        if ($this->flag('not')) {
+            $matcher->invert();
+        }
+
         if (!$matcher instanceof MatcherInterface) {
             throw new \RuntimeException("Assertion methods must return an instanceof MatcherInterface");
         }

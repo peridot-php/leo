@@ -28,6 +28,14 @@ describe('assert', function() {
         });
     });
 
+    describe('->notEqual()', function() {
+        it('should throw when both values are same', function() {
+            $this->assert->throws(function() {
+                $this->assert->notEqual(4, 4);
+            }, 'Exception');
+        });
+    });
+
     describe('->throws', function() {
         it('should match a function that throws an exception', function() {
             $this->assert->throws(function() {

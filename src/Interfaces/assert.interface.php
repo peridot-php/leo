@@ -15,6 +15,12 @@ $this->addMethod('equal', function($actual, $expected)  {
     $this->responder->respond($match, $matcher->getTemplate());
 });
 
+$this->addMethod('notEqual', function($actual, $expected) {
+    $matcher = new EqualMatcher($expected);
+    $match = $matcher->invert()->match($actual);
+    $this->responder->respond($match, $matcher->getTemplate());
+});
+
 $this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "") {
     $assertion = new Assertion($this->responder, $fn);
     $assertion->to->throw($exceptionType, $exceptionMessage);
