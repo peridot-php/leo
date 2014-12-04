@@ -40,17 +40,7 @@ class Assertion
         $this->responder = $responder;
         $this->actual = $actual;
         $this->to = $this;
-
-        $this->addMethod('equal', function($expected) {
-            return new SameMatcher($expected);
-        });
-
-        $this->addMethod('throw', function($exceptionType, $exceptionMessage = '') {
-            $matcher = new ExceptionMatcher($exceptionType);
-            $matcher->setExpectedMessage($exceptionMessage);
-            $matcher->setArguments($this->getArguments());
-            return $matcher;
-        });
+        include __DIR__ . '/assertions.definition.php';
     }
 
     /**
