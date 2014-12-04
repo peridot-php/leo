@@ -9,13 +9,13 @@
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\EqualMatcher;
 
-$this->addMethod('equal', function($actual, $expected) use ($responder)  {
+$this->addMethod('equal', function($actual, $expected)  {
     $matcher = new EqualMatcher($expected);
     $match = $matcher->match($actual);
-    $responder->respond($match, $matcher->getTemplate());
+    $this->responder->respond($match, $matcher->getTemplate());
 });
 
-$this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "") use ($responder) {
-    $assertion = new Assertion($responder, $fn);
+$this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "") {
+    $assertion = new Assertion($this->responder, $fn);
     $assertion->to->throw($exceptionType, $exceptionMessage);
 });

@@ -8,6 +8,22 @@
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 
+/**
+ * Default language chains.
+ */
+$chains = [
+    'to', 'be', 'been',
+    'is', 'and', 'has',
+    'have', 'with', 'that',
+    'at', 'of', 'same'
+];
+
+foreach ($chains as $chain) {
+    $this->addProperty($chain, function() {
+        return $this;
+    });
+}
+
 $this->addMethod('equal', function($expected) {
     return new SameMatcher($expected);
 });

@@ -37,7 +37,6 @@ class Assertion
     {
         $this->responder = $responder;
         $this->actual = $actual;
-        $this->to = $this;
         include __DIR__ . '/assertions.definition.php';
     }
 

@@ -19,10 +19,16 @@ class AssertInterface
     protected $assertion;
 
     /**
+     * @var ResponderInterface
+     */
+    protected $responder;
+
+    /**
      * @param ResponderInterface $responder
      */
     public function __construct(ResponderInterface $responder)
     {
+        $this->responder = $responder;
         include __DIR__ . '/assert.interface.php';
     }
 
