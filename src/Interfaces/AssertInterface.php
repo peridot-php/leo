@@ -2,7 +2,7 @@
 namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Assertion;
-use Peridot\Leo\DynamicMethodTrait;
+use Peridot\Leo\DynamicObjectTrait;
 use Peridot\Leo\Responder\ResponderInterface;
 
 /**
@@ -11,7 +11,7 @@ use Peridot\Leo\Responder\ResponderInterface;
  */
 class AssertInterface
 {
-    use DynamicMethodTrait;
+    use DynamicObjectTrait;
 
     /**
      * @var Assertion

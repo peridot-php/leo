@@ -1,9 +1,7 @@
 <?php
 namespace Peridot\Leo;
 
-use Peridot\Leo\Matcher\EqualMatcher;
-use Peridot\Leo\Matcher\ExceptionMatcher;
-use Peridot\Leo\Matcher\SameMatcher;
+use Peridot\Leo\Matcher\MatcherInterface;
 use Peridot\Leo\Responder\ResponderInterface;
 
 /**
@@ -12,7 +10,7 @@ use Peridot\Leo\Responder\ResponderInterface;
  */
 class Assertion
 {
-    use DynamicMethodTrait;
+    use DynamicObjectTrait;
 
     /**
      * Arguments to pass along to an actual value
@@ -76,8 +74,17 @@ class Assertion
      */
     public function __call($method, $args)
     {
+        if (!isset($this->methods[$method])) {
+            throw new \BadMethodCallException("Method $method does not exist");
+        }
+
         $method = $this->methods[$method];
         $matcher = call_user_func_array($method, $args);
+
+        if (!$matcher instanceof MatcherInterface) {
+            throw new \RuntimeException("Assertion methods must return an instanceof MatcherInterface");
+        }
+
         $this->responder->respond(
             $matcher->match($this->getActual()),
             $matcher->getTemplate()

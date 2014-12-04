@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo;
 
-trait DynamicMethodTrait
+trait DynamicObjectTrait
 {
     protected $methods = [];
 
