@@ -21,6 +21,12 @@ describe('assert', function() {
             }, 'Exception');
         });
 
+        it('should throw exception with a user supplied message', function() {
+            $this->assert->throws(function() {
+                $this->assert->equal(4, 3, 'not equal');
+            }, 'Exception', 'not equal');
+        });
+
         it('should throw a formatted exception message', function() {
             $this->assert->throws(function() {
                 $this->assert->equal(4, 3);
@@ -33,6 +39,12 @@ describe('assert', function() {
             $this->assert->throws(function() {
                 $this->assert->notEqual(4, 4);
             }, 'Exception');
+        });
+
+        it('should throw a user supplied message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notEqual(4, 4, 'should not be equal');
+            }, 'Exception', 'should not be equal');
         });
     });
 

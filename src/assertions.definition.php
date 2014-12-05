@@ -28,11 +28,13 @@ $this->addProperty('not', function() {
     return $this->flag('not', true);
 });
 
-$this->addMethod('equal', function($expected) {
+$this->addMethod('equal', function($expected, $message = "") {
+    $this->flag('message', $message);
     return new SameMatcher($expected);
 });
 
-$this->addMethod('throw', function($exceptionType, $exceptionMessage = '') {
+$this->addMethod('throw', function($exceptionType, $exceptionMessage = '', $message = "") {
+    $this->flag('message', $message);
     $matcher = new ExceptionMatcher($exceptionType);
     $matcher->setExpectedMessage($exceptionMessage);
     $matcher->setArguments($this->getArguments());

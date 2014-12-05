@@ -32,6 +32,8 @@ class Assertion
 
     /**
      * @param ResponderInterface $responder
+     * @param string $actual
+     * @param string $message
      */
     public function __construct(ResponderInterface $responder, $actual)
     {
@@ -90,7 +92,8 @@ class Assertion
 
         $this->responder->respond(
             $matcher->match($this->getActual()),
-            $matcher->getTemplate()
+            $matcher->getTemplate(),
+            $this->flag('message')
         );
     }
 

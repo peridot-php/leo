@@ -13,6 +13,13 @@ describe('expect', function() {
             expect([$interface, 'equal'])->with($expected)->to->throw('Exception');
         });
 
+        it('should throw a user specified exception message if provided', function() {
+            $actual = new stdClass;
+            $expected = new stdClass;
+            $interface = expect($actual)->to;
+            expect([$interface, 'equal'])->with($expected, "Such failure")->to->throw('Exception', 'Such failure');
+        });
+
         context('when negated', function() {
             it('should throw an exception if values are equal', function() {
                 $actual = $expected = new stdClass;
@@ -29,6 +36,14 @@ describe('expect', function() {
             expect(function() {
                 throw new Exception("ooooops");
             })->to->throw('Exception');
+        });
+
+        it('should allow user exception message', function() {
+            expect(function() {
+                expect(function() {
+                    throw new RuntimeException("ooooops");
+                })->to->throw('DomainException', "", "wrong type");
+            })->to->throw("Exception", "wrong type");
         });
 
         context('when using ->with() language chain', function() {

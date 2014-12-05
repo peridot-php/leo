@@ -134,6 +134,23 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Override match to set actual and expect match values to message
+     * values.
+     *
+     * @param $actual
+     * @return Match
+     */
+    public function match($actual)
+    {
+        $match = parent::match($actual);
+        if ($this->expectedMessage) {
+            $match->setActual($this->message);
+            $match->setExpected($this->expectedMessage);
+        }
+        return $match;
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @param $actual

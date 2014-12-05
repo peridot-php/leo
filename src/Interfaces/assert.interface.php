@@ -9,16 +9,16 @@
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\EqualMatcher;
 
-$this->addMethod('equal', function($actual, $expected)  {
+$this->addMethod('equal', function($actual, $expected, $message = "")  {
     $matcher = new EqualMatcher($expected);
     $match = $matcher->match($actual);
-    $this->responder->respond($match, $matcher->getTemplate());
+    $this->responder->respond($match, $matcher->getTemplate(), $message);
 });
 
-$this->addMethod('notEqual', function($actual, $expected) {
+$this->addMethod('notEqual', function($actual, $expected, $message = "") {
     $matcher = new EqualMatcher($expected);
     $match = $matcher->invert()->match($actual);
-    $this->responder->respond($match, $matcher->getTemplate());
+    $this->responder->respond($match, $matcher->getTemplate(), $message);
 });
 
 $this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "") {

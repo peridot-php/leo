@@ -68,4 +68,22 @@ class Match
     {
         return $this->isNegated;
     }
+
+    /**
+     * @param mixed $actual
+     */
+    public function setActual($actual)
+    {
+        $this->actual = $actual;
+        return $this;
+    }
+
+    /**
+     * @param mixed $expected
+     */
+    public function setExpected($expected)
+    {
+        $this->expected = $expected;
+        return $this;
+    }
 }

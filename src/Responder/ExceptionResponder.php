@@ -24,15 +24,18 @@ class ExceptionResponder implements ResponderInterface
     /**
      * @param Match $match
      * @param TemplateInterface $template
+     * @param string $message
+     * @return void
+     * @throws Exception
      */
-    public function respond(Match $match, TemplateInterface $template)
+    public function respond(Match $match, TemplateInterface $template, $message = "")
     {
         if ($match->isMatch()) {
             return;
         }
 
         $this->formatter->setMatch($match);
-        $message = $this->formatter->getMessage($template);
+        $message = ($message) ? $message : $this->formatter->getMessage($template);
         throw new Exception($message);
     }
 } 

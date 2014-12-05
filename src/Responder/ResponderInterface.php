@@ -9,7 +9,8 @@ interface ResponderInterface
     /**
      * @param Match $match
      * @param TemplateInterface $template
+     * @param string $message a user provided messaged
      * @return mixed
      */
-    public function respond(Match $match, TemplateInterface $template);
+    public function respond(Match $match, TemplateInterface $template, $message);
 } 

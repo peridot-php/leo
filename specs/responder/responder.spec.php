@@ -11,15 +11,27 @@ describe('ExceptionResponder', function() {
     });
 
     describe('->respond()', function() {
-        it('should respond to a false match by throwing an exception', function() {
+        beforeEach(function() {
             $this->formatter->getMessage(Argument::any())->willReturn('FAIL');
-            $match = new Match(false, 4, 3, false);
-            $template = new ArrayTemplate([
+            $this->match = new Match(false, 4, 3, false);
+            $this->template = new ArrayTemplate([
                 'default' => 'Default',
                 'negated' => 'Negated'
             ]);
-            $this->formatter->setMatch($match)->shouldBeCalled();
-            expect([$this->responder, 'respond'])->with($match, $template)->to->throw('Exception', 'FAIL');
+        });
+
+        afterEach(function() {
+            $this->getProphet()->checkPredictions();
+        });
+
+        it('should respond to a false match by throwing an exception', function() {
+            $this->formatter->setMatch($this->match)->shouldBeCalled();
+            expect([$this->responder, 'respond'])->with($this->match, $this->template)->to->throw('Exception', 'FAIL');
+        });
+
+        it('should allow a user exception message', function() {
+            $this->formatter->setMatch($this->match)->shouldBeCalled();
+            expect([$this->responder, 'respond'])->with($this->match, $this->template, "user")->to->throw('Exception', 'user');
         });
 
         it('should do nothing for a true match', function() {
@@ -28,7 +40,6 @@ describe('ExceptionResponder', function() {
             $this->formatter->getMessage(Argument::any())->shouldNotBeCalled();
             $this->formatter->setMatch($match)->shouldNotBeCalled();
             $this->responder->respond($match, $template);
-            $this->getProphet()->checkPredictions();
         });
     });
 });
