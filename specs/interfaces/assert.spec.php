@@ -54,5 +54,13 @@ describe('assert', function() {
                 throw new Exception("error");
             }, 'Exception');
         });
+
+        it('should allow a user supplied assertion message', function() {
+            $this->assert->throws(function() {
+                $this->assert->throws(function() {
+                    throw new DomainException('oops');
+                }, 'RuntimeException', "", "failure");
+            }, 'Exception', 'failure');
+        });
     });
 });

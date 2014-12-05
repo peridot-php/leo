@@ -21,7 +21,7 @@ $this->addMethod('notEqual', function($actual, $expected, $message = "") {
     $this->responder->respond($match, $matcher->getTemplate(), $message);
 });
 
-$this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "") {
+$this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMessage = "", $message = "") {
     $assertion = new Assertion($this->responder, $fn);
-    $assertion->to->throw($exceptionType, $exceptionMessage);
+    $assertion->to->throw($exceptionType, $exceptionMessage, $message);
 });
