@@ -30,6 +30,10 @@ $this->addProperty('not', function() {
     return $this->flag('not', true);
 });
 
+$this->addMethod('with', function() {
+    return $this->flag('arguments', func_get_args());
+});
+
 $this->addMethod('equal', function($expected, $message = "") {
     $this->flag('message', $message);
     return new SameMatcher($expected);
@@ -39,7 +43,7 @@ $this->addMethod('throw', function($exceptionType, $exceptionMessage = '', $mess
     $this->flag('message', $message);
     $matcher = new ExceptionMatcher($exceptionType);
     $matcher->setExpectedMessage($exceptionMessage);
-    $matcher->setArguments($this->getArguments());
+    $matcher->setArguments($this->flag('arguments') ?: []);
     return $matcher;
 });
 

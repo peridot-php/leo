@@ -13,14 +13,6 @@ class Assertion
     use DynamicObjectTrait;
 
     /**
-     * Arguments to pass along to an actual value
-     * that is a callable
-     *
-     * @var array $arguments
-     */
-    protected $arguments = [];
-
-    /**
      * @var ResponderInterface
      */
     protected $responder;
@@ -51,23 +43,6 @@ class Assertion
     }
 
     /**
-     * @return $this
-     */
-    public function with()
-    {
-        $this->arguments = func_get_args();
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getArguments()
-    {
-        return $this->arguments;
-    }
-
-    /**
      * Delegate methods to assertion methods
      *
      * @param $method
@@ -80,21 +55,13 @@ class Assertion
         }
 
         $method = $this->methods[$method];
-        $matcher = call_user_func_array($method, $args);
+        $result = call_user_func_array($method, $args);
 
-        if ($this->flag('not')) {
-            $matcher->invert();
+        if ($result instanceof MatcherInterface) {
+            $this->assert($result);
         }
 
-        if (!$matcher instanceof MatcherInterface) {
-            throw new \RuntimeException("Assertion methods must return an instanceof MatcherInterface");
-        }
-
-        $this->responder->respond(
-            $matcher->match($this->getActual()),
-            $matcher->getTemplate(),
-            $this->flag('message')
-        );
+        return $result;
     }
 
     /**
@@ -113,5 +80,23 @@ class Assertion
     public function getActual()
     {
         return $this->actual;
+    }
+
+    /**
+     * Assert against the given matcher.
+     *
+     * @param $result
+     */
+    public function assert(MatcherInterface $matcher)
+    {
+        if ($this->flag('not')) {
+            $matcher->invert();
+        }
+
+        $this->responder->respond(
+            $matcher->match($this->getActual()),
+            $matcher->getTemplate(),
+            $this->flag('message')
+        );
     }
 }

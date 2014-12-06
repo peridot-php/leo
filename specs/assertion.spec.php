@@ -22,13 +22,14 @@ describe('Assertion', function() {
             expect([$this->assertion, 'notamethod'])->to->throw('BadMethodCallException');
         });
 
-        it('should throw an exception if the method does not return a matcher', function() {
-            expect([$this->assertion, 'nonmatcher'])->to->throw('RuntimeException');
+        it('should return the result of a non-matcher method', function() {
+            $result = $this->assertion->nonmatcher(1);
+            expect($result)->to->equal(1);
         });
     });
 
     context('when calling a dynamic property', function() {
-        it('should throw an eception if property does not exist', function() {
+        it('should throw an exception if property does not exist', function() {
             expect(function() {
                 $nope = $this->assertion->nope;
             })->to->throw('DomainException');
