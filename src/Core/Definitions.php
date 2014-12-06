@@ -7,6 +7,7 @@
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
+use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
 use Peridot\Leo\Matcher\TruthyMatcher;
@@ -96,4 +97,13 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('false', $false)
         ->addProperty('false', $false);
+
+    $null = function ($message = "") {
+        $this->flag('message', $message);
+        return new NullMatcher();
+    };
+
+    $assertion
+        ->addMethod('null', $null)
+        ->addProperty('null', $null);
 };

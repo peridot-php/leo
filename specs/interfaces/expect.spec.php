@@ -200,4 +200,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->null', function() {
+        it('should throw an exception if value is not null', function() {
+            expect(function() {
+                expect(true)->to->be->null;
+            })->to->throw('Exception', 'Expected true to be null');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when value is null', function() {
+                expect(function() {
+                    expect(null)->to->not->be->null;
+                })->to->throw('Exception', 'Expected null not to be null');
+            });
+        });
+
+        context('when used as a method', function() {
+            it('should throw an exception if value is not null', function() {
+                expect(function() {
+                    expect(true)->to->be->null();
+                })->to->throw('Exception', 'Expected true to be null');
+            });
+
+            it('should allow a user message', function() {
+                expect(function() {
+                    expect(true)->to->be->null("not null");
+                })->to->throw('Exception', 'not null');
+            });
+        });
+    });
 });
