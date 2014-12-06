@@ -8,6 +8,14 @@ describe('Formatter', function() {
         $this->formatter = new Formatter();
     });
 
+    describe('match accessors', function() {
+        it('should allow access to match', function() {
+            $match = new Match(false, 4, 3, false);
+            $this->formatter->setMatch($match);
+            expect($this->formatter->getMatch())->to->equal($match);
+        });
+    });
+
     describe('->objectToString()', function() {
         it('should return "false" for false', function() {
             $string = $this->formatter->objectToString(false);

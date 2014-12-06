@@ -17,6 +17,12 @@ describe('Assertion', function() {
         });
     });
 
+    describe('->getResponder()', function() {
+        it('should return the Assertion responder', function() {
+            expect($this->assertion->getResponder())->to->equal($this->responder);
+        });
+    });
+
     context('when calling a dynamic method', function() {
         it('should throw an exception if method does not exist', function() {
             expect([$this->assertion, 'notamethod'])->to->throw('BadMethodCallException');
