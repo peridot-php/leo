@@ -230,4 +230,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->empty', function() {
+        it('should throw an exception if value is not empty', function() {
+            expect(function() {
+                expect([1])->to->be->empty;
+            })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to be empty");
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when value is empty', function() {
+                expect(function() {
+                    expect([])->to->not->be->empty;
+                })->to->throw('Exception', "Expected Array\n(\n) not to be empty");
+            });
+        });
+
+        context('when used as a method', function() {
+            it('should throw an exception if value is not empty', function() {
+                expect(function() {
+                    expect("string")->to->be->empty();
+                })->to->throw('Exception', 'Expected "string" to be empty');
+            });
+
+            it('should allow a user message', function() {
+                expect(function() {
+                    expect([1])->to->be->empty("not empty");
+                })->to->throw('Exception', 'not empty');
+            });
+        });
+    });
 });

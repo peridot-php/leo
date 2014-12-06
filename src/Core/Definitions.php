@@ -5,6 +5,7 @@
  * @var Peridot\Leo\Assertion $assertion
  */
 use Peridot\Leo\Assertion;
+use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -106,4 +107,13 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('null', $null)
         ->addProperty('null', $null);
+
+    $empty = function ($message = "") {
+        $this->flag('message', $message);
+        return new EmptyMatcher();
+    };
+
+    $assertion
+        ->addMethod('empty', $empty)
+        ->addProperty('empty', $empty);
 };
