@@ -15,7 +15,6 @@ use Peridot\Leo\Responder\ExceptionResponder;
  * Leo::extend(callable $fn) will not allow binding
  * of variables inside $fn - i.e via the DynamicObjectTrait
  *
- *
  * @package Peridot\Leo
  */
 class Leo
@@ -62,7 +61,8 @@ class Leo
     }
 
     /**
-     * @param Assertion $assertion
+     * @param $assertion
+     * @return $this
      */
     public function setAssertion($assertion)
     {
@@ -79,7 +79,8 @@ class Leo
     }
 
     /**
-     * @param Formatter $formatter
+     * @param $formatter
+     * @return $this
      */
     public function setFormatter($formatter)
     {
@@ -96,7 +97,8 @@ class Leo
     }
 
     /**
-     * @param ExceptionResponder $responder
+     * @param $responder
+     * @return $this
      */
     public function setResponder($responder)
     {

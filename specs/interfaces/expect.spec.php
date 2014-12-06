@@ -266,4 +266,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->above()', function() {
+        it('should throw an exception if value is less than expected', function() {
+            expect(function() {
+                expect(5)->to->be->above(6);
+            })->to->throw('Exception', 'Expected 5 to be above 6');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(5)->to->be->above(6, 'not above');
+            })->to->throw('Exception', 'not above');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if actual is above expected', function() {
+                expect(function() {
+                    expect(5)->to->not->be->above(4);
+                })->to->throw('Exception', 'Expected 5 to be at most 4');
+            });
+        });
+
+        context('when combined with the length flag', function() {
+            it('should throw an exception if actual length is less than expected', function() {
+                expect(function () {
+                    expect([1])->to->have->length->above(2);
+                })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a length above 2 but got 1");
+            });
+        });
+    });
 });

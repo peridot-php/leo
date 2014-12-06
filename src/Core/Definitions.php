@@ -1,13 +1,12 @@
 <?php
 /**
- * Main definition for Assertion. Define methods and properties here.
- *
- * @var Peridot\Leo\Assertion $assertion
+ * Main definition for Assertion. Define core methods and properties here.
  */
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
+use Peridot\Leo\Matcher\GreaterThanMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
@@ -124,4 +123,17 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('empty', $empty)
         ->addProperty('empty', $empty);
+
+    $assertion->addProperty('length', function () {
+        return $this->flag('length', $this->getActual());
+    });
+
+    $assertion->addMethod('above', function ($expected, $message = "") {
+        $this->flag('message', $message);
+        $matcher = new GreaterThanMatcher($expected);
+        if ($countable = $this->flag('length')) {
+            $matcher->setCountable($countable);
+        }
+        return $matcher;
+    });
 };
