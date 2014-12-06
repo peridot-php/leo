@@ -55,5 +55,15 @@ describe('expect', function() {
                 })->with(1)->to->throw('Exception');
             });
         });
+
+        context('when negated', function() {
+            it('should throw an exception if exceptions are same', function() {
+                expect(function() {
+                    expect(function() {
+                        throw new Exception("failure");
+                    })->to->not->throw('Exception');
+                })->to->throw('Exception');
+            });
+        });
     });
 });

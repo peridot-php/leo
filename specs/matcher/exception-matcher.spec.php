@@ -99,12 +99,12 @@ describe('ExceptionMatcher', function() {
     });
 
     describe('->getTemplate()', function() {
-        context('when message has been set', function() {
+        context('when expected message has been set', function() {
             beforeEach(function() {
-                $this->matcher->setMessage('message');
+                $this->matcher->setExpectedMessage('message');
             });
 
-            it('should should return the set message template', function() {
+            it('should return the set message template', function() {
                 $template = new ArrayTemplate([]);
                 $this->matcher->setMessageTemplate($template);
                 expect($this->matcher->getTemplate())->to->equal($template);

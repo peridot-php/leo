@@ -63,4 +63,30 @@ describe('assert', function() {
             }, 'Exception', 'failure');
         });
     });
+
+    describe('->doesNotThrow()', function() {
+        it('should throw an exception if function throws exception', function() {
+            $this->assert->throws(function() {
+                $this->assert->doesNotThrow(function() {
+                    throw new Exception("failure");
+                }, 'Exception');
+            }, 'Exception');
+        });
+
+        it('should throw an exception if equal messages are thrown', function() {
+            $this->assert->throws(function() {
+                $this->assert->doesNotThrow(function() {
+                    throw new Exception('failure');
+                }, 'RuntimeException', 'failure');
+            }, 'Exception');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->doesNotThrow(function() {
+                    throw new Exception('failure');
+                }, 'RuntimeException', 'failure', 'oooooops');
+            }, 'Exception', 'oooooops');
+        });
+    });
 });

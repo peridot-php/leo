@@ -76,7 +76,7 @@ class ExceptionMatcher extends AbstractMatcher
      */
     public function getTemplate()
     {
-        if ($this->message) {
+        if ($this->expectedMessage) {
             return $this->getMessageTemplate();
         }
         return parent::getTemplate();
@@ -164,9 +164,9 @@ class ExceptionMatcher extends AbstractMatcher
             return false;
         } catch (\Exception $e) {
             $message = $e->getMessage();
-            if ($this->expectedMessage && $this->expectedMessage != $message) {
+            if ($this->expectedMessage) {
                 $this->setMessage($message);
-                return false;
+                return $this->expectedMessage == $message;
             }
             if (!$e instanceof $this->expected) {
                 return false;

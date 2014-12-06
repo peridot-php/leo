@@ -25,3 +25,8 @@ $this->addMethod('throws', function(callable $fn, $exceptionType, $exceptionMess
     $assertion = new Assertion($this->responder, $fn);
     $assertion->to->throw($exceptionType, $exceptionMessage, $message);
 });
+
+$this->addMethod('doesNotThrow', function(callable $fn, $exceptionType, $exceptionMessage = "", $message = "") {
+    $assertion = new Assertion($this->responder, $fn);
+    $assertion->to->not->throw($exceptionType, $exceptionMessage, $message);
+});
