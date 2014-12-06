@@ -31,7 +31,8 @@ class Assertion
     {
         $this->responder = $responder;
         $this->actual = $actual;
-        include __DIR__ . '/Core/Definitions.php';
+        $definition = include __DIR__ . '/Core/Definitions.php';
+        call_user_func($definition, $this);
     }
 
     /**
