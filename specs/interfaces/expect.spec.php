@@ -66,4 +66,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->a()', function() {
+        it('should throw an exception for different types', function() {
+            expect(function() {
+                expect(new stdClass())->to->be->a('string');
+            })->to->throw('Exception', 'Expected "string", got "object"');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(new stdClass())->to->be->a('string', "wrong type");
+            })->to->throw('Exception', 'wrong type');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if types are the same', function() {
+                expect(function() {
+                    expect(new stdClass())->to->not->be->a("object");
+                })->to->throw('Exception', 'Expected a type other than "object"');
+            });
+        });
+    });
 });

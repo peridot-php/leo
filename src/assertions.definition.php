@@ -7,6 +7,7 @@
 
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
+use Peridot\Leo\Matcher\TypeMatcher;
 
 /**
  * Default language chains.
@@ -40,3 +41,12 @@ $this->addMethod('throw', function($exceptionType, $exceptionMessage = '', $mess
     $matcher->setArguments($this->getArguments());
     return $matcher;
 });
+
+$type = function($expected, $message = "") {
+    $this->flag('message', $message);
+    return new TypeMatcher($expected);
+};
+
+$this
+    ->addMethod('a', $type)
+    ->addMethod('an', $type);

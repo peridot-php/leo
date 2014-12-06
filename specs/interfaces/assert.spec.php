@@ -89,4 +89,32 @@ describe('assert', function() {
             }, 'Exception', 'oooooops');
         });
     });
+
+    describe('->typeOf()', function() {
+        it('should throw an exception if actual type and expected type are different', function() {
+            $this->assert->throws(function() {
+                $this->assert->typeOf(new stdClass(), "string");
+            }, 'Exception', 'Expected "string", got "object"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->typeOf(new stdClass(), "string", 'wrong type');
+            }, 'Exception', 'wrong type');
+        });
+    });
+
+    describe('->notTypeOf()', function() {
+        it('should throw an exception if actual type and expected type are same', function() {
+            $this->assert->throws(function() {
+                $this->assert->notTypeOf(new stdClass(), "object");
+            }, 'Exception', 'Expected a type other than "object"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notTypeOf(new stdClass(), "object", "same type");
+            }, 'Exception', 'same type');
+        });
+    });
 });

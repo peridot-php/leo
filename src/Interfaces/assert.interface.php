@@ -30,3 +30,13 @@ $this->addMethod('doesNotThrow', function(callable $fn, $exceptionType, $excepti
     $assertion = new Assertion($this->responder, $fn);
     $assertion->to->not->throw($exceptionType, $exceptionMessage, $message);
 });
+
+$this->addMethod('typeOf', function($actual, $expected, $message = "") {
+    $assertion = new Assertion($this->responder, $actual);
+    $assertion->to->be->a($expected, $message);
+});
+
+$this->addMethod('notTypeOf', function($actual, $expected, $message = "") {
+    $assertion = new Assertion($this->responder, $actual);
+    $assertion->to->not->be->a($expected, $message);
+});
