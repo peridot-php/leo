@@ -42,4 +42,4 @@ interface TemplateInterface
      * @return mixed
      */
     public function setNegatedTemplate($template);
-} 
+}

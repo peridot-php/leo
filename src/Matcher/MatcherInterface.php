@@ -44,4 +44,4 @@ interface MatcherInterface
      * @return TemplateInterface
      */
     public function getDefaultTemplate();
-} 
+}

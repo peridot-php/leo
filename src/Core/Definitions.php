@@ -9,7 +9,7 @@ use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TypeMatcher;
 
-return function(Assertion $assertion) {
+return function (Assertion $assertion) {
     /**
      * Default language chains.
      */
@@ -22,25 +22,25 @@ return function(Assertion $assertion) {
     ];
 
     foreach ($chains as $chain) {
-        $assertion->addProperty($chain, function() {
+        $assertion->addProperty($chain, function () {
             return $this;
         });
     }
 
-    $assertion->addProperty('not', function() {
+    $assertion->addProperty('not', function () {
         return $this->flag('not', true);
     });
 
-    $assertion->addMethod('with', function() {
+    $assertion->addMethod('with', function () {
         return $this->flag('arguments', func_get_args());
     });
 
-    $assertion->addMethod('equal', function($expected, $message = "") {
+    $assertion->addMethod('equal', function ($expected, $message = "") {
         $this->flag('message', $message);
         return new SameMatcher($expected);
     });
 
-    $assertion->addMethod('throw', function($exceptionType, $exceptionMessage = '', $message = "") {
+    $assertion->addMethod('throw', function ($exceptionType, $exceptionMessage = '', $message = "") {
         $this->flag('message', $message);
         $matcher = new ExceptionMatcher($exceptionType);
         $matcher->setExpectedMessage($exceptionMessage);
@@ -48,7 +48,7 @@ return function(Assertion $assertion) {
         return $matcher;
     });
 
-    $type = function($expected, $message = "") {
+    $type = function ($expected, $message = "") {
         $this->flag('message', $message);
         return new TypeMatcher($expected);
     };

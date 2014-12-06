@@ -38,4 +38,4 @@ class ExceptionResponder implements ResponderInterface
         $message = ($message) ? $message : $this->formatter->getMessage($template);
         throw new Exception($message);
     }
-} 
+}

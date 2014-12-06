@@ -27,4 +27,4 @@ interface FormatterInterface
      * @return string
      */
     public function objectToString($obj);
-} 
+}

@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
-class Match 
+class Match
 {
     /**
      * @var bool

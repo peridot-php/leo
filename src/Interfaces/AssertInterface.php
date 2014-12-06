@@ -41,4 +41,4 @@ class AssertInterface
     {
         return call_user_func_array($this->methods[$method], $args);
     }
-} 
+}

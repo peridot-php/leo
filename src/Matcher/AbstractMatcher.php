@@ -86,4 +86,4 @@ abstract class AbstractMatcher implements MatcherInterface
      * @return mixed
      */
     abstract protected function doMatch($actual);
-} 
+}

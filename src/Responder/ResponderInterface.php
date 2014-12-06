@@ -13,4 +13,4 @@ interface ResponderInterface
      * @return mixed
      */
     public function respond(Match $match, TemplateInterface $template, $message);
-} 
+}

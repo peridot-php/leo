@@ -114,4 +114,4 @@ class Leo
         }
         return self::$instance;
     }
-} 
+}

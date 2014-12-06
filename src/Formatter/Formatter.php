@@ -82,4 +82,4 @@ class Formatter implements FormatterInterface
 
         return rtrim(print_r($obj, true));
     }
-} 
+}
