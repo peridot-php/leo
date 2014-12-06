@@ -110,4 +110,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->ok', function() {
+        it('should throw an exception if value is not truthy', function() {
+            expect(function() {
+                expect(false)->to->be->ok;
+            })->to->throw('Exception', 'Expected false to be truthy');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when value is truthy', function() {
+                expect(function() {
+                    expect(true)->to->not->be->ok;
+                })->to->throw('Exception', 'Expected true to be falsy');
+            });
+        });
+
+        context('when used as a method', function() {
+            it('should throw an exception if value is not truthy', function() {
+                expect(function() {
+                    expect(false)->to->be->ok();
+                })->to->throw('Exception', 'Expected false to be truthy');
+            });
+
+            it('should allow a user message', function() {
+                expect(function() {
+                    expect(false)->to->be->ok("not ok");
+                })->to->throw('Exception', 'not ok');
+            });
+        });
+    });
 });
