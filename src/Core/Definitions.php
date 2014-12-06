@@ -8,6 +8,7 @@ use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
+use Peridot\Leo\Matcher\TrueMatcher;
 use Peridot\Leo\Matcher\TruthyMatcher;
 use Peridot\Leo\Matcher\TypeMatcher;
 
@@ -76,4 +77,13 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('ok', $truthy)
         ->addProperty('ok', $truthy);
+
+    $true = function ($message = "") {
+        $this->flag('message', $message);
+        return new TrueMatcher();
+    };
+
+    $assertion
+        ->addMethod('true', $true)
+        ->addProperty('true', $true);
 };

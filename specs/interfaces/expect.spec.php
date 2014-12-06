@@ -140,4 +140,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->true', function() {
+        it('should throw an exception if value is not true', function() {
+            expect(function() {
+                expect('true')->to->be->true;
+            })->to->throw('Exception', 'Expected "true" to be true');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when value is true', function() {
+                expect(function() {
+                    expect(true)->to->not->be->true;
+                })->to->throw('Exception', 'Expected true to be false');
+            });
+        });
+
+        context('when used as a method', function() {
+            it('should throw an exception if value is not true', function() {
+                expect(function() {
+                    expect(false)->to->be->true();
+                })->to->throw('Exception', 'Expected false to be true');
+            });
+
+            it('should allow a user message', function() {
+                expect(function() {
+                    expect(false)->to->be->true("not true");
+                })->to->throw('Exception', 'not true');
+            });
+        });
+    });
 });
