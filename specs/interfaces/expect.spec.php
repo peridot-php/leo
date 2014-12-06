@@ -88,4 +88,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->include()', function() {
+        it('should throw an exception if value is not included', function() {
+            expect(function() {
+                expect('hello')->to->include('goodbye');
+            })->to->throw('Exception', 'Expected "hello" to include "goodbye"');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect('hello')->to->include('goodbye', 'not included');
+            })->to->throw('Exception', 'not included');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if value is included', function() {
+                expect(function() {
+                    expect('hello')->to->not->include('hello');
+                })->to->throw('Exception', 'Expected "hello" to not include "hello"');
+            });
+        });
+    });
 });

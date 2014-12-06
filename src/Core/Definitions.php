@@ -6,6 +6,7 @@
  */
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\ExceptionMatcher;
+use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TypeMatcher;
 
@@ -56,4 +57,13 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('a', $type)
         ->addMethod('an', $type);
+
+    $include = function ($expected, $message) {
+        $this->flag('message', $message);
+        return new InclusionMatcher($expected);
+    };
+
+    $assertion
+        ->addMethod('include', $include)
+        ->addMethod('contain', $include);
 };
