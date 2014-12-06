@@ -65,6 +65,14 @@ class Assertion
     }
 
     /**
+     * @param callable $fn
+     */
+    public function extend(callable $fn)
+    {
+        call_user_func($fn, $this);
+    }
+
+    /**
      * @param $actual
      * @return $this
      */
@@ -93,10 +101,11 @@ class Assertion
             $matcher->invert();
         }
 
-        $this->responder->respond(
-            $matcher->match($this->getActual()),
-            $matcher->getTemplate(),
-            $this->flag('message')
-        );
+        $match = $matcher->match($this->getActual());
+        $message = $this->flag('message');
+
+        $this->clearFlags();
+
+        $this->responder->respond($match, $matcher->getTemplate(), $message);
     }
 }

@@ -67,4 +67,15 @@ trait DynamicObjectTrait
         }
         return $this->flags[$args[0]];
     }
+
+    /**
+     * Reset flags.
+     *
+     * @return $this
+     */
+    public function clearFlags()
+    {
+        $this->flags = [];
+        return $this;
+    }
 }

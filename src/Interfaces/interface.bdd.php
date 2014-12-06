@@ -1,12 +1,9 @@
 <?php
 
-use Peridot\Leo\Assertion;
-use Peridot\Leo\Formatter\Formatter;
-use Peridot\Leo\Responder\ExceptionResponder;
+use Peridot\Leo\Leo;
 
 function expect($actual) {
-    $formatter = new Formatter();
-    $responder = new ExceptionResponder($formatter);
-    $assertion = new Assertion($responder);
+    $instance = Leo::instance();
+    $assertion = $instance->getAssertion();
     return $assertion->setActual($actual);
 }
