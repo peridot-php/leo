@@ -86,4 +86,14 @@ return function (Assertion $assertion) {
     $assertion
         ->addMethod('true', $true)
         ->addProperty('true', $true);
+
+    $false = function ($message = "") {
+        $this->flag('message', $message);
+        $matcher = new TrueMatcher();
+        return $matcher->invert();
+    };
+
+    $assertion
+        ->addMethod('false', $false)
+        ->addProperty('false', $false);
 };
