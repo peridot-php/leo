@@ -27,10 +27,9 @@ class Assertion
      * @param string $actual
      * @param string $message
      */
-    public function __construct(ResponderInterface $responder, $actual)
+    public function __construct(ResponderInterface $responder)
     {
         $this->responder = $responder;
-        $this->actual = $actual;
         $definition = include __DIR__ . '/Core/Definitions.php';
         call_user_func($definition, $this);
     }

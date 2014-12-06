@@ -7,5 +7,6 @@ use Peridot\Leo\Responder\ExceptionResponder;
 function expect($actual) {
     $formatter = new Formatter();
     $responder = new ExceptionResponder($formatter);
-    return new Assertion($responder, $actual);
+    $assertion = new Assertion($responder);
+    return $assertion->setActual($actual);
 }
