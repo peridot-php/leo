@@ -41,20 +41,6 @@ trait DynamicObjectTrait
     }
 
     /**
-     * @param $name
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if (!isset($this->properties[$name])) {
-            throw new \DomainException("Property $name not found");
-        }
-
-        $factory = $this->properties[$name];
-        return $factory();
-    }
-
-    /**
      * @return $this
      */
     public function flag()

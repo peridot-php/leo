@@ -54,8 +54,32 @@ class Assertion
             throw new \BadMethodCallException("Method $method does not exist");
         }
 
-        $method = $this->methods[$method];
-        $result = call_user_func_array($method, $args);
+        return $this->request($this->methods[$method], $args);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        if (!isset($this->properties[$name])) {
+            throw new \DomainException("Property $name not found");
+        }
+
+        return $this->request($this->properties[$name]);
+    }
+
+    /**
+     * A request to an Assertion will attempt to resolve
+     * the result as an assertion before returning the result.
+     *
+     * @param callable $fn
+     * @return mixed
+     */
+    public function request(callable $fn, array $arguments = [])
+    {
+        $result = call_user_func_array($fn, $arguments);
 
         if ($result instanceof MatcherInterface) {
             $this->assert($result);
