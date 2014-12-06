@@ -16,7 +16,8 @@ $chains = [
     'to', 'be', 'been',
     'is', 'and', 'has',
     'have', 'with', 'that',
-    'at', 'of', 'same'
+    'at', 'of', 'same',
+    'an', 'a'
 ];
 
 foreach ($chains as $chain) {
