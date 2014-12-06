@@ -29,7 +29,7 @@ class AssertInterface
     public function __construct(ResponderInterface $responder)
     {
         $this->responder = $responder;
-        include __DIR__ . '/assert.interface.php';
+        include __DIR__ . '/interface.assert.php';
     }
 
     /**

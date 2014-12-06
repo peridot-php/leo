@@ -1,5 +1,4 @@
 <?php
-
 use Evenement\EventEmitterInterface;
 use Peridot\Plugin\Prophecy\ProphecyPlugin;
 use Peridot\Plugin\Watcher\WatcherPlugin;
@@ -7,7 +6,7 @@ use Peridot\Reporter\CodeCoverageReporters;
 use Peridot\Reporter\Dot\DotReporterPlugin;
 use Peridot\Reporter\ListReporter\ListReporterPlugin;
 
-require_once 'src/Interfaces/bdd.interface.php';
+require_once 'src/Interfaces/interface.bdd.php';
 
 return function(EventEmitterInterface $emitter) {
     $watcher = new WatcherPlugin($emitter);

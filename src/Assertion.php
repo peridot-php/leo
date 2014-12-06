@@ -39,7 +39,7 @@ class Assertion
     {
         $this->responder = $responder;
         $this->actual = $actual;
-        include __DIR__ . '/assertions.definition.php';
+        include __DIR__ . '/Core/Definitions.php';
     }
 
     /**
