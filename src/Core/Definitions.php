@@ -6,6 +6,7 @@
  */
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\EmptyMatcher;
+use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
@@ -40,8 +41,15 @@ return function (Assertion $assertion) {
         return $this->flag('arguments', func_get_args());
     });
 
+    $assertion->addProperty('loosely', function () {
+        return $this->flag('loosely', true);
+    });
+
     $assertion->addMethod('equal', function ($expected, $message = "") {
         $this->flag('message', $message);
+        if ($this->flag('loosely')) {
+            return new EqualMatcher($expected);
+        }
         return new SameMatcher($expected);
     });
 

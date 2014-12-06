@@ -6,6 +6,12 @@ describe('expect', function() {
             expect($obj)->to->equal($obj);
         });
 
+        context('when using the "loosely" flag', function() {
+            it('should match objects that are loosely equal', function() {
+                expect(1)->to->loosely->equal("1");
+            });
+        });
+
         it('should throw an exception when objects are different', function() {
             $actual = new stdClass;
             $expected = new stdClass;
