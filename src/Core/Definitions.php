@@ -9,6 +9,7 @@ use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\GreaterThanMatcher;
 use Peridot\Leo\Matcher\GreaterThanOrEqualMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
+use Peridot\Leo\Matcher\LessThanMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
@@ -141,6 +142,15 @@ return function (Assertion $assertion) {
     $assertion->addMethod('least', function ($expected, $message = "") {
         $this->flag('message', $message);
         $matcher = new GreaterThanOrEqualMatcher($expected);
+        if ($countable = $this->flag('length')) {
+            $matcher->setCountable($countable);
+        }
+        return $matcher;
+    });
+
+    $assertion->addMethod('below', function ($expected, $message = "") {
+        $this->flag('message', $message);
+        $matcher = new LessThanMatcher($expected);
         if ($countable = $this->flag('length')) {
             $matcher->setCountable($countable);
         }
