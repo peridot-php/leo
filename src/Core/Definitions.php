@@ -6,11 +6,7 @@ use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
-use Peridot\Leo\Matcher\GreaterThanMatcher;
-use Peridot\Leo\Matcher\GreaterThanOrEqualMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
-use Peridot\Leo\Matcher\LessThanMatcher;
-use Peridot\Leo\Matcher\LessThanOrEqualMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
@@ -131,39 +127,29 @@ return function (Assertion $assertion) {
         return $this->flag('length', $this->getActual());
     });
 
-    $assertion->addMethod('above', function ($expected, $message = "") {
-        $this->flag('message', $message);
-        $matcher = new GreaterThanMatcher($expected);
-        if ($countable = $this->flag('length')) {
-            $matcher->setCountable($countable);
-        }
-        return $matcher;
-    });
+    /**
+     * Define a helper for creating countable matchers. A countable
+     * matcher is a matcher that matches against a single numeric
+     * value, or a value that can be reduced to a single numeric value
+     * via the count() function.
+     *
+     * @param $className
+     * @return callable
+     */
+    $countable = function ($className) {
+        return function ($expected, $message = "") use ($className) {
+            $this->flag('message', $message);
+            $class = "Peridot\\Leo\\Matcher\\$className";
+            $matcher = new $class($expected);
+            if ($countable = $this->flag('length')) {
+                $matcher->setCountable($countable);
+            }
+            return $matcher;
+        };
+    };
 
-    $assertion->addMethod('least', function ($expected, $message = "") {
-        $this->flag('message', $message);
-        $matcher = new GreaterThanOrEqualMatcher($expected);
-        if ($countable = $this->flag('length')) {
-            $matcher->setCountable($countable);
-        }
-        return $matcher;
-    });
-
-    $assertion->addMethod('below', function ($expected, $message = "") {
-        $this->flag('message', $message);
-        $matcher = new LessThanMatcher($expected);
-        if ($countable = $this->flag('length')) {
-            $matcher->setCountable($countable);
-        }
-        return $matcher;
-    });
-
-    $assertion->addMethod('most', function ($expected, $message = "") {
-        $this->flag('message', $message);
-        $matcher = new LessThanOrEqualMatcher($expected);
-        if ($countable = $this->flag('length')) {
-            $matcher->setCountable($countable);
-        }
-        return $matcher;
-    });
+    $assertion->addMethod('above', $countable('GreaterThanMatcher'));
+    $assertion->addMethod('least', $countable('GreaterThanOrEqualMatcher'));
+    $assertion->addMethod('below', $countable('LessThanMatcher'));
+    $assertion->addMethod('most', $countable('LessThanOrEqualMatcher'));
 };

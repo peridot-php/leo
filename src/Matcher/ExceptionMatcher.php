@@ -14,11 +14,6 @@ class ExceptionMatcher extends AbstractMatcher
     /**
      * @var string
      */
-    protected $type;
-
-    /**
-     * @var string
-     */
     protected $expectedMessage = "";
 
     /**
@@ -69,6 +64,30 @@ class ExceptionMatcher extends AbstractMatcher
     public function setMessage($message)
     {
         $this->message = $message;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpectedMessage()
+    {
+        return $this->expectedMessage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
     /**

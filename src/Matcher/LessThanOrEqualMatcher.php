@@ -38,7 +38,7 @@ class LessThanOrEqualMatcher extends CountableMatcher
      */
     public function getDefaultCountableTemplate()
     {
-        $count = count($this->countable);
+        $count = $this->getCount();
         return new ArrayTemplate([
             'default' => "Expected {{actual}} to have a length at most {{expected}} but got $count",
             'negated' => 'Expected {{actual}} to have a length above {{expected}}'

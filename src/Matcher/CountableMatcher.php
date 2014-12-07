@@ -18,6 +18,27 @@ abstract class CountableMatcher extends AbstractMatcher
     }
 
     /**
+     * @return mixed
+     */
+    public function getCountable()
+    {
+        return $this->countable;
+    }
+
+    /**
+     * Get the count of the countable value.
+     * @return int
+     */
+    public function getCount()
+    {
+        if (is_string($this->countable)) {
+            return strlen($this->countable);
+        }
+
+        return count($this->countable);
+    }
+
+    /**
      * @return TemplateInterface
      */
     public function getTemplate()
@@ -42,7 +63,7 @@ abstract class CountableMatcher extends AbstractMatcher
     protected function doMatch($actual = null)
     {
         if (isset($this->countable)) {
-            $actual = count($this->countable);
+            $actual = $this->getCount();
         }
 
         if (!is_numeric($actual)) {
