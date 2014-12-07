@@ -296,4 +296,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->least()', function() {
+        it('should throw an exception if value is less than expected', function() {
+            expect(function() {
+                expect(5)->to->be->at->least(6);
+            })->to->throw('Exception', 'Expected 5 to be at least 6');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(5)->to->be->at->least(6, 'not at least');
+            })->to->throw('Exception', 'not at least');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if actual is at least expected', function() {
+                expect(function() {
+                    expect(5)->to->not->be->at->least(5);
+                })->to->throw('Exception', 'Expected 5 to be below 5');
+            });
+        });
+
+        context('when combined with the length flag', function() {
+            it('should throw an exception if actual length is less than expected', function() {
+                expect(function () {
+                    expect([1])->to->have->length->at->least(2);
+                })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a length at least 2 but got 1");
+            });
+        });
+    });
 });

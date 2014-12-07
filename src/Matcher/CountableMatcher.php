@@ -1,6 +1,8 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Matcher\Template\TemplateInterface;
+
 abstract class CountableMatcher extends AbstractMatcher
 {
     protected $countable;
@@ -13,6 +15,22 @@ abstract class CountableMatcher extends AbstractMatcher
     {
         $this->countable = $countable;
         return $this;
+    }
+
+    /**
+     * @return TemplateInterface
+     */
+    public function getTemplate()
+    {
+        if (isset($this->template)) {
+            return $this->template;
+        }
+
+        if (isset($this->countable)) {
+            return $this->getDefaultCountableTemplate();
+        }
+
+        return $this->getDefaultTemplate();
     }
 
     /**
@@ -33,6 +51,13 @@ abstract class CountableMatcher extends AbstractMatcher
 
         return $this->matchNumeric($actual);
     }
+
+    /**
+     * Return a default template for when a countable has been set.
+     *
+     * @return TemplateInterface
+     */
+    abstract public function getDefaultCountableTemplate();
 
     /**
      * Determine if a number matches a specified condition

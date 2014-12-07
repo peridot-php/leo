@@ -13,23 +13,26 @@ class GreaterThanMatcher extends CountableMatcher
      */
     public function getDefaultTemplate()
     {
-        $default = 'Expected {{actual}} to be above {{expected}}';
-        $negated = 'Expected {{actual}} to be at most {{expected}}';
-
-        if (isset($this->countable)) {
-            $count = count($this->countable);
-            $default = "Expected {{actual}} to have a length above {{expected}} but got $count";
-            $negated = "Expected {{actual}} to not have a length above {{expected}}";
-        }
-
         return new ArrayTemplate([
-            'default' => $default,
-            'negated' => $negated
+            'default' => 'Expected {{actual}} to be above {{expected}}',
+            'negated' => 'Expected {{actual}} to be at most {{expected}}'
         ]);
     }
 
     /**
-     * {@inheritdoc}
+     * @return ArrayTemplate
+     */
+    public function getDefaultCountableTemplate()
+    {
+        $count = count($this->countable);
+        return new ArrayTemplate([
+            'default' => "Expected {{actual}} to have a length above {{expected}} but got $count",
+            'negated' => "Expected {{actual}} to not have a length above {{expected}}"
+        ]);
+    }
+
+    /**
+     * Match that actual number is greater than the expected value.
      *
      * @param $number
      * @return bool
