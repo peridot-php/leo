@@ -3,7 +3,7 @@ use Peridot\Leo\Matcher\RangeMatcher;
 
 describe('RangeMatcher', function() {
     beforeEach(function() {
-        $this->matcher = new RangeMatcher();
+        $this->matcher = new RangeMatcher(1,2);
     });
 
     describe('->setUpperBound()', function() {
@@ -21,23 +21,6 @@ describe('RangeMatcher', function() {
     });
 
     describe('->match()', function() {
-        it('should throw an exception if upper bound is missing', function() {
-            $this->matcher->setLowerBound(5);
-            expect([$this->matcher, 'match'])
-                ->with(4)->to->throw('InvalidArgumentException');
-        });
-
-        it('should throw an exception if lower bound is missing', function() {
-            $this->matcher->setUpperBound(5);
-            expect([$this->matcher, 'match'])
-                ->with(5)->to->throw('InvalidArgumentException');
-        });
-
-        it('should throw an exception if both bounds are missing', function() {
-            expect([$this->matcher, 'match'])
-                ->with(5)->to->throw('InvalidArgumentException');
-        });
-
         it('should return true if value is within upper and lower bounds', function() {
             $result = $this->matcher
                 ->setLowerBound(1)

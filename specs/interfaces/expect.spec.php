@@ -386,4 +386,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->within()', function() {
+        it('should throw an exception if value is not within range', function() {
+            expect(function() {
+                expect(5)->to->be->within(6,7);
+            })->to->throw('Exception', 'Expected 5 to be within 6..7');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(5)->to->be->within(6,7, 'not within');
+            })->to->throw('Exception', 'not within');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if value is within lower and upper bounds', function() {
+                expect(function() {
+                    expect(5)->to->not->be->within(3, 6);
+                })->to->throw('Exception', 'Expected 5 to not be within 3..6');
+            });
+        });
+
+        context('when combined with the length flag', function() {
+            it('should throw an exception if actual length is not within lower and upper bounds', function() {
+                expect(function () {
+                    expect([1])->to->have->length->within(2,3);
+                })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to be within 2..3");
+            });
+        });
+    });
 });

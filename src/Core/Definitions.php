@@ -8,6 +8,7 @@ use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
+use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
 use Peridot\Leo\Matcher\TruthyMatcher;
@@ -152,4 +153,13 @@ return function (Assertion $assertion) {
     $assertion->addMethod('least', $countable('GreaterThanOrEqualMatcher'));
     $assertion->addMethod('below', $countable('LessThanMatcher'));
     $assertion->addMethod('most', $countable('LessThanOrEqualMatcher'));
+
+    $assertion->addMethod('within', function ($lower, $upper, $message = "") {
+        $this->flag('message', $message);
+        $matcher = new RangeMatcher($lower, $upper);
+        if ($countable = $this->flag('length')) {
+            $matcher->setCountable($countable);
+        }
+        return $matcher;
+    });
 };

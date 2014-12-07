@@ -22,10 +22,14 @@ class RangeMatcher extends CountableMatcher
      */
     protected $upperBound;
 
-
-    public function __construct()
+    /**
+     * @param int|float|double $lower
+     * @param int|float|double $upper
+     */
+    public function __construct($lower, $upper)
     {
-
+        $this->setLowerBound($lower);
+        $this->setUpperBound($upper);
     }
 
     /**
@@ -106,10 +110,6 @@ class RangeMatcher extends CountableMatcher
      */
     protected function matchNumeric($number)
     {
-        if (!isset($this->lowerBound, $this->upperBound)) {
-            throw new \InvalidArgumentException("RangeMatcher requires an upper and lower bound");
-        }
-
         return $number <= $this->upperBound && $number >= $this->lowerBound;
     }
 }
