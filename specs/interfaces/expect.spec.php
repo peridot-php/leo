@@ -356,4 +356,34 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->most()', function() {
+        it('should throw an exception if value is more than expected', function() {
+            expect(function() {
+                expect(5)->to->be->at->most(4);
+            })->to->throw('Exception', 'Expected 5 to be at most 4');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(5)->to->be->at->most(4, 'not at most');
+            })->to->throw('Exception', 'not at most');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if actual is at most expected', function() {
+                expect(function() {
+                    expect(4)->to->not->be->at->most(5);
+                })->to->throw('Exception', 'Expected 4 to be above 5');
+            });
+        });
+
+        context('when combined with the length flag', function() {
+            it('should throw an exception if actual length is less than expected', function() {
+                expect(function () {
+                    expect([1])->to->have->length->at->most(0);
+                })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a length at most 0 but got 1");
+            });
+        });
+    });
 });
