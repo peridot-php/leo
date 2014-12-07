@@ -4,39 +4,8 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
-class GreaterThanMatcher extends AbstractMatcher
+class GreaterThanMatcher extends CountableMatcher
 {
-    protected $countable;
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param $actual
-     * @return mixed
-     */
-    protected function doMatch($actual = null)
-    {
-        if (isset($this->countable)) {
-            $actual = count($this->countable);
-        }
-
-        if (! is_numeric($actual)) {
-            throw new \InvalidArgumentException("GreaterThanMatcher requires a numeric value");
-        }
-
-        return $actual > $this->expected;
-    }
-
-    /**
-     * @param mixed $countable
-     * @return $this
-     */
-    public function setCountable($countable)
-    {
-        $this->countable = $countable;
-        return $this;
-    }
-
     /**
      * {@inheritdoc}
      *
@@ -57,5 +26,16 @@ class GreaterThanMatcher extends AbstractMatcher
             'default' => $default,
             'negated' => $negated
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param $number
+     * @return bool
+     */
+    protected function matchNumeric($number)
+    {
+        return $number > $this->expected;
     }
 }
