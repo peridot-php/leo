@@ -416,4 +416,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->instanceof()', function() {
+        it('should throw an exception if value is not instanceof expected', function() {
+            expect(function() {
+                expect([])->to->be->an->instanceof('stdClass');
+            })->to->throw('Exception', "Expected Array\n(\n) to be instance of \"stdClass\"");
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect([])->to->be->an->instanceof('stdClass', 'wrong instance');
+            })->to->throw('Exception', 'wrong instance');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when the value is an instance of expected', function() {
+                expect(function() {
+                    expect(new stdClass())->to->not->be->an->instanceof('stdClass');
+                })->to->throw('Exception', "Expected stdClass Object\n(\n) to not be an instance of \"stdClass\"");
+            });
+        });
+    });
 });

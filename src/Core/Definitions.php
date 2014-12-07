@@ -7,6 +7,7 @@ use Peridot\Leo\Matcher\EmptyMatcher;
 use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
+use Peridot\Leo\Matcher\InstanceofMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
@@ -161,5 +162,10 @@ return function (Assertion $assertion) {
             $matcher->setCountable($countable);
         }
         return $matcher;
+    });
+
+    $assertion->addMethod('instanceof', function ($expected, $message = "") {
+        $this->flag('message', $message);
+        return new InstanceofMatcher($expected);
     });
 };
