@@ -176,6 +176,7 @@ return function (Assertion $assertion) {
 
     $assertion->addMethod('property', function ($name, $value = "", $message = "") {
         $this->flag('message', $message);
-        return new PropertyMatcher($name, $value);
+        $matcher = new PropertyMatcher($name, $value);
+        return $matcher->setIsDeep($this->flag('deep'));
     });
 };

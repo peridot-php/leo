@@ -25,7 +25,7 @@ class ObjectPath
 
     /**
      * @param string $path
-     * @return mixed
+     * @return ObjectPathValue
      */
     public function get($path)
     {

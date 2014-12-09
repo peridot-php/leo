@@ -3,6 +3,7 @@ namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
+use Peridot\Leo\Utility\ObjectPath;
 
 class PropertyMatcher extends AbstractMatcher
 {
@@ -25,6 +26,11 @@ class PropertyMatcher extends AbstractMatcher
      * @var bool
      */
     protected $actualValueSet = false;
+
+    /**
+     * @var bool
+     */
+    protected $isDeep = false;
 
     /**
      * @param mixed $key
@@ -78,13 +84,23 @@ class PropertyMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        $default = "Expected {{actual}} to have property {{key}}";
-        $negated = "Expected {{actual}} to not have property {{key}}";
+        $default = "Expected {{actual}} to have{{deep}}property {{key}}";
+        $negated = "Expected {{actual}} to not have{{deep}}property {{key}}";
         if ($this->getValue() && $this->isActualValueSet()) {
-            $default = "Expected {{actual}} to have a property {{key}} of {{value}}, but got {{actualValue}}";
-            $negated = "Expected {{actual}} to not have a property {{key}} of {{value}}";
+            $default = "Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}";
+            $negated = "Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}";
         }
-        $template = new ArrayTemplate(['default' => $default, 'negated' => $negated]);
+
+        $deep = ' ';
+        if ($this->isDeep()) {
+            $deep = ' deep ';
+        }
+
+        $template = new ArrayTemplate([
+            'default' => str_replace('{{deep}}', $deep, $default),
+            'negated' => str_replace('{{deep}}', $deep, $negated)
+        ]);
+
         return $template->setTemplateVars([
             'key' => $this->getKey(),
             'value' => $this->getValue(),
@@ -119,6 +135,23 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * return $this
+     */
+    public function setIsDeep($isDeep)
+    {
+        $this->isDeep = $isDeep;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeep()
+    {
+        return $this->isDeep;
+    }
+
+    /**
      * The actual matching algorithm for the matcher.
      *
      * @param $actual
@@ -126,15 +159,22 @@ class PropertyMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        if (is_object($actual)) {
-            return $this->matchArrayIndex(get_object_vars($actual));
+        if (!is_object($actual) && !is_array($actual)) {
+            throw new \InvalidArgumentException("PropertyMatcher expects an object or an array");
         }
 
-        if (is_array($actual)) {
-            return $this->matchArrayIndex($actual);
+        if ($this->isDeep()) {
+            $path = new ObjectPath($actual);
+            $value = $path->get($this->getKey());
+            if ($expected = $this->getValue()) {
+                $this->setActualValue($value->getPropertyValue());
+                return $this->getActualValue() === $expected;
+            }
+            return false;
         }
 
-        throw new \InvalidArgumentException("PropertyMatcher expects an object or an array");
+        $actual = is_object($actual) ? get_object_vars($actual) : $actual;
+        return $this->matchArrayIndex($actual);
     }
 
     /**
