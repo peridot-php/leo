@@ -170,6 +170,10 @@ return function (Assertion $assertion) {
         return new InstanceofMatcher($expected);
     });
 
+    $assertion->addProperty('deep', function () {
+        return $this->flag('deep', true);
+    });
+
     $assertion->addMethod('property', function ($name, $value = "", $message = "") {
         $this->flag('message', $message);
         return new PropertyMatcher($name, $value);
