@@ -22,6 +22,17 @@ namespace Peridot\Leo\Matcher\Template;
 interface TemplateInterface
 {
     /**
+     * @return array
+     */
+    public function getTemplateVars();
+
+    /**
+     * @param array $vars
+     * @return mixed
+     */
+    public function setTemplateVars(array $vars);
+
+    /**
      * @return string
      */
     public function getDefaultTemplate();

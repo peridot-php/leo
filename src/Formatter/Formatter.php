@@ -42,10 +42,7 @@ class Formatter implements FormatterInterface
      */
     public function getMessage(TemplateInterface $template)
     {
-        $vars = [
-            'expected' => $this->match->getExpected(),
-            'actual' => $this->match->getActual()
-        ];
+        $vars = $this->getTemplateVars($template);
 
         $tpl = $this->match->isNegated()
             ? $template->getNegatedTemplate()
@@ -81,5 +78,23 @@ class Formatter implements FormatterInterface
         }
 
         return rtrim(print_r($obj, true));
+    }
+
+    /**
+     * @param TemplateInterface $template
+     * @return array
+     */
+    protected function getTemplateVars(TemplateInterface $template)
+    {
+        $vars = [
+            'expected' => $this->match->getExpected(),
+            'actual' => $this->match->getActual()
+        ];
+
+        if ($tplVars = $template->getTemplateVars()) {
+            $vars = array_merge($vars, $tplVars);
+        }
+
+        return $vars;
     }
 }

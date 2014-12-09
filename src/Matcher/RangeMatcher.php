@@ -41,7 +41,7 @@ class RangeMatcher extends CountableMatcher
     {
         return new ArrayTemplate([
             'default' => "Expected {{actual}} to be within {$this->lowerBound}..{$this->upperBound}",
-            'negeted' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}"
+            'negated' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}"
         ]);
     }
 

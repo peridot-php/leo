@@ -438,4 +438,37 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->property()', function() {
+        it('should throw an exception if value does not have the property', function() {
+           expect(function() {
+               $std = new stdClass();
+               expect($std)->to->have->property('name');
+           })->to->throw('Exception', "Expected stdClass Object\n(\n) to have property \"name\"");
+        });
+
+        it('should throw an exception if value does not match the property', function() {
+            expect(function() {
+                $values = [1];
+                expect($values)->to->have->property(0, 3);
+            })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a property 0 of 3, but got 1");
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                $std = new stdClass();
+                expect($std)->to->have->property('name', null, 'no property');
+            })->to->throw('Exception', "no property");
+        });
+
+        context('when negated', function() {
+            it('should throw an exception when value does have property', function() {
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = "brian";
+                    expect($std)->to->not->have->property('name');
+                })->to->throw('Exception', "Expected stdClass Object\n(\n    [name] => brian\n) to not have property \"name\"");
+            });
+        });
+    });
 });

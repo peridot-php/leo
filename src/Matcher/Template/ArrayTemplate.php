@@ -14,6 +14,11 @@ class ArrayTemplate implements TemplateInterface
     protected $negated;
 
     /**
+     * @var array
+     */
+    protected $vars = [];
+
+    /**
      * @param array $templates
      */
     public function __construct(array $templates)
@@ -53,6 +58,24 @@ class ArrayTemplate implements TemplateInterface
     public function setNegatedTemplate($negated)
     {
         $this->negated = $negated;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTemplateVars()
+    {
+        return $this->vars;
+    }
+
+    /**
+     * @param array $vars
+     * @return $this
+     */
+    public function setTemplateVars(array $vars)
+    {
+        $this->vars = $vars;
         return $this;
     }
 }

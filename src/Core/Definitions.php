@@ -9,6 +9,7 @@ use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\InstanceofMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
+use Peridot\Leo\Matcher\PropertyMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
@@ -167,5 +168,10 @@ return function (Assertion $assertion) {
     $assertion->addMethod('instanceof', function ($expected, $message = "") {
         $this->flag('message', $message);
         return new InstanceofMatcher($expected);
+    });
+
+    $assertion->addMethod('property', function ($name, $value = "", $message = "") {
+        $this->flag('message', $message);
+        return new PropertyMatcher($name, $value);
     });
 };
