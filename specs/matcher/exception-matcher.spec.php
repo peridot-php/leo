@@ -111,4 +111,28 @@ describe('ExceptionMatcher', function() {
             });
         });
     });
+
+    describe('->getArguments()', function() {
+        it('should fetch callable arguments', function() {
+            $args = [1,2,3];
+            $this->matcher->setArguments($args);
+            expect($this->matcher->getArguments())->to->equal($args);
+        });
+    });
+
+    describe('->getExpectedMessage()', function() {
+        it('should fetch expected message', function() {
+            $expected = "expected";
+            $this->matcher->setExpectedMessage($expected);
+            expect($this->matcher->getExpectedMessage())->to->equal($expected);
+        });
+    });
+
+    describe('->getMessage()', function() {
+        it('should fetch the actual message', function() {
+            $expected = "expected";
+            $this->matcher->setMessage($expected);
+            expect($this->matcher->getMessage())->to->equal($expected);
+        });
+    });
 });

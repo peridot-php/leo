@@ -43,15 +43,11 @@ abstract class CountableMatcher extends AbstractMatcher
      */
     public function getTemplate()
     {
-        if (isset($this->template)) {
-            return $this->template;
-        }
-
         if (isset($this->countable)) {
             return $this->getDefaultCountableTemplate();
         }
 
-        return $this->getDefaultTemplate();
+        return parent::getTemplate();
     }
 
     /**

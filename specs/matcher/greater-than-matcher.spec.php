@@ -50,4 +50,12 @@ describe('GreaterThanMatcher', function() {
             });
         });
     });
+
+    describe('->getCountable()', function() {
+        it('should fetch the countable', function() {
+            $countable = [1,2,3];
+            $this->matcher->setCountable($countable);
+            expect($this->matcher->getCountable())->to->equal($countable);
+        });
+    });
 });

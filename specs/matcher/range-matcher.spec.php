@@ -20,6 +20,20 @@ describe('RangeMatcher', function() {
         });
     });
 
+    describe('->getUpperBound()', function() {
+        it('should fetch the upper bound', function() {
+            $this->matcher->setUpperBound(5);
+            expect($this->matcher->getUpperBound())->to->equal(5);
+        });
+    });
+
+    describe('->getLowerBound()', function() {
+        it('should fetch the lower bound', function() {
+            $this->matcher->setLowerBound(5);
+            expect($this->matcher->getLowerBound())->to->equal(5);
+        });
+    });
+
     describe('->match()', function() {
         it('should return true if value is within upper and lower bounds', function() {
             $result = $this->matcher
