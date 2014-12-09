@@ -454,6 +454,13 @@ describe('expect', function() {
             })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a property 0 of 3, but got 1");
         });
 
+        it('should throw an exception for missing property even if value is given', function() {
+            expect(function() {
+                $std = new stdClass();
+                expect($std)->to->have->property('name', 'brian');
+            })->to->throw('Exception', "Expected stdClass Object\n(\n) to have property \"name\"");
+        });
+
         it('should allow a user message', function() {
             expect(function() {
                 $std = new stdClass();

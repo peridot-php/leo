@@ -22,6 +22,11 @@ class PropertyMatcher extends AbstractMatcher
     protected $actualValue;
 
     /**
+     * @var bool
+     */
+    protected $actualValueSet = false;
+
+    /**
      * @param mixed $key
      * @param string $value
      */
@@ -75,7 +80,7 @@ class PropertyMatcher extends AbstractMatcher
     {
         $default = "Expected {{actual}} to have property {{key}}";
         $negated = "Expected {{actual}} to not have property {{key}}";
-        if ($expected = $this->getValue()) {
+        if ($this->getValue() && $this->isActualValueSet()) {
             $default = "Expected {{actual}} to have a property {{key}} of {{value}}, but got {{actualValue}}";
             $negated = "Expected {{actual}} to not have a property {{key}} of {{value}}";
         }
@@ -101,7 +106,16 @@ class PropertyMatcher extends AbstractMatcher
     public function setActualValue($actualValue)
     {
         $this->actualValue = $actualValue;
+        $this->actualValueSet = true;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActualValueSet()
+    {
+        return $this->actualValueSet;
     }
 
     /**
