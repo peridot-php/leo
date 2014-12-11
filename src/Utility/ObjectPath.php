@@ -38,6 +38,8 @@ class ObjectPath
 
             if (array_key_exists($key, $properties)) {
                 $pathValue = new ObjectPathValue($key, $properties[$key]);
+            } else {
+                $pathValue = null;
             }
 
             $properties = $this->getPropertyCollection($properties[$key]);

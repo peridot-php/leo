@@ -444,7 +444,7 @@ describe('expect', function() {
            expect(function() {
                $std = new stdClass();
                expect($std)->to->have->property('name');
-           })->to->throw('Exception', "Expected stdClass Object\n(\n) to have property \"name\"");
+           })->to->throw('Exception', "Expected stdClass Object\n(\n) to have a property \"name\"");
         });
 
         it('should throw an exception if value does not match the property', function() {
@@ -458,7 +458,7 @@ describe('expect', function() {
             expect(function() {
                 $std = new stdClass();
                 expect($std)->to->have->property('name', 'brian');
-            })->to->throw('Exception', "Expected stdClass Object\n(\n) to have property \"name\"");
+            })->to->throw('Exception', "Expected stdClass Object\n(\n) to have a property \"name\"");
         });
 
         it('should allow a user message', function() {
@@ -474,7 +474,80 @@ describe('expect', function() {
                     $std = new stdClass();
                     $std->name = "brian";
                     expect($std)->to->not->have->property('name');
-                })->to->throw('Exception', "Expected stdClass Object\n(\n    [name] => brian\n) to not have property \"name\"");
+                })->to->throw('Exception', "Expected stdClass Object\n(\n    [name] => brian\n) to not have a property \"name\"");
+            });
+        });
+
+        context('when deep flag is enabled', function() {
+            it('should throw an exception if value does not have the property', function() {
+                $expectedMessage  = "Expected stdClass Object\n(\n";
+                $expectedMessage .= "    [name] => stdClass Object\n";
+                $expectedMessage .= "        (\n";
+                $expectedMessage .= "            [first] => brian\n";
+                $expectedMessage .= "        )\n\n";
+                $expectedMessage .= ") to have a deep property \"name->last\"";
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = new stdClass();
+                    $std->name->first = 'brian';
+                    expect($std)->to->have->deep->property('name->last');
+                })->to->throw('Exception', $expectedMessage);
+            });
+
+            it('should throw an exception if value does not match the property', function() {
+                $expectedMessage  = "Expected stdClass Object\n(\n";
+                $expectedMessage .= "    [name] => stdClass Object\n";
+                $expectedMessage .= "        (\n";
+                $expectedMessage .= "            [first] => brian\n";
+                $expectedMessage .= "        )\n\n";
+                $expectedMessage .= ") to have a deep property \"name->first\" of \"steve\", but got \"brian\"";
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = new stdClass();
+                    $std->name->first = 'brian';
+                    expect($std)->to->have->deep->property('name->first', 'steve');
+                })->to->throw('Exception', $expectedMessage);
+            });
+
+            it('should throw an exception for missing property even if value is given', function() {
+                $expectedMessage  = "Expected stdClass Object\n(\n";
+                $expectedMessage .= "    [name] => stdClass Object\n";
+                $expectedMessage .= "        (\n";
+                $expectedMessage .= "            [first] => brian\n";
+                $expectedMessage .= "        )\n\n";
+                $expectedMessage .= ") to have a deep property \"name->last\"";
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = new stdClass();
+                    $std->name->first = 'brian';
+                    expect($std)->to->have->deep->property('name->last', 'steve');
+                })->to->throw('Exception', $expectedMessage);
+            });
+
+            it('should allow a user message', function() {
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = new stdClass();
+                    $std->name->first = 'brian';
+                    expect($std)->to->have->deep->property('name->last', 'steve', 'no deep property');
+                })->to->throw('Exception', "no deep property");
+            });
+
+            context('and negated', function() {
+                it('should throw an exception when value does have property', function() {
+                    $expectedMessage  = "Expected stdClass Object\n(\n";
+                    $expectedMessage .= "    [name] => stdClass Object\n";
+                    $expectedMessage .= "        (\n";
+                    $expectedMessage .= "            [first] => brian\n";
+                    $expectedMessage .= "        )\n\n";
+                    $expectedMessage .= ") to not have a deep property \"name->first\"";
+                    expect(function() {
+                        $std = new stdClass();
+                        $std->name = new stdClass();
+                        $std->name->first = "brian";
+                        expect($std)->to->not->have->deep->property('name->first');
+                    })->to->throw('Exception', $expectedMessage);
+                });
             });
         });
     });

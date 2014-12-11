@@ -84,8 +84,8 @@ class PropertyMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        $default = "Expected {{actual}} to have{{deep}}property {{key}}";
-        $negated = "Expected {{actual}} to not have{{deep}}property {{key}}";
+        $default = "Expected {{actual}} to have a{{deep}}property {{key}}";
+        $negated = "Expected {{actual}} to not have a{{deep}}property {{key}}";
         if ($this->getValue() && $this->isActualValueSet()) {
             $default = "Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}";
             $negated = "Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}";
@@ -166,6 +166,14 @@ class PropertyMatcher extends AbstractMatcher
         if ($this->isDeep()) {
             $path = new ObjectPath($actual);
             $value = $path->get($this->getKey());
+
+            if ($value && $this->isNegated()) {
+                return true;
+            }
+
+            if (is_null($value)) {
+                return false;
+            }
             if ($expected = $this->getValue()) {
                 $this->setActualValue($value->getPropertyValue());
                 return $this->getActualValue() === $expected;
