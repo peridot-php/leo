@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo\Utility;
 
-class ObjectPath 
+class ObjectPath
 {
     /**
      * @var array|object

@@ -1,7 +1,7 @@
 <?php
 namespace Peridot\Leo\Utility;
 
-class ObjectPathValue 
+class ObjectPathValue
 {
     /**
      * @var string

@@ -209,7 +209,7 @@ class PropertyMatcher extends AbstractMatcher
             $this->setActualValue($value->getPropertyValue());
             return $this->getActualValue() === $expected;
         }
-        
+
         return false;
     }
 }
