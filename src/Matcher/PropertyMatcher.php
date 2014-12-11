@@ -84,21 +84,11 @@ class PropertyMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        $default = "Expected {{actual}} to have a{{deep}}property {{key}}";
-        $negated = "Expected {{actual}} to not have a{{deep}}property {{key}}";
-        if ($this->getValue() && $this->isActualValueSet()) {
-            $default = "Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}";
-            $negated = "Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}";
-        }
-
-        $deep = ' ';
-        if ($this->isDeep()) {
-            $deep = ' deep ';
-        }
+        list($default, $negated) = $this->getTemplateStrings();
 
         $template = new ArrayTemplate([
-            'default' => str_replace('{{deep}}', $deep, $default),
-            'negated' => str_replace('{{deep}}', $deep, $negated)
+            'default' => $default,
+            'negated' => $negated
         ]);
 
         return $template->setTemplateVars([
@@ -159,16 +149,26 @@ class PropertyMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        if (!is_object($actual) && !is_array($actual)) {
-            throw new \InvalidArgumentException("PropertyMatcher expects an object or an array");
-        }
+        $this->validateActual($actual);
 
         if ($this->isDeep()) {
             return $this->matchDeep($actual);
         }
 
-        $actual = is_object($actual) ? get_object_vars($actual) : $actual;
+        $actual = $this->actualToArray($actual);
+
         return $this->matchArrayIndex($actual);
+    }
+
+    /**
+     * @param object|array $actual
+     */
+    protected function actualToArray($actual)
+    {
+        if (is_object($actual)) {
+            return get_object_vars($actual);
+        }
+        return $actual;
     }
 
     /**
@@ -178,11 +178,7 @@ class PropertyMatcher extends AbstractMatcher
     protected function matchArrayIndex($actual)
     {
         if (isset($actual[$this->getKey()])) {
-            if ($expected = $this->getValue()) {
-                $this->setActualValue($actual[$this->getKey()]);
-                return $this->getActualValue() === $expected;
-            }
-            return true;
+            return $this->isExpected($actual[$this->getKey()]);
         }
 
         return false;
@@ -205,11 +201,53 @@ class PropertyMatcher extends AbstractMatcher
             return false;
         }
 
+        return $this->isExpected($value->getPropertyValue());
+    }
+
+    /**
+     * Check if the given value is expected.
+     *
+     * @param $value
+     * @return bool
+     */
+    protected function isExpected($value)
+    {
         if ($expected = $this->getValue()) {
-            $this->setActualValue($value->getPropertyValue());
+            $this->setActualValue($value);
             return $this->getActualValue() === $expected;
         }
 
-        return false;
+        return true;
+    }
+
+    /**
+     * @param $actual
+     */
+    protected function validateActual($actual)
+    {
+        if (!is_object($actual) && !is_array($actual)) {
+            throw new \InvalidArgumentException("PropertyMatcher expects an object or an array");
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getTemplateStrings()
+    {
+        $default = "Expected {{actual}} to have a{{deep}}property {{key}}";
+        $negated = "Expected {{actual}} to not have a{{deep}}property {{key}}";
+        
+        if ($this->getValue() && $this->isActualValueSet()) {
+            $default = "Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}";
+            $negated = "Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}";
+        }
+
+        $deep = ' ';
+        if ($this->isDeep()) {
+            $deep = ' deep ';
+        }
+
+        return str_replace('{{deep}}', $deep, [$default, $negated]);
     }
 }
