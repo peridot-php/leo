@@ -35,13 +35,7 @@ class ObjectPath
         while ($properties && $parts) {
             $key = array_shift($parts);
             $key = $this->normalizeKey($key);
-
-            if (array_key_exists($key, $properties)) {
-                $pathValue = new ObjectPathValue($key, $properties[$key]);
-            } else {
-                $pathValue = null;
-            }
-
+            $pathValue = array_key_exists($key, $properties) ? new ObjectPathValue($key, $properties[$key]) : null;
             $properties = $this->getPropertyCollection($properties[$key]);
         }
         return $pathValue;
