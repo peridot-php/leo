@@ -164,21 +164,7 @@ class PropertyMatcher extends AbstractMatcher
         }
 
         if ($this->isDeep()) {
-            $path = new ObjectPath($actual);
-            $value = $path->get($this->getKey());
-
-            if ($value && $this->isNegated()) {
-                return true;
-            }
-
-            if (is_null($value)) {
-                return false;
-            }
-            if ($expected = $this->getValue()) {
-                $this->setActualValue($value->getPropertyValue());
-                return $this->getActualValue() === $expected;
-            }
-            return false;
+            return $this->matchDeep($actual);
         }
 
         $actual = is_object($actual) ? get_object_vars($actual) : $actual;
@@ -199,6 +185,31 @@ class PropertyMatcher extends AbstractMatcher
             return true;
         }
 
+        return false;
+    }
+
+    /**
+     * @param $actual
+     * @return bool
+     */
+    protected function matchDeep($actual)
+    {
+        $path = new ObjectPath($actual);
+        $value = $path->get($this->getKey());
+
+        if ($value && $this->isNegated()) {
+            return true;
+        }
+
+        if (is_null($value)) {
+            return false;
+        }
+
+        if ($expected = $this->getValue()) {
+            $this->setActualValue($value->getPropertyValue());
+            return $this->getActualValue() === $expected;
+        }
+        
         return false;
     }
 }
