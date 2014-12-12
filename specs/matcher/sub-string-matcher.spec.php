@@ -17,6 +17,12 @@ describe('SubStringMatcher', function() {
             expect($result->isMatch())->to->be->false;
         });
 
+        it('should throw an exception if actual is not a string', function() {
+            expect(function() {
+                $this->matcher->match(1);
+            })->to->throw('InvalidArgumentException');
+        });
+
         context('when negated', function() {
             it('should return false if substring is contained in actual', function() {
                 $result = $this->matcher->invert()->match('foobar');

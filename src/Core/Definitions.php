@@ -14,6 +14,7 @@ use Peridot\Leo\Matcher\PatternMatcher;
 use Peridot\Leo\Matcher\PropertyMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
+use Peridot\Leo\Matcher\SubStringMatcher;
 use Peridot\Leo\Matcher\TrueMatcher;
 use Peridot\Leo\Matcher\TruthyMatcher;
 use Peridot\Leo\Matcher\TypeMatcher;
@@ -192,5 +193,10 @@ return function (Assertion $assertion) {
     $assertion->addMethod('match', function ($pattern, $message = "") {
         $this->flag('message', $message);
         return new PatternMatcher($pattern);
+    });
+
+    $assertion->addMethod('string', function ($expected, $message = "") {
+        $this->flag('message', $message);
+        return new SubStringMatcher($expected);
     });
 };

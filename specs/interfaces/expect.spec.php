@@ -612,4 +612,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->string()', function() {
+        it('should throw an exception if substring is not contained', function() {
+            expect(function() {
+                expect('foobar')->to->have->string('hi');
+            })->to->throw('Exception', 'Expected "foobar" to contain "hi"');
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect('foobar')->to->have->string('hi', 'not in there');
+            })->to->throw('Exception', 'not in there');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if actual does contain expected', function() {
+                expect(function() {
+                    expect('foobar')->to->not->have->string('foo');
+                })->to->throw('Exception', 'Expected "foobar" to not contain "foo"');
+            });
+        });
+    });
 });
