@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 /**
@@ -31,6 +32,12 @@ interface MatcherInterface
      * @return TemplateInterface
      */
     public function getTemplate();
+
+    /**
+     * @param Assertion $assertion
+     * @return mixed
+     */
+    public function setAssertion(Assertion $assertion);
 
     /**
      * @param TemplateInterface $template

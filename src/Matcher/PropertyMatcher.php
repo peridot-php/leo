@@ -178,6 +178,7 @@ class PropertyMatcher extends AbstractMatcher
     protected function matchArrayIndex($actual)
     {
         if (isset($actual[$this->getKey()])) {
+            $this->assertion->setActual($actual[$this->getKey()]);
             return $this->isExpected($actual[$this->getKey()]);
         }
 
@@ -200,6 +201,8 @@ class PropertyMatcher extends AbstractMatcher
         if (is_null($value)) {
             return false;
         }
+
+        $this->assertion->setActual($value->getPropertyValue());
 
         return $this->isExpected($value->getPropertyValue());
     }

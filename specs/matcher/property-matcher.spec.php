@@ -1,9 +1,13 @@
 <?php
+use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\PropertyMatcher;
 
 describe('PropertyMatcher', function() {
     beforeEach(function() {
         $this->matcher = new PropertyMatcher('name');
+        $response = $this->getProphet()->prophesize('Peridot\Leo\Responder\ResponderInterface');
+        $this->assertion = new Assertion($response->reveal());
+        $this->matcher->setAssertion($this->assertion);
     });
 
     describe('->match()', function() {
@@ -42,6 +46,7 @@ describe('PropertyMatcher', function() {
 
             beforeEach(function() {
                 $this->matcher = new PropertyMatcher(1);
+                $this->matcher->setAssertion($this->assertion);
             });
 
             it('should return true if array has index', function() {

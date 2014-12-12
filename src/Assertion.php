@@ -118,6 +118,7 @@ class Assertion
      * Assert against the given matcher.
      *
      * @param $result
+     * @return $this
      */
     public function assert(MatcherInterface $matcher)
     {
@@ -125,11 +126,16 @@ class Assertion
             $matcher->invert();
         }
 
-        $match = $matcher->match($this->getActual());
+        $match = $matcher
+            ->setAssertion($this)
+            ->match($this->getActual());
+
         $message = $this->flag('message');
 
         $this->clearFlags();
 
         $this->responder->respond($match, $matcher->getTemplate(), $message);
+
+        return $this;
     }
 }

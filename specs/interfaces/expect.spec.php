@@ -468,6 +468,14 @@ describe('expect', function() {
             })->to->throw('Exception', "no property");
         });
 
+        it('should alter the subject for future chaining', function() {
+           expect(function() {
+               $object = new stdClass();
+               $object->name = "brian";
+               expect($object)->to->have->property('name')->with->length(4);
+           })->to->throw('Exception', 'Expected "brian" to have a length of 4 but got 5');
+        });
+
         context('when negated', function() {
             it('should throw an exception when value does have property', function() {
                 expect(function() {
@@ -531,6 +539,15 @@ describe('expect', function() {
                     $std->name->first = 'brian';
                     expect($std)->to->have->deep->property('name->last', 'steve', 'no deep property');
                 })->to->throw('Exception', "no deep property");
+            });
+
+            it('should alter the subject for future chaining', function() {
+                expect(function() {
+                    $std = new stdClass();
+                    $std->name = new stdClass();
+                    $std->name->first = 'brian';
+                    expect($std)->to->have->deep->property('name->first')->with->length(4);
+                })->to->throw('Exception', 'Expected "brian" to have a length of 4 but got 5');
             });
 
             context('and negated', function() {

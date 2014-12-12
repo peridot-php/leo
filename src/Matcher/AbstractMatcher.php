@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 abstract class AbstractMatcher implements MatcherInterface
@@ -19,6 +20,11 @@ abstract class AbstractMatcher implements MatcherInterface
      * @var TemplateInterface
      */
     protected $template;
+
+    /**
+     * @var Assertion
+     */
+    protected $assertion;
 
     /**
      * @param mixed $expected
@@ -76,6 +82,16 @@ abstract class AbstractMatcher implements MatcherInterface
     public function setTemplate(TemplateInterface $template)
     {
         $this->template = $template;
+        return $this;
+    }
+
+    /**
+     * @param Assertion $assertion
+     * @return $this
+     */
+    public function setAssertion(Assertion $assertion)
+    {
+        $this->assertion = $assertion;
         return $this;
     }
 

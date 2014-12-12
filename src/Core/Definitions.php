@@ -178,7 +178,9 @@ return function (Assertion $assertion) {
     $assertion->addMethod('property', function ($name, $value = "", $message = "") {
         $this->flag('message', $message);
         $matcher = new PropertyMatcher($name, $value);
-        return $matcher->setIsDeep($this->flag('deep'));
+        $matcher->setAssertion($this);
+        $matcher->setIsDeep($this->flag('deep'));
+        return $this->assert($matcher);
     });
 
     $assertion->addMethod('length', function ($expected, $message = "") {
