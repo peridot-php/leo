@@ -590,4 +590,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->match()', function() {
+        it('should throw an exception if actual value does not match the expected pattern', function() {
+            expect(function() {
+                expect('hi')->to->match('/^bye/');
+            })->to->throw('Exception', 'Expected "hi" to match "/^bye/"');
+        });
+
+        it('allow a user message', function() {
+            expect(function() {
+                expect('hi')->to->match('/^bye/', 'does not match');
+            })->to->throw('Exception', 'does not match');
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if pattern does match', function() {
+                expect(function() {
+                    expect('hi')->to->not->match('/^hi/');
+                })->to->throw('Exception', 'Expected "hi" not to match "/^hi/"');
+            });
+        });
+    });
 });

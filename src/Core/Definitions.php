@@ -10,6 +10,7 @@ use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\InstanceofMatcher;
 use Peridot\Leo\Matcher\LengthMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
+use Peridot\Leo\Matcher\PatternMatcher;
 use Peridot\Leo\Matcher\PropertyMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
@@ -186,5 +187,10 @@ return function (Assertion $assertion) {
     $assertion->addMethod('length', function ($expected, $message = "") {
         $this->flag('message', $message);
         return new LengthMatcher($expected);
+    });
+
+    $assertion->addMethod('match', function ($pattern, $message = "") {
+        $this->flag('message', $message);
+        return new PatternMatcher($pattern);
     });
 };
