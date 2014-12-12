@@ -8,6 +8,7 @@ use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\InstanceofMatcher;
+use Peridot\Leo\Matcher\LengthMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\PropertyMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
@@ -178,5 +179,10 @@ return function (Assertion $assertion) {
         $this->flag('message', $message);
         $matcher = new PropertyMatcher($name, $value);
         return $matcher->setIsDeep($this->flag('deep'));
+    });
+
+    $assertion->addMethod('length', function ($expected, $message = "") {
+        $this->flag('message', $message);
+        return new LengthMatcher($expected);
     });
 };

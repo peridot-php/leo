@@ -551,4 +551,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->length()', function() {
+        it('should throw an exception if lengths do not match', function() {
+            expect(function() {
+                expect([1])->to->have->length(0);
+            })->to->throw('Exception', "Expected Array\n(\n    [0] => 1\n) to have a length of 0 but got 1");
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect([1])->to->have->length(0, "wrong length");
+            })->to->throw('Exception', "wrong length");
+        });
+
+        context('when negated', function () {
+            it('should throw an exception when the length is the expected value', function() {
+                expect(function() {
+                    expect('hi')->to->not->have->length(2);
+                })->to->throw('Exception', 'Expected "hi" to not have a length of 2');
+            });
+        });
+    });
 });
