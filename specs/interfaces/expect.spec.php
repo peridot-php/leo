@@ -692,4 +692,12 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('compound matches', function() {
+        it('should be able to perform two matches', function() {
+            expect(function() {
+                expect('hello')->to->have->length(5)->and->to->satisfy('is_numeric');
+            })->to->throw('Exception', 'Expected "hello" to satisfy "is_numeric"');
+        });
+    });
 });
