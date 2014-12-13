@@ -1,6 +1,10 @@
 <?php
 namespace Peridot\Leo;
 
+/**
+ * DynamicObjectTrait adds methods for dynamically defining methods, flags, and properties.
+ * @package Peridot\Leo
+ */
 trait DynamicObjectTrait
 {
     /**
@@ -19,8 +23,10 @@ trait DynamicObjectTrait
     protected $flags = [];
 
     /**
-     * @param $name
-     * @param callable $method
+     * Add a method identified by the given name.
+     *
+     * @param string $name
+     * @param callable $method the body of the method
      * @return $this
      */
     public function addMethod($name, callable $method)
@@ -30,7 +36,10 @@ trait DynamicObjectTrait
     }
 
     /**
-     * @param $name
+     * Adds a lazy property identified by the given name. The property
+     * is lazy because it is not evaluated until asked for via __get().
+     *
+     * @param string $name
      * @param callable $factory
      * @return $this
      */
@@ -41,6 +50,9 @@ trait DynamicObjectTrait
     }
 
     /**
+     * A simple mechanism for storing arbitrary flags. Flags are useful
+     * for tweaking behavior based on their presence.
+     *
      * @return $this
      */
     public function flag()
@@ -55,7 +67,7 @@ trait DynamicObjectTrait
     }
 
     /**
-     * Reset flags.
+     * Reset flags. Flags are generally cleared after an Assertion is made.
      *
      * @return $this
      */

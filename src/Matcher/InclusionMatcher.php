@@ -5,10 +5,15 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * InclusionMatcher determines if an array or string includes the expected value.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class InclusionMatcher extends AbstractMatcher
 {
     /**
-     * {@inheritdoc}
+     * Matches if an array or string contains the expected value.
      *
      * @param $actual
      * @return mixed

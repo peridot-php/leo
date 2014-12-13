@@ -1,6 +1,11 @@
 <?php
 namespace Peridot\Leo\Utility;
 
+/**
+ * An ObjectPathValue is the result of parsing a path expression via ObjectPath.
+ *
+ * @package Peridot\Leo\Utility
+ */
 class ObjectPathValue
 {
     /**

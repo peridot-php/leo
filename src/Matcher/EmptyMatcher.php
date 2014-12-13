@@ -4,6 +4,10 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * EmptyMatcher determines if an actual value is empty via the php empty() function.
+ * @package Peridot\Leo\Matcher
+ */
 class EmptyMatcher extends AbstractMatcher
 {
     public function __construct()
@@ -12,7 +16,7 @@ class EmptyMatcher extends AbstractMatcher
     }
 
     /**
-     * {@inheritdoc}
+     * Determin if the actual value is empty.
      *
      * @param $actual
      * @return mixed

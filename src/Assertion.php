@@ -77,15 +77,16 @@ final class Assertion
 
     /**
      * @param ResponderInterface $responder
-     * @param string $actual
-     * @param string $message
      */
-    public function __construct(ResponderInterface $responder)
+    public function __construct(ResponderInterface $responder, $actual = null)
     {
         $this->responder = $responder;
+        $this->actual = $actual;
     }
 
     /**
+     * Returns the current ResponderInterface assigned to this Assertion.
+     *
      * @return ResponderInterface
      */
     public function getResponder()
@@ -98,6 +99,7 @@ final class Assertion
      *
      * @param $method
      * @param $args
+     * @return mixed
      */
     public function __call($method, $args)
     {
@@ -133,13 +135,17 @@ final class Assertion
         $result = call_user_func_array($fn, $arguments);
 
         if ($result instanceof MatcherInterface) {
-            $this->assert($result);
+            return $this->assert($result);
         }
 
         return $result;
     }
 
     /**
+     * Extend calls the given callable and passes the current Assertion instance
+     * to it. Assertion can be extended via the ->addMethod(), ->flag(), and ->addProperty()
+     * methods.
+     *
      * @param callable $fn
      */
     public function extend(callable $fn)
@@ -148,6 +154,8 @@ final class Assertion
     }
 
     /**
+     * Set the actual value used for matching expectations against.
+     *
      * @param $actual
      * @return $this
      */
@@ -158,6 +166,8 @@ final class Assertion
     }
 
     /**
+     * Return the actual value being asserted against.
+     *
      * @return mixed
      */
     public function getActual()

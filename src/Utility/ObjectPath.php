@@ -1,9 +1,17 @@
 <?php
 namespace Peridot\Leo\Utility;
 
+/**
+ * ObjectPath is a utility for parsing object and array strings into
+ * ObjectPathValues.
+ *
+ * @package Peridot\Leo\Utility
+ */
 class ObjectPath
 {
     /**
+     * The subject to match path expressions against.
+     *
      * @var array|object
      */
     protected $subject;
@@ -24,6 +32,25 @@ class ObjectPath
     }
 
     /**
+     * Returns an ObjectPathValue if the property described by $path
+     * can be located in the subject.
+     *
+     * A path expression uses object and array syntax.
+     *
+     * @code
+     *
+     * $person = new stdClass();
+     * $person->name = new stdClass();
+     * $person->name->first = 'brian';
+     * $person->name->last = 'scaturro';
+     * $person->hobbies = ['programming', 'reading', 'board games'];
+     *
+     * $path = new ObjectPath($person);
+     * $first = $path->get('name->first');
+     * $reading = $path->get('hobbies[0]');
+     *
+     * @endcode
+     *
      * @param string $path
      * @return ObjectPathValue
      */
@@ -42,6 +69,9 @@ class ObjectPath
     }
 
     /**
+     * Breaks a path expression into an array used
+     * for navigating a path.
+     *
      * @param $path
      * @return array
      */
@@ -56,6 +86,8 @@ class ObjectPath
     }
 
     /**
+     * Returns a property as an array.
+     *
      * @param $subject
      * @return array
      */
@@ -69,6 +101,8 @@ class ObjectPath
     }
 
     /**
+     * Return a key that can be used on the current subject.
+     *
      * @param $key
      * @param $matches
      * @return mixed

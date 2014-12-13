@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * PatternMatcher determines if an actual string value matches a regular expression.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class PatternMatcher extends AbstractMatcher
 {
     /**

@@ -3,11 +3,23 @@ namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * CountableMatcher a matcher is a matcher that matches numeric values,
+ * or reduces a countable value - like array, string, or Countable - to a single
+ * numeric value.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 abstract class CountableMatcher extends AbstractMatcher
 {
+    /**
+     * @var mixed
+     */
     protected $countable;
 
     /**
+     * Set the countable value used by the CountableMatcher.
+     *
      * @param mixed $countable
      * @return $this
      */
@@ -18,6 +30,8 @@ abstract class CountableMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the countable used by the CountableMatcher.
+     *
      * @return mixed
      */
     public function getCountable()
@@ -39,6 +53,10 @@ abstract class CountableMatcher extends AbstractMatcher
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * Returns a default countable interface if the countable is set.
+     *
      * @return TemplateInterface
      */
     public function getTemplate()

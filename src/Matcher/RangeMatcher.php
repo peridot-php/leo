@@ -59,6 +59,8 @@ class RangeMatcher extends CountableMatcher
     }
 
     /**
+     * Set the lower bound of the range matcher.
+     *
      * @param int $lowerBound
      * @return $this
      */
@@ -73,6 +75,8 @@ class RangeMatcher extends CountableMatcher
     }
 
     /**
+     * Set the upper bound of the range matcher.
+     *
      * @param int $upperBound
      * @return $this
      */
@@ -87,6 +91,8 @@ class RangeMatcher extends CountableMatcher
     }
 
     /**
+     * Return the lower bound of the range matcher.
+     *
      * @return int
      */
     public function getLowerBound()
@@ -95,6 +101,8 @@ class RangeMatcher extends CountableMatcher
     }
 
     /**
+     * Return the upper bound of the range matcher.
+     *
      * @return int
      */
     public function getUpperBound()
@@ -103,7 +111,7 @@ class RangeMatcher extends CountableMatcher
     }
 
     /**
-     * Determine if the number is between an upper and lower bound.
+     * Determine if the number is between an upper and lower bound (inclusive).
      *
      * @param $number
      * @return bool

@@ -4,9 +4,16 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * SameMatcher determines if an actual value is identical to the expected value.
+ * @package Peridot\Leo\Matcher
+ */
 class SameMatcher extends AbstractMatcher
 {
     /**
+     * Match if the actual value is identical to the expected value using an ===
+     * comparison.
+     *
      * @param mixed $actual
      * @return bool
      */

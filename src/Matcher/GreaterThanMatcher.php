@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * GreaterThanMatcher determines if the actual value is greater than the expected value.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class GreaterThanMatcher extends CountableMatcher
 {
     /**

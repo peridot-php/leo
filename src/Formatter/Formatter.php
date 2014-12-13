@@ -4,6 +4,11 @@ namespace Peridot\Leo\Formatter;
 use Peridot\Leo\Matcher\Match;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * Class Formatter is the core FormatterInterface for Leo.
+ *
+ * @package Peridot\Leo\Formatter
+ */
 class Formatter implements FormatterInterface
 {
     /**
@@ -11,15 +16,14 @@ class Formatter implements FormatterInterface
      */
     protected $match;
 
-    /**
-     * @param Match $match
-     */
     public function __construct()
     {
 
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return Match
      */
     public function getMatch()
@@ -28,7 +32,10 @@ class Formatter implements FormatterInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param Match $match
+     * @return $this
      */
     public function setMatch(Match $match)
     {
@@ -37,6 +44,8 @@ class Formatter implements FormatterInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param TemplateInterface $template
      * @return mixed|string
      */
@@ -56,6 +65,8 @@ class Formatter implements FormatterInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param mixed $obj
      * @return string
      */
@@ -81,6 +92,8 @@ class Formatter implements FormatterInterface
     }
 
     /**
+     * Applies match results to other template variables.
+     *
      * @param TemplateInterface $template
      * @return array
      */

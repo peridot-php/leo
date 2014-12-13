@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * TrueMatcher determines if an actual value is strictly equal to true.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class TrueMatcher extends AbstractMatcher
 {
     public function __construct()
@@ -12,7 +17,7 @@ class TrueMatcher extends AbstractMatcher
     }
 
     /**
-     * {@inheritdoc}
+     * Match if the actuall value is strictly equal to true.
      *
      * @param $actual
      * @return mixed

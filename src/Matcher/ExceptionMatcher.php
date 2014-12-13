@@ -4,6 +4,12 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * ExceptionMatcher executes a callable and determines if an exception of a given type was thrown. It optionally
+ * matches the exception message.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class ExceptionMatcher extends AbstractMatcher
 {
     /**
@@ -37,6 +43,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Set arguments to be passed to the callable.
+     *
      * @param array $arguments
      * @return $this
      */
@@ -47,6 +55,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Set the expected message of the exception.
+     *
      * @param string $message
      * @return $this
      */
@@ -57,7 +67,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
-     * Set the message from an exception.
+     * Set the message thrown from an exception resulting from the
+     * callable being invoked.
      *
      * @param string $message
      */
@@ -67,6 +78,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Returns the arguments passed to the callable.
+     *
      * @return array
      */
     public function getArguments()
@@ -75,6 +88,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the expected exception message.
+     *
      * @return string
      */
     public function getExpectedMessage()
@@ -83,6 +98,9 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the message thrown by an exception resulting from the callable
+     * being invoked.
+     *
      * @return string
      */
     public function getMessage()
@@ -91,6 +109,10 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * If the expected message has been set, the message template will be used.
+     *
      * @return TemplateInterface
      */
     public function getTemplate()
@@ -102,6 +124,8 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
+     * Set the template to be used when an expected exception message is provided.
+     *
      * @param TemplateInterface $template
      * @return $this
      */
@@ -170,7 +194,7 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
-     * {@inheritdoc}
+     * Executes the callable and matches the exception type and exception message.
      *
      * @param $actual
      * @return bool

@@ -1,6 +1,11 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+/**
+ * A Match is the result of MatcherInterface::match($actual).
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class Match
 {
     /**
@@ -38,6 +43,8 @@ class Match
     }
 
     /**
+     * Return whether or not a match succeeded.
+     *
      * @return bool
      */
     public function isMatch()
@@ -46,6 +53,8 @@ class Match
     }
 
     /**
+     * Get the actual value used in the match.
+     *
      * @return mixed
      */
     public function getActual()
@@ -54,6 +63,8 @@ class Match
     }
 
     /**
+     * Get the expected value used in the match.
+     *
      * @return mixed
      */
     public function getExpected()
@@ -62,6 +73,8 @@ class Match
     }
 
     /**
+     * Returns whether or not the match was negated.
+     *
      * @return boolean
      */
     public function isNegated()
@@ -70,7 +83,10 @@ class Match
     }
 
     /**
+     * Set the actual value used in the match.
+     *
      * @param mixed $actual
+     * @return $this
      */
     public function setActual($actual)
     {
@@ -79,7 +95,10 @@ class Match
     }
 
     /**
+     * Set the expected value used in the match.
+     *
      * @param mixed $expected
+     * @return $this
      */
     public function setExpected($expected)
     {

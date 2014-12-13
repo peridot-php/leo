@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * TypeMatcher determines if an actual value has the same type as the expected type.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class TypeMatcher extends AbstractMatcher
 {
     /**
@@ -12,6 +17,8 @@ class TypeMatcher extends AbstractMatcher
     protected $type;
 
     /**
+     * {@inheritdoc}
+     *
      * @param $actual
      * @return Match
      */
@@ -22,7 +29,8 @@ class TypeMatcher extends AbstractMatcher
     }
 
     /**
-     * Determine if the actual value has the same type as the expected value.
+     * Determine if the actual value has the same type as the expected value. Uses the native gettype()
+     * function to compare.
      *
      * @param $actual
      * @return bool

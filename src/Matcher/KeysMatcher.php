@@ -4,8 +4,20 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * KeysMatcher determines if the actual array or object has the expected keys. If the Assertion has
+ * a 'contain' flag set, it will check if the expected keys are included in the object or array.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class KeysMatcher extends AbstractMatcher
 {
+    /**
+     * The verb used in the template. Uses "have" if the 'contain' flag is not used, otherwise
+     * "contain" is used.
+     *
+     * @var string
+     */
     protected $verb = 'have';
 
     /**
@@ -30,7 +42,7 @@ class KeysMatcher extends AbstractMatcher
     }
 
     /**
-     * Assert that the actual value is an array with the expected keys.
+     * Assert that the actual value is an array or object with the expected keys.
      *
      * @param $actual
      * @return mixed
@@ -47,6 +59,9 @@ class KeysMatcher extends AbstractMatcher
     }
 
     /**
+     * Normalize the actual value into an array, whether it is an object
+     * or an array.
+     *
      * @param object|array $actual
      */
     protected function getArrayValue($actual)
@@ -63,6 +78,8 @@ class KeysMatcher extends AbstractMatcher
     }
 
     /**
+     * Returns a formatted string of expected keys.
+     *
      * @return string keys
      */
     protected function getKeyString()
@@ -85,6 +102,9 @@ class KeysMatcher extends AbstractMatcher
     }
 
     /**
+     * Used when the 'contain' flag exists on the Assertion. Checks
+     * if the expected keys are included in the object or array.
+     *
      * @param array $actual
      * @return true
      */

@@ -4,6 +4,12 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * EqualMatcher determines if the expected value and the actual value are loosely equal. Peroforms
+ * an == comparison.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class EqualMatcher extends AbstractMatcher
 {
     /**

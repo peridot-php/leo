@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * AbstractMatcher serves as the base for all Matchers.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 abstract class AbstractMatcher implements MatcherInterface
 {
     /**
@@ -35,6 +40,8 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return bool
      */
     public function isNegated()
@@ -43,6 +50,8 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return $this
      */
     public function invert()
@@ -52,7 +61,9 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
-     * @param $actual
+     * {@inheritdoc}
+     *
+     * @param mixed $actual
      * @return Match
      */
     public function match($actual)
@@ -65,6 +76,8 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return TemplateInterface
      */
     public function getTemplate()
@@ -76,6 +89,8 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param TemplateInterface $template
      * @return $this
      */
@@ -86,6 +101,8 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param Assertion $assertion
      * @return $this
      */
@@ -96,10 +113,11 @@ abstract class AbstractMatcher implements MatcherInterface
     }
 
     /**
-     * The actual matching algorithm for the matcher.
+     * The actual matching algorithm for the matcher. This is called by ->match()
+     * to create a Match result.
      *
-     * @param $actual
-     * @return mixed
+     * @param mixed $actual
+     * @return bool
      */
     abstract protected function doMatch($actual);
 }

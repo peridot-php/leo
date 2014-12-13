@@ -2,7 +2,9 @@
 namespace Peridot\Leo;
 
 use Peridot\Leo\Formatter\Formatter;
+use Peridot\Leo\Formatter\FormatterInterface;
 use Peridot\Leo\Responder\ExceptionResponder;
+use Peridot\Leo\Responder\ResponderInterface;
 
 /**
  * Class Leo. Singleton access to Leo and
@@ -53,6 +55,8 @@ class Leo
     }
 
     /**
+     * Return the Leo Assertion.
+     *
      * @return Assertion
      */
     public function getAssertion()
@@ -61,6 +65,8 @@ class Leo
     }
 
     /**
+     * Set the Assertion used by Leo.
+     *
      * @param $assertion
      * @return $this
      */
@@ -71,7 +77,9 @@ class Leo
     }
 
     /**
-     * @return Formatter
+     * Return the FormatterInterface used by Leo.
+     *
+     * @return FormatterInterface
      */
     public function getFormatter()
     {
@@ -79,17 +87,21 @@ class Leo
     }
 
     /**
+     * Set the FormatterInterface used by Leo.
+     *
      * @param $formatter
      * @return $this
      */
-    public function setFormatter($formatter)
+    public function setFormatter(FormatterInterface $formatter)
     {
         $this->formatter = $formatter;
         return $this;
     }
 
     /**
-     * @return ExceptionResponder
+     * Return the ResponderInterface being used by Leo.
+     *
+     * @return ResponderInterface
      */
     public function getResponder()
     {
@@ -97,16 +109,34 @@ class Leo
     }
 
     /**
+     * Set the ResponderInterface used by Leo.
+     *
      * @param $responder
      * @return $this
      */
-    public function setResponder($responder)
+    public function setResponder(ResponderInterface $responder)
     {
         $this->responder = $responder;
         return $this;
     }
 
     /**
+     * Singleton access to Leo. A singleton is used instead of a facade as
+     * PHP has some hangups about binding scope from static methods. This should
+     * be used to access all Assertion members.
+     *
+     * @code
+     *
+     * $assertion = Leo::instance()->getAssertion();
+     * $assertion->extend(function($assertion)) {
+     *     $assertion->addMethod('coolAssertion', function($expected, $message = "") {
+     *         $this->flag('message', $message);
+     *         return new CoolMatcher($expected);
+     *     });
+     * });
+     *
+     * @endcode
+     *
      * @return Leo
      */
     public static function instance()

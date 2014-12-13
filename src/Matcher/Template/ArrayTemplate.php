@@ -1,6 +1,19 @@
 <?php
 namespace Peridot\Leo\Matcher\Template;
 
+/**
+ * ArrayTemplate uses an array to specify default and negated templates. An ArrayTemplate is constructed
+ * with array keys.
+ *
+ * @code
+ * $template = new ArrayTemplate([
+ *     'default' => "Expected {{actual}} to be {{expected}}",
+ *     'negated' => "Expected {{actual}} not to be {{expected}}
+ * ]);
+ * @endcode
+ *
+ * @package Peridot\Leo\Matcher\Template
+ */
 class ArrayTemplate implements TemplateInterface
 {
     /**
@@ -28,6 +41,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return string
      */
     public function getDefaultTemplate()
@@ -36,6 +51,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param string $default
      */
     public function setDefaultTemplate($default)
@@ -45,6 +62,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return string
      */
     public function getNegatedTemplate()
@@ -53,6 +72,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param string $negated
      */
     public function setNegatedTemplate($negated)
@@ -62,6 +83,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @return array
      */
     public function getTemplateVars()
@@ -70,6 +93,8 @@ class ArrayTemplate implements TemplateInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param array $vars
      * @return $this
      */

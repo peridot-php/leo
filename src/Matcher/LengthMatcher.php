@@ -6,6 +6,12 @@ use InvalidArgumentException;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * LengthMatcher determines if an actual array, string, or Countable has a length equivalent
+ * to the expected value.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class LengthMatcher extends AbstractMatcher
 {
     /**
@@ -49,11 +55,14 @@ class LengthMatcher extends AbstractMatcher
             return $this->expected === $this->count;
         }
 
-        throw new InvalidArgumentException("Length matcher requires a string or array");
+        throw new InvalidArgumentException("Length matcher requires a string, array, or Countable");
     }
 
     /**
-     * @param $actual
+     * Determine if the native count() function can return a valid result
+     * on the actual value.
+     *
+     * @param mixed $actual
      * @return bool
      */
     protected function isCountable($actual)

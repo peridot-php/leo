@@ -4,10 +4,15 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * SubStringMatcher determines if an actual string contains the expected sub string.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class SubStringMatcher extends AbstractMatcher
 {
     /**
-     * Match that actual value has the expected sub string
+     * Match that actual value has the expected sub string.
      *
      * @param string $actual
      * @return mixed
@@ -22,7 +27,7 @@ class SubStringMatcher extends AbstractMatcher
     }
 
     /**
-     * Return a default template if none was set.
+     * {@inheritdoc}
      *
      * @return TemplateInterface
      */

@@ -4,6 +4,11 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * TruthyMatcher determines if an actual value is truthy.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class TruthyMatcher extends AbstractMatcher
 {
     public function __construct()
@@ -12,7 +17,7 @@ class TruthyMatcher extends AbstractMatcher
     }
 
     /**
-     * {@inheritdoc}
+     * Match if the actual value is truthy - that is - it is true when cast to a (bool).
      *
      * @param $actual
      * @return mixed

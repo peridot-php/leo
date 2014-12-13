@@ -5,6 +5,12 @@ use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 use Peridot\Leo\Utility\ObjectPath;
 
+/**
+ * PropertyMatcher determines if the actual array or object has the expected property, and optionally matches
+ * an expected value for that property.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class PropertyMatcher extends AbstractMatcher
 {
     /**
@@ -44,6 +50,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the expected object or array key.
+     *
      * @return int|string
      */
     public function getKey()
@@ -52,7 +60,10 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Set the expected object or array key.
+     *
      * @param int|string $key
+     * @return $this
      */
     public function setKey($key)
     {
@@ -61,6 +72,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the expected property value.
+     *
      * @return mixed
      */
     public function getValue()
@@ -69,7 +82,10 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Set the expected property value.
+     *
      * @param mixed $value
+     * @return $this
      */
     public function setValue($value)
     {
@@ -78,7 +94,7 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
-     * Return a default template if none was set.
+     * {@inheritdoc}
      *
      * @return TemplateInterface
      */
@@ -99,6 +115,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Return the actual value given to the matcher.
+     *
      * @return mixed
      */
     public function getActualValue()
@@ -107,7 +125,11 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Set the actual value given to the matcher. Used to
+     * store whether or not the actual value was set.
+     *
      * @param mixed $actualValue
+     * @return $this
      */
     public function setActualValue($actualValue)
     {
@@ -117,6 +139,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Return if the actual value has been set.
+     *
      * @return bool
      */
     public function isActualValueSet()
@@ -125,6 +149,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Tell the property matcher to match deep properties.
+     *
      * return $this
      */
     public function setIsDeep($isDeep)
@@ -134,6 +160,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Return whether or not the matcher is matching deep properties.
+     *
      * @return bool
      */
     public function isDeep()
@@ -142,9 +170,17 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
-     * The actual matching algorithm for the matcher.
+     * Matches if the actual value has a property, optionally matching
+     * the expected value of that property. If the deep flag is set,
+     * the matcher will use the ObjectPath utility to parse deep expressions.
      *
-     * @param $actual
+     * @code
+     *
+     * $this->doMatch('child->name->first', 'brian');
+     *
+     * @endcode
+     *
+     * @param mixed $actual
      * @return mixed
      */
     protected function doMatch($actual)
@@ -161,7 +197,10 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Convert the actual value to an array, whether it is an object or an array.
+     *
      * @param object|array $actual
+     * @return array|object
      */
     protected function actualToArray($actual)
     {
@@ -172,6 +211,9 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Match that an array index exists, and matches
+     * the expected value if set.
+     *
      * @param $actual
      * @return bool
      */
@@ -186,6 +228,9 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Uses ObjectPath to parse an expression if the deep flag
+     * is set.
+     *
      * @param $actual
      * @return bool
      */
@@ -224,6 +269,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Ensure that the actual value is an object or an array.
+     *
      * @param $actual
      */
     protected function validateActual($actual)
@@ -234,6 +281,8 @@ class PropertyMatcher extends AbstractMatcher
     }
 
     /**
+     * Returns the strings used in creating the template for the matcher.
+     *
      * @return array
      */
     protected function getTemplateStrings()

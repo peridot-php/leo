@@ -4,6 +4,12 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * PredicateMatcher executes a function with the actual value. The PredicateMatcher returns
+ * the result of that function call as a Match result.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class PredicateMatcher extends AbstractMatcher
 {
     /**
@@ -20,7 +26,7 @@ class PredicateMatcher extends AbstractMatcher
     }
 
     /**
-     * Match actual value against expected predicate
+     * Match actual value against the expected predicate.
      *
      * @param $actual
      * @return mixed

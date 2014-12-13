@@ -6,6 +6,12 @@ use Peridot\Leo\Formatter\FormatterInterface;
 use Peridot\Leo\Matcher\Match;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * The ExceptionResponder responds to a match by throwing an exception
+ * on a failed match.
+ *
+ * @package Peridot\Leo\Responder
+ */
 class ExceptionResponder implements ResponderInterface
 {
     /**
@@ -22,6 +28,10 @@ class ExceptionResponder implements ResponderInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * Throws an exception containing the formatted message.
+     *
      * @param Match $match
      * @param TemplateInterface $template
      * @param string $message

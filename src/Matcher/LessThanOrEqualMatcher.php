@@ -4,10 +4,15 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
+/**
+ * LessThanOrEqualMatcher determines if an actual value is less than or equal to the expected value.
+ *
+ * @package Peridot\Leo\Matcher
+ */
 class LessThanOrEqualMatcher extends CountableMatcher
 {
     /**
-     * Match that the actual number is greater than or equal
+     * Match that the actual number is less than or equal
      * to the expected value.
      *
      * @param $number
@@ -19,7 +24,7 @@ class LessThanOrEqualMatcher extends CountableMatcher
     }
 
     /**
-     * Return a default template if none was set.
+     * {@inheritdoc}
      *
      * @return TemplateInterface
      */
@@ -32,7 +37,7 @@ class LessThanOrEqualMatcher extends CountableMatcher
     }
 
     /**
-     * Return a default template for when a countable has been set.
+     * {@inheritdoc}
      *
      * @return TemplateInterface
      */
