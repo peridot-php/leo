@@ -661,5 +661,13 @@ describe('expect', function() {
                 })->to->throw('Exception', "Expected Array\n(\n    [foo] => bar\n) to not have key \"foo\"");
             });
         });
+
+        context('when contain flag is present', function() {
+            it('should throw an exception if keys are not included', function() {
+                expect(function() {
+                    expect(['foo' => 'bar'])->to->contain->keys(['bar']);
+                })->to->throw('Exception', "Expected Array\n(\n    [foo] => bar\n) to contain key \"bar\"");
+            });
+        });
     });
 });

@@ -6,6 +6,8 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 class KeysMatcher extends AbstractMatcher
 {
+    protected $verb = 'have';
+
     /**
      * {@inheritdoc}
      *
@@ -13,15 +15,15 @@ class KeysMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        $subject = "key";
+        $subject = 'key';
 
         if (count($this->expected) > 1) {
             $subject = "keys";
         }
 
         $template = new ArrayTemplate([
-            'default' => "Expected {{actual}} to have $subject {{keys}}",
-            'negated' => "Expected {{actual}} to not have $subject {{keys}}"
+            'default' => "Expected {{actual}} to {$this->verb} $subject {{keys}}",
+            'negated' => "Expected {{actual}} to not {$this->verb} $subject {{keys}}"
         ]);
 
         return $template->setTemplateVars(['keys' => $this->getKeyString()]);
@@ -36,14 +38,12 @@ class KeysMatcher extends AbstractMatcher
     protected function doMatch($actual)
     {
         $actual = $this->getArrayValue($actual);
-
-        foreach ($this->expected as $key) {
-            if (! isset($actual[$key])) {
-                return false;
-            }
+        if ($this->assertion->flag('contain')) {
+            $this->verb = 'contain';
+            return $this->matchInclusion($actual);
         }
-
-        return true;
+        $keys = array_keys($actual);
+        return $keys == $this->expected;
     }
 
     /**
@@ -82,5 +82,19 @@ class KeysMatcher extends AbstractMatcher
         $keys .= $tail;
 
         return $keys;
+    }
+
+    /**
+     * @param array $actual
+     * @return true
+     */
+    protected function matchInclusion($actual)
+    {
+        foreach ($this->expected as $key) {
+            if (!isset($actual[$key])) {
+                return false;
+            }
+        }
+        return true;
     }
 }

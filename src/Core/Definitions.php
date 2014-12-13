@@ -84,6 +84,14 @@ return function (Assertion $assertion) {
         ->addMethod('include', $include)
         ->addMethod('contain', $include);
 
+    $contain = function () {
+        return $this->flag('contain', true);
+    };
+
+    $assertion
+        ->addProperty('contain', $contain)
+        ->addProperty('include', $contain);
+
     $truthy = function ($message = "") {
         $this->flag('message', $message);
         return new TruthyMatcher();
