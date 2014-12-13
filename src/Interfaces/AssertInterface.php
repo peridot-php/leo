@@ -18,7 +18,7 @@ class AssertInterface
      * @var Assertion
      */
     protected $assertion;
-    
+
     /**
      * @param ResponderInterface $responder
      */

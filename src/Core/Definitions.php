@@ -12,6 +12,7 @@ use Peridot\Leo\Matcher\KeysMatcher;
 use Peridot\Leo\Matcher\LengthMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\PatternMatcher;
+use Peridot\Leo\Matcher\PredicateMatcher;
 use Peridot\Leo\Matcher\PropertyMatcher;
 use Peridot\Leo\Matcher\RangeMatcher;
 use Peridot\Leo\Matcher\SameMatcher;
@@ -212,5 +213,10 @@ return function (Assertion $assertion) {
     $assertion->addMethod('keys', function (array $keys, $message = "") {
         $this->flag('message', $message);
         return new KeysMatcher($keys);
+    });
+
+    $assertion->addMethod('satisfy', function (callable $predicate, $message = "") {
+        $this->flag('message', $message);
+        return new PredicateMatcher($predicate);
     });
 };

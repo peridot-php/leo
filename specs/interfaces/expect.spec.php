@@ -670,4 +670,26 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->satisfy()', function() {
+        it('should throw an exception if actual value does not satisfy predicate', function() {
+            expect(function() {
+                expect(1)->to->satisfy('is_string');
+            })->to->throw('Exception', "Expected 1 to satisfy \"is_string\"");
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(1)->to->satisfy('is_string', "not a string");
+            })->to->throw('Exception', "not a string");
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if actual value satisfies predicate', function() {
+                expect(function() {
+                    expect("hello")->not->to->satisfy('is_string');
+                })->to->throw('Exception', "Expected \"hello\" to not satisfy \"is_string\"");
+            });
+        });
+    });
 });
