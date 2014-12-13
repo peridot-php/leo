@@ -33,6 +33,32 @@ use Peridot\Leo\Responder\ResponderInterface;
  * @method Assertion keys() keys(array $keys, string $message = "") Asserts the actual object or array has keys equivalent to the expected keys
  * @method Assertion satisfy() satisfy(callable $predicate, string $message = "") Asserts that the actual value satisfies the expected predicate. The expected predicate will be passed the actual value and should return true or false
  *
+ * @property-read Assertion $to a language chain
+ * @property-read Assertion $be a language chain
+ * @property-read Assertion $been a language chain
+ * @property-read Assertion $is a language chain
+ * @property-read Assertion $and a language chain
+ * @property-read Assertion $has a language chain
+ * @property-read Assertion $have a language chain
+ * @property-read Assertion $with a language chain
+ * @property-read Assertion $that a language chain
+ * @property-read Assertion $at a language chain
+ * @property-read Assertion $of a language chain
+ * @property-read Assertion $same a language chain
+ * @property-read Assertion $an a language chain
+ * @property-read Assertion $a a language chain
+ * @property-read Assertion $not flags the Assertion as negated
+ * @property-read Assertion $loosely enables loose equality assertion using the ->equal() assertion
+ * @property-read Assertion $contain enables the contain flag for use with the ->keys() assertion
+ * @property-read Assertion $include enables the contain flag for use with the ->keys() assertion
+ * @property-read Assertion $ok a lazy property that performs an ->ok() assertion
+ * @property-read Assertion $true a lazy property that performs a ->true() assertion
+ * @property-read Assertion $false a lazy property that performs a ->false() assertion
+ * @property-read Assertion $null a lazy property that performs a ->null() assertion
+ * @property-read Assertion $empty a lazy property that performs an ->empty() assertion
+ * @property-read Assertion $length enables the length flag for use with countable assertions such as ->above(), ->least(), ->below(), ->most(), and ->within()
+ * @property-read Assertion $deep enables the deep flag for use with assertions that need to traverse structures like the ->property() assertion
+ *
  * @package Peridot\Leo
  */
 final class Assertion
