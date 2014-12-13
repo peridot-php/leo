@@ -63,6 +63,7 @@ describe('ObjectPath', function() {
         it('should be able to get nested values', function() {
             $name = $this->path->get('[name][first]');
             expect($name->getPropertyValue())->to->equal('brian');
+            expect($name->getPropertyName())->to->equal('first');
         });
     });
 

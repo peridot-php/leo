@@ -84,10 +84,6 @@ class KeysMatcher extends AbstractMatcher
      */
     protected function getKeyString()
     {
-        if (! $this->expected) {
-            return '';
-        }
-
         $expected = $this->expected;
         $keys = '';
         $tail = array_pop($expected);
