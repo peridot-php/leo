@@ -3,6 +3,7 @@ namespace Peridot\Leo\Interfaces;
 
 use Peridot\Leo\Assertion;
 use Peridot\Leo\DynamicObjectTrait;
+use Peridot\Leo\Leo;
 use Peridot\Leo\Responder\ResponderInterface;
 
 /**
@@ -17,18 +18,16 @@ class AssertInterface
      * @var Assertion
      */
     protected $assertion;
-
-    /**
-     * @var ResponderInterface
-     */
-    protected $responder;
-
+    
     /**
      * @param ResponderInterface $responder
      */
-    public function __construct(ResponderInterface $responder)
+    public function __construct(Assertion $assertion = null)
     {
-        $this->responder = $responder;
+        if (is_null($assertion)) {
+            $assertion = Leo::instance()->getAssertion();
+        }
+        $this->assertion = $assertion;
         include __DIR__ . '/interface.assert.php';
     }
 

@@ -5,9 +5,7 @@ use Peridot\Leo\Responder\ExceptionResponder;
 
 describe('assert', function() {
     beforeEach(function() {
-        $formatter = new Formatter();
-        $responder = new ExceptionResponder($formatter);
-        $this->assert = new AssertInterface($responder);
+        $this->assert = new AssertInterface();
     });
 
     describe('->equal()', function() {
