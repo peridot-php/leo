@@ -8,6 +8,7 @@ use Peridot\Leo\Matcher\EqualMatcher;
 use Peridot\Leo\Matcher\ExceptionMatcher;
 use Peridot\Leo\Matcher\InclusionMatcher;
 use Peridot\Leo\Matcher\InstanceofMatcher;
+use Peridot\Leo\Matcher\KeysMatcher;
 use Peridot\Leo\Matcher\LengthMatcher;
 use Peridot\Leo\Matcher\NullMatcher;
 use Peridot\Leo\Matcher\PatternMatcher;
@@ -198,5 +199,10 @@ return function (Assertion $assertion) {
     $assertion->addMethod('string', function ($expected, $message = "") {
         $this->flag('message', $message);
         return new SubStringMatcher($expected);
+    });
+
+    $assertion->addMethod('keys', function (array $keys, $message = "") {
+        $this->flag('message', $message);
+        return new KeysMatcher($keys);
     });
 };

@@ -634,4 +634,32 @@ describe('expect', function() {
             });
         });
     });
+
+    describe('->keys()', function() {
+        it('should throw an exception if all keys not found', function() {
+            expect(function() {
+                expect(['foo' => 'bar'])->to->have->keys(['foo', 'baz']);
+            })->to->throw('Exception', "Expected Array\n(\n    [foo] => bar\n) to have keys \"foo\", and \"baz\"");
+        });
+
+        it('should throw an exception if all keys not found in single key expectation', function() {
+            expect(function() {
+                expect(['foo' => 'bar'])->to->have->keys(['baz']);
+            })->to->throw('Exception', "Expected Array\n(\n    [foo] => bar\n) to have key \"baz\"");
+        });
+
+        it('should allow a user message', function() {
+            expect(function() {
+                expect(['foo' => 'bar'])->to->have->keys(['foo', 'baz'], "wrong keys");
+            })->to->throw('Exception', "wrong keys");
+        });
+
+        context('when negated', function() {
+            it('should throw an exception if key is found', function() {
+                expect(function() {
+                    expect(['foo' => 'bar'])->to->not->have->keys(['foo']);
+                })->to->throw('Exception', "Expected Array\n(\n    [foo] => bar\n) to not have key \"foo\"");
+            });
+        });
+    });
 });
