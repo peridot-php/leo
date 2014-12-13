@@ -5,10 +5,37 @@ use Peridot\Leo\Matcher\MatcherInterface;
 use Peridot\Leo\Responder\ResponderInterface;
 
 /**
- * Class Assertion
+ * Assertion is responsible for asserting it's actual value
+ * against a MatcherInterface and responding to the results of a match.
+ *
+ * @method Assertion equal() equal(mixed $expected, string $message = "") Asserts that actual and expected values are strictly equal
+ * @method Assertion with() with(array $args) Stores an array of values to be used with callable assertions
+ * @method Assertion throw() throw(string $exceptionType, string $exceptionMessage = "", $message = "") Invokes the actual value as a function and matches the exception type was thrown, and optionally matches the exception message
+ * @method Assertion a() a(string $expected, string $message = "") Asserts that the actual value given has the same type as the expected type string
+ * @method Assertion an() an(string $expected, string $message = "") Asserts that the actual value given has the same type as the expected type string
+ * @method Assertion include() include(mixed $expected, string $message = "") Asserts that the actual string or array includes the expected value
+ * @method Assertion contain() contain(mixed $expected, string $message = "") Asserts that the actual string or array includes the expected value
+ * @method Assertion ok() ok(string $message = "") Asserts that the actual value is truthy - that is true when cast to (bool)
+ * @method Assertion true() true(string $message = "") Asserts that the actual value is strictly equal to true
+ * @method Assertion false() false(string $message = "") Asserts that the actual value is strictly equal to false
+ * @method Assertion null() null(string $message = "") Asserts that the actual value is null
+ * @method Assertion empty() empty(string $message = "") Asserts that the actual value is empty
+ * @method Assertion above() above(mixed $expected, string $message = "") Asserts that the actual value is greater than the expected value
+ * @method Assertion least() least(mixed $expected, string $message = "") Asserts that the actual value is greater than or equal to the expected value
+ * @method Assertion below() below(mixed $expected, string $message = "") Asserts that the actual value is less than the expected value
+ * @method Assertion most() most(mixed $expected, string $message = "") Asserts that the actual value is less than or equal to the expected value
+ * @method Assertion within() within(int $lowerBound, int $upperBound, string $message = "") Asserts that the actual value is between the upper and lower bounds (inclusive)
+ * @method Assertion instanceof() instanceof(string $expected, string $message = "") Asserts that the actual value is an instance of the expected class string
+ * @method Assertion property() property(string $name, mixed $value = "", string $message = "") Asserts that the actual array or object has the expected property and optionally asserts the property value against an expected value
+ * @method Assertion length() length(mixed $expected, string $message = "") Asserts the actual array, string, or Countable has the expected length
+ * @method Assertion match() match(string $pattern, string $message = "") Asserts that the actual value matches the expected regular expression
+ * @method Assertion string() string(string $expected, string $message = "") Asserts that the actual string contains the expected substring
+ * @method Assertion keys() keys(array $keys, string $message = "") Asserts the actual object or array has keys equivalent to the expected keys
+ * @method Assertion satisfy() satisfy(callable $predicate, string $message = "") Asserts that the actual value satisfies the expected predicate. The expected predicate will be passed the actual value and should return true or false
+ *
  * @package Peridot\Leo
  */
-class Assertion
+final class Assertion
 {
     use DynamicObjectTrait;
 
