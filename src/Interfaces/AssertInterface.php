@@ -256,4 +256,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->not->to->be->a('object', $message);
     }
+
+    /**
+     * Perform a type assertion for type "array."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isArray($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->an('array', $message);
+    }
+
+    /**
+     * Performs a negative type assertion for type "array."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotArray($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->an('array', $message);
+    }
 }

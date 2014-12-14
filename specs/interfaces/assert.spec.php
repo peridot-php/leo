@@ -283,4 +283,32 @@ describe('assert', function() {
             }, 'Exception', 'an object');
         });
     });
+
+    describe('->isArray()', function() {
+        it('should throw an exception if actual value is not an array', function() {
+            $this->assert->throws(function() {
+                $this->assert->isArray(null);
+            }, 'Exception', 'Expected "array", got "NULL"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isArray(null, 'not an array');
+            }, 'Exception', 'not an array');
+        });
+    });
+
+    describe('->isNotArray()', function() {
+        it('should throw an exception if actual value is an array', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotArray([]);
+            }, 'Exception', 'Expected a type other than "array"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotArray([], 'an array');
+            }, 'Exception', 'an array');
+        });
+    });
 });
