@@ -241,8 +241,7 @@ class AssertInterface
      */
     public function isObject($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->a('object', $message);
+        $this->typeOf($actual, 'object', $message);
     }
 
     /**
@@ -253,8 +252,7 @@ class AssertInterface
      */
     public function isNotObject($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->not->to->be->a('object', $message);
+        $this->notTypeOf($actual, 'object', $message);
     }
 
     /**
@@ -265,8 +263,7 @@ class AssertInterface
      */
     public function isArray($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->an('array', $message);
+        $this->typeOf($actual, 'array', $message);
     }
 
     /**
@@ -277,8 +274,7 @@ class AssertInterface
      */
     public function isNotArray($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->an('array', $message);
+        $this->notTypeOf($actual, 'array', $message);
     }
 
     /**
@@ -289,8 +285,7 @@ class AssertInterface
      */
     public function isString($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->a("string", $message);
+        $this->typeOf($actual, 'string', $message);
     }
 
     /**
@@ -301,8 +296,7 @@ class AssertInterface
      */
     public function isNotString($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->a("string", $message);
+        $this->notTypeOf($actual, 'string', $message);
     }
 
     /**
@@ -339,8 +333,7 @@ class AssertInterface
      */
     public function isInteger($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->an('integer', $message);
+        $this->typeOf($actual, 'integer', $message);
     }
 
     /**
@@ -351,8 +344,7 @@ class AssertInterface
      */
     public function isNotInteger($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->an('integer', $message);
+        $this->notTypeOf($actual, 'integer', $message);
     }
 
     /**
@@ -363,8 +355,7 @@ class AssertInterface
      */
     public function isDouble($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->a('double', $message);
+        $this->typeOf($actual, 'double', $message);
     }
 
     /**
@@ -375,8 +366,7 @@ class AssertInterface
      */
     public function isNotDouble($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->a('double', $message);
+        $this->notTypeOf($actual, 'double', $message);
     }
 
     /**
@@ -387,8 +377,7 @@ class AssertInterface
      */
     public function isResource($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->a('resource', $message);
+        $this->typeOf($actual, 'resource', $message);
     }
 
     /**
@@ -399,8 +388,7 @@ class AssertInterface
      */
     public function isNotResource($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->a('resource', $message);
+        $this->notTypeOf($actual, 'resource', $message);
     }
 
     /**
@@ -411,8 +399,7 @@ class AssertInterface
      */
     public function isBoolean($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->be->a('boolean', $message);
+        $this->typeOf($actual, 'boolean', $message);
     }
 
     /**
@@ -423,7 +410,6 @@ class AssertInterface
      */
     public function isNotBoolean($actual, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->a('boolean', $message);
+        $this->notTypeOf($actual, 'boolean', $message);
     }
 }
