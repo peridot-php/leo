@@ -330,4 +330,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->not->to->satisfy('is_numeric', $message);
     }
+
+    /**
+     * Perform a type assertion for type "integer."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isInteger($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->an('integer', $message);
+    }
+
+    /**
+     * Perform a negated type assertion for type "integer."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotInteger($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->an('integer', $message);
+    }
 }

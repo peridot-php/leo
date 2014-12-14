@@ -367,4 +367,32 @@ describe('assert', function() {
             }, 'Exception', 'numeric');
         });
     });
+
+    describe('->isInteger()', function() {
+        it('should throw an exception if actual value is not an integer', function() {
+            $this->assert->throws(function() {
+                $this->assert->isInteger(4.5);
+            }, 'Exception', 'Expected "integer", got "double"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isInteger(4.5, 'not an integer');
+            }, 'Exception', 'not an integer');
+        });
+    });
+
+    describe('->isNotInteger()', function() {
+        it('should throw an exception if actual value is an integer', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotInteger(4);
+            }, 'Exception', 'Expected a type other than "integer"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotInteger(4, 'an integer');
+            }, 'Exception', 'an integer');
+        });
+    });
 });
