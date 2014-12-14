@@ -395,4 +395,32 @@ describe('assert', function() {
             }, 'Exception', 'an integer');
         });
     });
+
+    describe('->isDouble()', function() {
+        it('should throw an exception if actual value is not a double', function() {
+            $this->assert->throws(function() {
+                $this->assert->isDouble(4);
+            }, 'Exception', 'Expected "double", got "integer"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isDouble(4, 'not a double');
+            }, 'Exception', 'not a double');
+        });
+    });
+
+    describe('->isNotDouble()', function() {
+        it('should throw an exception if actual value is a double', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotDouble(4.5);
+            }, 'Exception', 'Expected a type other than "double"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotDouble(4.5, 'a double');
+            }, 'Exception', 'a double');
+        });
+    });
 });

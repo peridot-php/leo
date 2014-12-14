@@ -354,4 +354,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->an('integer', $message);
     }
+
+    /**
+     * Perform a type assertion for type "double."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isDouble($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->a('double', $message);
+    }
+
+    /**
+     * Perform a negated type assertion for type "double."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotDouble($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->a('double', $message);
+    }
 }
