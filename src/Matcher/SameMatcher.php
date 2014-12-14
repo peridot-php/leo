@@ -31,7 +31,7 @@ class SameMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{expected}} to be identical to {{actual}}',
-            'negated' => 'Expected {{expected}} to be identical to {{actual}}'
+            'negated' => 'Expected {{expected}} not to be identical to {{actual}}'
         ]);
     }
 }

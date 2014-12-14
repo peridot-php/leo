@@ -132,4 +132,30 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->ok($message);
     }
+
+    /**
+     * Perform a strict equality assertion.
+     *
+     * @param $actual
+     * @param $expected
+     * @param string $message
+     */
+    public function strictEqual($actual, $expected, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->equal($expected, $message);
+    }
+
+    /**
+     * Perform a negated strict equality assertion.
+     *
+     * @param $actual
+     * @param $expected
+     * @param string $message
+     */
+    public function notStrictEqual($actual, $expected, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->equal($expected, $message);
+    }
 }

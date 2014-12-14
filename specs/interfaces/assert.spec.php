@@ -143,4 +143,32 @@ describe('assert', function() {
             }, 'Exception', 'is ok');
         });
     });
+
+    describe('->strictEqual()', function() {
+        it('should throw an exception if actual value is not identical to expected value', function() {
+            $this->assert->throws(function() {
+                $this->assert->strictEqual("string", "other");
+            }, 'Exception', 'Expected "other" to be identical to "string"');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->strictEqual("string", "other", "not identical");
+            }, 'Exception', 'not identical');
+        });
+    });
+
+    describe('->notStrictEqual()', function() {
+        it('should throw an exception if actual value is identical to expected value', function() {
+            $this->assert->throws(function() {
+                $this->assert->notStrictEqual("string", "string");
+            }, 'Exception', 'Expected "string" not to be identical to "string"');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notStrictEqual("string", "string", "is identical");
+            }, 'Exception', 'is identical');
+        });
+    });
 });
