@@ -1,5 +1,4 @@
 <?php
-
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Leo;
 

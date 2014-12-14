@@ -9,12 +9,13 @@
         }
     ],
     "require": {
-        "peridot-php/peridot-scope": "~1.0"
+        "php":">=5.4.0"
     },
     "autoload": {
         "psr-4": {
             "Peridot\\Leo\\": "src/"
-        }
+        },
+        "files":["src/Interfaces/_interface.bdd.php"]
     },
     "require-dev": {
         "peridot-php/peridot-jumpstart": "~1.0",
