@@ -402,4 +402,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->a('resource', $message);
     }
+
+    /**
+     * Perform a type assertion for type "boolean."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isBoolean($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->a('boolean', $message);
+    }
+
+    /**
+     * Perform a negated type assertion for type "boolean."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotBoolean($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->a('boolean', $message);
+    }
 }

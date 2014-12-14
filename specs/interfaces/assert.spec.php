@@ -451,4 +451,32 @@ describe('assert', function() {
             }, 'Exception', 'a resource');
         });
     });
+
+    describe('->isBoolean()', function() {
+        it('should throw an exception if actual value is not a boolean', function() {
+            $this->assert->throws(function() {
+                $this->assert->isBoolean(null);
+            }, 'Exception', 'Expected "boolean", got "NULL"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isBoolean(null, 'not a boolean');
+            }, 'Exception', 'not a boolean');
+        });
+    });
+
+    describe('->isNotBoolean()', function() {
+        it('should throw an exception if actual value is not a boolean', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotBoolean(true);
+            }, 'Exception', 'Expected a type other than "boolean"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotBoolean(true, 'a boolean');
+            }, 'Exception', 'a boolean');
+        });
+    });
 });
