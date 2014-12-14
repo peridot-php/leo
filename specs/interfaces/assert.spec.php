@@ -255,4 +255,32 @@ describe('assert', function() {
             }, 'Exception', 'is callable');
         });
     });
+
+    describe('->isObject()', function() {
+        it('should throw an exception if actual value is not an object', function() {
+            $this->assert->throws(function() {
+                $this->assert->isObject(null);
+            }, 'Exception', 'Expected "object", got "NULL"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isObject(null, 'not an object');
+            }, 'Exception', 'not an object');
+        });
+    });
+
+    describe('->isNotObject()', function() {
+        it('should throw an exception if actual value is an object', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotObject(new stdClass());
+            }, 'Exception', 'Expected a type other than "object"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotObject(new stdClass(), 'an object');
+            }, 'Exception', 'an object');
+        });
+    });
 });

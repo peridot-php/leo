@@ -232,4 +232,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->satisfy('is_callable', $message);
     }
+
+    /**
+     * Perform a type assertion for type "object."
+     *
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function isObject($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->a('object', $message);
+    }
+
+    /**
+     * Perform a negative type assertion for type "object."
+     *
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function isNotObject($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->not->to->be->a('object', $message);
+    }
 }
