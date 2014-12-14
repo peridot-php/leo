@@ -591,4 +591,58 @@ describe('assert', function() {
             }, 'Exception', "has property");
         });
     });
+
+    describe('->deepProperty()', function() {
+        it('should throw an exception if actual does not have deep property', function() {
+            $expected  = "Expected stdClass Object\n(\n";
+            $expected .= "    [name] => stdClass Object\n        (\n";
+            $expected .= "            [first] => brian\n        )\n\n";
+            $expected .= ") to have a deep property \"name->last\"";
+
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepProperty($obj, 'name->last');
+
+            }, 'Exception', $expected);
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepProperty($obj, 'name->last', 'no deep property');
+
+            }, 'Exception', "no deep property");
+        });
+    });
+
+    describe('->notDeepProperty()', function() {
+        it('should throw an exception if actual does have deep property', function() {
+            $expected  = "Expected stdClass Object\n(\n";
+            $expected .= "    [name] => stdClass Object\n        (\n";
+            $expected .= "            [first] => brian\n        )\n\n";
+            $expected .= ") to not have a deep property \"name->first\"";
+
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->notDeepProperty($obj, 'name->first');
+
+            }, 'Exception', $expected);
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->notDeepProperty($obj, 'name->first', 'deep property');
+
+            }, 'Exception', "deep property");
+        });
+    });
 });
