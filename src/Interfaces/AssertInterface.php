@@ -108,4 +108,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->a($expected, $message);
     }
+
+    /**
+     * Perform an ok assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function ok($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->ok($message);
+    }
+
+    /**
+     * Perform a negated assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function notOk($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->ok($message);
+    }
 }

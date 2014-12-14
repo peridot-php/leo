@@ -115,4 +115,32 @@ describe('assert', function() {
             }, 'Exception', 'same type');
         });
     });
+
+    describe('->ok()', function() {
+        it('should throw an exception if actual value is not truthy', function() {
+            $this->assert->throws(function() {
+                $this->assert->ok(false);
+            }, 'Exception', 'Expected false to be truthy');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->ok(false, 'not ok');
+            }, 'Exception', 'not ok');
+        });
+    });
+
+    describe('->notOk()', function() {
+        it('should throw an exception if actual value is truthy', function() {
+            $this->assert->throws(function() {
+                $this->assert->notOk(true);
+            }, 'Exception', 'Expected true to be falsy');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notOk(true, 'is ok');
+            }, 'Exception', 'is ok');
+        });
+    });
 });
