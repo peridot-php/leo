@@ -1,11 +1,9 @@
 <?php
-use Peridot\Leo\Formatter\Formatter;
-use Peridot\Leo\Interfaces\AssertInterface;
-use Peridot\Leo\Responder\ExceptionResponder;
+use Peridot\Leo\Interfaces\Assert;
 
 describe('assert', function() {
     beforeEach(function() {
-        $this->assert = new AssertInterface();
+        $this->assert = new Assert();
     });
 
     describe('->equal()', function() {

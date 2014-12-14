@@ -6,7 +6,7 @@ use Peridot\Leo\Leo;
 use Peridot\Leo\Responder\ResponderInterface;
 
 /**
- * AssertInterface is a non-chainable, object oriented interface
+ * Assert is a non-chainable, object oriented interface
  * on top of a Leo Assertion.
  *
  * @method instanceOf() instanceOf(object $actual, string $expected, string $message = "") Perform an instanceof assertion.
@@ -14,7 +14,7 @@ use Peridot\Leo\Responder\ResponderInterface;
  *
  * @package Peridot\Leo\Interfaces
  */
-class AssertInterface
+class Assert
 {
     /**
      * An array of operators mapping to assertions.
