@@ -645,4 +645,32 @@ describe('assert', function() {
             }, 'Exception', "deep property");
         });
     });
+
+    describe('->propertyVal()', function() {
+        it('should throw an exception if actual does not have property value', function() {
+            $this->assert->throws(function() {
+                $this->assert->propertyVal(['name' => 'brian'], 'name', 'jennie');
+            }, 'Exception', "Expected Array\n(\n    [name] => brian\n) to have a property \"name\" of \"jennie\", but got \"brian\"");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->propertyVal(['name' => 'brian'], 'name', 'jennie', 'wrong value');
+            }, 'Exception', "wrong value");
+        });
+    });
+
+    describe('->propertyNotVal()', function() {
+        it('should throw an exception if actual does have property value', function() {
+            $this->assert->throws(function() {
+                $this->assert->propertyNotVal(['name' => 'brian'], 'name', 'brian');
+            }, 'Exception', "Expected Array\n(\n    [name] => brian\n) to not have a property \"name\" of \"brian\"");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->propertyNotVal(['name' => 'brian'], 'name', 'brian', 'right value');
+            }, 'Exception', "right value");
+        });
+    });
 });

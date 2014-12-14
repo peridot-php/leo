@@ -547,6 +547,34 @@ class AssertInterface
     }
 
     /**
+     * Perform a property value assertion.
+     *
+     * @param $actual
+     * @param $property
+     * @param $value
+     * @param string $message
+     */
+    public function propertyVal($actual, $property, $value, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->have->property($property, $value, $message);
+    }
+
+    /**
+     * Perform a negated property value assertion.
+     *
+     * @param $actual
+     * @param $property
+     * @param $value
+     * @param string $message
+     */
+    public function propertyNotVal($actual, $property, $value, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->have->property($property, $value, $message);
+    }
+
+    /**
      * Defined to allow use of reserved words for methods.
      *
      * @param $method
