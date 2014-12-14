@@ -304,4 +304,30 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->a("string", $message);
     }
+
+    /**
+     * Performs a predicate assertion to check if actual
+     * value is numeric.
+     *
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function isNumeric($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->satisfy('is_numeric', $message);
+    }
+
+    /**
+     * Performs a negated predicate assertion to check if actual
+     * value is numeric.
+     *
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function isNotNumeric($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->not->to->satisfy('is_numeric', $message);
+    }
 }

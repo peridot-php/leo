@@ -339,4 +339,32 @@ describe('assert', function() {
             }, 'Exception', 'a string');
         });
     });
+
+    describe('->isNumeric()', function() {
+        it('should throw an exception if actual value is not numeric', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNumeric('hello');
+            }, 'Exception', 'Expected "hello" to satisfy "is_numeric"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNumeric('hello', 'not numeric');
+            }, 'Exception', 'not numeric');
+        });
+    });
+
+    describe('->isNotNumeric()', function() {
+        it('should throw an exception if actual value is numeric', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotNumeric('5');
+            }, 'Exception', 'Expected "5" to not satisfy "is_numeric"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotNumeric('5', 'numeric');
+            }, 'Exception', 'numeric');
+        });
+    });
 });
