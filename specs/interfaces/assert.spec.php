@@ -535,4 +535,32 @@ describe('assert', function() {
             }, 'Exception', "included");
         });
     });
+
+    describe('->match()', function() {
+        it('should throw an exception if actual value does not match pattern', function() {
+            $this->assert->throws(function() {
+                $this->assert->match("hello", '/^bye/');
+            }, 'Exception', 'Expected "hello" to match "/^bye/"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->match("hello", '/^bye/', 'no match');
+            }, 'Exception', 'no match');
+        });
+    });
+
+    describe('->notMatch()', function() {
+        it('should throw an exception if actual value does match pattern', function() {
+            $this->assert->throws(function() {
+                $this->assert->notMatch("hello", '/^he/');
+            }, 'Exception', 'Expected "hello" not to match "/^he/"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notMatch("hello", '/^he/', 'a match');
+            }, 'Exception', 'a match');
+        });
+    });
 });

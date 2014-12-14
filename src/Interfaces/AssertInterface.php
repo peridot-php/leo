@@ -469,6 +469,32 @@ class AssertInterface
     }
 
     /**
+     * Perform a pattern assertion.
+     *
+     * @param $actual
+     * @param $pattern
+     * @param string $message
+     */
+    public function match($actual, $pattern, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->match($pattern, $message);
+    }
+
+    /**
+     * Perform a negated pattern assertion.
+     *
+     * @param $actual
+     * @param $pattern
+     * @param string $message
+     */
+    public function notMatch($actual, $pattern, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->match($pattern, $message);
+    }
+
+    /**
      * Defined to allow use of reserved words for methods.
      *
      * @param $method
