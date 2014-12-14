@@ -603,6 +603,19 @@ class AssertInterface
     }
 
     /**
+     * Perform a length assertion.
+     *
+     * @param $actual
+     * @param $length
+     * @param string $message
+     */
+    public function lengthOf($actual, $length, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->have->length($length, $message);
+    }
+
+    /**
      * Defined to allow use of reserved words for methods.
      *
      * @param $method

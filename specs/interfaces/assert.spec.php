@@ -727,4 +727,18 @@ describe('assert', function() {
             }, 'Exception', "right val");
         });
     });
+
+    describe('->lengthOf()', function() {
+        it('should throw an exception if countable does not have expected length', function() {
+            $this->assert->throws(function() {
+                $this->assert->lengthOf([1], 2);
+            }, 'Exception', "Expected Array\n(\n    [0] => 1\n) to have a length of 2 but got 1");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->lengthOf([1], 2, 'wrong length');
+            }, 'Exception', "wrong length");
+        });
+    });
 });
