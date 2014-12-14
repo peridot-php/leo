@@ -9,6 +9,9 @@ use Peridot\Leo\Responder\ResponderInterface;
  * AssertInterface is a non-chainable, object oriented interface
  * on top of a Leo Assertion.
  *
+ * @method instanceOf() instanceOf(object $actual, string $expected, string $message = "") Perform an instanceof assertion.
+ * @method include() include(array $haystack, string $expected, string $message = "") Perform an inclusion assertion.
+ *
  * @package Peridot\Leo\Interfaces
  */
 class AssertInterface
@@ -411,5 +414,77 @@ class AssertInterface
     public function isNotBoolean($actual, $message = "")
     {
         $this->notTypeOf($actual, 'boolean', $message);
+    }
+
+    /**
+     * Perform an instanceof assertion.
+     *
+     * @param $actual
+     * @param $expected
+     * @param string $message
+     */
+    public function isInstanceOf($actual, $expected, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->is->instanceof($expected, $message);
+    }
+
+    /**
+     * Perform a negated instanceof assertion.
+     *
+     * @param $actual
+     * @param $expected
+     * @param string $message
+     */
+    public function notInstanceOf($actual, $expected, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->is->not->instanceof($expected, $message);
+    }
+
+    /**
+     * Perform an inclusion assertion.
+     *
+     * @param $haystack
+     * @param $needle
+     * @param string $message
+     */
+    public function isIncluded($haystack, $needle, $message = "")
+    {
+        $this->assertion->setActual($haystack);
+        $this->assertion->to->include($needle, $message);
+    }
+
+    /**
+     * Perform a negated inclusion assertion.
+     *
+     * @param $haystack
+     * @param $needle
+     * @param string $message
+     */
+    public function notInclude($haystack, $needle, $message = "")
+    {
+        $this->assertion->setActual($haystack);
+        $this->assertion->to->not->include($needle, $message);
+    }
+
+    /**
+     * Defined to allow use of reserved words for methods.
+     *
+     * @param $method
+     * @param $args
+     */
+    public function __call($method, $args)
+    {
+        switch ($method) {
+            case 'instanceOf':
+                call_user_func_array([$this, 'isInstanceOf'], $args);
+                break;
+            case 'include':
+                call_user_func_array([$this, 'isIncluded'], $args);
+                break;
+            default:
+                throw new \BadMethodCallException("Call to undefined method $method");
+        }
     }
 }

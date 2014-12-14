@@ -479,4 +479,60 @@ describe('assert', function() {
             }, 'Exception', 'a boolean');
         });
     });
+
+    describe('->instanceOf()', function() {
+        it('should throw an exception if actual value is not the expected instance', function() {
+            $this->assert->throws(function() {
+                $this->assert->instanceOf('string', 'stdClass');
+            }, 'Exception', 'Expected "string" to be instance of "stdClass"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->instanceOf('string', 'stdClass', 'wrong instance');
+            }, 'Exception', 'wrong instance');
+        });
+    });
+
+    describe('->notInstanceOf()', function() {
+        it('should throw an exception if actual value is the expected instance', function() {
+            $this->assert->throws(function() {
+                $this->assert->notInstanceOf(new stdClass(), 'stdClass');
+            }, 'Exception', "Expected stdClass Object\n(\n) to not be an instance of \"stdClass\"");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notInstanceOf(new stdClass(), 'stdClass', 'correct instance');
+            }, 'Exception', 'correct instance');
+        });
+    });
+
+    describe('->include()', function() {
+        it('should throw an exception if needle is not in haystack', function() {
+            $this->assert->throws(function() {
+                $this->assert->include([1, 2], 3);
+            }, 'Exception', "Expected Array\n(\n    [0] => 1\n    [1] => 2\n) to include 3");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->include([1, 2], 3, "not included");
+            }, 'Exception', 'not included');
+        });
+    });
+
+    describe('->notInclude()', function() {
+        it('should throw an exception if needle is in haystack', function() {
+            $this->assert->throws(function() {
+                $this->assert->notInclude([1, 2], 2);
+            }, 'Exception', "Expected Array\n(\n    [0] => 1\n    [1] => 2\n) to not include 2");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notInclude([1, 2], 2, 'included');
+            }, 'Exception', "included");
+        });
+    });
 });
