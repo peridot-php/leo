@@ -206,4 +206,30 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->null($message);
     }
+
+    /**
+     * Performs a predicate assertion to check if actual
+     * value is callable.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isCallable($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->satisfy('is_callable', $message);
+    }
+
+    /**
+     * Performs a negated predicate assertion to check if actual
+     * value is not a callable.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotCallable($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->satisfy('is_callable', $message);
+    }
 }

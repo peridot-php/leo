@@ -227,4 +227,32 @@ describe('assert', function() {
             }, 'Exception', 'is null');
         });
     });
+
+    describe('->isCallable()', function() {
+        it('should throw an exception if actual value is not callable', function() {
+            $this->assert->throws(function() {
+                $this->assert->isCallable('ham');
+            }, 'Exception', 'Expected "ham" to satisfy "is_callable"');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isCallable('ham', 'not callable');
+            }, 'Exception', 'not callable');
+        });
+    });
+
+    describe('->isNotCallable()', function() {
+        it('should throw an exception if actual value is callable', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotCallable('is_string');
+            }, 'Exception', 'Expected "is_string" to not satisfy "is_callable"');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotCallable('is_string', 'is callable');
+            }, 'Exception', 'is callable');
+        });
+    });
 });
