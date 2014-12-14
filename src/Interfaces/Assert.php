@@ -1,6 +1,7 @@
 <?php
 namespace Peridot\Leo\Interfaces;
 
+use Countable;
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Leo;
 use Peridot\Leo\Responder\ResponderInterface;
@@ -51,8 +52,8 @@ class Assert
     /**
      * Perform an a loose equality assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param mixed $expected
      * @param string $message
      */
     public function equal($actual, $expected, $message = "")
@@ -64,8 +65,8 @@ class Assert
     /**
      * Perform a negated loose equality assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param mixed $expected
      * @param string $message
      */
     public function notEqual($actual, $expected, $message = "")
@@ -131,32 +132,32 @@ class Assert
     /**
      * Perform an ok assertion.
      *
-     * @param $actual
+     * @param mixed $object
      * @param string $message
      */
-    public function ok($actual, $message = "")
+    public function ok($object, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->be->ok($message);
     }
 
     /**
      * Perform a negated assertion.
      *
-     * @param $actual
+     * @param mixed $object
      * @param string $message
      */
-    public function notOk($actual, $message = "")
+    public function notOk($object, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->not->be->ok($message);
     }
 
     /**
      * Perform a strict equality assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param mixed $expected
      * @param string $message
      */
     public function strictEqual($actual, $expected, $message = "")
@@ -168,8 +169,8 @@ class Assert
     /**
      * Perform a negated strict equality assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param mixed $expected
      * @param string $message
      */
     public function notStrictEqual($actual, $expected, $message = "")
@@ -181,48 +182,48 @@ class Assert
     /**
      * Perform a true assertion.
      *
-     * @param $actual
+     * @param mixed $actual
      * @param string $message
      */
-    public function isTrue($actual, $message = "")
+    public function isTrue($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->be->true($message);
     }
 
     /**
      * Perform a false assertion.
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isFalse($actual, $message = "")
+    public function isFalse($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->be->false($message);
     }
 
     /**
      * Perform a null assertion.
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNull($actual, $message = "")
+    public function isNull($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->be->null($message);
     }
 
     /**
      * Perform a negated null assertion.
      *
-     * @param $actual
+     * @param mixed $actual
      * @param string $message
      */
-    public function isNotNull($actual, $message = "")
+    public function isNotNull($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->not->be->null($message);
     }
 
@@ -230,12 +231,12 @@ class Assert
      * Performs a predicate assertion to check if actual
      * value is callable.
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isCallable($actual, $message = "")
+    public function isCallable($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->satisfy('is_callable', $message);
     }
 
@@ -243,91 +244,91 @@ class Assert
      * Performs a negated predicate assertion to check if actual
      * value is not a callable.
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotCallable($actual, $message = "")
+    public function isNotCallable($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->not->satisfy('is_callable', $message);
     }
 
     /**
      * Perform a type assertion for type "object."
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isObject($actual, $message = "")
+    public function isObject($value, $message = "")
     {
-        $this->typeOf($actual, 'object', $message);
+        $this->typeOf($value, 'object', $message);
     }
 
     /**
      * Perform a negative type assertion for type "object."
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotObject($actual, $message = "")
+    public function isNotObject($value, $message = "")
     {
-        $this->notTypeOf($actual, 'object', $message);
+        $this->notTypeOf($value, 'object', $message);
     }
 
     /**
      * Perform a type assertion for type "array."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isArray($actual, $message = "")
+    public function isArray($value, $message = "")
     {
-        $this->typeOf($actual, 'array', $message);
+        $this->typeOf($value, 'array', $message);
     }
 
     /**
      * Performs a negative type assertion for type "array."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotArray($actual, $message = "")
+    public function isNotArray($value, $message = "")
     {
-        $this->notTypeOf($actual, 'array', $message);
+        $this->notTypeOf($value, 'array', $message);
     }
 
     /**
      * Perform a type assertion for type "string."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isString($actual, $message = "")
+    public function isString($value, $message = "")
     {
-        $this->typeOf($actual, 'string', $message);
+        $this->typeOf($value, 'string', $message);
     }
 
     /**
      * Perform a negated type assertion for type "string."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotString($actual, $message = "")
+    public function isNotString($value, $message = "")
     {
-        $this->notTypeOf($actual, 'string', $message);
+        $this->notTypeOf($value, 'string', $message);
     }
 
     /**
      * Performs a predicate assertion to check if actual
      * value is numeric.
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNumeric($actual, $message = "")
+    public function isNumeric($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->satisfy('is_numeric', $message);
     }
 
@@ -335,134 +336,134 @@ class Assert
      * Performs a negated predicate assertion to check if actual
      * value is numeric.
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotNumeric($actual, $message = "")
+    public function isNotNumeric($value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->not->to->satisfy('is_numeric', $message);
     }
 
     /**
      * Perform a type assertion for type "integer."
      *
-     * @param $actual
+     * @param $value
      * @param string $message
      */
-    public function isInteger($actual, $message = "")
+    public function isInteger($value, $message = "")
     {
-        $this->typeOf($actual, 'integer', $message);
+        $this->typeOf($value, 'integer', $message);
     }
 
     /**
      * Perform a negated type assertion for type "integer."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotInteger($actual, $message = "")
+    public function isNotInteger($value, $message = "")
     {
-        $this->notTypeOf($actual, 'integer', $message);
+        $this->notTypeOf($value, 'integer', $message);
     }
 
     /**
      * Perform a type assertion for type "double."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isDouble($actual, $message = "")
+    public function isDouble($value, $message = "")
     {
-        $this->typeOf($actual, 'double', $message);
+        $this->typeOf($value, 'double', $message);
     }
 
     /**
      * Perform a negated type assertion for type "double."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotDouble($actual, $message = "")
+    public function isNotDouble($value, $message = "")
     {
-        $this->notTypeOf($actual, 'double', $message);
+        $this->notTypeOf($value, 'double', $message);
     }
 
     /**
      * Perform a type assertion for type "resource."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isResource($actual, $message = "")
+    public function isResource($value, $message = "")
     {
-        $this->typeOf($actual, 'resource', $message);
+        $this->typeOf($value, 'resource', $message);
     }
 
     /**
      * Perform a negated type assertion for type "resource."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotResource($actual, $message = "")
+    public function isNotResource($value, $message = "")
     {
-        $this->notTypeOf($actual, 'resource', $message);
+        $this->notTypeOf($value, 'resource', $message);
     }
 
     /**
      * Perform a type assertion for type "boolean."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isBoolean($actual, $message = "")
+    public function isBoolean($value, $message = "")
     {
-        $this->typeOf($actual, 'boolean', $message);
+        $this->typeOf($value, 'boolean', $message);
     }
 
     /**
      * Perform a negated type assertion for type "boolean."
      *
-     * @param $actual
+     * @param mixed $value
      * @param string $message
      */
-    public function isNotBoolean($actual, $message = "")
+    public function isNotBoolean($value, $message = "")
     {
-        $this->notTypeOf($actual, 'boolean', $message);
+        $this->notTypeOf($value, 'boolean', $message);
     }
 
     /**
      * Perform an instanceof assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param object $object
+     * @param string $class
      * @param string $message
      */
-    public function isInstanceOf($actual, $expected, $message = "")
+    public function isInstanceOf($object, $class, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->is->instanceof($expected, $message);
+        $this->assertion->setActual($object);
+        $this->assertion->is->instanceof($class, $message);
     }
 
     /**
      * Perform a negated instanceof assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param object $object
+     * @param string $class
      * @param string $message
      */
-    public function notInstanceOf($actual, $expected, $message = "")
+    public function notInstanceOf($object, $class, $message = "")
     {
-        $this->assertion->setActual($actual);
-        $this->assertion->is->not->instanceof($expected, $message);
+        $this->assertion->setActual($object);
+        $this->assertion->is->not->instanceof($class, $message);
     }
 
     /**
      * Perform an inclusion assertion.
      *
-     * @param $haystack
-     * @param $needle
+     * @param array|string $haystack
+     * @param mixed $needle
      * @param string $message
      */
     public function isIncluded($haystack, $needle, $message = "")
@@ -474,8 +475,8 @@ class Assert
     /**
      * Perform a negated inclusion assertion.
      *
-     * @param $haystack
-     * @param $needle
+     * @param array|string $haystack
+     * @param mixed $needle
      * @param string $message
      */
     public function notInclude($haystack, $needle, $message = "")
@@ -487,134 +488,134 @@ class Assert
     /**
      * Perform a pattern assertion.
      *
-     * @param $actual
-     * @param $pattern
+     * @param string $value
+     * @param string $pattern
      * @param string $message
      */
-    public function match($actual, $pattern, $message = "")
+    public function match($value, $pattern, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->match($pattern, $message);
     }
 
     /**
      * Perform a negated pattern assertion.
      *
-     * @param $actual
-     * @param $pattern
+     * @param string $value
+     * @param string $pattern
      * @param string $message
      */
-    public function notMatch($actual, $pattern, $message = "")
+    public function notMatch($value, $pattern, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($value);
         $this->assertion->to->not->match($pattern, $message);
     }
 
     /**
      * Perform a property assertion.
      *
-     * @param $actual
-     * @param $property
+     * @param array|object $actual
+     * @param string $property
      * @param string $message
      */
-    public function property($actual, $property, $message = "")
+    public function property($object, $property, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->have->property($property, null, $message);
     }
 
     /**
      * Perform a negated property assertion.
      *
-     * @param $actual
-     * @param $property
+     * @param array|object $actual
+     * @param string $property
      * @param string $message
      */
-    public function notProperty($actual, $property, $message = "")
+    public function notProperty($object, $property, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->not->have->property($property, null, $message);
     }
 
     /**
      * Perform a deep property assertion.
      *
-     * @param $actual
-     * @param $property
+     * @param array|object $object
+     * @param string $property
      * @param string $message
      */
-    public function deepProperty($actual, $property, $message = "")
+    public function deepProperty($object, $property, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->have->deep->property($property, null, $message);
     }
 
     /**
      * Perform a negated deep property assertion.
      *
-     * @param $actual
-     * @param $property
+     * @param array|object $actual
+     * @param string $property
      * @param string $message
      */
-    public function notDeepProperty($actual, $property, $message = "")
+    public function notDeepProperty($object, $property, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->not->have->deep->property($property, null, $message);
     }
 
     /**
      * Perform a property value assertion.
      *
-     * @param $actual
-     * @param $property
-     * @param $value
+     * @param array|object $object
+     * @param string $property
+     * @param mixed $value
      * @param string $message
      */
-    public function propertyVal($actual, $property, $value, $message = "")
+    public function propertyVal($object, $property, $value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->have->property($property, $value, $message);
     }
 
     /**
      * Perform a negated property value assertion.
      *
-     * @param $actual
-     * @param $property
-     * @param $value
+     * @param array|object $object
+     * @param string $property
+     * @param mixed $value
      * @param string $message
      */
-    public function propertyNotVal($actual, $property, $value, $message = "")
+    public function propertyNotVal($object, $property, $value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->not->have->property($property, $value, $message);
     }
 
     /**
      * Perform a deep property value assertion.
      *
-     * @param $actual
-     * @param $property
-     * @param $value
+     * @param array|object $object
+     * @param string $property
+     * @param mixed $value
      * @param string $message
      */
-    public function deepPropertyVal($actual, $property, $value, $message = "")
+    public function deepPropertyVal($object, $property, $value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->have->deep->property($property, $value, $message);
     }
 
     /**
      * Perform a negated deep property value assertion.
      *
-     * @param $actual
-     * @param $property
-     * @param $value
+     * @param array|object $object
+     * @param string $property
+     * @param mixed $value
      * @param string $message
      */
-    public function deepPropertyNotVal($actual, $property, $value, $message = "")
+    public function deepPropertyNotVal($object, $property, $value, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($object);
         $this->assertion->to->not->have->deep->property($property, $value, $message);
     }
 
@@ -638,13 +639,13 @@ class Assert
     /**
      * Perform a length assertion.
      *
-     * @param $actual
+     * @param string|array|Countable $countable
      * @param $length
      * @param string $message
      */
-    public function lengthOf($actual, $length, $message = "")
+    public function lengthOf($countable, $length, $message = "")
     {
-        $this->assertion->setActual($actual);
+        $this->assertion->setActual($countable);
         $this->assertion->to->have->length($length, $message);
     }
 
