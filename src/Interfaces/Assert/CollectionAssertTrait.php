@@ -3,6 +3,12 @@ namespace Peridot\Leo\Interfaces\Assert;
 
 use Countable;
 
+/**
+ * CollectionAssertTrait contains assertions that primarily
+ * deal with collections and countable values.
+ *
+ * @package Peridot\Leo\Interfaces\Assert
+ */
 trait CollectionAssertTrait
 {
     /**
@@ -43,4 +49,4 @@ trait CollectionAssertTrait
         $this->assertion->setActual($haystack);
         $this->assertion->to->not->include($needle, $message);
     }
-} 
+}

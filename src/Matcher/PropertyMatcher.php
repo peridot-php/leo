@@ -4,6 +4,7 @@ namespace Peridot\Leo\Matcher;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 use Peridot\Leo\Utility\ObjectPath;
+use Peridot\Leo\Utility\ObjectPathValue;
 
 /**
  * PropertyMatcher determines if the actual array or object has the expected property, and optionally matches
@@ -238,9 +239,8 @@ class PropertyMatcher extends AbstractMatcher
     {
         $path = new ObjectPath($actual);
         $value = $path->get($this->getKey());
-        $isNegatedPropertyMatch = $value && $this->isNegated() && !$value->getPropertyValue();
 
-        if ($isNegatedPropertyMatch) {
+        if ($this->isNegatedPropertyMatch($value)) {
             return true;
         }
 
@@ -251,6 +251,22 @@ class PropertyMatcher extends AbstractMatcher
         $this->assertion->setActual($value->getPropertyValue());
 
         return $this->isExpected($value->getPropertyValue());
+    }
+
+    /**
+     * Determine if the match is a negated property match, that
+     * is the match is only considering the property without a value.
+     *
+     * @param ObjectPathValue $value
+     * @return bool
+     */
+    protected function isNegatedPropertyMatch(ObjectPathValue $value = null)
+    {
+        if (is_null($value)) {
+            return false;
+        }
+
+        return $this->isNegated() && !$value->getPropertyValue();
     }
 
     /**

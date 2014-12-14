@@ -1,6 +1,12 @@
 <?php
 namespace Peridot\Leo\Interfaces\Assert;
 
+/**
+ * ObjectAssertTrait contains assertions that deal
+ * primarily with objects.
+ *
+ * @package Peridot\Leo\Interfaces\Assert
+ */
 trait ObjectAssertTrait
 {
     /**
@@ -136,4 +142,4 @@ trait ObjectAssertTrait
         $this->assertion->setActual($object);
         $this->assertion->to->not->have->deep->property($property, $value, $message);
     }
-} 
+}

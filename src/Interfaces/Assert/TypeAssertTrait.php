@@ -1,6 +1,12 @@
 <?php
 namespace Peridot\Leo\Interfaces\Assert;
 
+/**
+ * TypeAssertTrait contains assertions that primarily deal
+ * with making assertions about a value's type.
+ *
+ * @package Peridot\Leo\Interfaces\Assert
+ */
 trait TypeAssertTrait
 {
     /**
