@@ -423,4 +423,32 @@ describe('assert', function() {
             }, 'Exception', 'a double');
         });
     });
+
+    describe('->isResource()', function() {
+        it('should throw an exception if actual value is not a resource', function() {
+            $this->assert->throws(function() {
+                $this->assert->isResource(null);
+            }, 'Exception', 'Expected "resource", got "NULL"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isResource(null, 'not a resource');
+            }, 'Exception', 'not a resource');
+        });
+    });
+
+    describe('->isNotResource()', function() {
+        it('should throw an exception if actual value is a resource', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotResource(tmpfile());
+            }, 'Exception', 'Expected a type other than "resource"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotResource(tmpfile(), 'a resource');
+            }, 'Exception', 'a resource');
+        });
+    });
 });

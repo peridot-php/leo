@@ -378,4 +378,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->a('double', $message);
     }
+
+    /**
+     * Perform a type assertion for type "resource."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isResource($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->a('resource', $message);
+    }
+
+    /**
+     * Perform a negated type assertion for type "resource."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotResource($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->a('resource', $message);
+    }
 }
