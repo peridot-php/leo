@@ -280,4 +280,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->be->an('array', $message);
     }
+
+    /**
+     * Perform a type assertion for type "string."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isString($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->a("string", $message);
+    }
+
+    /**
+     * Perform a negated type assertion for type "string."
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotString($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->a("string", $message);
+    }
 }

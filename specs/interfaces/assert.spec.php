@@ -311,4 +311,32 @@ describe('assert', function() {
             }, 'Exception', 'an array');
         });
     });
+
+    describe('->isString()', function() {
+        it('should throw an exception if actual value is not a string', function() {
+            $this->assert->throws(function() {
+                $this->assert->isString(5);
+            }, 'Exception', 'Expected "string", got "integer"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isString(5, 'not a string');
+            }, 'Exception', 'not a string');
+        });
+    });
+
+    describe('->isNotString()', function() {
+        it('should throw an exception if actual value is a string', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotString("hello");
+            }, 'Exception', 'Expected a type other than "string"');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotString('hello', 'a string');
+            }, 'Exception', 'a string');
+        });
+    });
 });
