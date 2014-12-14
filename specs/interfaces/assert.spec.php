@@ -563,4 +563,32 @@ describe('assert', function() {
             }, 'Exception', 'a match');
         });
     });
+
+    describe('->property()', function() {
+        it('should throw an exception if actual does not have property', function() {
+            $this->assert->throws(function() {
+                $this->assert->property(['name' => 'brian'], 'profession');
+            }, 'Exception', "Expected Array\n(\n    [name] => brian\n) to have a property \"profession\"");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->property(['name' => 'brian'], 'profession', 'no property');
+            }, 'Exception', "no property");
+        });
+    });
+
+    describe('->notProperty()', function() {
+        it('should throw an exception if actual does have property', function() {
+            $this->assert->throws(function() {
+                $this->assert->notProperty(['name' => 'brian'], 'name');
+            }, 'Exception', "Expected Array\n(\n    [name] => brian\n) to not have a property \"name\"");
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->notProperty(['name' => 'brian'], 'name', 'has property');
+            }, 'Exception', "has property");
+        });
+    });
 });
