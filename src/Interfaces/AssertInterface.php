@@ -17,6 +17,22 @@ use Peridot\Leo\Responder\ResponderInterface;
 class AssertInterface
 {
     /**
+     * An array of operators mapping to assertions.
+     *
+     * @var array
+     */
+    public static $operators = [
+        '==' => 'loosely->equal',
+        '===' => 'equal',
+        '>' => 'above',
+        '>=' => 'least',
+        '<' => 'below',
+        '<=' => 'most',
+        '!=' => 'not->loosely->equal',
+        '!==' => 'not->equal'
+    ];
+
+    /**
      * @var Assertion
      */
     protected $assertion;
@@ -600,6 +616,23 @@ class AssertInterface
     {
         $this->assertion->setActual($actual);
         $this->assertion->to->not->have->deep->property($property, $value, $message);
+    }
+
+    /**
+     * Compare two values using the given operator.
+     *
+     * @param mixed $left
+     * @param string $operator
+     * @param mixed $right
+     * @param string $message
+     */
+    public function operator($left, $operator, $right, $message = "")
+    {
+        if (!isset(static::$operators[$operator])) {
+            throw new \InvalidArgumentException("Invalid operator $operator");
+        }
+        $this->assertion->setActual($left);
+        $this->assertion->{static::$operators[$operator]}($right, $message);
     }
 
     /**

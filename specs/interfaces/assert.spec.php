@@ -741,4 +741,24 @@ describe('assert', function() {
             }, 'Exception', "wrong length");
         });
     });
+
+    describe('->operator()', function() {
+        it('should throw an exception if an invalid operator is given', function() {
+            $this->assert->throws(function() {
+                $this->assert->operator(1, 'BOOOM', 2);
+            }, 'InvalidArgumentException', 'Invalid operator BOOOM');
+        });
+
+        it('should dynamically call the assertion identified by the operator', function() {
+            $this->assert->throws(function() {
+                $this->assert->operator(1, '>', 2);
+            }, 'Exception', 'Expected 1 to be above 2');
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->operator(3, '<', 2, 'too much');
+            }, 'Exception', 'too much');
+        });
+    });
 });
