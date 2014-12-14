@@ -575,6 +575,34 @@ class AssertInterface
     }
 
     /**
+     * Perform a deep property value assertion.
+     *
+     * @param $actual
+     * @param $property
+     * @param $value
+     * @param string $message
+     */
+    public function deepPropertyVal($actual, $property, $value, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->have->deep->property($property, $value, $message);
+    }
+
+    /**
+     * Perform a negated deep property value assertion.
+     *
+     * @param $actual
+     * @param $property
+     * @param $value
+     * @param string $message
+     */
+    public function deepPropertyNotVal($actual, $property, $value, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->have->deep->property($property, $value, $message);
+    }
+
+    /**
      * Defined to allow use of reserved words for methods.
      *
      * @param $method

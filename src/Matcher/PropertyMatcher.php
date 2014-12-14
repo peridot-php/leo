@@ -238,8 +238,9 @@ class PropertyMatcher extends AbstractMatcher
     {
         $path = new ObjectPath($actual);
         $value = $path->get($this->getKey());
+        $isNegatedPropertyMatch = $value && $this->isNegated() && !$value->getPropertyValue();
 
-        if ($value && $this->isNegated()) {
+        if ($isNegatedPropertyMatch) {
             return true;
         }
 

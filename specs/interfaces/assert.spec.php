@@ -673,4 +673,58 @@ describe('assert', function() {
             }, 'Exception', "right value");
         });
     });
+
+    describe('->deepPropertyVal()', function() {
+        it('should throw an exception if actual does not have deep property value', function() {
+            $expected  = "Expected stdClass Object\n(\n";
+            $expected .= "    [name] => stdClass Object\n        (\n";
+            $expected .= "            [first] => brian\n        )\n\n";
+            $expected .= ") to have a deep property \"name->first\" of \"jennie\", but got \"brian\"";
+
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepPropertyVal($obj, 'name->first', 'jennie');
+
+            }, 'Exception', $expected);
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepPropertyVal($obj, 'name->first', 'jennie', 'wrong val');
+
+            }, 'Exception', "wrong val");
+        });
+    });
+
+    describe('->deepPropertyNotVal()', function() {
+        it('should throw an exception if actual does have deep property value', function() {
+            $expected  = "Expected stdClass Object\n(\n";
+            $expected .= "    [name] => stdClass Object\n        (\n";
+            $expected .= "            [first] => brian\n        )\n\n";
+            $expected .= ") to not have a deep property \"name->first\" of \"brian\"";
+
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepPropertyNotVal($obj, 'name->first', 'brian');
+
+            }, 'Exception', $expected);
+        });
+
+        it('should allow a user message', function() {
+            $this->assert->throws(function() {
+                $obj = new stdClass();
+                $obj->name = new stdClass();
+                $obj->name->first = 'brian';
+                $this->assert->deepPropertyNotVal($obj, 'name->first', 'brian', 'right val');
+
+            }, 'Exception', "right val");
+        });
+    });
 });
