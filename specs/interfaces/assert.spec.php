@@ -171,4 +171,32 @@ describe('assert', function() {
             }, 'Exception', 'is identical');
         });
     });
+
+    describe('->isTrue()', function() {
+        it('should throw an exception if actual value is not true', function() {
+            $this->assert->throws(function() {
+                $this->assert->isTrue(false);
+            }, 'Exception', 'Expected false to be true');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isTrue(false, "not true");
+            }, 'Exception', 'not true');
+        });
+    });
+
+    describe('->isFalse()', function() {
+        it('should throw an exception if actual value is not false', function() {
+            $this->assert->throws(function() {
+                $this->assert->isFalse(true);
+            }, 'Exception', 'Expected true to be false');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isFalse(true, "not false");
+            }, 'Exception', 'not false');
+        });
+    });
 });

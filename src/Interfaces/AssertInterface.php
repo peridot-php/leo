@@ -158,4 +158,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->not->equal($expected, $message);
     }
+
+    /**
+     * Perform a true assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isTrue($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->true($message);
+    }
+
+    /**
+     * Perform a false assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isFalse($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->false($message);
+    }
 }
