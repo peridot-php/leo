@@ -182,4 +182,28 @@ class AssertInterface
         $this->assertion->setActual($actual);
         $this->assertion->to->be->false($message);
     }
+
+    /**
+     * Perform a null assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNull($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->be->null($message);
+    }
+
+    /**
+     * Perform a negated null assertion.
+     *
+     * @param $actual
+     * @param string $message
+     */
+    public function isNotNull($actual, $message = "")
+    {
+        $this->assertion->setActual($actual);
+        $this->assertion->to->not->be->null($message);
+    }
 }

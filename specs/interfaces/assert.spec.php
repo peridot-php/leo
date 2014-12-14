@@ -199,4 +199,32 @@ describe('assert', function() {
             }, 'Exception', 'not false');
         });
     });
+
+    describe('->isNull()', function() {
+        it('should throw an exception if actual value is not null', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNull('str');
+            }, 'Exception', 'Expected "str" to be null');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNull('str', 'not null');
+            }, 'Exception', 'not null');
+        });
+    });
+
+    describe('->isNotNull()', function() {
+        it('should throw an exception if actual value is null', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotNull(null);
+            }, 'Exception', 'Expected null not to be null');
+        });
+
+        it('allow a user message', function() {
+            $this->assert->throws(function() {
+                $this->assert->isNotNull(null, 'is null');
+            }, 'Exception', 'is null');
+        });
+    });
 });
