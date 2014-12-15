@@ -6,6 +6,12 @@ describe('assert', function() {
         $this->assert = new Assert();
     });
 
+    it('should throw a BadMethodCallException when an unknown method is called', function() {
+        $this->assert->throws(function() {
+            $this->assert->nope();
+        }, 'BadMethodCallException', 'Call to undefined method nope');
+    });
+
     describe('->equal()', function() {
         it('should match to loosely equal values', function() {
             $this->assert->equal(3, '3');

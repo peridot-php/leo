@@ -19,7 +19,7 @@ trait ObjectAssertTrait
     public function isInstanceOf($object, $class, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->is->instanceof($class, $message);
+        return $this->assertion->is->instanceof($class, $message);
     }
 
     /**
@@ -32,7 +32,7 @@ trait ObjectAssertTrait
     public function notInstanceOf($object, $class, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->is->not->instanceof($class, $message);
+        return $this->assertion->is->not->instanceof($class, $message);
     }
 
     /**
@@ -45,7 +45,7 @@ trait ObjectAssertTrait
     public function property($object, $property, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->have->property($property, null, $message);
+        return $this->assertion->to->have->property($property, null, $message);
     }
 
     /**
@@ -58,7 +58,7 @@ trait ObjectAssertTrait
     public function notProperty($object, $property, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->not->have->property($property, null, $message);
+        return $this->assertion->to->not->have->property($property, null, $message);
     }
 
     /**
@@ -71,7 +71,7 @@ trait ObjectAssertTrait
     public function deepProperty($object, $property, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->have->deep->property($property, null, $message);
+        return $this->assertion->to->have->deep->property($property, null, $message);
     }
 
     /**
@@ -84,7 +84,7 @@ trait ObjectAssertTrait
     public function notDeepProperty($object, $property, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->not->have->deep->property($property, null, $message);
+        return $this->assertion->to->not->have->deep->property($property, null, $message);
     }
 
     /**
@@ -98,7 +98,7 @@ trait ObjectAssertTrait
     public function propertyVal($object, $property, $value, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->have->property($property, $value, $message);
+        return $this->assertion->to->have->property($property, $value, $message);
     }
 
     /**
@@ -112,7 +112,7 @@ trait ObjectAssertTrait
     public function propertyNotVal($object, $property, $value, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->not->have->property($property, $value, $message);
+        return $this->assertion->to->not->have->property($property, $value, $message);
     }
 
     /**
@@ -126,7 +126,7 @@ trait ObjectAssertTrait
     public function deepPropertyVal($object, $property, $value, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->have->deep->property($property, $value, $message);
+        return $this->assertion->to->have->deep->property($property, $value, $message);
     }
 
     /**
@@ -140,6 +140,6 @@ trait ObjectAssertTrait
     public function deepPropertyNotVal($object, $property, $value, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->not->have->deep->property($property, $value, $message);
+        return $this->assertion->to->not->have->deep->property($property, $value, $message);
     }
 }

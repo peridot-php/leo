@@ -240,10 +240,6 @@ class PropertyMatcher extends AbstractMatcher
         $path = new ObjectPath($actual);
         $value = $path->get($this->getKey());
 
-        if ($this->isNegatedPropertyMatch($value)) {
-            return true;
-        }
-
         if (is_null($value)) {
             return false;
         }
@@ -251,22 +247,6 @@ class PropertyMatcher extends AbstractMatcher
         $this->assertion->setActual($value->getPropertyValue());
 
         return $this->isExpected($value->getPropertyValue());
-    }
-
-    /**
-     * Determine if the match is a negated property match, that
-     * is the match is only considering the property without a value.
-     *
-     * @param ObjectPathValue $value
-     * @return bool
-     */
-    protected function isNegatedPropertyMatch(ObjectPathValue $value = null)
-    {
-        if (is_null($value)) {
-            return false;
-        }
-
-        return $this->isNegated() && !$value->getPropertyValue();
     }
 
     /**

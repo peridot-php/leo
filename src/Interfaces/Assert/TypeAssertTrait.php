@@ -19,7 +19,7 @@ trait TypeAssertTrait
     public function typeOf($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->be->a($expected, $message);
+        return $this->assertion->to->be->a($expected, $message);
     }
 
     /**
@@ -32,7 +32,7 @@ trait TypeAssertTrait
     public function notTypeOf($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->not->be->a($expected, $message);
+        return $this->assertion->to->not->be->a($expected, $message);
     }
 
     /**
@@ -44,7 +44,7 @@ trait TypeAssertTrait
     public function isTrue($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->be->true($message);
+        return $this->assertion->to->be->true($message);
     }
 
     /**
@@ -56,7 +56,7 @@ trait TypeAssertTrait
     public function isFalse($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->be->false($message);
+        return $this->assertion->to->be->false($message);
     }
 
     /**
@@ -68,7 +68,7 @@ trait TypeAssertTrait
     public function isNull($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->be->null($message);
+        return $this->assertion->to->be->null($message);
     }
 
     /**
@@ -80,7 +80,7 @@ trait TypeAssertTrait
     public function isNotNull($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->not->be->null($message);
+        return $this->assertion->to->not->be->null($message);
     }
 
     /**
@@ -93,7 +93,7 @@ trait TypeAssertTrait
     public function isCallable($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->satisfy('is_callable', $message);
+        return $this->assertion->to->satisfy('is_callable', $message);
     }
 
     /**
@@ -106,7 +106,7 @@ trait TypeAssertTrait
     public function isNotCallable($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->not->satisfy('is_callable', $message);
+        return $this->assertion->to->not->satisfy('is_callable', $message);
     }
 
     /**
@@ -117,7 +117,7 @@ trait TypeAssertTrait
      */
     public function isObject($value, $message = "")
     {
-        $this->typeOf($value, 'object', $message);
+        return $this->typeOf($value, 'object', $message);
     }
 
     /**
@@ -128,7 +128,7 @@ trait TypeAssertTrait
      */
     public function isNotObject($value, $message = "")
     {
-        $this->notTypeOf($value, 'object', $message);
+        return $this->notTypeOf($value, 'object', $message);
     }
 
     /**
@@ -139,7 +139,7 @@ trait TypeAssertTrait
      */
     public function isArray($value, $message = "")
     {
-        $this->typeOf($value, 'array', $message);
+        return $this->typeOf($value, 'array', $message);
     }
 
     /**
@@ -150,7 +150,7 @@ trait TypeAssertTrait
      */
     public function isNotArray($value, $message = "")
     {
-        $this->notTypeOf($value, 'array', $message);
+        return $this->notTypeOf($value, 'array', $message);
     }
 
     /**
@@ -161,7 +161,7 @@ trait TypeAssertTrait
      */
     public function isString($value, $message = "")
     {
-        $this->typeOf($value, 'string', $message);
+        return $this->typeOf($value, 'string', $message);
     }
 
     /**
@@ -172,7 +172,7 @@ trait TypeAssertTrait
      */
     public function isNotString($value, $message = "")
     {
-        $this->notTypeOf($value, 'string', $message);
+        return $this->notTypeOf($value, 'string', $message);
     }
 
     /**
@@ -185,7 +185,7 @@ trait TypeAssertTrait
     public function isNumeric($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->satisfy('is_numeric', $message);
+        return $this->assertion->to->satisfy('is_numeric', $message);
     }
 
     /**
@@ -198,7 +198,7 @@ trait TypeAssertTrait
     public function isNotNumeric($value, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->not->to->satisfy('is_numeric', $message);
+        return $this->assertion->not->to->satisfy('is_numeric', $message);
     }
 
     /**
@@ -209,7 +209,7 @@ trait TypeAssertTrait
      */
     public function isInteger($value, $message = "")
     {
-        $this->typeOf($value, 'integer', $message);
+        return $this->typeOf($value, 'integer', $message);
     }
 
     /**
@@ -220,7 +220,7 @@ trait TypeAssertTrait
      */
     public function isNotInteger($value, $message = "")
     {
-        $this->notTypeOf($value, 'integer', $message);
+        return $this->notTypeOf($value, 'integer', $message);
     }
 
     /**
@@ -231,7 +231,7 @@ trait TypeAssertTrait
      */
     public function isDouble($value, $message = "")
     {
-        $this->typeOf($value, 'double', $message);
+        return $this->typeOf($value, 'double', $message);
     }
 
     /**
@@ -242,7 +242,7 @@ trait TypeAssertTrait
      */
     public function isNotDouble($value, $message = "")
     {
-        $this->notTypeOf($value, 'double', $message);
+        return $this->notTypeOf($value, 'double', $message);
     }
 
     /**
@@ -253,7 +253,7 @@ trait TypeAssertTrait
      */
     public function isResource($value, $message = "")
     {
-        $this->typeOf($value, 'resource', $message);
+        return $this->typeOf($value, 'resource', $message);
     }
 
     /**
@@ -264,7 +264,7 @@ trait TypeAssertTrait
      */
     public function isNotResource($value, $message = "")
     {
-        $this->notTypeOf($value, 'resource', $message);
+        return $this->notTypeOf($value, 'resource', $message);
     }
 
     /**
@@ -275,7 +275,7 @@ trait TypeAssertTrait
      */
     public function isBoolean($value, $message = "")
     {
-        $this->typeOf($value, 'boolean', $message);
+        return $this->typeOf($value, 'boolean', $message);
     }
 
     /**
@@ -286,6 +286,6 @@ trait TypeAssertTrait
      */
     public function isNotBoolean($value, $message = "")
     {
-        $this->notTypeOf($value, 'boolean', $message);
+        return $this->notTypeOf($value, 'boolean', $message);
     }
 }

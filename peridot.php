@@ -18,7 +18,9 @@ return function(EventEmitterInterface $emitter) {
     $coverage->register();
 
     $emitter->on('code-coverage.start', function(AbstractCodeCoverageReporter $reporter) {
-        $reporter->addDirectoryToWhitelist(__DIR__ . '/src');
+        $reporter->addDirectoryToBlacklist(__DIR__ . '/vendor');
+        $reporter->addDirectoryToBlacklist(__DIR__ . '/specs');
+        $reporter->addFileToBlacklist(__DIR__ . '/peridot.php');
     });
 
     $prophecy = new ProphecyPlugin($emitter);

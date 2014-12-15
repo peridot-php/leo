@@ -65,7 +65,7 @@ class Assert
     public function equal($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->loosely->equal($expected, $message);
+        return $this->assertion->to->loosely->equal($expected, $message);
     }
 
     /**
@@ -78,7 +78,7 @@ class Assert
     public function notEqual($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->not->equal($expected, $message);
+        return $this->assertion->to->not->equal($expected, $message);
     }
 
     /**
@@ -92,7 +92,7 @@ class Assert
     public function throws(callable $fn, $exceptionType, $exceptionMessage = "", $message = "")
     {
         $this->assertion->setActual($fn);
-        $this->assertion->to->throw($exceptionType, $exceptionMessage, $message);
+        return $this->assertion->to->throw($exceptionType, $exceptionMessage, $message);
     }
 
     /**
@@ -106,7 +106,7 @@ class Assert
     public function doesNotThrow(callable $fn, $exceptionType, $exceptionMessage = "", $message = "")
     {
         $this->assertion->setActual($fn);
-        $this->assertion->not->to->throw($exceptionType, $exceptionMessage, $message);
+        return $this->assertion->not->to->throw($exceptionType, $exceptionMessage, $message);
     }
 
     /**
@@ -118,7 +118,7 @@ class Assert
     public function ok($object, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->be->ok($message);
+        return $this->assertion->to->be->ok($message);
     }
 
     /**
@@ -130,7 +130,7 @@ class Assert
     public function notOk($object, $message = "")
     {
         $this->assertion->setActual($object);
-        $this->assertion->to->not->be->ok($message);
+        return $this->assertion->to->not->be->ok($message);
     }
 
     /**
@@ -143,7 +143,7 @@ class Assert
     public function strictEqual($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->equal($expected, $message);
+        return $this->assertion->to->equal($expected, $message);
     }
 
     /**
@@ -156,7 +156,7 @@ class Assert
     public function notStrictEqual($actual, $expected, $message = "")
     {
         $this->assertion->setActual($actual);
-        $this->assertion->to->not->equal($expected, $message);
+        return $this->assertion->to->not->equal($expected, $message);
     }
 
     /**
@@ -169,7 +169,7 @@ class Assert
     public function match($value, $pattern, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->match($pattern, $message);
+        return $this->assertion->to->match($pattern, $message);
     }
 
     /**
@@ -182,7 +182,7 @@ class Assert
     public function notMatch($value, $pattern, $message = "")
     {
         $this->assertion->setActual($value);
-        $this->assertion->to->not->match($pattern, $message);
+        return $this->assertion->to->not->match($pattern, $message);
     }
 
     /**
@@ -199,7 +199,7 @@ class Assert
             throw new \InvalidArgumentException("Invalid operator $operator");
         }
         $this->assertion->setActual($left);
-        $this->assertion->{static::$operators[$operator]}($right, $message);
+        return $this->assertion->{static::$operators[$operator]}($right, $message);
     }
 
     /**
@@ -212,11 +212,9 @@ class Assert
     {
         switch ($method) {
             case 'instanceOf':
-                call_user_func_array([$this, 'isInstanceOf'], $args);
-                break;
+                return call_user_func_array([$this, 'isInstanceOf'], $args);
             case 'include':
-                call_user_func_array([$this, 'isIncluded'], $args);
-                break;
+                return call_user_func_array([$this, 'isIncluded'], $args);
             default:
                 throw new \BadMethodCallException("Call to undefined method $method");
         }

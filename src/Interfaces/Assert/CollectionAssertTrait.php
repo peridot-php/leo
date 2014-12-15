@@ -21,7 +21,7 @@ trait CollectionAssertTrait
     public function lengthOf($countable, $length, $message = "")
     {
         $this->assertion->setActual($countable);
-        $this->assertion->to->have->length($length, $message);
+        return $this->assertion->to->have->length($length, $message);
     }
 
     /**
@@ -34,7 +34,7 @@ trait CollectionAssertTrait
     public function isIncluded($haystack, $needle, $message = "")
     {
         $this->assertion->setActual($haystack);
-        $this->assertion->to->include($needle, $message);
+        return $this->assertion->to->include($needle, $message);
     }
 
     /**
@@ -47,6 +47,6 @@ trait CollectionAssertTrait
     public function notInclude($haystack, $needle, $message = "")
     {
         $this->assertion->setActual($haystack);
-        $this->assertion->to->not->include($needle, $message);
+        return $this->assertion->to->not->include($needle, $message);
     }
 }
