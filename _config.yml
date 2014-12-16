@@ -1,4 +1,5 @@
 port: 4000
+baseurl: /leo
 permalink:   date
 main_title:  "Leo"
 description: "Leo is a next level assertion library for PHP 5.4+"
