@@ -1,0 +1,129 @@
+/**************
+ * Base Styles
+ **************/
+a:link,
+a:visited {
+	color: #308C43;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+
+ body {
+ 	background: #fff url('../img/cream_pixels.png') repeat left top;
+ 	font-family: 'Open Sans', sans-serif;
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+ 	font-family: 'Nunito', sans-serif;
+ }
+
+ ul {
+ 	list-style:circle;
+ 	list-style-position: inside;
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+ li {
+ 	margin-bottom:6px;
+ }
+
+ p {
+ 	font-size:14px;
+ 	line-height:22px;
+ }
+
+ pre {
+ 	white-space: pre !important;
+ 	word-wrap: normal !important;
+ 	overflow: auto !important;
+ }
+
+ footer {
+ 	color:#d3d3d3;
+ 	font-style: italic;
+ 	margin-top:100px;
+ }
+
+/**************
+ * Sidebar
+ **************/
+.sidebar {
+	background-color:red;
+ 	position:absolute;
+ 	left:0;
+ 	top:0;
+ 	bottom:0;
+}
+
+/**************
+ * Container
+ **************/
+.container-fluid {
+	position: relative;
+}
+
+/**************
+ * Logo
+ **************/
+ .logo {
+ 	background-image: url('../img/leo.png');
+ 	background-repeat: no-repeat;
+ 	background-position: top center;
+ 	background-size: 225px 225px;
+ 	display: table;
+ 	font-size: 75px;
+	height:310px; width:225px;
+	margin: 0 auto;
+ }
+
+   .logo-text {
+       display:table-cell;
+       text-align: center;
+       vertical-align: bottom;
+   }
+
+/**************
+ * Tag
+ **************/
+ .tag {
+ 	color: #1A4C25;
+ 	font-size: 22px;
+ 	text-align: center;
+ }
+
+/*****************
+ * Reference List
+ *****************/
+.reference-list p {
+	margin:0 0 20px 0;
+	padding-left:18px;
+	width:300px;
+}
+
+/*******************
+ * Terminal Section
+ *******************/
+ .terminal-section .highlight {
+ 	margin-bottom:0 !important;
+ }
+
+/*****************
+ * Jumbotron
+ *****************/
+ .jumbotron {
+ 	margin-top:60px;
+ }
+
+ .jumbotron p {
+ 	font-size: 22px;
+ 	line-height: 34px;
+ }
+
+@media only screen and (min-width : 1224px) {
+
+}

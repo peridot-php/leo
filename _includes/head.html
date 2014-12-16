@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.main_title }} - {{ page.title }}</title>
+    {% if page.description %}
+    <meta name="description" content="{{page.description}}">
+    {% else %}
+    <meta name="description" content="{{site.description}}">
+    {% endif %}
+    <meta name="author" content="Brian Scaturro">
+    
+    <link href='http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    {% include tracking.html %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-sm-3 sidebar">
+                
+            </aside>
+            <main class="col-sm-9 col-sm-offset-3" role="main">
+                <header class="row">
+                    <h1 class="logo">
+                        <span class="logo-text">Leo</span>
+                    </h1>
+                </header>
