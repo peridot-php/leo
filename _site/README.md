@@ -12,7 +12,7 @@ $ gem install jekyll
 Serve stuff up on [http://0.0.0.0:4000](http://0.0.0.0:4000)
 
 ```
-$ jekyll serve
+$ jekyll serve --baseurl ''
 ```
 
 ## Publish
