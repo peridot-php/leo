@@ -3,7 +3,7 @@
  **************/
 a:link,
 a:visited {
-    color: #308C43;
+    color: #854D18;
     text-decoration: none;
 }
 
@@ -45,15 +45,34 @@ main {
 }
 
 /**************
+ * nav
+ **************/
+.nav-sidebar {
+    margin-right: -30px;
+    margin-left: -30px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.nav.nav-sidebar a {
+    font-weight:bold;
+}
+
+.nav.nav-sidebar > li > a:hover {
+    background-color: #854D18;
+    color: #FFAD61;
+}
+
+/**************
  * Logo
  **************/
 .logo {
     background-image: url('../img/leo.png');
     background-repeat: no-repeat;
     background-position: top center;
-    background-size: 225px 225px;
-    font-size: 75px;
-    height:310px; width:225px;
+    background-size: 150px 150px;
+    font-size: 65px;
+    height:215px; width:150px;
     margin: 0 auto;
     position: relative;
 }
@@ -80,18 +99,6 @@ main {
  *******************/
 .terminal-section .highlight {
     margin-bottom:0 !important;
-}
-
-/*****************
- * Jumbotron
- *****************/
-.jumbotron {
-    margin-top:60px;
-}
-
-.jumbotron p {
-    font-size: 22px;
-    line-height: 34px;
 }
 
 @media only screen and (min-width : 1224px) {
