@@ -60,7 +60,7 @@ p {
  * Sidebar
  **************/
 .sidebar {
-    background-color:#D2843B;
+    background-color:#56676B;
     position:fixed;
     left:0;
     top:0;
@@ -80,12 +80,12 @@ p {
 }
 
 .nav.nav-sidebar a {
+    color:#fff;
     font-weight:bold;
 }
 
 .nav.nav-sidebar > li > a:hover {
-    background-color: #854D18;
-    color: #FFAD61;
+    background-color: #D38B46;
 }
 
 /**************
