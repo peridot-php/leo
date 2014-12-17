@@ -16,16 +16,36 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
 <body>
+    <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Leo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Expect</a></li>
+            <li><a href="#">Assert</a></li>
+            <li><a href="#">Plugins</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container-fluid">
         <div class="row">
-            <aside class="col-md-2 sidebar">
+            <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
                     <li><a href="#">Expect</a></li>
                     <li><a href="#">Assert</a></li>
                     <li><a href="#">Plugins</a></li>
                 </ul>
             </aside>
-            <main class="col-md-10 col-md-offset-2" role="main">
+            <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
                 <header>
                     <h1 class="logo">
                         <span class="logo-text">Leo</span>
@@ -36,9 +56,60 @@
     Next level assertion library for PHP 5.4+
 </p>
 
+<div class="row interfaces">
+	<div class="col-sm-6">
+		<h2>Expect</h2>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$object</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{})</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">satisfy</span><span class="p">(</span><span class="s1">&#39;is_callable&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$num</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">(</span><span class="s1">&#39;/^he/&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+		<a href="#">
+			View Expect Guide
+			<i class="glyphicon glyphicon-share-alt"></i>
+		</a>
+	</div>
+	<div class="col-sm-6">
+		<h2>Assert</h2>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Assert</span><span class="p">();</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">typeOf</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;is string&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">operator</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;should be less than&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isResource</span><span class="p">(</span><span class="nx">tempfile</span><span class="p">());</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">throws</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;exception&quot;</span><span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;Exception&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+		<a href="#">
+			View Assert Guide
+			<i class="glyphicon glyphicon-share-alt"></i>
+		</a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-sm-12">
+		<p>
+			Leo allows you to make assertions in PHP wtih an easy to read API. It supports a BDD style <code>expect</code> interface, and an object oriented <code>assert</code> interface.
+		</p>
+
+		<p>
+			Leo is also highly extensible. It's a snap to add additional functionality. You can create a language that suits your needs best. See the <a href="#">plugin guide</a> to get started.
+		</p>
+	</div>
+</div>
+
 
             </main>
         </div>
     </div>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

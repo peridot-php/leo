@@ -14,6 +14,7 @@ a:active {
 
 body {
     background: #fff url('../img/cream_pixels.png') repeat left top;
+    color: #444;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -23,12 +24,36 @@ h1, h2, h3, h4, h5, h6 {
 
 pre {
     white-space: pre !important;
-    word-wrap: normal !important;
-    overflow: auto !important;
+    word-wrap: break-word !important;
 }
 
 main {
-    padding-top:50px;
+    padding-top:70px;
+}
+@media only screen and (min-width : 1224px) {
+    main {
+        padding-top:50px;
+    }
+}
+
+hr {
+    border-top:1px dashed #ccc;
+}
+
+p {
+    font-size:22px;
+    margin-bottom:24px;
+}
+
+/**************
+ * Interfaces
+ **************/
+.interfaces h2 {
+    text-align: center;
+}
+
+.interfaces a {
+    margin-right:10px;
 }
 
 /**************
@@ -89,8 +114,8 @@ main {
  * Tag
  **************/
 .tag {
-    color: #1A4C25;
     font-size: 22px;
+    margin-bottom: auto;
     text-align: center;
 }
 
@@ -99,8 +124,4 @@ main {
  *******************/
 .terminal-section .highlight {
     margin-bottom:0 !important;
-}
-
-@media only screen and (min-width : 1224px) {
-
 }

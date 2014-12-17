@@ -7,3 +7,56 @@ leo_version: ~1.0
 <p class="tag">
     Next level assertion library for PHP 5.4+
 </p>
+
+<div class="row interfaces">
+	<div class="col-sm-6">
+		<h2>Expect</h2>
+{% highlight php %}
+<?php
+expect([1,2,3])->to->have->length(3);
+expect($name)->to->be->a('string')
+expect($object)->to->have->property('name', 'brian');
+expect(function() {})->to->satisfy('is_callable');
+expect(5)->to->be->above(4)
+expect($num)->to->be->within(5, 10);
+expect('hello')->to->match('/^he/');
+?>
+{% endhighlight %}
+		<a href="#">
+			View Expect Guide
+			<i class="glyphicon glyphicon-share-alt"></i>
+		</a>
+	</div>
+	<div class="col-sm-6">
+		<h2>Assert</h2>
+{% highlight php %}
+<?php
+$assert = new Assert();
+$assert->typeOf('string', 'hello', 'is string');
+$assert->operator(5, '<', 6, 'should be less than');
+$assert->isResource(tempfile());
+$assert->throws(function() {
+	throw new Exception("exception");
+}, 'Exception');
+?>
+{% endhighlight %}
+		<a href="#">
+			View Assert Guide
+			<i class="glyphicon glyphicon-share-alt"></i>
+		</a>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-sm-12">
+		<p>
+			Leo allows you to make assertions in PHP wtih an easy to read API. It supports a BDD style <code>expect</code> interface, and an object oriented <code>assert</code> interface.
+		</p>
+
+		<p>
+			Leo is also highly extensible. It's a snap to add additional functionality. You can create a language that suits your needs best. See the <a href="#">plugin guide</a> to get started.
+		</p>
+	</div>
+</div>
