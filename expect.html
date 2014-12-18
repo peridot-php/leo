@@ -207,3 +207,144 @@ expect(1)->to->equal(1);
 expect([1,2,3])->to->loosely->equal([1,2,3]);
 ?>
 {% endhighlight %}
+
+<h2>->above(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is greater than <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+expect(6)->to->be->above(3);
+?>
+{% endhighlight %}
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+{% highlight php %}
+<?php
+expect('string')->to->have->length->above(3);
+expect([1,2,3])->to->have->length->above(2);
+?>
+{% endhighlight %}
+
+<h2>->least(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is greater than or equal to <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+expect(6)->to->be->at->least(6);
+?>
+{% endhighlight %}
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+{% highlight php %}
+<?php
+expect('string')->to->have->length->of->at->least(3);
+expect([1,2,3])->to->have->length->of->at->least(2);
+?>
+{% endhighlight %}
+
+<h2>->below(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is less than <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+expect(3)->to->be->below(6);
+?>
+{% endhighlight %}
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+{% highlight php %}
+<?php
+expect('hi')->to->have->length->below(3);
+expect([1])->to->have->length->below(2);
+?>
+{% endhighlight %}
+
+<h2>->most(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is less than or equal to <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+expect(3)->to->be->at->most(3);
+?>
+{% endhighlight %}
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+{% highlight php %}
+<?php
+expect('hi')->to->have->length->of->at->most(3);
+expect([1,2,3])->to->have->length->of->at->most(5);
+?>
+{% endhighlight %}
+
+<h2>->within(lower, upper)</h2>
+
+<ul>
+	<li>@param <code>number</code> $lower</li>
+	<li>@param <code>number</code> $upper</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is between <code>lower</code> (inclusive), and <code>upper</code> (inclusive).
+</p>
+
+{% highlight php %}
+<?php
+expect(3)->to->be->within(2, 4);
+?>
+{% endhighlight %}
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+{% highlight php %}
+<?php
+expect('hi')->to->have->length->within(2, 4);
+expect([1,2,3])->to->have->length->within(2, 4);
+?>
+{% endhighlight %}

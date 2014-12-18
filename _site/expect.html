@@ -234,6 +234,127 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">loosely</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
+<h2>->above(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is greater than <code>value</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->least(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is greater than or equal to <code>value</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">least</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">least</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">least</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->below(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is less than <code>value</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->most(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is less than or equal to <code>value</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">most</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">most</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">most</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->within(lower, upper)</h2>
+
+<ul>
+	<li>@param <code>number</code> $lower</li>
+	<li>@param <code>number</code> $upper</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is between <code>lower</code> (inclusive), and <code>upper</code> (inclusive).
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Can be used with the <code>length</code> flag if the target has a length.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
             </main>
         </div>
     </div>
