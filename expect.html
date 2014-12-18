@@ -1,0 +1,209 @@
+---
+layout: default
+title: Expect Guide
+---
+
+<h1>Expect</h1>
+
+<p>
+	The expect style of writing assertions is ideal for BDD testing scenarios. It is useful for creating fluent, readable test expectations.
+</p>
+
+<h2>Language Chains</h2>
+
+<p>Leo provides the following language chains. They exist only to make tests more readable, unless overwritten by a plugin:</p>
+
+<ul>
+	<li>to</li>
+	<li>be</li>
+	<li>been</li>
+	<li>is</li>
+	<li>and</li>
+	<li>has</li>
+	<li>have</li>
+	<li>with</li>
+	<li>that</li>
+	<li>at</li>
+	<li>of</li>
+	<li>same</li>
+	<li>an</li>
+	<li>a</li>
+</ul>
+
+<h2>->not</h2>
+
+<p>
+	Negates the assertion it precedes.
+</p>
+
+{% highlight php %}
+<?php
+expect($name)->to->not->equal('brian');
+expect([$obj, 'method'])->to->not->throw('Exception');
+expect($obj)->to->have->property('name')
+    ->and->not->equal('brian');
+?>
+{% endhighlight %}
+
+<h2>->a(type)</h2>
+
+<ul>
+	<li>@param <code>string</code> $type</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Performs a type assertion using PHP's <code>gettype</code> function. The alias <code>an</code> can be used as well. Both <code>an</code> and <code>a</code> can be used as language chains.
+</p>
+
+{% highlight php %}
+<?php
+expect('leo')->to->be->a('string');
+expect(tmpfile())->to->be->a('resource');
+expect([])->to->be->an('array');
+
+//language chain
+expect($request)->to->be->an->instanceof('Request');
+?>
+{% endhighlight %}
+
+<h2>->include(value)</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string </code> $message [optional]</li>
+</ul>
+
+<p>
+	The <code>include</code> and <code>contain</code> assertions are used to check if an array contains a value or if a string contains a substring. Either can be used as a language chain to enable the <code>contain</code> flag for use with the <code>keys</code> assertion.
+</p>
+
+{% highlight php %}
+<?php
+expect([1,2,3])->to->include(1);
+expect('hello world')->to->contain('hello');
+
+//language chain
+expect(['name' => 'leo', 'lang' => 'php'])->to->include->keys(['name']);
+?>
+{% endhighlight %}
+
+<h2>->ok</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is true when cast to <code>(bool)</code>. Can be used as both a method and property.
+</p>
+
+{% highlight php %}
+<?php
+expect(true)->to->be->ok;
+expect("string")->to->be->ok;
+expect([])->to->not->be->ok;
+
+//as a method
+expect(1)->to->be->ok();
+?>
+{% endhighlight %}
+
+<h2>->true</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is exactly <code>true</code>. Can be used as both a method and property.
+</p>
+
+{% highlight php %}
+<?php
+expect(true)->to->be->true;
+expect(1)->to->not->be->true;
+
+//as a method
+expect(true)->to->be->true();
+?>
+{% endhighlight %}
+
+<h2>->false</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is exactly <code>false</code>. Can be used as both a method and property.
+</p>
+
+{% highlight php %}
+<?php
+expect(false)->to->be->false;
+expect(0)->to->not->be->false;
+
+//as a method
+expect(false)->to->be->false();
+?>
+{% endhighlight %}
+
+<h2>->null</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is <code>null</code>. Can be used as both a method and property.
+</p>
+
+{% highlight php %}
+<?php
+expect(null)->to->be->null;
+expect($mybar)->to->not->be->null;
+
+//as a method
+expect(null)->to->be->null();
+?>
+{% endhighlight %}
+
+<h2>->empty</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is empty via PHP's <code>empty</code> function. Can be used as both a method and property.
+</p>
+
+{% highlight php %}
+<?php
+expect([]])->to->be->empty;
+expect([1,2,3])->to->not->be->empty;
+
+//as a method
+expect([])->to->be->empty();
+?>
+{% endhighlight %}
+
+<h2>->equal(value)</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is strictly <code>===</code> equal to <code>value</code>. For loose comparison, the <code>loosely</code> flag can be used.
+</p>
+
+{% highlight php %}
+<?php
+expect("hello")->to->equal("hello");
+expect(1)->to->equal(1);
+expect([1,2,3])->to->loosely->equal([1,2,3]);
+?>
+{% endhighlight %}

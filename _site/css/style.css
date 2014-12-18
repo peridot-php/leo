@@ -28,10 +28,18 @@ pre {
 }
 
 main {
+    padding-top:50px;
+}
+
+.home main {
     padding-top:70px;
 }
 @media only screen and (min-width : 1224px) {
     main {
+        padding:0;
+    }
+
+    .home main {
         padding-top:50px;
     }
 }
@@ -41,8 +49,21 @@ hr {
 }
 
 p {
-    font-size:22px;
+    font-size:18px;
     margin-bottom:24px;
+}
+
+.home p {
+    font-size: 22px;
+}
+
+.home h2 {
+    color: #444;
+}
+
+h2 {
+    color: #D38B46; 
+    font-size:22px;
 }
 
 /**************

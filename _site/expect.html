@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo - Expect Guide</title>
+    
+    <meta name="description" content="Leo is a next level assertion library for PHP 5.4+">
+    
+    <meta name="author" content="Brian Scaturro">
+    
+    <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+<body>
+    <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Leo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/expect.html">Expect</a></li>
+            <li><a href="#">Assert</a></li>
+            <li><a href="#">Plugins</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
+                <ul class="nav nav-sidebar">
+                    <li><a href="/expect.html">Expect</a></li>
+                    <li><a href="#">Assert</a></li>
+                    <li><a href="#">Plugins</a></li>
+                </ul>
+            </aside>
+            <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
+
+<h1>Expect</h1>
+
+<p>
+	The expect style of writing assertions is ideal for BDD testing scenarios. It is useful for creating fluent, readable test expectations.
+</p>
+
+<h2>Language Chains</h2>
+
+<p>Leo provides the following language chains. They exist only to make tests more readable, unless overwritten by a plugin:</p>
+
+<ul>
+	<li>to</li>
+	<li>be</li>
+	<li>been</li>
+	<li>is</li>
+	<li>and</li>
+	<li>has</li>
+	<li>have</li>
+	<li>with</li>
+	<li>that</li>
+	<li>at</li>
+	<li>of</li>
+	<li>same</li>
+	<li>an</li>
+	<li>a</li>
+</ul>
+
+<h2>->not</h2>
+
+<p>
+	Negates the assertion it precedes.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="nv">$obj</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">throw</span><span class="p">(</span><span class="s1">&#39;Exception&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$obj</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">and</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->a(type)</h2>
+
+<ul>
+	<li>@param <code>string</code> $type</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Performs a type assertion using PHP's <code>gettype</code> function. The alias <code>an</code> can be used as well. Both <code>an</code> and <code>a</code> can be used as language chains.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;leo&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nb">tmpfile</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">);</span>
+
+<span class="c1">//language chain</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="o">-&gt;</span><span class="na">instanceof</span><span class="p">(</span><span class="s1">&#39;Request&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->include(value)</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string </code> $message [optional]</li>
+</ul>
+
+<p>
+	The <code>include</code> and <code>contain</code> assertions are used to check if an array contains a value or if a string contains a substring. Either can be used as a language chain to enable the <code>contain</code> flag for use with the <code>keys</code> assertion.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">include</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">contain</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+
+<span class="c1">//language chain</span>
+<span class="nx">expect</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;leo&#39;</span><span class="p">,</span> <span class="s1">&#39;lang&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">include</span><span class="o">-&gt;</span><span class="na">keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->ok</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is true when cast to <code>(bool)</code>. Can be used as both a method and property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">([])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">;</span>
+
+<span class="c1">//as a method</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->true</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is exactly <code>true</code>. Can be used as both a method and property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">true</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">true</span><span class="p">;</span>
+
+<span class="c1">//as a method</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">true</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->false</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is exactly <code>false</code>. Can be used as both a method and property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">false</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">false</span><span class="p">;</span>
+
+<span class="c1">//as a method</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">false</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->null</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is <code>null</code>. Can be used as both a method and property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">null</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$mybar</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">null</span><span class="p">;</span>
+
+<span class="c1">//as a method</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">null</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->empty</h2>
+
+<ul>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is empty via PHP's <code>empty</code> function. Can be used as both a method and property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">([]])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">empty</span><span class="p">;</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">empty</span><span class="p">;</span>
+
+<span class="c1">//as a method</span>
+<span class="nx">expect</span><span class="p">([])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">empty</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->equal(value)</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is strictly <code>===</code> equal to <code>value</code>. For loose comparison, the <code>loosely</code> flag can be used.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">loosely</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+            </main>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

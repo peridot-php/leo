@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{site.baseurl}}/css/pygments-monokai.css">
     <link rel="shortcut icon" href="{{site.baseurl}}/img/favicon.ico">
 </head>
-<body>
+<body{% if page.class %} class="{{page.class}}"{% endif %}>
     <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -31,7 +31,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Expect</a></li>
+            <li><a href="{{site.url}}/expect.html">Expect</a></li>
             <li><a href="#">Assert</a></li>
             <li><a href="#">Plugins</a></li>
           </ul>
@@ -42,14 +42,9 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
-                    <li><a href="#">Expect</a></li>
+                    <li><a href="{{site.url}}/expect.html">Expect</a></li>
                     <li><a href="#">Assert</a></li>
                     <li><a href="#">Plugins</a></li>
                 </ul>
             </aside>
             <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
-                <header>
-                    <h1 class="logo">
-                        <span class="logo-text">Leo</span>
-                    </h1>
-                </header>
