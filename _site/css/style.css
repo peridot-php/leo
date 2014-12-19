@@ -103,6 +103,9 @@ h2 {
     padding-top: 15px;
     padding-bottom:15px;
 }
+.home .nav-sidebar {
+    border-bottom-width:0;
+}
 
 .antiscroll-wrap {
     border-top:1px solid #758682;

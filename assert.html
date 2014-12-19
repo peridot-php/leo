@@ -1,0 +1,275 @@
+---
+layout: default
+title: Assert Guide
+assert: true
+---
+
+<h1>Assert</h1>
+
+<p>
+	The <code>assert</code> interface is a non-chainable interface for writing assertions.
+</p>
+
+<h2 id="assert_equal">->equal(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is loosely equal to <code>expected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->equal(1, 1);
+$assert->equal('1', 1);
+?>
+{% endhighlight %}
+
+<h2 id="assert_notEqual">->notEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> does not equal <code>expected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notEqual(1, 2);
+$assert->notEqual('hi', 'bye');
+?>
+{% endhighlight %}
+
+<h2 id="assert_throws">->throws(fn, exceptionType, exceptionMessage, [message])</h2>
+
+<ul>
+	<li>@param <code>callable</code> $fn</li>
+	<li>@param <code>string</code> $exceptionType</li>
+	<li>@param <code>string</code> $exceptionMessage</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Assert that <code>fn</code> throws an exception of type <code>exceptionType</code> when invoked. Optionally asserts that the exception message is equal to <code>exceptionMessage</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->throws([$obj, 'method'], 'RuntimeException');
+$assert->throws(function() {
+    throw new Exception('hello');
+}, 'Exception', 'hello');
+?>
+{% endhighlight %}
+
+<h2 id="assert_doesNotThrow">->doesNotThrow(fn, exceptionType, exceptionMessage, [message])</h2>
+
+<ul>
+	<li>@param<code>callable</code> $fn</li>
+	<li>@param<code>string</code> $exceptionType</li>
+	<li>@param<code>string</code> $exceptionMessage</li>
+	<li>@param<code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>fn</code> does not throw an exception of type <code>exceptionType</code>. Optionally asserts that the exception message does not equal <code>exceptionMessage</code>.
+</p>
+
+<h2 id="assert_ok">->ok(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is truthy. That is it is true when cast to <code>(bool)</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->ok(true);
+$assert->ok('not empty');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notOk">->notOk(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not truthy.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notOk(false);
+$assert->notOk([]);
+$assert->notOk("");
+?>
+{% endhighlight %}
+
+<h2 id="assert_strictEqual">->strictEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is strictly equal (===) to <code>expected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->strictEqual(1, 1);
+
+$array = [1,2,3];
+$assert->strictEqual($array, $array);
+?>
+{% endhighlight %}
+
+<h2 id="assert_notStrictEqual">->notStrictEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is not strictly equal (===) to <code>expected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notStrictEqual(1, 2);
+$assert->notStrictEqual([1,2], [1,2]);
+?>
+{% endhighlight %}
+
+<h2 id="assert_match">->match(string, pattern, [message])</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>pattern</code> matches <code>string</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->match('hello', '/^he/');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notMatch">->notMatch(string, pattern, [message])</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>pattern</code> does not match <code>string</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notMatch('goodbye', '/hi/');
+?>
+{% endhighlight %}
+
+<h2 id="assert_operator">->operator(left, operator, right, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $left</li>
+	<li>@param <code>string</code> $operator</li>
+	<li>@param <code>mixed</code> $right</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Compares the <code>left</code> and <code>right</code> operands with the assertion identified by <code>operator</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->operator(1, '<', 2);
+$assert->operator('hi', '==', 'hi');
+$assert->operator(2, '>=', 1);
+?>
+{% endhighlight %}
+
+<h2 id="assert_lengthOf">->lengthOf(countable, length, [message])</h2>
+
+<ul>
+	<li>@param <code>string|array|Countable</code> $countable</li>
+	<li>@param <code>int</code> $length</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>countable</code> has length equal to <code>length</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->lengthOf('leo', 3);
+$assert->lengthOf([1,2,3], 3);
+?>
+{% endhighlight %}
+
+<h2 id="assert_include">->include(haystack, needle, [message])</h2>
+
+<ul>
+	<li>@param<code>array|string</code> $haystack</li>
+	<li>@param<code>mixed</code> $needle</li>
+	<li>@param<code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the string or array <code>haystack</code> includes the substring or value identified by <code>needle</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->include([1,2,3], 2);
+$assert->include('goodbye', 'good');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notInclude">->notInclude(haystack, needle, [message])</h2>
+
+<ul>
+	<li>@param <code>array|string</code> $haystack</li>
+	<li>@param <code>mixed</code> $needle</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that string or array <code>haystack</code> does not include the substring or value identified by <code>needle</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notInclude([1,2,3], 4);
+$assert->notInclude('hello', 'good');
+?>
+{% endhighlight %}

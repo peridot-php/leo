@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo - Assert Guide</title>
+    
+    <meta name="description" content="Leo is a next level assertion library for PHP 5.4+">
+    
+    <meta name="author" content="Brian Scaturro">
+    
+    <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/css/antiscroll.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+<body>
+    <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Leo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/expect.html">Expect</a></li>
+            <li><a href="/assert.html">Assert</a></li>
+            <li><a href="#">Plugins</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Leo</a></li>
+                    <li><a href="/expect.html">Expect</a></li>
+                    <li><a href="/assert.html">Assert</a></li>
+                    <li><a href="#">Plugins</a></li>
+                </ul>
+                
+            </aside>
+            <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
+
+<h1>Assert</h1>
+
+<p>
+	The <code>assert</code> interface is a non-chainable interface for writing assertions.
+</p>
+
+<h2 id="assert_equal">->equal(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is loosely equal to <code>expected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notEqual">->notEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> does not equal <code>expected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notEqual</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;bye&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_throws">->throws(fn, exceptionType, exceptionMessage, [message])</h2>
+
+<ul>
+	<li>@param <code>callable</code> $fn</li>
+	<li>@param <code>string</code> $exceptionType</li>
+	<li>@param <code>string</code> $exceptionMessage</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Assert that <code>fn</code> throws an exception of type <code>exceptionType</code> when invoked. Optionally asserts that the exception message is equal to <code>exceptionMessage</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">throws</span><span class="p">([</span><span class="nv">$obj</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="s1">&#39;RuntimeException&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">throws</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;Exception&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_doesNotThrow">->doesNotThrow(fn, exceptionType, exceptionMessage, [message])</h2>
+
+<ul>
+	<li>@param<code>callable</code> $fn</li>
+	<li>@param<code>string</code> $exceptionType</li>
+	<li>@param<code>string</code> $exceptionMessage</li>
+	<li>@param<code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>fn</code> does not throw an exception of type <code>exceptionType</code>. Optionally asserts that the exception message does not equal <code>exceptionMessage</code>.
+</p>
+
+<h2 id="assert_ok">->ok(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is truthy. That is it is true when cast to <code>(bool)</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">(</span><span class="s1">&#39;not empty&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notOk">->notOk(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not truthy.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notOk</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notOk</span><span class="p">([]);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notOk</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_strictEqual">->strictEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is strictly equal (===) to <code>expected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">strictEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">strictEqual</span><span class="p">(</span><span class="nv">$array</span><span class="p">,</span> <span class="nv">$array</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notStrictEqual">->notStrictEqual(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>mixed</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is not strictly equal (===) to <code>expected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notStrictEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notStrictEqual</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_match">->match(string, pattern, [message])</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>pattern</code> matches <code>string</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;/^he/&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notMatch">->notMatch(string, pattern, [message])</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>pattern</code> does not match <code>string</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notMatch</span><span class="p">(</span><span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;/hi/&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_operator">->operator(left, operator, right, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $left</li>
+	<li>@param <code>string</code> $operator</li>
+	<li>@param <code>mixed</code> $right</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Compares the <code>left</code> and <code>right</code> operands with the assertion identified by <code>operator</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">operator</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">operator</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;==&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">operator</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_lengthOf">->lengthOf(countable, length, [message])</h2>
+
+<ul>
+	<li>@param <code>string|array|Countable</code> $countable</li>
+	<li>@param <code>int</code> $length</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>countable</code> has length equal to <code>length</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">lengthOf</span><span class="p">(</span><span class="s1">&#39;leo&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">lengthOf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">3</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_include">->include(haystack, needle, [message])</h2>
+
+<ul>
+	<li>@param<code>array|string</code> $haystack</li>
+	<li>@param<code>mixed</code> $needle</li>
+	<li>@param<code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the string or array <code>haystack</code> includes the substring or value identified by <code>needle</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">include</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">include</span><span class="p">(</span><span class="s1">&#39;goodbye&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notInclude">->notInclude(haystack, needle, [message])</h2>
+
+<ul>
+	<li>@param <code>array|string</code> $haystack</li>
+	<li>@param <code>mixed</code> $needle</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that string or array <code>haystack</code> does not include the substring or value identified by <code>needle</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notInclude</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notInclude</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+            </main>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/antiscroll.js"></script>
+    <script src="/js/leo.js"></script>
+</body>
+</html>
