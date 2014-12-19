@@ -355,6 +355,200 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
+<h2>->instanceof(className)</h2>
+
+<ul>
+	<li>@param <code>string</code> $className</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is an instance of the class identified by <code>className</code>
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="o">-&gt;</span><span class="na">instanceof</span><span class="p">(</span><span class="s1">&#39;Symfony\Component\HttpFoundation\Request&#39;</span><span class="p">)</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$object</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="o">-&gt;</span><span class="na">instanceof</span><span class="p">(</span><span class="s1">&#39;stdClass&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->property(name, [value])</h2>
+
+<ul>
+	<li>@param <code>string</code> $name</li>
+	<li>@param <code>mixed</code> $value [optional]</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target array or object has the given index or property name identified by <code>name</code>. If <code>value</code> is supplied, it will be strictly compared to that property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$person</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s2">&quot;brian&quot;</span><span class="p">;</span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$person</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$person</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+
+<span class="nv">$arrayPerson</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;brian&#39;</span><span class="p">];</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$arrayPerson</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$arrayPerson</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	When used with the <code>deep</code> flag, the property assertion can traverse nested structures as well.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$person</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$person</span><span class="o">-&gt;</span><span class="na">name</span><span class="o">-&gt;</span><span class="na">first</span> <span class="o">=</span> <span class="s2">&quot;brian&quot;</span><span class="p">;</span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$person</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">a</span><span class="o">-&gt;</span><span class="na">deep</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name-&gt;first&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$person</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">a</span><span class="o">-&gt;</span><span class="na">deep</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name-&gt;first&#39;</span><span class="p">,</span> <span class="s1">&#39;brian&#39;</span><span class="p">);</span>
+
+<span class="nv">$arrayPerson</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;brian&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;hobbies&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;programming&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reading&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;music&#39;</span>
+    <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$arrayPerson</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">deep</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;hobbies[0]&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$arrayPerson</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">deep</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;hobbies[2]&#39;</span><span class="p">,</span> <span class="s1">&#39;music&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	A note on the property assertion: The property assertion sets the subject of the assertion to the targeted property for further chaining.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$person</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$person</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$person</span><span class="o">-&gt;</span><span class="na">name</span><span class="o">-&gt;</span><span class="na">first</span> <span class="o">=</span> <span class="s2">&quot;brian&quot;</span><span class="p">;</span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$person</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">a</span><span class="o">-&gt;</span><span class="na">deep</span><span class="o">-&gt;</span><span class="na">property</span><span class="p">(</span><span class="s1">&#39;name-&gt;first&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">that</span><span class="o">-&gt;</span><span class="na">has</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->length(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that a target with length has the length of <code>value</code>. A target has length if it is a string, an array, or implements the <code>Countable</code> interface.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	This assertion can also be used as a language flag for comparison assertions.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->match(pattern)</h2>
+
+<ul>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	The match assertion matches the target string against a regexp string.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">(</span><span class="s1">&#39;/^he/&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->string(string)</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target string contains the substring <code>string</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;goodbye&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;good&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->keys(keys)</h2>
+
+<ul>
+	<li>@param <code>array</code> $keys</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target array or object has exactly the keys given. Asserts the inclusion of <em>some</em> keys if the <code>contain</code> or <code>include</code> flag is used.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$pet</span> <span class="o">=</span> <span class="k">new</span> <span class="k">stdClass</span><span class="p">();</span>
+<span class="nv">$pet</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="s1">&#39;fido&#39;</span><span class="p">;</span>
+<span class="nv">$pet</span><span class="o">-&gt;</span><span class="na">age</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$pet</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]);</span>
+
+<span class="nv">$petArray</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;fido&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span> <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;breed&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;terrier&#39;</span><span class="p">];</span>
+<span class="nx">expect</span><span class="p">(</span><span class="nv">$petArray</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">include</span><span class="o">-&gt;</span><span class="na">keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->throw(exceptionClass, [exceptionMessage])</h2>
+
+<ul>
+	<li>@param <code>string</code> $exceptionClass</li>
+	<li>@param <code>string</code> $exceptionMessage [optional]</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target callable throws an exception that is an instance of <code>exceptionClass</code>. If <code>exceptionMessage</code> is provided it will also assert that the exception messages are the same. The <code>with</code> method can be used to pass arguments to the target callable.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">([</span><span class="nv">$object</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">throw</span><span class="p">(</span><span class="s1">&#39;RuntimeException&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span> <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">throw</span><span class="p">(</span><span class="s1">&#39;Exception&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+
+<span class="nx">expect</span><span class="p">([</span><span class="nv">$object</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">throw</span><span class="p">(</span><span class="s1">&#39;Exception&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2>->satisfy(callable)</h2>
+
+<ul>
+	<li>@param <code>callable</code> $callable</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target satisfies a predicate function.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">satisfy</span><span class="p">(</span><span class="s1">&#39;is_numeric&#39;</span><span class="p">);</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;curly&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">satisfy</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$stooge</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/curly|larry|moe/&#39;</span><span class="p">,</span> <span class="nv">$stooge</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
             </main>
         </div>
     </div>

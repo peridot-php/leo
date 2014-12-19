@@ -348,3 +348,219 @@ expect('hi')->to->have->length->within(2, 4);
 expect([1,2,3])->to->have->length->within(2, 4);
 ?>
 {% endhighlight %}
+
+<h2>->instanceof(className)</h2>
+
+<ul>
+	<li>@param <code>string</code> $className</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target is an instance of the class identified by <code>className</code>
+</p>
+
+{% highlight php %}
+<?php
+expect($request)->to->be->an->instanceof('Symfony\Component\HttpFoundation\Request')
+expect($object)->to->be->an->instanceof('stdClass');
+?>
+{% endhighlight %}
+
+<h2>->property(name, [value])</h2>
+
+<ul>
+	<li>@param <code>string</code> $name</li>
+	<li>@param <code>mixed</code> $value [optional]</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target array or object has the given index or property name identified by <code>name</code>. If <code>value</code> is supplied, it will be strictly compared to that property.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = "brian";
+
+expect($person)->to->have->property('name');
+expect($person)->to->have->property('name', 'brian');
+
+$arrayPerson = ['name' => 'brian'];
+expect($arrayPerson)->to->have->property('name');
+expect($arrayPerson)->to->have->property('name', 'brian');
+?>
+{% endhighlight %}
+
+<p>
+	When used with the <code>deep</code> flag, the property assertion can traverse nested structures as well.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = "brian";
+
+expect($person)->to->have->a->deep->property('name->first');
+expect($person)->to->have->a->deep->property('name->first', 'brian');
+
+$arrayPerson = [
+    'name' => 'brian', 
+    'hobbies' => [
+        'programming',
+        'reading',
+        'music'
+    ]
+];
+
+expect($arrayPerson)->to->have->deep->property('hobbies[0]');
+expect($arrayPerson)->to->have->deep->property('hobbies[2]', 'music');
+?>
+{% endhighlight %}
+
+<p>
+	A note on the property assertion: The property assertion sets the subject of the assertion to the targeted property for further chaining.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = "brian";
+
+expect($person)
+    ->to->have->a->deep->property('name->first')
+    ->that->has->length(5);
+?>
+{% endhighlight %}
+
+<h2>->length(value)</h2>
+
+<ul>
+	<li>@param <code>number</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that a target with length has the length of <code>value</code>. A target has length if it is a string, an array, or implements the <code>Countable</code> interface.
+</p>
+
+{% highlight php %}
+<?php
+expect('hello')->to->have->length(5);
+expect([1,2,3])->to->have->length(3);
+?>
+{% endhighlight %}
+
+<p>
+	This assertion can also be used as a language flag for comparison assertions.
+</p>
+
+{% highlight php %}
+<?php
+expect([1,2,3])->to->have->length->above(2);
+expect('hello')->to->have->length->below(10);
+?>
+{% endhighlight %}
+
+<h2>->match(pattern)</h2>
+
+<ul>
+	<li>@param <code>string</code> $pattern</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	The match assertion matches the target string against a regexp string.
+</p>
+
+{% highlight php %}
+<?php
+expect('hello')->to->match('/^he/');
+?>
+{% endhighlight %}
+
+<h2>->string(string)</h2>
+
+<ul>
+	<li>@param <code>string</code> $string</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target string contains the substring <code>string</code>.
+</p>
+
+{% highlight php %}
+<?php
+expect('goodbye')->to->have->string('good');
+?>
+{% endhighlight %}
+
+<h2>->keys(keys)</h2>
+
+<ul>
+	<li>@param <code>array</code> $keys</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target array or object has exactly the keys given. Asserts the inclusion of <em>some</em> keys if the <code>contain</code> or <code>include</code> flag is used.
+</p>
+
+{% highlight php %}
+<?php
+$pet = new stdClass();
+$pet->name = 'fido';
+$pet->age = 7;
+
+expect($pet)->to->have->keys(['name', 'age']);
+
+$petArray = ['name' => 'fido', 'age' => 7, 'breed' => 'terrier'];
+expect($petArray)->to->include->keys(['name', 'age']);
+?>
+{% endhighlight %}
+
+<h2>->throw(exceptionClass, [exceptionMessage])</h2>
+
+<ul>
+	<li>@param <code>string</code> $exceptionClass</li>
+	<li>@param <code>string</code> $exceptionMessage [optional]</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target callable throws an exception that is an instance of <code>exceptionClass</code>. If <code>exceptionMessage</code> is provided it will also assert that the exception messages are the same. The <code>with</code> method can be used to pass arguments to the target callable.
+</p>
+
+{% highlight php %}
+<?php
+expect([$object, 'method'])->to->throw('RuntimeException');
+expect(function($msg) { throw new Exception($msg) })
+    ->with('hello')->to->throw('Exception', 'hello');
+
+expect([$object, 'method'])->to->not->throw('Exception');
+?>
+{% endhighlight %}
+
+<h2>->satisfy(callable)</h2>
+
+<ul>
+	<li>@param <code>callable</code> $callable</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that the target satisfies a predicate function.
+</p>
+
+{% highlight php %}
+<?php
+expect(1)->to->satisfy('is_numeric');
+expect('curly')->to->satisfy(function ($stooge) {
+	return preg_match('/curly|larry|moe/', $stooge);
+});
+?>
+{% endhighlight %}
