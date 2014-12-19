@@ -83,6 +83,12 @@ $assert->throws(function() {
 	Asserts that <code>fn</code> does not throw an exception of type <code>exceptionType</code>. Optionally asserts that the exception message does not equal <code>exceptionMessage</code>.
 </p>
 
+{% highlight php %}
+<?php
+$assert->doesNotThrow([$obj, 'method'], 'RuntimeException');
+?>
+{% endhighlight %}
+
 <h2 id="assert_ok">->ok(value, [message])</h2>
 
 <ul>
