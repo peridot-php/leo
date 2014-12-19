@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{site.baseurl}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{site.baseurl}}/css/style.css">
     <link rel="stylesheet" href="{{site.baseurl}}/css/pygments-monokai.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/css/antiscroll.css">
     <link rel="shortcut icon" href="{{site.baseurl}}/img/favicon.ico">
 </head>
 <body{% if page.class %} class="{{page.class}}"{% endif %}>
@@ -42,9 +43,40 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
+                    <li><a href="{{site.baseurl}}">Leo</a></li>
                     <li><a href="{{site.baseurl}}/expect.html">Expect</a></li>
                     <li><a href="#">Assert</a></li>
                     <li><a href="#">Plugins</a></li>
                 </ul>
+                {% if page.expect %}
+                <div class="antiscroll-wrap">
+                    <div class="antiscroll-inner">
+                        <ul class="nav nav-sidebar nav-scrollable">
+                            <li><a href="#expect_language_chains">language chains</a></li>
+                            <li><a href="#expect_a">a / an</a></li>
+                            <li><a href="#expect_include">include / contain</a></li>
+                            <li><a href="#expect_ok">ok</a></li>
+                            <li><a href="#expect_true">true</a></li>
+                            <li><a href="#expect_false">false</a></li>
+                            <li><a href="#expect_null">null</a></li>
+                            <li><a href="#expect_empty">empty</a></li>
+                            <li><a href="#expect_equal">equal</a></li>
+                            <li><a href="#expect_above">above</a></li>
+                            <li><a href="#expect_least">least</a></li>
+                            <li><a href="#expect_below">below</a></li>
+                            <li><a href="#expect_most">most</a></li>
+                            <li><a href="#expect_within">within</a></li>
+                            <li><a href="#expect_instanceof">instanceof</a></li>
+                            <li><a href="#expect_property">property</a></li>
+                            <li><a href="#expect_length">length</a></li>
+                            <li><a href="#expect_match">match</a></li>
+                            <li><a href="#expect_string">string</a></li>
+                            <li><a href="#expect_keys">keys</a></li>
+                            <li><a href="#expect_throw">throw</a></li>
+                            <li><a href="#expect_satisfy">satisfy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
             </aside>
             <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Expect Guide
+expect: true
 ---
 
 <h1>Expect</h1>
@@ -9,7 +10,7 @@ title: Expect Guide
 	The expect style of writing assertions is ideal for BDD testing scenarios. It is useful for creating fluent, readable test expectations.
 </p>
 
-<h2>Language Chains</h2>
+<h2 id="expect_language_chains">Language Chains</h2>
 
 <p>Leo provides the following language chains. They exist only to make tests more readable, unless overwritten by a plugin:</p>
 
@@ -30,7 +31,7 @@ title: Expect Guide
 	<li>a</li>
 </ul>
 
-<h2>->not</h2>
+<h2 id="expect_not">->not</h2>
 
 <p>
 	Negates the assertion it precedes.
@@ -45,7 +46,7 @@ expect($obj)->to->have->property('name')
 ?>
 {% endhighlight %}
 
-<h2>->a(type)</h2>
+<h2 id="expect_a">->a(type)</h2>
 
 <ul>
 	<li>@param <code>string</code> $type</li>
@@ -67,7 +68,7 @@ expect($request)->to->be->an->instanceof('Request');
 ?>
 {% endhighlight %}
 
-<h2>->include(value)</h2>
+<h2 id="expect_include">->include(value)</h2>
 
 <ul>
 	<li>@param <code>mixed</code> $value</li>
@@ -88,7 +89,7 @@ expect(['name' => 'leo', 'lang' => 'php'])->to->include->keys(['name']);
 ?>
 {% endhighlight %}
 
-<h2>->ok</h2>
+<h2 id="expect_ok">->ok</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -109,7 +110,7 @@ expect(1)->to->be->ok();
 ?>
 {% endhighlight %}
 
-<h2>->true</h2>
+<h2 id="expect_true">->true</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -129,7 +130,7 @@ expect(true)->to->be->true();
 ?>
 {% endhighlight %}
 
-<h2>->false</h2>
+<h2 id="expect_false">->false</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -149,7 +150,7 @@ expect(false)->to->be->false();
 ?>
 {% endhighlight %}
 
-<h2>->null</h2>
+<h2 id="expect_null">->null</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -169,7 +170,7 @@ expect(null)->to->be->null();
 ?>
 {% endhighlight %}
 
-<h2>->empty</h2>
+<h2 id="expect_empty">->empty</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -189,7 +190,7 @@ expect([])->to->be->empty();
 ?>
 {% endhighlight %}
 
-<h2>->equal(value)</h2>
+<h2 id="expect_equal">->equal(value)</h2>
 
 <ul>
 	<li>@param <code>mixed</code> $value</li>
@@ -208,7 +209,7 @@ expect([1,2,3])->to->loosely->equal([1,2,3]);
 ?>
 {% endhighlight %}
 
-<h2>->above(value)</h2>
+<h2 id="expect_above">->above(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -236,7 +237,7 @@ expect([1,2,3])->to->have->length->above(2);
 ?>
 {% endhighlight %}
 
-<h2>->least(value)</h2>
+<h2 id="expect_least">->least(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -264,7 +265,7 @@ expect([1,2,3])->to->have->length->of->at->least(2);
 ?>
 {% endhighlight %}
 
-<h2>->below(value)</h2>
+<h2 id="expect_below">->below(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -292,7 +293,7 @@ expect([1])->to->have->length->below(2);
 ?>
 {% endhighlight %}
 
-<h2>->most(value)</h2>
+<h2 id="expect_most">->most(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -320,7 +321,7 @@ expect([1,2,3])->to->have->length->of->at->most(5);
 ?>
 {% endhighlight %}
 
-<h2>->within(lower, upper)</h2>
+<h2 id="expect_within">->within(lower, upper)</h2>
 
 <ul>
 	<li>@param <code>number</code> $lower</li>
@@ -349,7 +350,7 @@ expect([1,2,3])->to->have->length->within(2, 4);
 ?>
 {% endhighlight %}
 
-<h2>->instanceof(className)</h2>
+<h2 id="expect_instanceof">->instanceof(className)</h2>
 
 <ul>
 	<li>@param <code>string</code> $className</li>
@@ -367,7 +368,7 @@ expect($object)->to->be->an->instanceof('stdClass');
 ?>
 {% endhighlight %}
 
-<h2>->property(name, [value])</h2>
+<h2 id="expect_property">->property(name, [value])</h2>
 
 <ul>
 	<li>@param <code>string</code> $name</li>
@@ -436,7 +437,7 @@ expect($person)
 ?>
 {% endhighlight %}
 
-<h2>->length(value)</h2>
+<h2 id="expect_length">->length(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -465,7 +466,7 @@ expect('hello')->to->have->length->below(10);
 ?>
 {% endhighlight %}
 
-<h2>->match(pattern)</h2>
+<h2 id="expect_match">->match(pattern)</h2>
 
 <ul>
 	<li>@param <code>string</code> $pattern</li>
@@ -482,7 +483,7 @@ expect('hello')->to->match('/^he/');
 ?>
 {% endhighlight %}
 
-<h2>->string(string)</h2>
+<h2 id="expect_string">->string(string)</h2>
 
 <ul>
 	<li>@param <code>string</code> $string</li>
@@ -499,7 +500,7 @@ expect('goodbye')->to->have->string('good');
 ?>
 {% endhighlight %}
 
-<h2>->keys(keys)</h2>
+<h2 id="expect_keys">->keys(keys)</h2>
 
 <ul>
 	<li>@param <code>array</code> $keys</li>
@@ -523,7 +524,7 @@ expect($petArray)->to->include->keys(['name', 'age']);
 ?>
 {% endhighlight %}
 
-<h2>->throw(exceptionClass, [exceptionMessage])</h2>
+<h2 id="expect_throw">->throw(exceptionClass, [exceptionMessage])</h2>
 
 <ul>
 	<li>@param <code>string</code> $exceptionClass</li>
@@ -545,7 +546,7 @@ expect([$object, 'method'])->to->not->throw('Exception');
 ?>
 {% endhighlight %}
 
-<h2>->satisfy(callable)</h2>
+<h2 id="expect_satisfy">->satisfy(callable)</h2>
 
 <ul>
 	<li>@param <code>callable</code> $callable</li>

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/css/antiscroll.css">
     <link rel="shortcut icon" href="/img/favicon.ico">
 </head>
 <body>
@@ -40,10 +41,41 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
+                    <li><a href="">Leo</a></li>
                     <li><a href="/expect.html">Expect</a></li>
                     <li><a href="#">Assert</a></li>
                     <li><a href="#">Plugins</a></li>
                 </ul>
+                
+                <div class="antiscroll-wrap">
+                    <div class="antiscroll-inner">
+                        <ul class="nav nav-sidebar nav-scrollable">
+                            <li><a href="#expect_language_chains">language chains</a></li>
+                            <li><a href="#expect_a">a / an</a></li>
+                            <li><a href="#expect_include">include / contain</a></li>
+                            <li><a href="#expect_ok">ok</a></li>
+                            <li><a href="#expect_true">true</a></li>
+                            <li><a href="#expect_false">false</a></li>
+                            <li><a href="#expect_null">null</a></li>
+                            <li><a href="#expect_empty">empty</a></li>
+                            <li><a href="#expect_equal">equal</a></li>
+                            <li><a href="#expect_above">above</a></li>
+                            <li><a href="#expect_least">least</a></li>
+                            <li><a href="#expect_below">below</a></li>
+                            <li><a href="#expect_most">most</a></li>
+                            <li><a href="#expect_within">within</a></li>
+                            <li><a href="#expect_instanceof">instanceof</a></li>
+                            <li><a href="#expect_property">property</a></li>
+                            <li><a href="#expect_length">length</a></li>
+                            <li><a href="#expect_match">match</a></li>
+                            <li><a href="#expect_string">string</a></li>
+                            <li><a href="#expect_keys">keys</a></li>
+                            <li><a href="#expect_throw">throw</a></li>
+                            <li><a href="#expect_satisfy">satisfy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </aside>
             <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
 
@@ -53,7 +85,7 @@
 	The expect style of writing assertions is ideal for BDD testing scenarios. It is useful for creating fluent, readable test expectations.
 </p>
 
-<h2>Language Chains</h2>
+<h2 id="expect_language_chains">Language Chains</h2>
 
 <p>Leo provides the following language chains. They exist only to make tests more readable, unless overwritten by a plugin:</p>
 
@@ -74,7 +106,7 @@
 	<li>a</li>
 </ul>
 
-<h2>->not</h2>
+<h2 id="expect_not">->not</h2>
 
 <p>
 	Negates the assertion it precedes.
@@ -87,7 +119,7 @@
     <span class="o">-&gt;</span><span class="na">and</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="s1">&#39;brian&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->a(type)</h2>
+<h2 id="expect_a">->a(type)</h2>
 
 <ul>
 	<li>@param <code>string</code> $type</li>
@@ -107,7 +139,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="o">-&gt;</span><span class="na">instanceof</span><span class="p">(</span><span class="s1">&#39;Request&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->include(value)</h2>
+<h2 id="expect_include">->include(value)</h2>
 
 <ul>
 	<li>@param <code>mixed</code> $value</li>
@@ -126,7 +158,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;leo&#39;</span><span class="p">,</span> <span class="s1">&#39;lang&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">include</span><span class="o">-&gt;</span><span class="na">keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->ok</h2>
+<h2 id="expect_ok">->ok</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -145,7 +177,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">ok</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->true</h2>
+<h2 id="expect_true">->true</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -163,7 +195,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">true</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->false</h2>
+<h2 id="expect_false">->false</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -181,7 +213,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">false</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->null</h2>
+<h2 id="expect_null">->null</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -199,7 +231,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="k">null</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">null</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->empty</h2>
+<h2 id="expect_empty">->empty</h2>
 
 <ul>
 	<li>@param <code>string</code> $message [optional]</li>
@@ -217,7 +249,7 @@
 <span class="nx">expect</span><span class="p">([])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">empty</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->equal(value)</h2>
+<h2 id="expect_equal">->equal(value)</h2>
 
 <ul>
 	<li>@param <code>mixed</code> $value</li>
@@ -234,7 +266,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">loosely</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->above(value)</h2>
+<h2 id="expect_above">->above(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -258,7 +290,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">above</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->least(value)</h2>
+<h2 id="expect_least">->least(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -282,7 +314,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">least</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->below(value)</h2>
+<h2 id="expect_below">->below(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -306,7 +338,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->most(value)</h2>
+<h2 id="expect_most">->most(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -330,7 +362,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">of</span><span class="o">-&gt;</span><span class="na">at</span><span class="o">-&gt;</span><span class="na">most</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->within(lower, upper)</h2>
+<h2 id="expect_within">->within(lower, upper)</h2>
 
 <ul>
 	<li>@param <code>number</code> $lower</li>
@@ -355,7 +387,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->instanceof(className)</h2>
+<h2 id="expect_instanceof">->instanceof(className)</h2>
 
 <ul>
 	<li>@param <code>string</code> $className</li>
@@ -371,7 +403,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="nv">$object</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">be</span><span class="o">-&gt;</span><span class="na">an</span><span class="o">-&gt;</span><span class="na">instanceof</span><span class="p">(</span><span class="s1">&#39;stdClass&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->property(name, [value])</h2>
+<h2 id="expect_property">->property(name, [value])</h2>
 
 <ul>
 	<li>@param <code>string</code> $name</li>
@@ -434,7 +466,7 @@
     <span class="o">-&gt;</span><span class="na">that</span><span class="o">-&gt;</span><span class="na">has</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->length(value)</h2>
+<h2 id="expect_length">->length(value)</h2>
 
 <ul>
 	<li>@param <code>number</code> $value</li>
@@ -459,7 +491,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">length</span><span class="o">-&gt;</span><span class="na">below</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->match(pattern)</h2>
+<h2 id="expect_match">->match(pattern)</h2>
 
 <ul>
 	<li>@param <code>string</code> $pattern</li>
@@ -474,7 +506,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">match</span><span class="p">(</span><span class="s1">&#39;/^he/&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->string(string)</h2>
+<h2 id="expect_string">->string(string)</h2>
 
 <ul>
 	<li>@param <code>string</code> $string</li>
@@ -489,7 +521,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;goodbye&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;good&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->keys(keys)</h2>
+<h2 id="expect_keys">->keys(keys)</h2>
 
 <ul>
 	<li>@param <code>array</code> $keys</li>
@@ -511,7 +543,7 @@
 <span class="nx">expect</span><span class="p">(</span><span class="nv">$petArray</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">include</span><span class="o">-&gt;</span><span class="na">keys</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->throw(exceptionClass, [exceptionMessage])</h2>
+<h2 id="expect_throw">->throw(exceptionClass, [exceptionMessage])</h2>
 
 <ul>
 	<li>@param <code>string</code> $exceptionClass</li>
@@ -531,7 +563,7 @@
 <span class="nx">expect</span><span class="p">([</span><span class="nv">$object</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">not</span><span class="o">-&gt;</span><span class="na">throw</span><span class="p">(</span><span class="s1">&#39;Exception&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2>->satisfy(callable)</h2>
+<h2 id="expect_satisfy">->satisfy(callable)</h2>
 
 <ul>
 	<li>@param <code>callable</code> $callable</li>
@@ -554,5 +586,7 @@
     </div>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/antiscroll.js"></script>
+    <script src="/js/leo.js"></script>
 </body>
 </html>
