@@ -50,8 +50,7 @@ class Leo
         $this->responder = new ExceptionResponder($this->formatter);
         $this->assertion = new Assertion($this->responder);
 
-        $core = include __DIR__ . '/Core/Definitions.php';
-        $this->assertion->extend($core);
+        $this->assertion->extend(__DIR__ . '/Core/Definitions.php');
     }
 
     /**

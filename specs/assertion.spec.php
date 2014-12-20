@@ -53,4 +53,25 @@ describe('Assertion', function() {
             expect(is_null($flag))->to->equal(true);
         });
     });
+
+    describe('->extend()', function() {
+        it('should execute callable in a file', function() {
+            $plugin = __DIR__ . '/fixtures/extend.php';
+            $this->assertion->extend($plugin);
+            expect($this->assertion->fixture())->to->equal(5);
+        });
+
+        it('should execute a passed in callable', function() {
+            $this->assertion->extend(function($assertion) {
+                $assertion->addMethod('fixture', function() {
+                    return 4;
+                });
+            });
+            expect($this->assertion->fixture())->to->equal(4);
+        });
+
+        it('should throw an exception if no callable given', function() {
+            expect([$this->assertion, 'extend'])->with('string')->to->throw('InvalidArgumentException');
+        });
+    });
 });

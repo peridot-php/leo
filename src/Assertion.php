@@ -142,15 +142,23 @@ final class Assertion
     }
 
     /**
-     * Extend calls the given callable and passes the current Assertion instance
+     * Extend calls the given callable - or file that returns a callable - and passes the current Assertion instance
      * to it. Assertion can be extended via the ->addMethod(), ->flag(), and ->addProperty()
      * methods.
      *
      * @param callable $fn
      */
-    public function extend(callable $fn)
+    public function extend($fn)
     {
-        call_user_func($fn, $this);
+        if (file_exists($fn)) {
+            $fn = include $fn;
+        }
+
+        if (is_callable($fn)) {
+            return call_user_func($fn, $this);
+        }
+
+        throw new \InvalidArgumentException("Assertion::extend requires a callable or a file that returns one");
     }
 
     /**

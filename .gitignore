@@ -5,3 +5,5 @@ composer.lock
 .DS_Store
 tmp
 docs
+css
+img
