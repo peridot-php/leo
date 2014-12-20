@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Interface Peridot\Leo\Matcher\Template\TemplateInterface | Leo</title>
+
+	<link rel="stylesheet" href="resources/style.css?1648332946">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.html">Peridot<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Peridot.Leo.html">Leo<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Formatter.html">Formatter</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Interfaces.html">Interfaces<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Interfaces.Assert.html">Assert</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Peridot.Leo.Matcher.html">Matcher<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Peridot.Leo.Matcher.Template.ArrayTemplate.html">ArrayTemplate</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li class="active"><a href="class-Peridot.Leo.Matcher.Template.TemplateInterface.html">TemplateInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Peridot.Leo.Matcher.Template.html" title="Summary of Peridot\Leo\Matcher\Template"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Interface TemplateInterface</h1>
+
+
+	<div class="description">
+	<p>Interface TemplateInterface specifices templates
+for default and negated messages when formatting match
+results.</p>
+
+<p>Template variables are wrapped in curly braces: {{expected}}, {{actual}}.</p>
+
+<p>Available variables are:</p>
+
+<p>{{expected}}
+{{actual}}</p>
+
+	</div>
+
+
+
+
+
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-Peridot.Leo.Matcher.Template.ArrayTemplate.html">Peridot\Leo\Matcher\Template\ArrayTemplate</a>
+	</div>
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> Peridot\Leo\Matcher\Template<br>
+		<b>Package:</b> Peridot\Leo\Matcher\Template<br>
+
+				<b>Code:</b>
+				$this->setDefaultTemplate("Expected {{expected}}, got {{actual}}");
+<br>
+				<b>Endcode</b>
+				
+<br>
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#4-69" title="Go to source code">Matcher/Template/TemplateInterface.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getTemplateVars" id="_getTemplateVars">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTemplateVars">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#24-29" title="Go to source code">getTemplateVars</a>( )</code>
+
+		<div class="description short">
+			<p>Return the template variables assigned to the template.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return the template variables assigned to the template.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTemplateVars" id="_setTemplateVars">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTemplateVars">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#31-37" title="Go to source code">setTemplateVars</a>( <span>array <var>$vars</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the template vars assigned to the template.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the template vars assigned to the template.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$vars</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultTemplate" id="_getDefaultTemplate">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#39-45" title="Go to source code">getDefaultTemplate</a>( )</code>
+
+		<div class="description short">
+			<p>Set the default template, that is the template for a failed match without
+negation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the default template, that is the template for a failed match without
+negation.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDefaultTemplate" id="_setDefaultTemplate">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDefaultTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#47-53" title="Go to source code">setDefaultTemplate</a>( <span>string <var>$template</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the default template that is used when negation is not specified.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the default template that is used when negation is not specified.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNegatedTemplate" id="_getNegatedTemplate">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNegatedTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#55-60" title="Go to source code">getNegatedTemplate</a>( )</code>
+
+		<div class="description short">
+			<p>Return the template used for a failed negated match.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return the template used for a failed negated match.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setNegatedTemplate" id="_setNegatedTemplate">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setNegatedTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.Template.TemplateInterface.html#62-68" title="Go to source code">setNegatedTemplate</a>( <span>string <var>$template</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the template used for a failed negated match.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the template used for a failed negated match.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Leo API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?4259027681"></script>
+</body>
+</html>

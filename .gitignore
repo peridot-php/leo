@@ -4,4 +4,3 @@ composer.lock
 *.swp
 .DS_Store
 tmp
-docs

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Peridot\Leo\Utility\ObjectPath | Leo</title>
+
+	<link rel="stylesheet" href="resources/style.css?1648332946">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.html">Peridot<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Peridot.Leo.html">Leo<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Formatter.html">Formatter</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Interfaces.html">Interfaces<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Interfaces.Assert.html">Assert</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Matcher.html">Matcher<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Peridot.Leo.Utility.ObjectPath.html">ObjectPath</a></li>
+				<li><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">ObjectPathValue</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Peridot.Leo.Utility.html" title="Summary of Peridot\Leo\Utility"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ObjectPath</h1>
+
+
+	<div class="description">
+	<p>ObjectPath is a utility for parsing object and array strings into
+ObjectPathValues.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> Peridot\Leo\Utility<br>
+		<b>Package:</b> Peridot\Leo\Utility<br>
+
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Utility.ObjectPath.html#4-118" title="Go to source code">Utility/ObjectPath.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#26-32" title="Go to source code">__construct</a>( <span>array|object <var>$subject</var></span> )</code>
+
+		<div class="description short">
+			
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$subject</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">Peridot\Leo\Utility\ObjectPathValue</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#34-69" title="Go to source code">get</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns an ObjectPathValue if the property described by $path
+can be located in the subject.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns an ObjectPathValue if the property described by $path
+can be located in the subject.</p>
+
+<p>A path expression uses object and array syntax.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">Peridot\Leo\Utility\ObjectPathValue</a></code></code>
+				</div>
+
+
+				<h4>Code</h4>
+				<div class="list">
+						<p>$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = 'brian';
+$person->name->last = 'scaturro';
+$person->hobbies = ['programming', 'reading', 'board games'];</p>
+
+<p>$path = new ObjectPath($person);
+$first = $path->get('name->first');
+$reading = $path->get('hobbies[0]');</p>
+<br>
+				</div>
+				<h4>Endcode</h4>
+				<div class="list">
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPathParts" id="_getPathParts">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPathParts">#</a>
+		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#71-86" title="Go to source code">getPathParts</a>( <span>mixed <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Breaks a path expression into an array used
+for navigating a path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Breaks a path expression into an array used
+for navigating a path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPropertyCollection" id="_getPropertyCollection">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPropertyCollection">#</a>
+		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#88-101" title="Go to source code">getPropertyCollection</a>( <span>mixed <var>$subject</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns a property as an array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns a property as an array.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$subject</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="normalizeKey" id="_normalizeKey">
+
+		<td class="attributes"><code>
+			 protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_normalizeKey">#</a>
+		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#103-117" title="Go to source code">normalizeKey</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			<p>Return a key that can be used on the current subject.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return a key that can be used on the current subject.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="subject" id="$subject">
+		<td class="attributes"><code>
+			protected  
+			array|object
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peridot.Leo.Utility.ObjectPath.html#12-17" title="Go to source code"><var>$subject</var></a>
+
+			<div class="description short">
+				<p>The subject to match path expressions against.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The subject to match path expressions against.</p>
+
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$subject" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Leo API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?4259027681"></script>
+</body>
+</html>
