@@ -12,8 +12,8 @@ trait TypeAssertTrait
     /**
      * Performs a type assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param string $expected
      * @param string $message
      */
     public function typeOf($actual, $expected, $message = "")
@@ -25,8 +25,8 @@ trait TypeAssertTrait
     /**
      * Performs a negated type assertion.
      *
-     * @param $actual
-     * @param $expected
+     * @param mixed $actual
+     * @param string $expected
      * @param string $message
      */
     public function notTypeOf($actual, $expected, $message = "")
