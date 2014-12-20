@@ -244,65 +244,73 @@
 </span><span id="142" class="l"><a class="l" href="#142">142: </a>    }
 </span><span id="143" class="l"><a class="l" href="#143">143: </a>
 </span><span id="144" class="l"><a class="l" href="#144">144: </a>    <span class="php-comment">/**
-</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     * Extend calls the given callable and passes the current Assertion instance
+</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     * Extend calls the given callable - or file that returns a callable - and passes the current Assertion instance
 </span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     * to it. Assertion can be extended via the -&gt;addMethod(), -&gt;flag(), and -&gt;addProperty()
 </span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     * methods.
 </span></span><span id="148" class="l"><a class="l" href="#148">148: </a><span class="php-comment">     *
 </span></span><span id="149" class="l"><a class="l" href="#149">149: </a><span class="php-comment">     * @param callable $fn
 </span></span><span id="150" class="l"><a class="l" href="#150">150: </a><span class="php-comment">     */</span>
-</span><span id="151" class="l"><a class="l" href="#151">151: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_extend" href="#_extend">extend</a>(<span class="php-keyword1">callable</span> <span class="php-var">$fn</span>)
+</span><span id="151" class="l"><a class="l" href="#151">151: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_extend" href="#_extend">extend</a>(<span class="php-var">$fn</span>)
 </span><span id="152" class="l"><a class="l" href="#152">152: </a>    {
-</span><span id="153" class="l"><a class="l" href="#153">153: </a>        <span class="php-keyword2">call_user_func</span>(<span class="php-var">$fn</span>, <span class="php-var">$this</span>);
-</span><span id="154" class="l"><a class="l" href="#154">154: </a>    }
-</span><span id="155" class="l"><a class="l" href="#155">155: </a>
-</span><span id="156" class="l"><a class="l" href="#156">156: </a>    <span class="php-comment">/**
-</span></span><span id="157" class="l"><a class="l" href="#157">157: </a><span class="php-comment">     * Set the actual value used for matching expectations against.
-</span></span><span id="158" class="l"><a class="l" href="#158">158: </a><span class="php-comment">     *
-</span></span><span id="159" class="l"><a class="l" href="#159">159: </a><span class="php-comment">     * @param $actual
-</span></span><span id="160" class="l"><a class="l" href="#160">160: </a><span class="php-comment">     * @return $this
-</span></span><span id="161" class="l"><a class="l" href="#161">161: </a><span class="php-comment">     */</span>
-</span><span id="162" class="l"><a class="l" href="#162">162: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setActual" href="#_setActual">setActual</a>(<span class="php-var">$actual</span>)
-</span><span id="163" class="l"><a class="l" href="#163">163: </a>    {
-</span><span id="164" class="l"><a class="l" href="#164">164: </a>        <span class="php-var">$this</span>-&gt;actual = <span class="php-var">$actual</span>;
-</span><span id="165" class="l"><a class="l" href="#165">165: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="166" class="l"><a class="l" href="#166">166: </a>    }
-</span><span id="167" class="l"><a class="l" href="#167">167: </a>
-</span><span id="168" class="l"><a class="l" href="#168">168: </a>    <span class="php-comment">/**
-</span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     * Return the actual value being asserted against.
-</span></span><span id="170" class="l"><a class="l" href="#170">170: </a><span class="php-comment">     *
-</span></span><span id="171" class="l"><a class="l" href="#171">171: </a><span class="php-comment">     * @return mixed
-</span></span><span id="172" class="l"><a class="l" href="#172">172: </a><span class="php-comment">     */</span>
-</span><span id="173" class="l"><a class="l" href="#173">173: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getActual" href="#_getActual">getActual</a>()
-</span><span id="174" class="l"><a class="l" href="#174">174: </a>    {
-</span><span id="175" class="l"><a class="l" href="#175">175: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;actual;
-</span><span id="176" class="l"><a class="l" href="#176">176: </a>    }
-</span><span id="177" class="l"><a class="l" href="#177">177: </a>
-</span><span id="178" class="l"><a class="l" href="#178">178: </a>    <span class="php-comment">/**
-</span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     * Assert against the given matcher.
-</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     *
-</span></span><span id="181" class="l"><a class="l" href="#181">181: </a><span class="php-comment">     * @param $result
-</span></span><span id="182" class="l"><a class="l" href="#182">182: </a><span class="php-comment">     * @return $this
-</span></span><span id="183" class="l"><a class="l" href="#183">183: </a><span class="php-comment">     */</span>
-</span><span id="184" class="l"><a class="l" href="#184">184: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">assert</span>(MatcherInterface <span class="php-var">$matcher</span>)
-</span><span id="185" class="l"><a class="l" href="#185">185: </a>    {
-</span><span id="186" class="l"><a class="l" href="#186">186: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;flag(<span class="php-quote">'not'</span>)) {
-</span><span id="187" class="l"><a class="l" href="#187">187: </a>            <span class="php-var">$matcher</span>-&gt;invert();
-</span><span id="188" class="l"><a class="l" href="#188">188: </a>        }
-</span><span id="189" class="l"><a class="l" href="#189">189: </a>
-</span><span id="190" class="l"><a class="l" href="#190">190: </a>        <span class="php-var">$match</span> = <span class="php-var">$matcher</span>
-</span><span id="191" class="l"><a class="l" href="#191">191: </a>            -&gt;setAssertion(<span class="php-var">$this</span>)
-</span><span id="192" class="l"><a class="l" href="#192">192: </a>            -&gt;match(<span class="php-var">$this</span>-&gt;getActual());
-</span><span id="193" class="l"><a class="l" href="#193">193: </a>
-</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;flag(<span class="php-quote">'message'</span>);
-</span><span id="195" class="l"><a class="l" href="#195">195: </a>
-</span><span id="196" class="l"><a class="l" href="#196">196: </a>        <span class="php-var">$this</span>-&gt;clearFlags();
+</span><span id="153" class="l"><a class="l" href="#153">153: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">file_exists</span>(<span class="php-var">$fn</span>)) {
+</span><span id="154" class="l"><a class="l" href="#154">154: </a>            <span class="php-var">$fn</span> = <span class="php-keyword1">include</span> <span class="php-var">$fn</span>;
+</span><span id="155" class="l"><a class="l" href="#155">155: </a>        }
+</span><span id="156" class="l"><a class="l" href="#156">156: </a>
+</span><span id="157" class="l"><a class="l" href="#157">157: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_callable</span>(<span class="php-var">$fn</span>)) {
+</span><span id="158" class="l"><a class="l" href="#158">158: </a>            <span class="php-keyword1">return</span> <span class="php-keyword2">call_user_func</span>(<span class="php-var">$fn</span>, <span class="php-var">$this</span>);
+</span><span id="159" class="l"><a class="l" href="#159">159: </a>        }
+</span><span id="160" class="l"><a class="l" href="#160">160: </a>
+</span><span id="161" class="l"><a class="l" href="#161">161: </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \InvalidArgumentException(<span class="php-quote">&quot;Assertion::extend requires a callable or a file that returns one&quot;</span>);
+</span><span id="162" class="l"><a class="l" href="#162">162: </a>    }
+</span><span id="163" class="l"><a class="l" href="#163">163: </a>
+</span><span id="164" class="l"><a class="l" href="#164">164: </a>    <span class="php-comment">/**
+</span></span><span id="165" class="l"><a class="l" href="#165">165: </a><span class="php-comment">     * Set the actual value used for matching expectations against.
+</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     *
+</span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     * @param $actual
+</span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     * @return $this
+</span></span><span id="169" class="l"><a class="l" href="#169">169: </a><span class="php-comment">     */</span>
+</span><span id="170" class="l"><a class="l" href="#170">170: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_setActual" href="#_setActual">setActual</a>(<span class="php-var">$actual</span>)
+</span><span id="171" class="l"><a class="l" href="#171">171: </a>    {
+</span><span id="172" class="l"><a class="l" href="#172">172: </a>        <span class="php-var">$this</span>-&gt;actual = <span class="php-var">$actual</span>;
+</span><span id="173" class="l"><a class="l" href="#173">173: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="174" class="l"><a class="l" href="#174">174: </a>    }
+</span><span id="175" class="l"><a class="l" href="#175">175: </a>
+</span><span id="176" class="l"><a class="l" href="#176">176: </a>    <span class="php-comment">/**
+</span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     * Return the actual value being asserted against.
+</span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     *
+</span></span><span id="179" class="l"><a class="l" href="#179">179: </a><span class="php-comment">     * @return mixed
+</span></span><span id="180" class="l"><a class="l" href="#180">180: </a><span class="php-comment">     */</span>
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getActual" href="#_getActual">getActual</a>()
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>    {
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;actual;
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>    }
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>    <span class="php-comment">/**
+</span></span><span id="187" class="l"><a class="l" href="#187">187: </a><span class="php-comment">     * Assert against the given matcher.
+</span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     *
+</span></span><span id="189" class="l"><a class="l" href="#189">189: </a><span class="php-comment">     * @param $result
+</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     * @return $this
+</span></span><span id="191" class="l"><a class="l" href="#191">191: </a><span class="php-comment">     */</span>
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">assert</span>(MatcherInterface <span class="php-var">$matcher</span>)
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>    {
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;flag(<span class="php-quote">'not'</span>)) {
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>            <span class="php-var">$matcher</span>-&gt;invert();
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>        }
 </span><span id="197" class="l"><a class="l" href="#197">197: </a>
-</span><span id="198" class="l"><a class="l" href="#198">198: </a>        <span class="php-var">$this</span>-&gt;responder-&gt;respond(<span class="php-var">$match</span>, <span class="php-var">$matcher</span>-&gt;getTemplate(), <span class="php-var">$message</span>);
-</span><span id="199" class="l"><a class="l" href="#199">199: </a>
-</span><span id="200" class="l"><a class="l" href="#200">200: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="201" class="l"><a class="l" href="#201">201: </a>    }
-</span><span id="202" class="l"><a class="l" href="#202">202: </a>}
-</span><span id="203" class="l"><a class="l" href="#203">203: </a></span></code></pre>
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>        <span class="php-var">$match</span> = <span class="php-var">$matcher</span>
+</span><span id="199" class="l"><a class="l" href="#199">199: </a>            -&gt;setAssertion(<span class="php-var">$this</span>)
+</span><span id="200" class="l"><a class="l" href="#200">200: </a>            -&gt;match(<span class="php-var">$this</span>-&gt;getActual());
+</span><span id="201" class="l"><a class="l" href="#201">201: </a>
+</span><span id="202" class="l"><a class="l" href="#202">202: </a>        <span class="php-var">$message</span> = <span class="php-var">$this</span>-&gt;flag(<span class="php-quote">'message'</span>);
+</span><span id="203" class="l"><a class="l" href="#203">203: </a>
+</span><span id="204" class="l"><a class="l" href="#204">204: </a>        <span class="php-var">$this</span>-&gt;clearFlags();
+</span><span id="205" class="l"><a class="l" href="#205">205: </a>
+</span><span id="206" class="l"><a class="l" href="#206">206: </a>        <span class="php-var">$this</span>-&gt;responder-&gt;respond(<span class="php-var">$match</span>, <span class="php-var">$matcher</span>-&gt;getTemplate(), <span class="php-var">$message</span>);
+</span><span id="207" class="l"><a class="l" href="#207">207: </a>
+</span><span id="208" class="l"><a class="l" href="#208">208: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="209" class="l"><a class="l" href="#209">209: </a>    }
+</span><span id="210" class="l"><a class="l" href="#210">210: </a>}
+</span><span id="211" class="l"><a class="l" href="#211">211: </a></span></code></pre>
 
 	<div id="footer">
 		Leo API documentation generated by <a href="http://apigen.org">ApiGen</a>
