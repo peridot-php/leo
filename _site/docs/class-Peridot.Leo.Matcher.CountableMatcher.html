@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Peridot\Leo\Matcher\CountableMatcher | Leo</title>
+
+	<link rel="stylesheet" href="resources/style.css?1648332946">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.html">Peridot<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Peridot.Leo.html">Leo<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Formatter.html">Formatter</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Interfaces.html">Interfaces<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Interfaces.Assert.html">Assert</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Peridot.Leo.Matcher.html">Matcher<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Peridot.Leo.Matcher.AbstractMatcher.html">AbstractMatcher</a></li>
+				<li class="active"><a href="class-Peridot.Leo.Matcher.CountableMatcher.html">CountableMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.EmptyMatcher.html">EmptyMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.EqualMatcher.html">EqualMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.ExceptionMatcher.html">ExceptionMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.GreaterThanMatcher.html">GreaterThanMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.GreaterThanOrEqualMatcher.html">GreaterThanOrEqualMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.InclusionMatcher.html">InclusionMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.InstanceofMatcher.html">InstanceofMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.KeysMatcher.html">KeysMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.LengthMatcher.html">LengthMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.LessThanMatcher.html">LessThanMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.LessThanOrEqualMatcher.html">LessThanOrEqualMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.Match.html">Match</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.NullMatcher.html">NullMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.PatternMatcher.html">PatternMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.PredicateMatcher.html">PredicateMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.PropertyMatcher.html">PropertyMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.RangeMatcher.html">RangeMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.SameMatcher.html">SameMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.SubStringMatcher.html">SubStringMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.TrueMatcher.html">TrueMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.TruthyMatcher.html">TruthyMatcher</a></li>
+				<li><a href="class-Peridot.Leo.Matcher.TypeMatcher.html">TypeMatcher</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Peridot.Leo.Matcher.MatcherInterface.html">MatcherInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Peridot.Leo.Matcher.html" title="Summary of Peridot\Leo\Matcher"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CountableMatcher</h1>
+
+
+	<div class="description">
+	<p>CountableMatcher a matcher is a matcher that matches numeric values,
+or reduces a countable value - like array, string, or Countable - to a single
+numeric value.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html"><span>Peridot\Leo\Matcher\AbstractMatcher</span></a>
+			
+			 implements 
+				<a href="class-Peridot.Leo.Matcher.MatcherInterface.html"><span>Peridot\Leo\Matcher\MatcherInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Peridot\Leo\Matcher\CountableMatcher</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Peridot.Leo.Matcher.GreaterThanMatcher.html">Peridot\Leo\Matcher\GreaterThanMatcher</a>, 
+			<a href="class-Peridot.Leo.Matcher.GreaterThanOrEqualMatcher.html">Peridot\Leo\Matcher\GreaterThanOrEqualMatcher</a>, 
+			<a href="class-Peridot.Leo.Matcher.LessThanMatcher.html">Peridot\Leo\Matcher\LessThanMatcher</a>, 
+			<a href="class-Peridot.Leo.Matcher.LessThanOrEqualMatcher.html">Peridot\Leo\Matcher\LessThanOrEqualMatcher</a>, 
+			<a href="class-Peridot.Leo.Matcher.RangeMatcher.html">Peridot\Leo\Matcher\RangeMatcher</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> Peridot\Leo\Matcher<br>
+		<b>Package:</b> Peridot\Leo\Matcher<br>
+
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#6-104" title="Go to source code">Matcher/CountableMatcher.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="setCountable" id="_setCountable">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCountable">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#20-30" title="Go to source code">setCountable</a>( <span>mixed <var>$countable</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the countable value used by the CountableMatcher.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the countable value used by the CountableMatcher.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$countable</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$this
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCountable" id="_getCountable">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCountable">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#32-40" title="Go to source code">getCountable</a>( )</code>
+
+		<div class="description short">
+			<p>Return the countable used by the CountableMatcher.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return the countable used by the CountableMatcher.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCount" id="_getCount">
+
+		<td class="attributes"><code>
+			 public 
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCount">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#42-53" title="Go to source code">getCount</a>( )</code>
+
+		<div class="description short">
+			<p>Get the count of the countable value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get the count of the countable value.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTemplate" id="_getTemplate">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Peridot.Leo.Matcher.Template.TemplateInterface.html">Peridot\Leo\Matcher\Template\TemplateInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#55-69" title="Go to source code">getTemplate</a>( )</code>
+
+		<div class="description short">
+			<p>Return the TemplateInterface being used by the matcher.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return the TemplateInterface being used by the matcher.</p>
+
+<p>Returns a default countable interface if the countable is set.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Peridot.Leo.Matcher.Template.TemplateInterface.html">Peridot\Leo\Matcher\Template\TemplateInterface</a></code></code>
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_getTemplate">Peridot\Leo\Matcher\AbstractMatcher::getTemplate()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doMatch" id="_doMatch">
+
+		<td class="attributes"><code>
+			 protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doMatch">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#71-88" title="Go to source code">doMatch</a>( <span>mixed <var>$actual</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>The actual matching algorithm for the matcher. This is called by ->match()
+to create a Match result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The actual matching algorithm for the matcher. This is called by ->match()
+to create a Match result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actual</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultCountableTemplate" id="_getDefaultCountableTemplate">
+
+		<td class="attributes"><code>
+			abstract public 
+
+			<code><a href="class-Peridot.Leo.Matcher.Template.TemplateInterface.html">Peridot\Leo\Matcher\Template\TemplateInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultCountableTemplate">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#90-95" title="Go to source code">getDefaultCountableTemplate</a>( )</code>
+
+		<div class="description short">
+			<p>Return a default template for when a countable has been set.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Return a default template for when a countable has been set.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Peridot.Leo.Matcher.Template.TemplateInterface.html">Peridot\Leo\Matcher\Template\TemplateInterface</a></code></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="matchNumeric" id="_matchNumeric">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_matchNumeric">#</a>
+		<code><a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#97-103" title="Go to source code">matchNumeric</a>( <span>mixed <var>$number</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if a number matches a specified condition</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if a number matches a specified condition</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$number</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#methods">Peridot\Leo\Matcher\AbstractMatcher</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#___construct">__construct()</a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_invert">invert()</a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_isNegated">isNegated()</a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_match">match()</a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_setAssertion">setAssertion()</a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#_setTemplate">setTemplate()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Peridot.Leo.Matcher.MatcherInterface.html#methods">Peridot\Leo\Matcher\MatcherInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Matcher.MatcherInterface.html#_getDefaultTemplate">getDefaultTemplate()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="countable" id="$countable">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peridot.Leo.Matcher.CountableMatcher.html#15-18" title="Go to source code"><var>$countable</var></a>
+
+			<div class="description short">
+				
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$countable" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#properties">Peridot\Leo\Matcher\AbstractMatcher</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#$assertion"><var>$assertion</var></a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#$expected"><var>$expected</var></a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#$negated"><var>$negated</var></a>, 
+			<a href="class-Peridot.Leo.Matcher.AbstractMatcher.html#$template"><var>$template</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Leo API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?4259027681"></script>
+</body>
+</html>

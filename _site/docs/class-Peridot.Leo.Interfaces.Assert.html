@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Peridot\Leo\Interfaces\Assert | Leo</title>
+
+	<link rel="stylesheet" href="resources/style.css?1648332946">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.html">Peridot<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Peridot.Leo.html">Leo<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Formatter.html">Formatter</a>
+						</li>
+				<li class="active"><a href="namespace-Peridot.Leo.Interfaces.html">Interfaces<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Interfaces.Assert.html">Assert</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Matcher.html">Matcher<span></span></a>
+						<ul>
+				<li><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+						</li>
+				<li><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Peridot.Leo.Interfaces.Assert.html">Assert</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Peridot.Leo.Interfaces.html" title="Summary of Peridot\Leo\Interfaces"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Assert</h1>
+
+
+	<div class="description">
+	<p>Assert is a non-chainable, object oriented interface
+on top of a Leo Assertion.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Peridot\Leo\Interfaces\Assert</span></b>			
+			
+			 uses 
+					<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html"><span>Peridot\Leo\Interfaces\Assert\TypeAssertTrait</span></a>, 
+			
+					<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html"><span>Peridot\Leo\Interfaces\Assert\ObjectAssertTrait</span></a>, 
+			
+					<a href="class-Peridot.Leo.Interfaces.Assert.CollectionAssertTrait.html"><span>Peridot\Leo\Interfaces\Assert\CollectionAssertTrait</span></a>
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> Peridot\Leo\Interfaces<br>
+		<b>Package:</b> Peridot\Leo\Interfaces<br>
+
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Interfaces.Assert.html#11-222" title="Go to source code">Interfaces/Assert.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#47-56" title="Go to source code">__construct</a>( <span><code><a href="class-Peridot.Leo.Assertion.html">Peridot\Leo\Assertion</a></code> <var>$assertion</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$assertion</var></dt>
+					<dd>$responder
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="equal" id="_equal">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_equal">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#58-69" title="Go to source code">equal</a>( <span>mixed <var>$actual</var></span>, <span>mixed <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform an a loose equality assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform an a loose equality assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actual</var></dt>
+					<dd>
+</dd>
+					<dt><var>$expected</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notEqual" id="_notEqual">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notEqual">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#71-82" title="Go to source code">notEqual</a>( <span>mixed <var>$actual</var></span>, <span>mixed <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a negated loose equality assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a negated loose equality assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actual</var></dt>
+					<dd>
+</dd>
+					<dt><var>$expected</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="throws" id="_throws">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_throws">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#84-96" title="Go to source code">throws</a>( <span>callable <var>$fn</var></span>, <span>mixed <var>$exceptionType</var></span>, <span>string <var>$exceptionMessage</var> = <span class="php-quote">&quot;&quot;</span></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Performs a throw assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Performs a throw assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fn</var></dt>
+					<dd>
+</dd>
+					<dt><var>$exceptionType</var></dt>
+					<dd>
+</dd>
+					<dt><var>$exceptionMessage</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doesNotThrow" id="_doesNotThrow">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doesNotThrow">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#98-110" title="Go to source code">doesNotThrow</a>( <span>callable <var>$fn</var></span>, <span>mixed <var>$exceptionType</var></span>, <span>string <var>$exceptionMessage</var> = <span class="php-quote">&quot;&quot;</span></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Performs a negated throw assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Performs a negated throw assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fn</var></dt>
+					<dd>
+</dd>
+					<dt><var>$exceptionType</var></dt>
+					<dd>
+</dd>
+					<dt><var>$exceptionMessage</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ok" id="_ok">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ok">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#112-122" title="Go to source code">ok</a>( <span>mixed <var>$object</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform an ok assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform an ok assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notOk" id="_notOk">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notOk">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#124-134" title="Go to source code">notOk</a>( <span>mixed <var>$object</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a negated assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a negated assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="strictEqual" id="_strictEqual">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_strictEqual">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#136-147" title="Go to source code">strictEqual</a>( <span>mixed <var>$actual</var></span>, <span>mixed <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a strict equality assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a strict equality assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actual</var></dt>
+					<dd>
+</dd>
+					<dt><var>$expected</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notStrictEqual" id="_notStrictEqual">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notStrictEqual">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#149-160" title="Go to source code">notStrictEqual</a>( <span>mixed <var>$actual</var></span>, <span>mixed <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a negated strict equality assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a negated strict equality assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$actual</var></dt>
+					<dd>
+</dd>
+					<dt><var>$expected</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="match" id="_match">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_match">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#162-173" title="Go to source code">match</a>( <span>string <var>$value</var></span>, <span>string <var>$pattern</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a pattern assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a pattern assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>
+</dd>
+					<dt><var>$pattern</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notMatch" id="_notMatch">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notMatch">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#175-186" title="Go to source code">notMatch</a>( <span>string <var>$value</var></span>, <span>string <var>$pattern</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform a negated pattern assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform a negated pattern assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>
+</dd>
+					<dt><var>$pattern</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="operator" id="_operator">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_operator">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#188-203" title="Go to source code">operator</a>( <span>mixed <var>$left</var></span>, <span>string <var>$operator</var></span>, <span>mixed <var>$right</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Compare two values using the given operator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Compare two values using the given operator.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$left</var></dt>
+					<dd>
+</dd>
+					<dt><var>$operator</var></dt>
+					<dd>
+</dd>
+					<dt><var>$right</var></dt>
+					<dd>
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#205-221" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$args</var></span> )</code>
+
+		<div class="description short">
+			<p>Defined to allow use of reserved words for methods.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Defined to allow use of reserved words for methods.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd>
+</dd>
+					<dt><var>$args</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#methods">Peridot\Leo\Interfaces\Assert\TypeAssertTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isArray">isArray()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isBoolean">isBoolean()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isCallable">isCallable()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isDouble">isDouble()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isFalse">isFalse()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isInteger">isInteger()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotArray">isNotArray()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotBoolean">isNotBoolean()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotCallable">isNotCallable()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotDouble">isNotDouble()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotInteger">isNotInteger()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotNull">isNotNull()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotNumeric">isNotNumeric()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotObject">isNotObject()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotResource">isNotResource()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNotString">isNotString()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNull">isNull()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isNumeric">isNumeric()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isObject">isObject()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isResource">isResource()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isString">isString()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_isTrue">isTrue()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_notTypeOf">notTypeOf()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.TypeAssertTrait.html#_typeOf">typeOf()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#methods">Peridot\Leo\Interfaces\Assert\ObjectAssertTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_deepProperty">deepProperty()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_deepPropertyNotVal">deepPropertyNotVal()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_deepPropertyVal">deepPropertyVal()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_isInstanceOf">isInstanceOf()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_notDeepProperty">notDeepProperty()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_notInstanceOf">notInstanceOf()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_notProperty">notProperty()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_property">property()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_propertyNotVal">propertyNotVal()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.ObjectAssertTrait.html#_propertyVal">propertyVal()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Peridot.Leo.Interfaces.Assert.CollectionAssertTrait.html#methods">Peridot\Leo\Interfaces\Assert\CollectionAssertTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Peridot.Leo.Interfaces.Assert.CollectionAssertTrait.html#_isIncluded">isIncluded()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.CollectionAssertTrait.html#_lengthOf">lengthOf()</a>, 
+			<a href="class-Peridot.Leo.Interfaces.Assert.CollectionAssertTrait.html#_notInclude">notInclude()</a>
+		</code></td>
+	</tr>
+	</table>
+
+	<table class="summary methods" id="magicMethods">
+	<caption>Magic methods summary</caption>
+	<tr data-order="instanceOf" id="m_instanceOf">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#m_instanceOf">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#15" title="Go to source code">instanceOf</a>( <span>string <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform an instanceof assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform an instanceof assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$expected</var></dt>
+					<dd>$message
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="include" id="m_include">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#m_include">#</a>
+		<code><a href="source-class-Peridot.Leo.Interfaces.Assert.html#16" title="Go to source code">include</a>( <span>string <var>$expected</var></span>, <span>string <var>$message</var> = <span class="php-quote">&quot;&quot;</span></span> )</code>
+
+		<div class="description short">
+			<p>Perform an inclusion assertion.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform an inclusion assertion.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$expected</var></dt>
+					<dd>$message
+</dd>
+					<dt><var>$message</var></dt>
+					<dd>
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="operators" id="$operators">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peridot.Leo.Interfaces.Assert.html#26-40" title="Go to source code"><var>$operators</var></a>
+
+			<div class="description short">
+				<p>An array of operators mapping to assertions.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				<p>An array of operators mapping to assertions.</p>
+
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$operators" class="anchor">#</a>
+				<code>[
+    <span class="php-quote">'=='</span> =&gt; <span class="php-quote">'loosely-&gt;equal'</span>,
+    <span class="php-quote">'==='</span> =&gt; <span class="php-quote">'equal'</span>,
+    <span class="php-quote">'&gt;'</span> =&gt; <span class="php-quote">'above'</span>,
+    <span class="php-quote">'&gt;='</span> =&gt; <span class="php-quote">'least'</span>,
+    <span class="php-quote">'&lt;'</span> =&gt; <span class="php-quote">'below'</span>,
+    <span class="php-quote">'&lt;='</span> =&gt; <span class="php-quote">'most'</span>,
+    <span class="php-quote">'!='</span> =&gt; <span class="php-quote">'not-&gt;loosely-&gt;equal'</span>,
+    <span class="php-quote">'!=='</span> =&gt; <span class="php-quote">'not-&gt;equal'</span>
+]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="assertion" id="$assertion">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Peridot.Leo.Assertion.html">Peridot\Leo\Assertion</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peridot.Leo.Interfaces.Assert.html#42-45" title="Go to source code"><var>$assertion</var></a>
+
+			<div class="description short">
+				
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$assertion" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Leo API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?4259027681"></script>
+</body>
+</html>
