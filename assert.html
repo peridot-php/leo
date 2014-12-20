@@ -515,3 +515,417 @@ $assert->deepPropertyNotVal($person, 'name->first', 'austin');
 $assert->deepPropertyNotVal($array, '[2][2][1]', 7);
 ?>
 {% endhighlight %}
+
+<h2 id="assert_typeOf">->typeOf(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>string</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is of type <code>epxected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->typeOf([], 'array');
+$assert->typeOf(tmpfile(), 'resource');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notTypeOf">->notTypeOf(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>string</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is not of type <code>epxected</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notTypeOf([], 'resource');
+$assert->notTypeOf(tmpfile(), 'string');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isTrue">->isTrue(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is exactly <code>true</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isTrue(true);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isFalse">->isFalse(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is exactly <code>false</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isFalse(false);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNull">->isNull(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is <code>null</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNull(null);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotNull">->isNotNull(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not <code>null</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotNull('string');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isCallable">->isCallable(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is of type <code>callable</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isCallable(function() {});
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotCallable">->isNotCallable(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not of type <code>callable</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotCallable('string');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isObject">->isObject(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an object.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isObject(new stdClass());
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotObject">->isNotObject(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an object.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotObject(4);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isArray">->isArray(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an array.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isArray([1,2,3]);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotArray">->isNotArray(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an array.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotArray([1,2,3]);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isString">->isString(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a string.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isString('hello');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotString">->isNotString(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a string.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isString(47);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNumeric">->isNumeric(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is numeric.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNumeric(7);
+$assert->isNumeric('1');
+$assert->isNumeric(7.82);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotNumeric">->isNotNumeric(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not numeric.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotNumeric('one');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isInteger">->isInteger(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an integer.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isInteger(1);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotInteger">->isNotInteger(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an integer.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotInteger(1.787654);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isDouble">->isDouble(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a double.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isDouble(7.898);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotDouble">->isNotDouble(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a double.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotDouble(7);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isResource">->isResource(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a resource.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isResource(tmpfile());
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotResource">->isNotResource(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a resource.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotResource('just a string');
+?>
+{% endhighlight %}
+
+<h2 id="assert_isBoolean">->isBoolean(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a boolean.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isBoolean(true);
+?>
+{% endhighlight %}
+
+<h2 id="assert_isNotBoolean">->isNotBoolean(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a boolean.
+</p>
+
+{% highlight php %}
+<?php
+$assert->isNotBoolean('true');
+?>
+{% endhighlight %}

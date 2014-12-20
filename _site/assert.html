@@ -47,6 +47,62 @@
                     <li><a href="#">Plugins</a></li>
                 </ul>
                 
+                
+                <div class="antiscroll-wrap">
+                    <div class="antiscroll-inner">
+                        <ul class="nav nav-sidebar nav-scrollable">
+                            <li><a href="#assert_equal">equal</a></li>
+                            <li><a href="#assert_notEqual">notEqual</a></li>
+                            <li><a href="#assert_throws">throws</a></li>
+                            <li><a href="#assert_doesNotThrow">doesNotThrow</a></li>
+                            <li><a href="#assert_ok">ok</a></li>
+                            <li><a href="#assert_notOk">notOk</a></li>
+                            <li><a href="#assert_strictEqual">strictEqual</a></li>
+                            <li><a href="#assert_notStrictEqual">notStrictEqual</a></li>
+                            <li><a href="#assert_match">match</a></li>
+                            <li><a href="#assert_notMatch">notMatch</a></li>
+                            <li><a href="#assert_operator">operator</a></li>
+                            <li><a href="#assert_lengthOf">lengthOf</a></li>
+                            <li><a href="#assert_include">include</a></li>
+                            <li><a href="#assert_notInclude">notInclude</a></li>
+                            <li><a href="#assert_instanceOf">instanceOf</a></li>
+                            <li><a href="#assert_notInstanceOf">notInstanceOf</a></li>
+                            <li><a href="#assert_property">property</a></li>
+                            <li><a href="#assert_notProperty">notProperty</a></li>
+                            <li><a href="#assert_deepProperty">deepProperty</a></li>
+                            <li><a href="#assert_notDeepProperty">notDeepProperty</a></li>
+                            <li><a href="#assert_propertyVal">propertyVal</a></li>
+                            <li><a href="#assert_propertyNotVal">propertyNotVal</a></li>
+                            <li><a href="#assert_deepPropertyVal">deepPropertyVal</a></li>
+                            <li><a href="#assert_deepPropertyNotVal">deepPropertyNotVal</a></li>
+                            <li><a href="#assert_typeOf">typeOf</a></li>
+                            <li><a href="#assert_notTypeOf">notTypeOf</a></li>
+                            <li><a href="#assert_isTrue">isTrue</a></li>
+                            <li><a href="#assert_isFalse">isFalse</a></li>
+                            <li><a href="#assert_isNull">isNull</a></li>
+                            <li><a href="#assert_isNotNull">isNotNull</a></li>
+                            <li><a href="#assert_isCallable">isCallable</a></li>
+                            <li><a href="#assert_isNotCallable">isNotCallable</a></li>
+                            <li><a href="#assert_isObject">isObject</a></li>
+                            <li><a href="#assert_isNotObject">isNotObject</a></li>
+                            <li><a href="#assert_isArray">isArray</a></li>
+                            <li><a href="#assert_isNotArray">isNotArray</a></li>
+                            <li><a href="#assert_isString">isString</a></li>
+                            <li><a href="#assert_isNotString">isNotString</a></li>
+                            <li><a href="#assert_isNumeric">isNumeric</a></li>
+                            <li><a href="#assert_isNotNumeric">isNotNumeric</a></li>
+                            <li><a href="#assert_isInteger">isInteger</a></li>
+                            <li><a href="#assert_isNotInteger">isNotInteger</a></li>
+                            <li><a href="#assert_isDouble">isDouble</a></li>
+                            <li><a href="#assert_isNotDouble">isNotDouble</a></li>
+                            <li><a href="#assert_isResource">isResource</a></li>
+                            <li><a href="#assert_isNotResource">isNotResource</a></li>
+                            <li><a href="#assert_isBoolean">isBoolean</a></li>
+                            <li><a href="#assert_isNotBoolean">isNotBoolean</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </aside>
             <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
 
@@ -512,6 +568,372 @@
 
 <span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">deepPropertyNotVal</span><span class="p">(</span><span class="nv">$person</span><span class="p">,</span> <span class="s1">&#39;name-&gt;first&#39;</span><span class="p">,</span> <span class="s1">&#39;austin&#39;</span><span class="p">);</span>
 <span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">deepPropertyNotVal</span><span class="p">(</span><span class="nv">$array</span><span class="p">,</span> <span class="s1">&#39;[2][2][1]&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_typeOf">->typeOf(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>string</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is of type <code>epxected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">typeOf</span><span class="p">([],</span> <span class="s1">&#39;array&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">typeOf</span><span class="p">(</span><span class="nb">tmpfile</span><span class="p">(),</span> <span class="s1">&#39;resource&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_notTypeOf">->notTypeOf(actual, expected, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $actual</li>
+	<li>@param <code>string</code> $expected</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>actual</code> is not of type <code>epxected</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notTypeOf</span><span class="p">([],</span> <span class="s1">&#39;resource&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">notTypeOf</span><span class="p">(</span><span class="nb">tmpfile</span><span class="p">(),</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isTrue">->isTrue(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is exactly <code>true</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isTrue</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isFalse">->isFalse(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is exactly <code>false</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isFalse</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNull">->isNull(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is <code>null</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNull</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotNull">->isNotNull(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not <code>null</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotNull</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isCallable">->isCallable(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is of type <code>callable</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isCallable</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{});</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotCallable">->isNotCallable(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not of type <code>callable</code>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotCallable</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isObject">->isObject(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an object.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isObject</span><span class="p">(</span><span class="k">new</span> <span class="k">stdClass</span><span class="p">());</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotObject">->isNotObject(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an object.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotObject</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isArray">->isArray(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an array.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotArray">->isNotArray(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an array.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isString">->isString(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a string.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isString</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotString">->isNotString(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a string.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isString</span><span class="p">(</span><span class="mi">47</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNumeric">->isNumeric(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is numeric.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNumeric</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNumeric</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNumeric</span><span class="p">(</span><span class="mf">7.82</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotNumeric">->isNotNumeric(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not numeric.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotNumeric</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isInteger">->isInteger(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is an integer.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isInteger</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotInteger">->isNotInteger(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not an integer.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotInteger</span><span class="p">(</span><span class="mf">1.787654</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isDouble">->isDouble(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a double.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isDouble</span><span class="p">(</span><span class="mf">7.898</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotDouble">->isNotDouble(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a double.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotDouble</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isResource">->isResource(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a resource.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isResource</span><span class="p">(</span><span class="nb">tmpfile</span><span class="p">());</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotResource">->isNotResource(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a resource.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotResource</span><span class="p">(</span><span class="s1">&#39;just a string&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isBoolean">->isBoolean(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is a boolean.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isBoolean</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="assert_isNotBoolean">->isNotBoolean(value, [message])</h2>
+
+<ul>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messasge [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>value</code> is not a boolean.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotBoolean</span><span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
             </main>
