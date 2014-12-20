@@ -279,3 +279,239 @@ $assert->notInclude([1,2,3], 4);
 $assert->notInclude('hello', 'good');
 ?>
 {% endhighlight %}
+
+<h2 id="assert_instanceOf">->instanceOf(object, class, [message])</h2>
+
+<ul>
+	<li>@param <code>object</code> $object</li>
+	<li>@param <code>string</code> $class</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>object</code> is an instance of <code>class</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->instanceOf($request, 'Symfony\Component\HttpFoundation\Request');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notInstanceOf">->notInstanceOf(object, class, [message])</h2>
+
+<ul>
+	<li>@param <code>object</code> $object</li>
+	<li>@param <code>string</code> $class</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that <code>object</code> is not an instance of <code>class</code>.
+</p>
+
+{% highlight php %}
+<?php
+$assert->notInstanceOf($response, 'Symfony\Component\HttpFoundation\Request');
+?>
+{% endhighlight %}
+
+<h2 id="assert_property">->property(object, property, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains the index or property identified by <code>property</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = "name";
+
+$array = [1,2,3];
+
+$assert->property($person, 'name');
+$assert->property($array, 2);
+?>
+{% endhighlight %}
+
+<h2 id="assert_notProperty">->notProperty(object, property, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> does not contain the index or property identified by <code>property</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = "name";
+
+$array = [1,2,3];
+
+$assert->notProperty($person, 'age');
+$assert->notProperty($array, 5);
+?>
+{% endhighlight %}
+
+<h2 id="assert_deepProperty">->deepProperty(object, property, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>string</code> $messsage [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains a deep property or index identified by <code>property</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = 'brian';
+
+$array = [0,1,[1,2,[2,3]]];
+
+$assert->deepProperty($person, 'name->first');
+$assert->deepProperty($array, '[2][2][1]');
+?>
+{% endhighlight %}
+
+<h2 id="assert_notDeepProperty">->notDeepProperty(object, property, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>string</code> $messsage [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> does not contain a deep property or index identified by <code>property</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = 'brian';
+
+$array = [0,1,[1,2,[2,3]]];
+
+$assert->notDeepProperty($person, 'name->last');
+$assert->notDeepProperty($array, '[2][2][4]');
+?>
+{% endhighlight %}
+
+<h2 id="assert_propertyVal">->propertyVal(object, property, value, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains the index or property identified by <code>property</code> and that property has a value of <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = "brian";
+
+$array = [1,2,3];
+
+$assert->propertyVal($person, 'name', 'brian');
+$assert->propertyVal($array, 2, 3);
+?>
+{% endhighlight %}
+
+<h2 id="assert_propertyNotVal">->propertyNotVal(object, property, value, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $message [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains the index or property identified by <code>property</code> and that property does not have a value of <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = "brian";
+
+$array = [1,2,3];
+
+$assert->propertyNotVal($person, 'name', 'austin');
+$assert->propertyNotVal($array, 2, 4);
+?>
+{% endhighlight %}
+
+<h2 id="assert_deepPropertyVal">->deepPropertyVal(object, property, value, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messsage [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains a deep property or index identified by <code>property</code> and that property has a value of <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = 'brian';
+
+$array = [0,1,[1,2,[2,3]]];
+
+$assert->deepPropertyVal($person, 'name->first', 'brian');
+$assert->deepPropertyVal($array, '[2][2][1]', 3);
+?>
+{% endhighlight %}
+
+<h2 id="assert_deepPropertyNotVal">->deepPropertyNotVal(object, property, value, [message])</h2>
+
+<ul>
+	<li>@param <code>object|array</code> $object</li>
+	<li>@param <code>string|int</code> $property</li>
+	<li>@param <code>mixed</code> $value</li>
+	<li>@param <code>string</code> $messsage [optional]</li>
+</ul>
+
+<p>
+	Asserts that object or array <code>object</code> contains a deep property or index identified by <code>property</code> and that property does not have a value of <code>value</code>.
+</p>
+
+{% highlight php %}
+<?php
+$person = new stdClass();
+$person->name = new stdClass();
+$person->name->first = 'brian';
+
+$array = [0,1,[1,2,[2,3]]];
+
+$assert->deepPropertyNotVal($person, 'name->first', 'austin');
+$assert->deepPropertyNotVal($array, '[2][2][1]', 7);
+?>
+{% endhighlight %}
