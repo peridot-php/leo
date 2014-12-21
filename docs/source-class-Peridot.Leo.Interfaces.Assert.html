@@ -147,7 +147,7 @@
 </span><span id="50" class="l"><a class="l" href="#50"> 50: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(Assertion <span class="php-var">$assertion</span> = <span class="php-keyword1">null</span>)
 </span><span id="51" class="l"><a class="l" href="#51"> 51: </a>    {
 </span><span id="52" class="l"><a class="l" href="#52"> 52: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_null</span>(<span class="php-var">$assertion</span>)) {
-</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>            <span class="php-var">$assertion</span> = Leo::instance()-&gt;getAssertion();
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>            <span class="php-var">$assertion</span> = Leo::assertion();
 </span><span id="54" class="l"><a class="l" href="#54"> 54: </a>        }
 </span><span id="55" class="l"><a class="l" href="#55"> 55: </a>        <span class="php-var">$this</span>-&gt;assertion = <span class="php-var">$assertion</span>;
 </span><span id="56" class="l"><a class="l" href="#56"> 56: </a>    }

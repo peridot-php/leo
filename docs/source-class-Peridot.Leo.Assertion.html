@@ -252,7 +252,7 @@
 </span></span><span id="150" class="l"><a class="l" href="#150">150: </a><span class="php-comment">     */</span>
 </span><span id="151" class="l"><a class="l" href="#151">151: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_extend" href="#_extend">extend</a>(<span class="php-var">$fn</span>)
 </span><span id="152" class="l"><a class="l" href="#152">152: </a>    {
-</span><span id="153" class="l"><a class="l" href="#153">153: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">file_exists</span>(<span class="php-var">$fn</span>)) {
+</span><span id="153" class="l"><a class="l" href="#153">153: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">is_string</span>(<span class="php-var">$fn</span>) &amp;&amp; <span class="php-keyword2">file_exists</span>(<span class="php-var">$fn</span>)) {
 </span><span id="154" class="l"><a class="l" href="#154">154: </a>            <span class="php-var">$fn</span> = <span class="php-keyword1">include</span> <span class="php-var">$fn</span>;
 </span><span id="155" class="l"><a class="l" href="#155">155: </a>        }
 </span><span id="156" class="l"><a class="l" href="#156">156: </a>
