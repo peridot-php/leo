@@ -131,7 +131,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 		<b>Namespace:</b> Peridot\Leo<br>
 		<b>Package:</b> Peridot\Leo<br>
 
-		<b>Located at</b> <a href="source-class-Peridot.Leo.Assertion.html#7-202" title="Go to source code">Assertion.php</a><br>
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Assertion.html#7-210" title="Go to source code">Assertion.php</a><br>
 	</div>
 
 
@@ -361,17 +361,17 @@ the result as an assertion before returning the result.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extend">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#144-154" title="Go to source code">extend</a>( <span>callable <var>$fn</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#144-162" title="Go to source code">extend</a>( <span>callable <var>$fn</var></span> )</code>
 
 		<div class="description short">
-			<p>Extend calls the given callable and passes the current Assertion instance
+			<p>Extend calls the given callable - or file that returns a callable - and passes the current Assertion instance
 to it. Assertion can be extended via the ->addMethod(), ->flag(), and ->addProperty()
 methods.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Extend calls the given callable and passes the current Assertion instance
+			<p>Extend calls the given callable - or file that returns a callable - and passes the current Assertion instance
 to it. Assertion can be extended via the ->addMethod(), ->flag(), and ->addProperty()
 methods.</p>
 
@@ -403,7 +403,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setActual">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#156-166" title="Go to source code">setActual</a>( <span>mixed <var>$actual</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#164-174" title="Go to source code">setActual</a>( <span>mixed <var>$actual</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the actual value used for matching expectations against.</p>
@@ -446,7 +446,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getActual">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#168-176" title="Go to source code">getActual</a>( )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#176-184" title="Go to source code">getActual</a>( )</code>
 
 		<div class="description short">
 			<p>Return the actual value being asserted against.</p>
@@ -482,7 +482,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_assert">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#178-201" title="Go to source code">assert</a>( <span><code><a href="class-Peridot.Leo.Matcher.MatcherInterface.html">Peridot\Leo\Matcher\MatcherInterface</a></code> <var>$matcher</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#186-209" title="Go to source code">assert</a>( <span><code><a href="class-Peridot.Leo.Matcher.MatcherInterface.html">Peridot\Leo\Matcher\MatcherInterface</a></code> <var>$matcher</var></span> )</code>
 
 		<div class="description short">
 			<p>Assert against the given matcher.</p>

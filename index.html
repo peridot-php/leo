@@ -47,7 +47,7 @@ $assert->throws(function() {
 }, 'Exception');
 ?>
 {% endhighlight %}
-		<a href="{{site.baseurl}}/assert.html"">
+		<a href="{{site.baseurl}}/assert.html">
 			View Assert Guide
 			<i class="glyphicon glyphicon-share-alt"></i>
 		</a>
@@ -65,5 +65,41 @@ $assert->throws(function() {
 		<p>
 			Leo is also highly extensible. It's a snap to add additional functionality. You can create a language that suits your needs best. See the <a href="#">plugin guide</a> to get started.
 		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Usage</h2>
+
+		<p>
+			You can install Leo via composer:
+		</p>
+
+{% highlight bash %}
+composer require peridot-php/leo:~1.0
+{% endhighlight %}
+
+		<p>
+			The <code>expect</code> interface is leveraged via the global function <code>expect</code>.
+		</p>
+
+{% highlight php %}
+<?php
+expect($actual)->to->equal($expected);
+?>
+{% endhighlight %}
+
+		<p>
+			The <code>assert</code> interface can be used via the <code>Assert</code> class.
+		</p>
+
+{% highlight php %}
+<?php
+use Peridot\Leo\Interfaces\Assert;
+$assert = new Assert();
+$assert->ok(true);
+?>
+{% endhighlight %}
 	</div>
 </div>
