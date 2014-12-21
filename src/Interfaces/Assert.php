@@ -50,7 +50,7 @@ class Assert
     public function __construct(Assertion $assertion = null)
     {
         if (is_null($assertion)) {
-            $assertion = Leo::instance()->getAssertion();
+            $assertion = Leo::assertion();
         }
         $this->assertion = $assertion;
     }

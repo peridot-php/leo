@@ -145,4 +145,14 @@ class Leo
         }
         return self::$instance;
     }
+
+    /**
+     * Singleton access to Leo's assertion object.
+     *
+     * @return Assertion
+     */
+    public static function assertion()
+    {
+        return Leo::instance()->getAssertion();
+    }
 }
