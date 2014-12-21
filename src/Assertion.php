@@ -150,7 +150,7 @@ final class Assertion
      */
     public function extend($fn)
     {
-        if (file_exists($fn)) {
+        if (is_string($fn) && file_exists($fn)) {
             $fn = include $fn;
         }
 
