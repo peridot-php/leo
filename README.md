@@ -35,3 +35,18 @@ $assert->notEqual($actual, $expected);
 ##Plugins
 
 Leo can be easily customized. For an example see [LeoHttpFoundation](https://github.com/peridot-php/leo-http-foundation). Read more on the [plugin guide](https://github.com/peridot-php/leo-http-foundation).
+
+##Running Tests
+
+```
+composer install
+vendor/bin/peridot specs/
+```
+
+##Generating Docs
+
+Documentation is generated via [apigen](http://apigen.org/).
+
+```
+apigen generate
+```
