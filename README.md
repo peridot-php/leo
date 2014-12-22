@@ -5,3 +5,33 @@ Next level assertion library for PHP 5.4+
 
 [![Build Status](https://travis-ci.org/peridot-php/leo.svg?branch=master)](https://travis-ci.org/peridot-php/leo) 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/peridot-php/leo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/peridot-php/leo/?branch=master)
+
+##Expect Interface
+
+Leo supports a chainable interface for writing assertions via the `expect` function.
+
+```php
+expect($obj)->to->have->property('name');
+expect($value)->to->be->ok
+expect($fn)->to->throw('InvalidArgumentException', 'Expected message');
+expect($array)->to->be->an('array');
+expect($result)->to->not->be->empty;
+```
+
+##Assert Interface
+
+Leo supports a more object oriented, non-chainable interface via `Assert`.
+
+```php
+use Peridot\Leo\Interfaces\Assert;
+
+$assert = new Assert();
+$assert->ok(true);
+$assert->doesNotThrow($fn, 'Exception');
+$assert->isResource(tmpfile());
+$assert->notEqual($actual, $expected);
+```
+
+##Plugins
+
+Leo can be easily customized. For an example see [LeoHttpFoundation](https://github.com/peridot-php/leo-http-foundation). Read more on the [plugin guide](https://github.com/peridot-php/leo-http-foundation).
