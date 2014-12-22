@@ -7,6 +7,8 @@ Next level assertion library for PHP 5.4+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/peridot-php/leo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/peridot-php/leo/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/peridot-php/leo/badge.png?branch=master)](https://coveralls.io/r/peridot-php/leo?branch=master)
 
+Visit the main site and documentation at [peridot-php.github.io/leo/](http://peridot-php.github.io/leo/).
+
 ##Expect Interface
 
 Leo supports a chainable interface for writing assertions via the `expect` function.
