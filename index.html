@@ -43,7 +43,7 @@ $assert->typeOf('string', 'hello', 'is string');
 $assert->operator(5, '<', 6, 'should be less than');
 $assert->isResource(tempfile());
 $assert->throws(function() {
-	throw new Exception("exception");
+    throw new Exception("exception");
 }, 'Exception');
 ?>
 {% endhighlight %}
