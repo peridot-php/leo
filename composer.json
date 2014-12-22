@@ -1,6 +1,6 @@
 {
     "name": "peridot-php/leo",
-    "description": "Next level assertion library for PHP",
+    "description": "Next level assertion and matcher library for PHP",
     "keywords": ["assert", "matcher", "expect", "expectation", "testing"],
     "license": "MIT",
     "authors": [
