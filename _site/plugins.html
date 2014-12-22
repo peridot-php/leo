@@ -10,11 +10,11 @@
     <meta name="author" content="Brian Scaturro">
     
     <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/pygments-monokai.css">
-    <link rel="stylesheet" href="/css/antiscroll.css">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/leo/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/leo/css/style.css">
+    <link rel="stylesheet" href="/leo/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/leo/css/antiscroll.css">
+    <link rel="shortcut icon" href="/leo/img/favicon.ico">
 </head>
 <body class="plugins">
     <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -26,14 +26,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">Leo</a>
+          <a class="navbar-brand" href="/leo">Leo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/expect.html">Expect</a></li>
-            <li><a href="/assert.html">Assert</a></li>
-	    <li><a href="/plugins.html">Plugins</a></li>
-	    <li><a href="/docs">API</a></li>
+            <li><a href="/leo/expect.html">Expect</a></li>
+            <li><a href="/leo/assert.html">Assert</a></li>
+	    <li><a href="/leo/plugins.html">Plugins</a></li>
+	    <li><a href="/leo/docs">API</a></li>
           </ul>
         </div>
       </div>
@@ -42,11 +42,11 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
-                    <li><a href="">Leo</a></li>
-                    <li><a href="/expect.html">Expect</a></li>
-                    <li><a href="/assert.html">Assert</a></li>
-                    <li><a href="/plugins.html">Plugins</a></li>
-	            <li><a href="/docs">API</a></li>
+                    <li><a href="/leo">Leo</a></li>
+                    <li><a href="/leo/expect.html">Expect</a></li>
+                    <li><a href="/leo/assert.html">Assert</a></li>
+                    <li><a href="/leo/plugins.html">Plugins</a></li>
+	            <li><a href="/leo/docs">API</a></li>
                 </ul>
                 
                 
@@ -76,7 +76,7 @@
 <h1>Plugins</h1>
 
 <p>
-	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
+	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="/leo/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
 </p>
 
 <h2 id="plugin_access">Accessing the Assertion instance</h2>
@@ -126,7 +126,7 @@
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
 <p>
-	The function used to create the property will be evaluated when it is accessed.
+	The function used to create the property will be evaluated when the property is accessed.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -174,11 +174,11 @@
 <h2 id="plugin_matchers">Matchers</h2>
 
 <p>
-	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
+	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="/leo/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
 </p>
 
 <p>
-	Matchers are the classes used to determine if an actual value matches some criteria, and is also responsible for formatting failure messages.
+	Matchers are the classes used to determine if an actual value matches some criteria, and they are also responsible for defining templates for failure messages.
 </p>
 
 <p>
@@ -196,7 +196,7 @@
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
 <p>
-	Most matchers only have to implement two methods when extending the <a href="/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
+	Most matchers only have to implement two methods when extending the <a href="/leo/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="/leo/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -229,19 +229,19 @@
 <h2 id="plugin_templates">Templates</h2>
 
 <p>
-	The <a href="/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
+	The <a href="/leo/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="/leo/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
 </p>
 
 <h2 id="plugin_formatters">Formatters</h2>
 
 <p>
-	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
+	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="/leo/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="/leo/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
 </p>
 
 <h2 id="plugin_responders">Responders</h2>
 
 <p>
-	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
+	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="/leo/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="/leo/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -290,8 +290,8 @@
         </div>
     </div>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/antiscroll.js"></script>
-    <script src="/js/leo.js"></script>
+    <script src="/leo/js/bootstrap.min.js"></script>
+    <script src="/leo/js/antiscroll.js"></script>
+    <script src="/leo/js/leo.js"></script>
 </body>
 </html>

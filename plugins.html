@@ -67,7 +67,7 @@ $assertion->addProperty('dom', function() use ($driver) {
 {% endhighlight %}
 
 <p>
-	The function used to create the property will be evaluated when it is accessed.
+	The function used to create the property will be evaluated when the property is accessed.
 </p>
 
 {% highlight php %}
@@ -125,7 +125,7 @@ Leo::assertion()->extend('plugin.php');
 </p>
 
 <p>
-	Matchers are the classes used to determine if an actual value matches some criteria, and is also responsible for formatting failure messages.
+	Matchers are the classes used to determine if an actual value matches some criteria, and they are also responsible for defining templates for failure messages.
 </p>
 
 <p>
