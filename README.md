@@ -1,5 +1,6 @@
-#Leo
+![Leo logo](https://raw.github.com/peridot-php/leo/master/leo.png "Leo logo")
 
+#Leo
 Next level assertion library for PHP 5.4+
 
 [![Build Status](https://travis-ci.org/peridot-php/leo.svg?branch=master)](https://travis-ci.org/peridot-php/leo) 
