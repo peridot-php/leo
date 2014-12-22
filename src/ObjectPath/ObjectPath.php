@@ -1,5 +1,5 @@
 <?php
-namespace Peridot\Leo\Utility;
+namespace Peridot\Leo\ObjectPath;
 
 /**
  * ObjectPath is a utility for parsing object and array strings into

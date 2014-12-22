@@ -1,5 +1,5 @@
 <?php
-use Peridot\Leo\Utility\ObjectPath;
+use Peridot\Leo\ObjectPath\ObjectPath;
 
 describe('ObjectPath', function() {
 
