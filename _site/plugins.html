@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo - Plugins</title>
+    
+    <meta name="description" content="Leo is a next level assertion library for PHP 5.4+">
+    
+    <meta name="author" content="Brian Scaturro">
+    
+    <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/css/antiscroll.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+<body class="plugins">
+    <nav class="visible-xs navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">Leo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/expect.html">Expect</a></li>
+            <li><a href="/assert.html">Assert</a></li>
+	    <li><a href="/plugins.html">Plugins</a></li>
+	    <li><a href="/docs">API</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Leo</a></li>
+                    <li><a href="/expect.html">Expect</a></li>
+                    <li><a href="/assert.html">Assert</a></li>
+                    <li><a href="/plugins.html">Plugins</a></li>
+	            <li><a href="/docs">API</a></li>
+                </ul>
+                
+                
+                
+                <div class="antiscroll-wrap">
+                    <div class="antiscroll-inner">
+                        <ul class="nav nav-sidebar nav-scrollable">
+                            <li><a href="#plugin_access">Accessing Assertion</a></li>
+                            <li><a href="#plugin_methods">Adding methods</a></li>
+                            <li><a href="#plugin_properties">Adding properties</a></li>
+                            <li><a href="#plugin_flags">Flags</a></li>
+                            <li><a href="#plugin_extend">Assertion::extend</a></li>
+                            <li><a href="#plugin_matchers">Matchers</a></li>
+                            <li><a href="#plugin_templates">Templates</a></li>
+                            <li><a href="#plugin_formatters">Formatters</a></li>
+                            <li><a href="#plugin_responders">Responders</a></li>
+                            <li><a href="#plugin_overrides">Custom formatters and responders</a></li>
+                            <li><a href="#plugin_example">Example</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </aside>
+            <main class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3" role="main">
+
+
+<h1>Plugins</h1>
+
+<p>
+	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
+</p>
+
+<h2 id="plugin_access">Accessing the Assertion instance</h2>
+
+<p>
+	Leo holds a single reference to an instance of <code>Assertion</code>. This ensures that all plugins are extending the same thing.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">Peridot\Leo\Leo</span><span class="p">;</span>
+
+<span class="nv">$assertion</span> <span class="o">=</span> <span class="nx">Leo</span><span class="o">::</span><span class="na">assertion</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="plugin_methods">Adding methods</h2>
+
+<p>
+	Methods can be added and overwritten using the <code>->addMethod</code> method of the <code>Assertion</code> class.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="s2">&quot;hello </span><span class="si">$name</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Methods added this way can then be accessed on the assertion instance.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">hello</span><span class="p">(</span><span class="s1">&#39;everybody&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="plugin_properties">Adding properties</h2>
+
+<p>
+	Part of Leo's power is it's ability to build expressive language chains. The <code>->addProperty</code> method can be used to register properties that are lazily evaluated.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">addProperty</span><span class="p">(</span><span class="s1">&#39;dom&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$driver</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$dom</span> <span class="o">=</span> <span class="nv">$driver</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getActual</span><span class="p">());</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">flag</span><span class="p">(</span><span class="s1">&#39;dom&#39;</span><span class="p">,</span> <span class="nv">$dom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	The function used to create the property will be evaluated when it is accessed.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;http://app.com&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">dom</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">element</span><span class="p">(</span><span class="s1">&#39;.some-css-class&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="plugin_flags">Flags</h2>
+
+<p>
+	Flags can be used to set arbitrary state on the assertion. They are useful for carrying state through an assertion chain, and can be useful for changing behavior based on some condition.
+</p>
+
+<p>
+	This is exactly how assertions are able to convey a negated state via the <code>not</code> language chain.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">addProperty</span><span class="p">(</span><span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">flag</span><span class="p">(</span><span class="s1">&#39;not&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 class="plugin_extend">Using Assertion::extend</h2>
+
+<p>
+	As a convenience, the <code>Assertion</code> class contains an <code>extend</code> method that is useful for leveraging packaged plugins. It accepts either a <code>callable</code> or the path to a file that returns a callable.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$assertion</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//add methods and properties</span>
+<span class="p">});</span>
+
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="k">new</span> <span class="nx">InvokableObjectWithPluginThings</span><span class="p">());</span>
+
+<span class="c1">//plugin.php</span>
+<span class="k">return</span> <span class="k">function</span><span class="p">(</span><span class="nv">$assertion</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//add methods and properties</span>
+<span class="p">};</span>
+
+<span class="c1">//bootstrap.php</span>
+<span class="nx">Leo</span><span class="o">::</span><span class="na">assertion</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;plugin.php&#39;</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="plugin_matchers">Matchers</h2>
+
+<p>
+	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
+</p>
+
+<p>
+	Matchers are the classes used to determine if an actual value matches some criteria, and is also responsible for formatting failure messages.
+</p>
+
+<p>
+	When a method added via <code>Assertion::addMethod</code> returns a matcher, Leo will automatically perform an assertion using that matcher when the method is called:
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">addMethod</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nv">$expected</span><span class="p">,</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">flag</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nv">$message</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">EqualMatcher</span><span class="p">(</span><span class="nv">$expected</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//assertion will be performed against EqualMatcher</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	Most matchers only have to implement two methods when extending the <a href="/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Peridot\Leo\Matcher</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Peridot\Leo\Matcher\Template\ArrayTemplate</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Peridot\Leo\Matcher\Template\TemplateInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">EqualMatcher</span> <span class="k">extends</span> <span class="nx">AbstractMatcher</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">doMatch</span><span class="p">(</span><span class="nv">$actual</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expected</span> <span class="o">==</span> <span class="nv">$actual</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getDefaultTemplate</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">ArrayTemplate</span><span class="p">([</span>
+            <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Expected {{expected}}, got {{actual}}&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;negated&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Expected {{expected}} not to equal {{actual}}&#39;</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>
+	You can browse all the core matchers on <a href="https://github.com/peridot-php/leo/tree/master/src/Matcher" target="_blank">GitHub</a>.
+</p>
+
+<h2 id="plugin_templates">Templates</h2>
+
+<p>
+	The <a href="/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
+</p>
+
+<h2 id="plugin_formatters">Formatters</h2>
+
+<p>
+	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
+</p>
+
+<h2 id="plugin_responders">Responders</h2>
+
+<p>
+	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">Peridot\Leo\Responder</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Exception</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Peridot\Leo\Formatter\FormatterInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Peridot\Leo\Matcher\Match</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Peridot\Leo\Matcher\Template\TemplateInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ExceptionResponder</span> <span class="k">implements</span> <span class="nx">ResponderInterface</span>
+<span class="p">{</span>    
+    <span class="k">protected</span> <span class="nv">$formatter</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">FormatterInterface</span> <span class="nv">$formatter</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formatter</span> <span class="o">=</span> <span class="nv">$formatter</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">respond</span><span class="p">(</span><span class="nx">Match</span> <span class="nv">$match</span><span class="p">,</span> <span class="nx">TemplateInterface</span> <span class="nv">$template</span><span class="p">,</span> <span class="nv">$message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$match</span><span class="o">-&gt;</span><span class="na">isMatch</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formatter</span><span class="o">-&gt;</span><span class="na">setMatch</span><span class="p">(</span><span class="nv">$match</span><span class="p">);</span>
+        <span class="nv">$message</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$message</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$message</span> <span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">formatter</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(</span><span class="nv">$template</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<h2 id="plugin_overrides">Using your own formatters and responders</h2>
+
+<p>
+	You can replace the default formatter and responder via the static methods <code>Leo::setFormatter</code> and <code>Leo::setResponder</code>.
+</p>
+
+<h2 id="plugin_example">Example</h2>
+
+<p>
+	<a target="_blank" href="https://github.com/peridot-php/leo-http-foundation">LeoHttpFoundation</a> is a simple plugin that extends Leo to simplify testing HttpFoundation based applications. Browse the source for some examples on extending Leo.
+</p>
+
+            </main>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/antiscroll.js"></script>
+    <script src="/js/leo.js"></script>
+</body>
+</html>

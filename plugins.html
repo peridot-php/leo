@@ -1,0 +1,240 @@
+---
+layout: default
+title: Plugins
+leo_version: ~1.0
+class: plugins
+plugins: true
+---
+
+<h1>Plugins</h1>
+
+<p>
+	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="{{site.baseurl}}/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
+</p>
+
+<h2 id="plugin_access">Accessing the Assertion instance</h2>
+
+<p>
+	Leo holds a single reference to an instance of <code>Assertion</code>. This ensures that all plugins are extending the same thing.
+</p>
+
+{% highlight php %}
+<?php
+use Peridot\Leo\Leo;
+
+$assertion = Leo::assertion();
+?>
+{% endhighlight %}
+
+<h2 id="plugin_methods">Adding methods</h2>
+
+<p>
+	Methods can be added and overwritten using the <code>->addMethod</code> method of the <code>Assertion</code> class.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->addMethod('hello', function ($name) {
+    print "hello $name";
+});
+?>
+{% endhighlight %}
+
+<p>
+	Methods added this way can then be accessed on the assertion instance.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->hello('everybody');
+?>
+{% endhighlight %}
+
+<h2 id="plugin_properties">Adding properties</h2>
+
+<p>
+	Part of Leo's power is it's ability to build expressive language chains. The <code>->addProperty</code> method can be used to register properties that are lazily evaluated.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->addProperty('dom', function() use ($driver) {
+    $dom = $driver->get($this->getActual());
+    $this->flag('dom', $dom)
+    return $this;
+});
+?>
+{% endhighlight %}
+
+<p>
+	The function used to create the property will be evaluated when it is accessed.
+</p>
+
+{% highlight php %}
+<?php
+expect('http://app.com')->dom->to->have->element('.some-css-class');
+?>
+{% endhighlight %}
+
+<h2 id="plugin_flags">Flags</h2>
+
+<p>
+	Flags can be used to set arbitrary state on the assertion. They are useful for carrying state through an assertion chain, and can be useful for changing behavior based on some condition.
+</p>
+
+<p>
+	This is exactly how assertions are able to convey a negated state via the <code>not</code> language chain.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->addProperty('not', function () {
+    return $this->flag('not', true);
+});
+?>
+{% endhighlight %}
+
+<h2 class="plugin_extend">Using Assertion::extend</h2>
+
+<p>
+	As a convenience, the <code>Assertion</code> class contains an <code>extend</code> method that is useful for leveraging packaged plugins. It accepts either a <code>callable</code> or the path to a file that returns a callable.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->extend(function ($assertion) {
+    //add methods and properties
+});
+
+$assertion->extend(new InvokableObjectWithPluginThings());
+
+//plugin.php
+return function($assertion) {
+    //add methods and properties
+};
+
+//bootstrap.php
+Leo::assertion()->extend('plugin.php');
+?>
+{% endhighlight %}
+
+<h2 id="plugin_matchers">Matchers</h2>
+
+<p>
+	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
+</p>
+
+<p>
+	Matchers are the classes used to determine if an actual value matches some criteria, and is also responsible for formatting failure messages.
+</p>
+
+<p>
+	When a method added via <code>Assertion::addMethod</code> returns a matcher, Leo will automatically perform an assertion using that matcher when the method is called:
+</p>
+
+{% highlight php %}
+<?php
+$assertion->addMethod('equal', function ($expected, $message = "") {
+    $this->flag('message', $message);
+    return new EqualMatcher($expected);
+});
+
+//assertion will be performed against EqualMatcher
+$assertion->equal(1, 2);
+?>
+{% endhighlight %}
+
+<p>
+	Most matchers only have to implement two methods when extending the <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
+</p>
+
+{% highlight php %}
+<?php
+namespace Peridot\Leo\Matcher;
+
+use Peridot\Leo\Matcher\Template\ArrayTemplate;
+use Peridot\Leo\Matcher\Template\TemplateInterface;
+
+class EqualMatcher extends AbstractMatcher
+{
+    public function doMatch($actual)
+    {
+        return $this->expected == $actual;
+    }
+
+    public function getDefaultTemplate()
+    {
+        return new ArrayTemplate([
+            {% raw %}'default' => 'Expected {{expected}}, got {{actual}}',
+            'negated' => 'Expected {{expected}} not to equal {{actual}}'{% endraw %}
+        ]);
+    }
+}
+?>
+{% endhighlight %}
+
+<p>
+	You can browse all the core matchers on <a href="https://github.com/peridot-php/leo/tree/master/src/Matcher" target="_blank">GitHub</a>.
+</p>
+
+<h2 id="plugin_templates">Templates</h2>
+
+<p>
+	The <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
+</p>
+
+<h2 id="plugin_formatters">Formatters</h2>
+
+<p>
+	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
+</p>
+
+<h2 id="plugin_responders">Responders</h2>
+
+<p>
+	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="{{site.baseurl}}/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
+</p>
+
+{% highlight php %}
+<?php
+namespace Peridot\Leo\Responder;
+
+use Exception;
+use Peridot\Leo\Formatter\FormatterInterface;
+use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\Template\TemplateInterface;
+
+class ExceptionResponder implements ResponderInterface
+{    
+    protected $formatter;
+
+    public function __construct(FormatterInterface $formatter)
+    {
+        $this->formatter = $formatter;
+    }
+
+    public function respond(Match $match, TemplateInterface $template, $message = "")
+    {
+        if ($match->isMatch()) {
+            return;
+        }
+
+        $this->formatter->setMatch($match);
+        $message = ($message) ? $message : $this->formatter->getMessage($template);
+        throw new Exception($message);
+    }
+}
+?>
+{% endhighlight %}
+
+<h2 id="plugin_overrides">Using your own formatters and responders</h2>
+
+<p>
+	You can replace the default formatter and responder via the static methods <code>Leo::setFormatter</code> and <code>Leo::setResponder</code>.
+</p>
+
+<h2 id="plugin_example">Example</h2>
+
+<p>
+	<a target="_blank" href="https://github.com/peridot-php/leo-http-foundation">LeoHttpFoundation</a> is a simple plugin that extends Leo to simplify testing HttpFoundation based applications. Browse the source for some examples on extending Leo.
+</p>

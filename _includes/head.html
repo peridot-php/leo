@@ -34,7 +34,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{site.baseurl}}/expect.html">Expect</a></li>
             <li><a href="{{site.baseurl}}/assert.html">Assert</a></li>
-	    <li><a href="#">Plugins</a></li>
+	    <li><a href="{{site.baseurl}}/plugins.html">Plugins</a></li>
 	    <li><a href="{{site.baseurl}}/docs">API</a></li>
           </ul>
         </div>
@@ -47,7 +47,7 @@
                     <li><a href="{{site.baseurl}}">Leo</a></li>
                     <li><a href="{{site.baseurl}}/expect.html">Expect</a></li>
                     <li><a href="{{site.baseurl}}/assert.html">Assert</a></li>
-                    <li><a href="#">Plugins</a></li>
+                    <li><a href="{{site.baseurl}}/plugins.html">Plugins</a></li>
 	            <li><a href="{{site.baseurl}}/docs">API</a></li>
                 </ul>
                 {% if page.expect %}
@@ -132,6 +132,25 @@
                             <li><a href="#assert_isNotResource">isNotResource</a></li>
                             <li><a href="#assert_isBoolean">isBoolean</a></li>
                             <li><a href="#assert_isNotBoolean">isNotBoolean</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% if page.plugins %}
+                <div class="antiscroll-wrap">
+                    <div class="antiscroll-inner">
+                        <ul class="nav nav-sidebar nav-scrollable">
+                            <li><a href="#plugin_access">Accessing Assertion</a></li>
+                            <li><a href="#plugin_methods">Adding methods</a></li>
+                            <li><a href="#plugin_properties">Adding properties</a></li>
+                            <li><a href="#plugin_flags">Flags</a></li>
+                            <li><a href="#plugin_extend">Assertion::extend</a></li>
+                            <li><a href="#plugin_matchers">Matchers</a></li>
+                            <li><a href="#plugin_templates">Templates</a></li>
+                            <li><a href="#plugin_formatters">Formatters</a></li>
+                            <li><a href="#plugin_responders">Responders</a></li>
+                            <li><a href="#plugin_overrides">Custom formatters and responders</a></li>
+                            <li><a href="#plugin_example">Example</a></li>
                         </ul>
                     </div>
                 </div>

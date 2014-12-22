@@ -31,6 +31,10 @@ main {
     padding-top:50px;
 }
 
+main a:link, main a:visited {
+    color:#D38B46;
+}
+
 .home main {
     padding-top:70px;
 }
