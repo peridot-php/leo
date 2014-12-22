@@ -59,3 +59,14 @@ Documentation is generated via [apigen](http://apigen.org/).
 ```
 apigen generate
 ```
+
+##Thanks
+
+Leo was inspired by several great projects:
+
+* [chaijs](http://chaijs.com/) for JS
+* [jasmine](http://jasmine.github.io/) for JS
+* [esperance](https://github.com/esperance/esperance) for PHP
+* [pho](https://github.com/danielstjules/pho) for PHP
+
+And of course our work on [Peridot](http://peridot-php.github.io/) gave incentive to make a useful complement.
