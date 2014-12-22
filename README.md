@@ -35,6 +35,12 @@ $assert->isResource(tmpfile());
 $assert->notEqual($actual, $expected);
 ```
 
+##Detailed error messages
+
+Leo matchers generate detailed error messages for failed assertions.
+
+![Leo messages](https://raw.github.com/peridot-php/leo/master/message.png "Leo messages")
+
 ##Plugins
 
 Leo can be easily customized. For an example see [LeoHttpFoundation](https://github.com/peridot-php/leo-http-foundation). Read more on the [plugin guide](https://github.com/peridot-php/leo-http-foundation).
