@@ -3,8 +3,8 @@ namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
-use Peridot\Leo\Utility\ObjectPath;
-use Peridot\Leo\Utility\ObjectPathValue;
+use Peridot\Leo\ObjectPath\ObjectPath;
+use Peridot\Leo\ObjectPath\ObjectPathValue;
 
 /**
  * PropertyMatcher determines if the actual array or object has the expected property, and optionally matches
