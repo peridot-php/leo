@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Peridot\Leo\Utility\ObjectPath | Leo</title>
+	<title>Class Peridot\Leo\ObjectPath\ObjectPath | Leo</title>
 
 	<link rel="stylesheet" href="resources/style.css?1648332946">
 
@@ -36,9 +36,9 @@
 				<li><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
 						</li>
 							</ul></li>
-				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+				<li class="active"><a href="namespace-Peridot.Leo.ObjectPath.html">ObjectPath</a>
 						</li>
-				<li class="active"><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
 						</li>
 							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
@@ -52,8 +52,8 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-Peridot.Leo.Utility.ObjectPath.html">ObjectPath</a></li>
-				<li><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">ObjectPathValue</a></li>
+				<li class="active"><a href="class-Peridot.Leo.ObjectPath.ObjectPath.html">ObjectPath</a></li>
+				<li><a href="class-Peridot.Leo.ObjectPath.ObjectPathValue.html">ObjectPathValue</a></li>
 			</ul>
 
 
@@ -80,7 +80,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-Peridot.Leo.Utility.html" title="Summary of Peridot\Leo\Utility"><span>Namespace</span></a>
+				<a href="namespace-Peridot.Leo.ObjectPath.html" title="Summary of Peridot\Leo\ObjectPath"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -115,10 +115,10 @@ ObjectPathValues.</p>
 	<div class="info">
 		
 		
-		<b>Namespace:</b> Peridot\Leo\Utility<br>
+		<b>Namespace:</b> Peridot\Leo\ObjectPath<br>
 		<b>Package:</b> Peridot\Leo\Utility<br>
 
-		<b>Located at</b> <a href="source-class-Peridot.Leo.Utility.ObjectPath.html#4-118" title="Go to source code">Utility/ObjectPath.php</a><br>
+		<b>Located at</b> <a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#4-118" title="Go to source code">ObjectPath/ObjectPath.php</a><br>
 	</div>
 
 
@@ -137,7 +137,7 @@ ObjectPathValues.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#26-32" title="Go to source code">__construct</a>( <span>array|object <var>$subject</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#26-32" title="Go to source code">__construct</a>( <span>array|object <var>$subject</var></span> )</code>
 
 		<div class="description short">
 			
@@ -168,14 +168,14 @@ ObjectPathValues.</p>
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">Peridot\Leo\Utility\ObjectPathValue</a></code>
+			<code><a href="class-Peridot.Leo.ObjectPath.ObjectPathValue.html">Peridot\Leo\ObjectPath\ObjectPathValue</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#34-69" title="Go to source code">get</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#34-69" title="Go to source code">get</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			<p>Returns an ObjectPathValue if the property described by $path
@@ -200,7 +200,7 @@ can be located in the subject.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Peridot.Leo.Utility.ObjectPathValue.html">Peridot\Leo\Utility\ObjectPathValue</a></code></code>
+					<code><code><a href="class-Peridot.Leo.ObjectPath.ObjectPathValue.html">Peridot\Leo\ObjectPath\ObjectPathValue</a></code></code>
 				</div>
 
 
@@ -237,7 +237,7 @@ $reading = $path->get('hobbies[0]');</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPathParts">#</a>
-		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#71-86" title="Go to source code">getPathParts</a>( <span>mixed <var>$path</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#71-86" title="Go to source code">getPathParts</a>( <span>mixed <var>$path</var></span> )</code>
 
 		<div class="description short">
 			<p>Breaks a path expression into an array used
@@ -281,7 +281,7 @@ for navigating a path.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPropertyCollection">#</a>
-		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#88-101" title="Go to source code">getPropertyCollection</a>( <span>mixed <var>$subject</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#88-101" title="Go to source code">getPropertyCollection</a>( <span>mixed <var>$subject</var></span> )</code>
 
 		<div class="description short">
 			<p>Returns a property as an array.</p>
@@ -323,7 +323,7 @@ for navigating a path.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_normalizeKey">#</a>
-		<code><a href="source-class-Peridot.Leo.Utility.ObjectPath.html#103-117" title="Go to source code">normalizeKey</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#103-117" title="Go to source code">normalizeKey</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			<p>Return a key that can be used on the current subject.</p>
@@ -375,7 +375,7 @@ for navigating a path.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peridot.Leo.Utility.ObjectPath.html#12-17" title="Go to source code"><var>$subject</var></a>
+				<a href="source-class-Peridot.Leo.ObjectPath.ObjectPath.html#12-17" title="Go to source code"><var>$subject</var></a>
 
 			<div class="description short">
 				<p>The subject to match path expressions against.</p>
@@ -410,6 +410,6 @@ for navigating a path.</p>
 </div>
 </div>
 <script src="resources/combined.js?721046668"></script>
-<script src="elementlist.js?4259027681"></script>
+<script src="elementlist.js?1917162230"></script>
 </body>
 </html>
