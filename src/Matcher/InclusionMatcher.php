@@ -1,7 +1,8 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use InvalidArgumentException;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
@@ -17,6 +18,7 @@ class InclusionMatcher extends AbstractMatcher
      *
      * @param $actual
      * @return mixed
+     * @throws InvalidArgumentException
      */
     protected function doMatch($actual)
     {
