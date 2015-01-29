@@ -1,4 +1,5 @@
 <?php
+
 use Peridot\Leo\Matcher\InclusionMatcher;
 
 describe('InclusionMatcher', function() {
@@ -16,6 +17,11 @@ describe('InclusionMatcher', function() {
         expect($match->isMatch())->to->equal(true);
     });
 
+    it('should return true if value is in an instance of ArrayAccess', function() {
+        $match = $this->matcher->match(new ArrayObject(['A', 'B', 'C']));
+        expect($match->isMatch())->to->equal(true);
+    });
+
     it('should return true if value is in string', function() {
         $match = $this->matcher->match('A pleasure to meet you');
         expect($match->isMatch())->to->equal(true);
@@ -24,6 +30,11 @@ describe('InclusionMatcher', function() {
     it('should return false if value is not in array', function() {
         $match = $this->matcher->match(['B', 'C', 'D']);
         expect($match->isMatch())->to->equal(false);
+    });
+
+    it('should return true if value is not in an instance of ArrayAccess', function() {
+        $match = $this->matcher->match(new ArrayObject(['B', 'C', 'D']));
+        expect($match->isMatch())->to->equal(true);
     });
 
     it('should return false if value is not in string', function() {
