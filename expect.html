@@ -76,7 +76,7 @@ expect($request)->to->be->an->instanceof('Request');
 </ul>
 
 <p>
-	The <code>include</code> and <code>contain</code> assertions are used to check if an array contains a value or if a string contains a substring. Either can be used as a language chain to enable the <code>contain</code> flag for use with the <code>keys</code> assertion.
+	The <code>include</code> and <code>contain</code> assertions are used to check if an array or object implementing `ArrayAccess` contains a value or if a string contains a substring. Either can be used as a language chain to enable the <code>contain</code> flag for use with the <code>keys</code> assertion.
 </p>
 
 {% highlight php %}
