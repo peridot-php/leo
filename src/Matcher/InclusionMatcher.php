@@ -2,6 +2,7 @@
 
 namespace Peridot\Leo\Matcher;
 
+use ArrayAccess;
 use InvalidArgumentException;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
@@ -22,7 +23,7 @@ class InclusionMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        if (is_array($actual)) {
+        if (is_array($actual) or $actual instanceof ArrayAccess) {
             return array_search($this->expected, $actual) !== false;
         }
 
