@@ -32,6 +32,12 @@ describe('InclusionMatcher', function() {
         expect($match->isMatch())->to->equal(false);
     });
 
+    it('should return false if types are different', function() {
+        $matcher = new InclusionMatcher('1');
+        $match = $matcher->match([1]);
+        expect($match->isMatch())->to->equal(false);
+    });
+
     it('should return true if value is not in an instance of ArrayAccess', function() {
         $match = $this->matcher->match(new ArrayObject(['B', 'C', 'D']));
         expect($match->isMatch())->to->equal(true);

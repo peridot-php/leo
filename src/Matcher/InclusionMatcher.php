@@ -24,7 +24,7 @@ class InclusionMatcher extends AbstractMatcher
     protected function doMatch($actual)
     {
         if (is_array($actual) or $actual instanceof ArrayAccess) {
-            return array_search($this->expected, $actual) !== false;
+            return array_search($this->expected, $actual, true) !== false;
         }
 
         if (is_string($actual)) {
