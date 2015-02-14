@@ -24,5 +24,13 @@ return function(EventEmitterInterface $emitter) {
     });
 
     $prophecy = new ProphecyPlugin($emitter);
+
+    $debug = getenv('DEBUG');
+
+    if ($debug) {
+        $emitter->on('error', function ($number, $message, $file, $line) {
+            print "Error: $number - $message:$file:$line\n";
+        });
+    }
 };
 
