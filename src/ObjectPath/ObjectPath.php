@@ -63,6 +63,11 @@ class ObjectPath
             $key = array_shift($parts);
             $key = $this->normalizeKey($key);
             $pathValue = array_key_exists($key, $properties) ? new ObjectPathValue($key, $properties[$key]) : null;
+
+            if (! array_key_exists($key, $properties)) {
+                break;
+            }
+
             $properties = $this->getPropertyCollection($properties[$key]);
         }
         return $pathValue;
@@ -93,11 +98,11 @@ class ObjectPath
      */
     protected function getPropertyCollection($subject)
     {
-        if (is_array($subject)) {
-            return $subject;
+        if (is_object($subject)) {
+            return get_object_vars($subject);
         }
 
-        return get_object_vars($subject);
+        return $subject;
     }
 
     /**

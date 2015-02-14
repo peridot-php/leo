@@ -19,12 +19,12 @@ class ArrayTemplate implements TemplateInterface
     /**
      * @var string
      */
-    protected $default;
+    protected $default = '';
 
     /**
      * @var string
      */
-    protected $negated;
+    protected $negated = '';
 
     /**
      * @var array
@@ -36,8 +36,13 @@ class ArrayTemplate implements TemplateInterface
      */
     public function __construct(array $templates)
     {
-        $this->default = $templates['default'];
-        $this->negated = $templates['negated'];
+        if (array_key_exists('default', $templates)) {
+            $this->default = $templates['default'];
+        }
+
+        if (array_key_exists('negated', $templates)) {
+            $this->negated = $templates['negated'];
+        }
     }
 
     /**

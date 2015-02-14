@@ -66,7 +66,7 @@ abstract class AbstractMatcher implements MatcherInterface
      * @param mixed $actual
      * @return Match
      */
-    public function match($actual)
+    public function match($actual = "")
     {
         $isMatch = $this->doMatch($actual);
         if ($this->isNegated()) {

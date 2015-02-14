@@ -23,6 +23,7 @@ class InclusionMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
+        //we will support ArrayAccess for now, even though array_search throws a warning about it
         if (is_array($actual) or $actual instanceof ArrayAccess) {
             return array_search($this->expected, $actual, true) !== false;
         }

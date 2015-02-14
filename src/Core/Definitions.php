@@ -76,7 +76,7 @@ return function (Assertion $assertion) {
         ->addMethod('a', $type)
         ->addMethod('an', $type);
 
-    $include = function ($expected, $message) {
+    $include = function ($expected, $message = "") {
         $this->flag('message', $message);
         return new InclusionMatcher($expected);
     };

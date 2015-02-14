@@ -53,17 +53,21 @@ trait DynamicObjectTrait
      * A simple mechanism for storing arbitrary flags. Flags are useful
      * for tweaking behavior based on their presence.
      *
-     * @return $this
+     * @return $this|mixed
      */
     public function flag()
     {
         $args = func_get_args();
         $num = count($args);
+
         if ($num > 1) {
             $this->flags[$args[0]] = $args[1];
             return $this;
         }
-        return $this->flags[$args[0]];
+
+        if (array_key_exists($args[0], $this->flags)) {
+            return $this->flags[$args[0]];
+        }
     }
 
     /**
