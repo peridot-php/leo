@@ -40,6 +40,17 @@ describe('Assertion', function() {
                 $nope = $this->assertion->nope;
             })->to->throw('DomainException');
         });
+
+        it('should return a cached version of the property if it is memoized', function () {
+            $this->assertion->addProperty('thing', function () {
+                return new stdClass();
+            }, true);
+
+            $thing = $this->assertion->thing;
+            $thingAgain = $this->assertion->thing;
+
+            expect($thing)->to->equal($thingAgain);
+        });
     });
 
     describe('->flag()', function() {
