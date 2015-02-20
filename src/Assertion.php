@@ -66,6 +66,13 @@ final class Assertion
     use DynamicObjectTrait;
 
     /**
+     * A static cache for memoized properties.
+     *
+     * @var array
+     */
+    private static $propertyCache = [];
+
+    /**
      * @var ResponderInterface
      */
     protected $responder;
@@ -120,7 +127,18 @@ final class Assertion
             throw new \DomainException("Property $name not found");
         }
 
-        return $this->request($this->properties[$name]);
+        if (array_key_exists($name, self::$propertyCache)) {
+            return self::$propertyCache[$name];
+        }
+
+        $property = $this->properties[$name];
+        $result = $this->request($property['factory']);
+
+        if ($property['memoize']) {
+            self::$propertyCache[$name] = $result;
+        }
+
+        return $result;
     }
 
     /**

@@ -41,11 +41,12 @@ trait DynamicObjectTrait
      *
      * @param string $name
      * @param callable $factory
+     * @param bool $memoize
      * @return $this
      */
-    public function addProperty($name, callable $factory)
+    public function addProperty($name, callable $factory, $memoize = false)
     {
-        $this->properties[$name] = \Closure::bind($factory, $this, $this);
+        $this->properties[$name] = ['factory' => \Closure::bind($factory, $this, $this), 'memoize' => $memoize];
         return $this;
     }
 

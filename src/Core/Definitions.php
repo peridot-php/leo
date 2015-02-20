@@ -36,7 +36,7 @@ return function (Assertion $assertion) {
     foreach ($chains as $chain) {
         $assertion->addProperty($chain, function () {
             return $this;
-        });
+        }, true);
     }
 
     $assertion->addProperty('not', function () {
