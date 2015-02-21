@@ -125,7 +125,7 @@
 		<b>Namespace:</b> Peridot\Leo<br>
 		<b>Package:</b> Peridot\Leo<br>
 
-		<b>Located at</b> <a href="source-class-Peridot.Leo.DynamicObjectTrait.html#4-79" title="Go to source code">DynamicObjectTrait.php</a><br>
+		<b>Located at</b> <a href="source-class-Peridot.Leo.DynamicObjectTrait.html#4-84" title="Go to source code">DynamicObjectTrait.php</a><br>
 	</div>
 
 
@@ -190,7 +190,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addProperty">#</a>
-		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#38-50" title="Go to source code">addProperty</a>( <span>string <var>$name</var></span>, <span>callable <var>$factory</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#38-51" title="Go to source code">addProperty</a>( <span>string <var>$name</var></span>, <span>callable <var>$factory</var></span>, <span>boolean <var>$memoize</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			<p>Adds a lazy property identified by the given name. The property
@@ -210,6 +210,9 @@ is lazy because it is not evaluated until asked for via __get().</p>
 					<dd>
 </dd>
 					<dt><var>$factory</var></dt>
+					<dd>
+</dd>
+					<dt><var>$memoize</var></dt>
 					<dd>
 </dd>
 				</dl></div>
@@ -238,7 +241,7 @@ is lazy because it is not evaluated until asked for via __get().</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flag">#</a>
-		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#52-67" title="Go to source code">flag</a>( )</code>
+		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#53-72" title="Go to source code">flag</a>( )</code>
 
 		<div class="description short">
 			<p>A simple mechanism for storing arbitrary flags. Flags are useful
@@ -255,7 +258,7 @@ for tweaking behavior based on their presence.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$this
+					<code>mixed</code><br>$this|mixed
 
 				</div>
 
@@ -277,7 +280,7 @@ for tweaking behavior based on their presence.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clearFlags">#</a>
-		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#69-78" title="Go to source code">clearFlags</a>( )</code>
+		<code><a href="source-class-Peridot.Leo.DynamicObjectTrait.html#74-83" title="Go to source code">clearFlags</a>( )</code>
 
 		<div class="description short">
 			<p>Reset flags. Flags are generally cleared after an Assertion is made.</p>
@@ -413,6 +416,6 @@ for tweaking behavior based on their presence.</p>
 </div>
 </div>
 <script src="resources/combined.js?721046668"></script>
-<script src="elementlist.js?1917162230"></script>
+<script src="elementlist.js?3676905327"></script>
 </body>
 </html>

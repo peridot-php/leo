@@ -36,9 +36,9 @@
 				<li><a href="namespace-Peridot.Leo.Matcher.Template.html">Template</a>
 						</li>
 							</ul></li>
-				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
+				<li><a href="namespace-Peridot.Leo.ObjectPath.html">ObjectPath</a>
 						</li>
-				<li><a href="namespace-Peridot.Leo.Utility.html">Utility</a>
+				<li><a href="namespace-Peridot.Leo.Responder.html">Responder</a>
 						</li>
 							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
@@ -131,7 +131,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 		<b>Namespace:</b> Peridot\Leo<br>
 		<b>Package:</b> Peridot\Leo<br>
 
-		<b>Located at</b> <a href="source-class-Peridot.Leo.Assertion.html#7-210" title="Go to source code">Assertion.php</a><br>
+		<b>Located at</b> <a href="source-class-Peridot.Leo.Assertion.html#7-228" title="Go to source code">Assertion.php</a><br>
 	</div>
 
 
@@ -150,7 +150,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#78-85" title="Go to source code">__construct</a>( <span><code><a href="class-Peridot.Leo.Responder.ResponderInterface.html">Peridot\Leo\Responder\ResponderInterface</a></code> <var>$responder</var></span>, <span>mixed <var>$actual</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#85-92" title="Go to source code">__construct</a>( <span><code><a href="class-Peridot.Leo.Responder.ResponderInterface.html">Peridot\Leo\Responder\ResponderInterface</a></code> <var>$responder</var></span>, <span>mixed <var>$actual</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -191,7 +191,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResponder">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#87-95" title="Go to source code">getResponder</a>( )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#94-102" title="Go to source code">getResponder</a>( )</code>
 
 		<div class="description short">
 			<p>Returns the current ResponderInterface assigned to this Assertion.</p>
@@ -227,7 +227,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#97-111" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$args</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#104-118" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$args</var></span> )</code>
 
 		<div class="description short">
 			<p>Delegate methods to assertion methods</p>
@@ -272,7 +272,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#113-124" title="Go to source code">__get</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#120-142" title="Go to source code">__get</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -314,7 +314,7 @@ against a MatcherInterface and responding to the results of a match.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_request">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#126-142" title="Go to source code">request</a>( <span>callable <var>$fn</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#144-160" title="Go to source code">request</a>( <span>callable <var>$fn</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
 
 		<div class="description short">
 			<p>A request to an Assertion will attempt to resolve
@@ -361,7 +361,7 @@ the result as an assertion before returning the result.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_extend">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#144-162" title="Go to source code">extend</a>( <span>callable <var>$fn</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#162-180" title="Go to source code">extend</a>( <span>callable <var>$fn</var></span> )</code>
 
 		<div class="description short">
 			<p>Extend calls the given callable - or file that returns a callable - and passes the current Assertion instance
@@ -403,7 +403,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setActual">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#164-174" title="Go to source code">setActual</a>( <span>mixed <var>$actual</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#182-192" title="Go to source code">setActual</a>( <span>mixed <var>$actual</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the actual value used for matching expectations against.</p>
@@ -446,7 +446,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getActual">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#176-184" title="Go to source code">getActual</a>( )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#194-202" title="Go to source code">getActual</a>( )</code>
 
 		<div class="description short">
 			<p>Return the actual value being asserted against.</p>
@@ -482,7 +482,7 @@ methods.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_assert">#</a>
-		<code><a href="source-class-Peridot.Leo.Assertion.html#186-209" title="Go to source code">assert</a>( <span><code><a href="class-Peridot.Leo.Matcher.MatcherInterface.html">Peridot\Leo\Matcher\MatcherInterface</a></code> <var>$matcher</var></span> )</code>
+		<code><a href="source-class-Peridot.Leo.Assertion.html#204-227" title="Go to source code">assert</a>( <span><code><a href="class-Peridot.Leo.Matcher.MatcherInterface.html">Peridot\Leo\Matcher\MatcherInterface</a></code> <var>$matcher</var></span> )</code>
 
 		<div class="description short">
 			<p>Assert against the given matcher.</p>
@@ -1530,7 +1530,7 @@ methods.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peridot.Leo.Assertion.html#68-71" title="Go to source code"><var>$responder</var></a>
+				<a href="source-class-Peridot.Leo.Assertion.html#75-78" title="Go to source code"><var>$responder</var></a>
 
 			<div class="description short">
 				
@@ -1557,7 +1557,7 @@ methods.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peridot.Leo.Assertion.html#73-76" title="Go to source code"><var>$actual</var></a>
+				<a href="source-class-Peridot.Leo.Assertion.html#80-83" title="Go to source code"><var>$actual</var></a>
 
 			<div class="description short">
 				
@@ -2130,6 +2130,6 @@ methods.</p>
 </div>
 </div>
 <script src="resources/combined.js?721046668"></script>
-<script src="elementlist.js?4259027681"></script>
+<script src="elementlist.js?3676905327"></script>
 </body>
 </html>

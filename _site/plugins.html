@@ -10,11 +10,11 @@
     <meta name="author" content="Brian Scaturro">
     
     <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/leo/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/leo/css/style.css">
-    <link rel="stylesheet" href="/leo/css/pygments-monokai.css">
-    <link rel="stylesheet" href="/leo/css/antiscroll.css">
-    <link rel="shortcut icon" href="/leo/img/favicon.ico">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/css/antiscroll.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,14 +37,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/leo">Leo</a>
+          <a class="navbar-brand" href="">Leo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/leo/expect.html">Expect</a></li>
-            <li><a href="/leo/assert.html">Assert</a></li>
-	    <li><a href="/leo/plugins.html">Plugins</a></li>
-	    <li><a href="/leo/docs">API</a></li>
+            <li><a href="/expect.html">Expect</a></li>
+            <li><a href="/assert.html">Assert</a></li>
+	    <li><a href="/plugins.html">Plugins</a></li>
+	    <li><a href="/docs">API</a></li>
           </ul>
         </div>
       </div>
@@ -53,11 +53,11 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
-                    <li><a href="/leo">Leo</a></li>
-                    <li><a href="/leo/expect.html">Expect</a></li>
-                    <li><a href="/leo/assert.html">Assert</a></li>
-                    <li><a href="/leo/plugins.html">Plugins</a></li>
-	            <li><a href="/leo/docs">API</a></li>
+                    <li><a href="">Leo</a></li>
+                    <li><a href="/expect.html">Expect</a></li>
+                    <li><a href="/assert.html">Assert</a></li>
+                    <li><a href="/plugins.html">Plugins</a></li>
+	            <li><a href="/docs">API</a></li>
                 </ul>
                 
                 
@@ -87,7 +87,7 @@
 <h1>Plugins</h1>
 
 <p>
-	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="/leo/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
+	Leo was designed to make adding functionality easy. <strong>All</strong> of Leo's functionality is derived from the <a target="_blank" href="/docs/class-Peridot.Leo.Assertion.html">Assertion</a> class.
 </p>
 
 <h2 id="plugin_access">Accessing the Assertion instance</h2>
@@ -144,6 +144,24 @@
 <span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;http://app.com&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">dom</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">element</span><span class="p">(</span><span class="s1">&#39;.some-css-class&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
+<h3>Memoization</h3>
+
+<p>
+    If you know your property is going to always return the same result, you can cache that result by setting the <code>memoize</code> argument to true when
+    adding a property.
+</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nv">$assertion</span><span class="o">-&gt;</span><span class="na">addProperty</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//some expensive creation operation</span>
+    <span class="nv">$db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EntityManager</span><span class="p">();</span>
+    <span class="c1">//setup schema? load mappings?</span>
+    <span class="k">return</span> <span class="nv">$db</span><span class="p">;</span>
+<span class="p">},</span> <span class="k">true</span><span class="p">);</span> <span class="c1">//memoize set to true, so the db is cached and the same instance is always returned </span>
+
+<span class="nx">expect</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">in</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">to</span><span class="o">-&gt;</span><span class="na">have</span><span class="o">-&gt;</span><span class="na">record</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span> <span class="c1">//db is cached so it wont have to be created multiple times</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
 <h2 id="plugin_flags">Flags</h2>
 
 <p>
@@ -160,7 +178,7 @@
 <span class="p">});</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
-<h2 class="plugin_extend">Using Assertion::extend</h2>
+<h2 id="plugin_extend">Using Assertion::extend</h2>
 
 <p>
 	As a convenience, the <code>Assertion</code> class contains an <code>extend</code> method that is useful for leveraging packaged plugins. It accepts either a <code>callable</code> or the path to a file that returns a callable.
@@ -185,7 +203,7 @@
 <h2 id="plugin_matchers">Matchers</h2>
 
 <p>
-	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="/leo/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
+	Most assertion methods in Leo are implemented by leveraging matchers - that is classes that implement <a href="/docs/class-Peridot.Leo.Matcher.MatcherInterface.html" target="_blank">MatcherInterface</a>.
 </p>
 
 <p>
@@ -207,7 +225,7 @@
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
 <p>
-	Most matchers only have to implement two methods when extending the <a href="/leo/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="/leo/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
+	Most matchers only have to implement two methods when extending the <a href="/docs/class-Peridot.Leo.Matcher.AbstractMatcher.html" target="_blank">AbstractMatcher</a>. Here is the code behind the core <a href="/docs/class-Peridot.Leo.Matcher.EqualMatcher.html" target="_blank">EqualMatcher</a>.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -240,19 +258,19 @@
 <h2 id="plugin_templates">Templates</h2>
 
 <p>
-	The <a href="/leo/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="/leo/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
+	The <a href="/docs/class-Peridot.Leo.Matcher.Template.ArrayTemplate.html" target="_blank">ArrayTemplate</a> is an instance of <a href="/docs/class-Peridot.Leo.Matcher.Template.TemplateInterface.html" target="_blank">TemplateInterface</a>. Templates are used by matchers to provide default and negated failure messages for when a match fails. Matchers leverage templates via their <code>getTemplate</code>, <code>setTemplate</code>, and <code>getDefaultTemplate</code> methods.
 </p>
 
 <h2 id="plugin_formatters">Formatters</h2>
 
 <p>
-	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="/leo/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="/leo/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
+	Formatters use match results together with templates to return human readable strings for the results of a match. All formatters should implement <a href="/docs/class-Peridot.Leo.Formatter.FormatterInterface.html" target="_blank">FormatterInterface</a>. For most cases, the <a href="/docs/class-Peridot.Leo.Formatter.Formatter.html" target="_blank">Formatter</a> that ships with Leo should suffice.
 </p>
 
 <h2 id="plugin_responders">Responders</h2>
 
 <p>
-	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="/leo/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="/leo/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
+	Responders are the last stop for a Leo assertion. Responders are in charge of doing something with the formatted results of a match. All responders should implement <a href="/docs/class-Peridot.Leo.Responder.ResponderInterface.html" target="_blank">ResponderInterface</a>. The default <a href="/docs/class-Peridot.Leo.Responder.ExceptionResponder.html" target="_blank">ExceptionResponder</a> responds by throwing an exception with the formatted message.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -297,12 +315,13 @@
 	<a target="_blank" href="https://github.com/peridot-php/leo-http-foundation">LeoHttpFoundation</a> is a simple plugin that extends Leo to simplify testing HttpFoundation based applications. Browse the source for some examples on extending Leo.
 </p>
 
+
             </main>
         </div>
     </div>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/leo/js/bootstrap.min.js"></script>
-    <script src="/leo/js/antiscroll.js"></script>
-    <script src="/leo/js/leo.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/antiscroll.js"></script>
+    <script src="/js/leo.js"></script>
 </body>
 </html>

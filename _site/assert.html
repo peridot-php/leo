@@ -10,11 +10,11 @@
     <meta name="author" content="Brian Scaturro">
     
     <link href="http://fonts.googleapis.com/css?family=Nunito|Open+Sans:700,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/leo/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/leo/css/style.css">
-    <link rel="stylesheet" href="/leo/css/pygments-monokai.css">
-    <link rel="stylesheet" href="/leo/css/antiscroll.css">
-    <link rel="shortcut icon" href="/leo/img/favicon.ico">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pygments-monokai.css">
+    <link rel="stylesheet" href="/css/antiscroll.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,14 +37,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/leo">Leo</a>
+          <a class="navbar-brand" href="">Leo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/leo/expect.html">Expect</a></li>
-            <li><a href="/leo/assert.html">Assert</a></li>
-	    <li><a href="/leo/plugins.html">Plugins</a></li>
-	    <li><a href="/leo/docs">API</a></li>
+            <li><a href="/expect.html">Expect</a></li>
+            <li><a href="/assert.html">Assert</a></li>
+	    <li><a href="/plugins.html">Plugins</a></li>
+	    <li><a href="/docs">API</a></li>
           </ul>
         </div>
       </div>
@@ -53,11 +53,11 @@
         <div class="row">
             <aside class="col-md-2 col-sm-3 sidebar hidden-xs">
                 <ul class="nav nav-sidebar">
-                    <li><a href="/leo">Leo</a></li>
-                    <li><a href="/leo/expect.html">Expect</a></li>
-                    <li><a href="/leo/assert.html">Assert</a></li>
-                    <li><a href="/leo/plugins.html">Plugins</a></li>
-	            <li><a href="/leo/docs">API</a></li>
+                    <li><a href="">Leo</a></li>
+                    <li><a href="/expect.html">Expect</a></li>
+                    <li><a href="/assert.html">Assert</a></li>
+                    <li><a href="/plugins.html">Plugins</a></li>
+	            <li><a href="/docs">API</a></li>
                 </ul>
                 
                 
@@ -344,7 +344,7 @@
 </ul>
 
 <p>
-	Asserts that the string or array <code>haystack</code> includes the substring or value identified by <code>needle</code>.
+	Asserts that the string, array, or object implementing `ArrayAccess` <code>haystack</code> includes the substring or value identified by <code>needle</code>.
 </p>
 
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
@@ -951,12 +951,13 @@
 <span class="nv">$assert</span><span class="o">-&gt;</span><span class="na">isNotBoolean</span><span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
+
             </main>
         </div>
     </div>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/leo/js/bootstrap.min.js"></script>
-    <script src="/leo/js/antiscroll.js"></script>
-    <script src="/leo/js/leo.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/antiscroll.js"></script>
+    <script src="/js/leo.js"></script>
 </body>
 </html>

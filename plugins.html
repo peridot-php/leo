@@ -76,6 +76,26 @@ expect('http://app.com')->dom->to->have->element('.some-css-class');
 ?>
 {% endhighlight %}
 
+<h3>Memoization</h3>
+
+<p>
+    If you know your property is going to always return the same result, you can cache that result by setting the <code>memoize</code> argument to true when
+    adding a property.
+</p>
+
+{% highlight php %}
+<?php
+$assertion->addProperty('db', function () {
+    //some expensive creation operation
+    $db = new EntityManager();
+    //setup schema? load mappings?
+    return $db;
+}, true); //memoize set to true, so the db is cached and the same instance is always returned 
+
+expect('table')->in->db->to->have->record('id'); //db is cached so it wont have to be created multiple times
+?>
+{% endhighlight %}
+
 <h2 id="plugin_flags">Flags</h2>
 
 <p>
