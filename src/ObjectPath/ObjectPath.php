@@ -59,7 +59,7 @@ class ObjectPath
         $parts = $this->getPathParts($path);
         $properties = $this->getPropertyCollection($this->subject);
         $pathValue = null;
-        while ($properties && $parts) {
+        while (!empty($properties) && !empty($parts)) {
             $key = array_shift($parts);
             $key = $this->normalizeKey($key);
             $pathValue = $this->getPathValue($key, $properties);
@@ -114,7 +114,7 @@ class ObjectPath
      */
     protected function normalizeKey($key)
     {
-        if (preg_match(static::$arrayKey, $key, $matches)) {
+        if (preg_match(self::$arrayKey, $key, $matches)) {
             $key = $matches[1];
             return $key;
         }

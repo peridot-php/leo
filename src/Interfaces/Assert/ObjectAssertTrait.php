@@ -38,7 +38,7 @@ trait ObjectAssertTrait
     /**
      * Perform a property assertion.
      *
-     * @param array|object $actual
+     * @param array|object $object
      * @param string $property
      * @param string $message
      */
@@ -51,7 +51,7 @@ trait ObjectAssertTrait
     /**
      * Perform a negated property assertion.
      *
-     * @param array|object $actual
+     * @param array|object $object
      * @param string $property
      * @param string $message
      */
@@ -77,7 +77,7 @@ trait ObjectAssertTrait
     /**
      * Perform a negated deep property assertion.
      *
-     * @param array|object $actual
+     * @param array|object $object
      * @param string $property
      * @param string $message
      */

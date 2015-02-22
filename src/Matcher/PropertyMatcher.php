@@ -240,7 +240,7 @@ class PropertyMatcher extends AbstractMatcher
         $path = new ObjectPath($actual);
         $value = $path->get($this->getKey());
 
-        if (is_null($value)) {
+        if ($value === null) {
             return false;
         }
 

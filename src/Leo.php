@@ -27,12 +27,12 @@ class Leo
     private static $instance;
 
     /**
-     * @var Formatter
+     * @var FormatterInterface
      */
     protected $formatter;
 
     /**
-     * @var ExceptionResponder
+     * @var ResponderInterface
      */
     protected $responder;
 
@@ -88,7 +88,7 @@ class Leo
     /**
      * Set the FormatterInterface used by Leo.
      *
-     * @param $formatter
+     * @param FormatterInterface $formatter
      * @return $this
      */
     public function setFormatter(FormatterInterface $formatter)
@@ -110,7 +110,7 @@ class Leo
     /**
      * Set the ResponderInterface used by Leo.
      *
-     * @param $responder
+     * @param ResponderInterface $responder
      * @return $this
      */
     public function setResponder(ResponderInterface $responder)

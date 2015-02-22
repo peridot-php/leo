@@ -80,7 +80,7 @@ class Formatter implements FormatterInterface
             return 'true';
         }
 
-        if (is_null($obj)) {
+        if ($obj === null) {
             return 'null';
         }
 

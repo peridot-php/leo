@@ -24,7 +24,7 @@ class NullMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        return is_null($actual);
+        return $actual === null;
     }
 
     /**

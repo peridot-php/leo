@@ -61,7 +61,7 @@ class RangeMatcher extends CountableMatcher
     /**
      * Set the lower bound of the range matcher.
      *
-     * @param int $lowerBound
+     * @param mixed $lowerBound
      * @return $this
      */
     public function setLowerBound($lowerBound)
@@ -77,7 +77,7 @@ class RangeMatcher extends CountableMatcher
     /**
      * Set the upper bound of the range matcher.
      *
-     * @param int $upperBound
+     * @param mixed $upperBound
      * @return $this
      */
     public function setUpperBound($upperBound)

@@ -38,7 +38,7 @@ trait TypeAssertTrait
     /**
      * Perform a true assertion.
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
     public function isTrue($value, $message = "")
@@ -74,7 +74,7 @@ trait TypeAssertTrait
     /**
      * Perform a negated null assertion.
      *
-     * @param mixed $actual
+     * @param mixed $value
      * @param string $message
      */
     public function isNotNull($value, $message = "")
