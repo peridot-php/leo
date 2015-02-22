@@ -62,7 +62,7 @@ class ObjectPath
         while ($properties && $parts) {
             $key = array_shift($parts);
             $key = $this->normalizeKey($key);
-            $pathValue = array_key_exists($key, $properties) ? new ObjectPathValue($key, $properties[$key]) : null;
+            $pathValue = $this->getPathValue($key, $properties);
 
             if (! array_key_exists($key, $properties)) {
                 break;
@@ -119,5 +119,22 @@ class ObjectPath
             return $key;
         }
         return $key;
+    }
+
+    /**
+     * Given a key and a collection of properties, this method
+     * will return an ObjectPathValue if possible.
+     *
+     * @param $key
+     * @param $properties
+     * @return null|ObjectPathValue
+     */
+    protected function getPathValue($key, $properties)
+    {
+        if (! array_key_exists($key, $properties)) {
+            return null;
+        }
+
+        return new ObjectPathValue($key, $properties[$key]);
     }
 }
