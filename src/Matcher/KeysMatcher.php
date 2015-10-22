@@ -107,7 +107,7 @@ class KeysMatcher extends AbstractMatcher
     protected function matchInclusion($actual)
     {
         foreach ($this->expected as $key) {
-            if (!isset($actual[$key])) {
+            if (!array_key_exists($key, $actual)) {
                 return false;
             }
         }
