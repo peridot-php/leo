@@ -60,5 +60,10 @@ describe('KeysMatcher', function() {
             $result = $this->matcher->match(['foo' => 1, 'bar' => 2, 'baz' => 3]);
             expect($result->isMatch())->to->be->true;
         });
+
+        it('should return true if keys exist, but corresponding values are null', function() {
+            $result = $this->matcher->match(['foo' => 1, 'bar' => null]);
+            expect($result->isMatch())->to->be->true;
+        });
     });
 });
