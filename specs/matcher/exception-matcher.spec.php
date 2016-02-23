@@ -94,7 +94,7 @@ describe('ExceptionMatcher', function() {
             $default = $template->getDefaultTemplate();
             $negated = $template->getNegatedTemplate();
             expect($default)->to->equal('Expected exception message {{expected}}, got {{actual}}');
-            expect($negated)->to->equal('Expected exception message {{expected}} not to equal {{actual}}');
+            expect($negated)->to->equal('Expected exception message {{actual}} not to equal {{expected}}');
         });
     });
 

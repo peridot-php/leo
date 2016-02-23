@@ -152,7 +152,7 @@ describe('assert', function() {
         it('should throw an exception if actual value is not identical to expected value', function() {
             $this->assert->throws(function() {
                 $this->assert->strictEqual("string", "other");
-            }, 'Exception', 'Expected "other" to be identical to "string"');
+            }, 'Exception', 'Expected "string" to be identical to "other"');
         });
 
         it('allow a user message', function() {
