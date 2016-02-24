@@ -30,8 +30,8 @@ class SameMatcher extends AbstractMatcher
     public function getDefaultTemplate()
     {
         return new ArrayTemplate([
-            'default' => 'Expected {{expected}} to be identical to {{actual}}',
-            'negated' => 'Expected {{expected}} not to be identical to {{actual}}'
+            'default' => 'Expected {{actual}} to be identical to {{expected}}',
+            'negated' => 'Expected {{actual}} not to be identical to {{expected}}'
         ]);
     }
 }

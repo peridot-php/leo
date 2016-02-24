@@ -33,7 +33,7 @@ class EqualMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{expected}}, got {{actual}}',
-            'negated' => 'Expected {{expected}} not to equal {{actual}}'
+            'negated' => 'Expected {{actual}} not to equal {{expected}}'
         ]);
     }
 }

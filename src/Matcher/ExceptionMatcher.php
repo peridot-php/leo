@@ -172,7 +172,7 @@ class ExceptionMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected exception message {{expected}}, got {{actual}}',
-            'negated' => 'Expected exception message {{expected}} not to equal {{actual}}'
+            'negated' => 'Expected exception message {{actual}} not to equal {{expected}}'
         ]);
     }
 
