@@ -5,6 +5,7 @@ use Exception;
 use Peridot\Leo\Formatter\FormatterInterface;
 use Peridot\Leo\Matcher\Match;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
+use Peridot\Leo\Responder\Exception\AssertionException;
 
 /**
  * The ExceptionResponder responds to a match by throwing an exception
@@ -46,6 +47,6 @@ class ExceptionResponder implements ResponderInterface
 
         $this->formatter->setMatch($match);
         $message = ($message) ? $message : $this->formatter->getMessage($template);
-        throw new Exception($message);
+        throw new AssertionException($message);
     }
 }
