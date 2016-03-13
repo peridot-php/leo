@@ -86,6 +86,26 @@ describe('ExceptionMatcher', function() {
                 });
             });
         });
+
+        context('with throwable', function () {
+            beforeEach(function () {
+                $this->matcher = new ExceptionMatcher('TypeError');
+            });
+
+            it('should return true result if callable throws throwable', function() {
+                $result = $this->matcher->match(function() {
+                    throw new TypeError('hello world');
+                });
+                expect($result->isMatch())->to->equal(true);
+            });
+
+            it('should return false result if callable throws different type', function() {
+                $result = $this->matcher->match(function() {
+                    throw new ParseError('hello world');
+                });
+                expect($result->isMatch())->to->equal(false);
+            });
+        });
     });
 
     describe('->getDefaultMessageTemplate()', function() {

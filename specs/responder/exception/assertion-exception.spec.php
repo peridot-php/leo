@@ -1,6 +1,5 @@
 <?php
 
-use Exception;
 use Peridot\Leo\Responder\Exception\AssertionException;
 
 describe('AssertionException', function() {

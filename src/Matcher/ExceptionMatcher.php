@@ -206,16 +206,18 @@ class ExceptionMatcher extends AbstractMatcher
             call_user_func_array($actual, $this->arguments);
             return false;
         } catch (\Exception $e) {
-            $message = $e->getMessage();
-            if ($this->expectedMessage) {
-                $this->setMessage($message);
-                return $this->expectedMessage == $message;
-            }
-            if (!$e instanceof $this->expected) {
-                return false;
-            }
+            // fall-through ...
+        } catch (\Throwable $e) {
+            // fall-through ...
         }
-        return true;
+
+        $message = $e->getMessage();
+        if ($this->expectedMessage) {
+            $this->setMessage($message);
+            return $this->expectedMessage == $message;
+        }
+
+        return $e instanceof $this->expected;
     }
 
     /**
