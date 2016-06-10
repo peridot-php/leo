@@ -68,6 +68,14 @@ describe('ExceptionMatcher', function() {
                 expect($result->isMatch())->to->equal(false);
             });
 
+            it('should still check the exception type', function() {
+                $this->matcher->setExpectedMessage("hello world");
+                $result = $this->matcher->match(function() {
+                    throw new RuntimeException('hello world');
+                });
+                expect($result->isMatch())->to->equal(false);
+            });
+
             context('and matcher is inverted', function() {
                 it('should return true result if exception messages are different', function() {
                     $this->matcher->setExpectedMessage('goodbye');
