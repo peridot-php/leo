@@ -2,10 +2,10 @@
 
 namespace Peridot\Leo\Matcher;
 
-use ArrayAccess;
 use InvalidArgumentException;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
+use Traversable;
 
 /**
  * InclusionMatcher determines if an array or string includes the expected value.
@@ -23,8 +23,21 @@ class InclusionMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        //we will support ArrayAccess for now, even though array_search throws a warning about it
-        if (is_array($actual) or $actual instanceof ArrayAccess) {
+        if ($actual instanceof Traversable) {
+            $isMatch = false;
+
+            foreach ($actual as $value) {
+                if ($value === $this->expected) {
+                    $isMatch = true;
+
+                    break;
+                }
+            }
+
+            return $isMatch;
+        }
+
+        if (is_array($actual)) {
             return array_search($this->expected, $actual, true) !== false;
         }
 

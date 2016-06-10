@@ -17,7 +17,7 @@ describe('InclusionMatcher', function() {
         expect($match->isMatch())->to->equal(true);
     });
 
-    xit('should return true if value is in an instance of ArrayAccess', function() {
+    it('should return true if value is in an instance of Traversable', function() {
         $match = $this->matcher->match(new ArrayObject(['A', 'B', 'C']));
         expect($match->isMatch())->to->equal(true);
     });
@@ -38,9 +38,9 @@ describe('InclusionMatcher', function() {
         expect($match->isMatch())->to->equal(false);
     });
 
-    xit('should return true if value is not in an instance of ArrayAccess', function() {
+    it('should return false if value is not in an instance of Traversable', function() {
         $match = $this->matcher->match(new ArrayObject(['B', 'C', 'D']));
-        expect($match->isMatch())->to->equal(true);
+        expect($match->isMatch())->to->equal(false);
     });
 
     it('should return false if value is not in string', function() {
