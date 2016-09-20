@@ -197,7 +197,6 @@ class ExceptionMatcher extends AbstractMatcher
 
         try {
             call_user_func_array($actual, $this->arguments);
-            $isMatch = false;
         } catch (Exception $exception) {
             // fall-through ...
         } catch (Throwable $exception) {

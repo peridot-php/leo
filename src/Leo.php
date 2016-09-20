@@ -20,7 +20,7 @@ use Peridot\Leo\Responder\ResponderInterface;
  *
  * @package Peridot\Leo
  */
-class Leo
+final class Leo
 {
     /**
      * @var \Peridot\Leo\Leo

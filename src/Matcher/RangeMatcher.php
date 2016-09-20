@@ -14,18 +14,18 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 class RangeMatcher extends CountableMatcher
 {
     /**
-     * @var int
+     * @var mixed
      */
     protected $lowerBound;
 
     /**
-     * @var int
+     * @var mixed
      */
     protected $upperBound;
 
     /**
-     * @param int|float|float $lower
-     * @param int|float|float $upper
+     * @param mixed $lower
+     * @param mixed $upper
      */
     public function __construct($lower, $upper)
     {
@@ -96,7 +96,7 @@ class RangeMatcher extends CountableMatcher
     /**
      * Return the lower bound of the range matcher.
      *
-     * @return int
+     * @return mixed
      */
     public function getLowerBound()
     {
@@ -106,7 +106,7 @@ class RangeMatcher extends CountableMatcher
     /**
      * Return the upper bound of the range matcher.
      *
-     * @return int
+     * @return mixed
      */
     public function getUpperBound()
     {
