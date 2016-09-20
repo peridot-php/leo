@@ -177,20 +177,37 @@ class ExceptionMatcher extends AbstractMatcher
     }
 
     /**
-     * Override match to set actual and expect match values to message
-     * values.
+     * Executes the callable and matches the exception type and exception message.
      *
      * @param $actual
      * @return Match
      */
     public function match($actual)
     {
-        $match = parent::match($actual);
-        if ($this->expectedMessage) {
-            $match->setActual($this->message);
-            $match->setExpected($this->expectedMessage);
+        $this->validateCallable($actual);
+        try {
+            call_user_func_array($actual, $this->arguments);
+            $isMatch = false;
+        } catch (\Exception $e) {
+            $isMatch = $e instanceof $this->expected;
+            $message = $e->getMessage();
+            $this->setMessage($message);
         }
-        return $match;
+        if ($isMatch && $this->expectedMessage) {
+            $isMatch = $message == $this->expectedMessage;
+            $expected = $this->expectedMessage;
+            $actual = $message;
+        } else {
+            $expected = $this->expected;
+        }
+
+        $isNegated = $this->isNegated();
+
+        if ($isNegated) {
+            $isMatch = !$isMatch;
+        }
+
+        return new Match($isMatch, $expected, $actual, $isNegated);
     }
 
     /**
@@ -201,21 +218,7 @@ class ExceptionMatcher extends AbstractMatcher
      */
     protected function doMatch($actual)
     {
-        $this->validateCallable($actual);
-        try {
-            call_user_func_array($actual, $this->arguments);
-            return false;
-        } catch (\Exception $e) {
-            $message = $e->getMessage();
-            if ($this->expectedMessage) {
-                $this->setMessage($message);
-                return $this->expectedMessage == $message;
-            }
-            if (!$e instanceof $this->expected) {
-                return false;
-            }
-        }
-        return true;
+        // unused
     }
 
     /**
