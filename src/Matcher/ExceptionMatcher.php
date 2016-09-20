@@ -1,8 +1,10 @@
 <?php
 namespace Peridot\Leo\Matcher;
 
+use Exception;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
+use Throwable;
 
 /**
  * ExceptionMatcher executes a callable and determines if an exception of a given type was thrown. It optionally
@@ -185,14 +187,25 @@ class ExceptionMatcher extends AbstractMatcher
     public function match($actual)
     {
         $this->validateCallable($actual);
+        $exception = null;
+
         try {
             call_user_func_array($actual, $this->arguments);
             $isMatch = false;
-        } catch (\Exception $e) {
-            $isMatch = $e instanceof $this->expected;
-            $message = $e->getMessage();
-            $this->setMessage($message);
+        } catch (Exception $exception) {
+            // fall-through ...
+        } catch (Throwable $exception) {
+            // fall-through ...
         }
+
+        if ($exception) {
+            $isMatch = $exception instanceof $this->expected;
+            $message = $exception->getMessage();
+            $this->setMessage($message);
+        } else {
+            $isMatch = false;
+        }
+
         if ($isMatch && $this->expectedMessage) {
             $isMatch = $message == $this->expectedMessage;
             $expected = $this->expectedMessage;
