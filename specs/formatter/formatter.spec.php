@@ -38,6 +38,11 @@ describe('Formatter', function () {
             expect($string)->to->equal('"hello"');
         });
 
+        it('should return type and message for an exception', function () {
+            $string = $this->formatter->objectToString(new RuntimeException('error message'));
+            expect($string)->to->equal('RuntimeException Exception("error message")');
+        });
+
         it('should format other objects using print_r', function () {
             $obj = new stdClass();
             $obj->first = 'brian';

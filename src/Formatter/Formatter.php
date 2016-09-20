@@ -2,8 +2,10 @@
 
 namespace Peridot\Leo\Formatter;
 
+use Exception;
 use Peridot\Leo\Matcher\Match;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
+use Throwable;
 
 /**
  * Class Formatter is the core FormatterInterface for Leo.
@@ -87,6 +89,10 @@ class Formatter implements FormatterInterface
 
         if (is_string($obj)) {
             return '"' . $obj . '"';
+        }
+
+        if ($obj instanceof Throwable || $obj instanceof Exception) {
+            return get_class($obj) . ' Exception("' . $obj->getMessage() . '")';
         }
 
         return rtrim(print_r($obj, true));
