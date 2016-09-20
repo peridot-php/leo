@@ -4,7 +4,7 @@ use Peridot\Leo\Responder\Exception\AssertionException;
 
 describe('AssertionException', function() {
     describe('::trim()', function() {
-        xit('handles traces without a Leo call', function() {
+        it('handles traces without a Leo call', function() {
             $exception = new Exception();
             AssertionException::trim($exception);
             expect(count($exception->getTrace()))->to->equal(0);
