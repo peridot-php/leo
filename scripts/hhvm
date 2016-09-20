@@ -1,0 +1,6 @@
+#!/bin/sh
+docker run -it --rm \
+    -v "${PWD}:/usr/src/peridot" \
+    -w /usr/src/peridot \
+    -e "PATH=vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    hhvm/hhvm "$@"

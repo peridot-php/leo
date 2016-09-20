@@ -6,13 +6,16 @@ test: install
 coverage: install
 	php --version
 	vendor/bin/peridot --version
-	phpdbg -qrr vendor/bin/peridot specs -r html-code-coverage --code-coverage-path "coverage"
+	phpdbg -qrr vendor/bin/peridot -r html-code-coverage --code-coverage-path "coverage"
 
 ci-coverage: install
 	php --version
 	vendor/bin/peridot --version
-	phpdbg -qrr vendor/bin/peridot specs -r clover-code-coverage --code-coverage-path "coverage/clover.xml"
-	vendor/bin/peridot specs
+	phpdbg -qrr vendor/bin/peridot -r clover-code-coverage --code-coverage-path "coverage/clover.xml"
+	vendor/bin/peridot
+
+hhvm-test: install
+	scripts/hhvm vendor/bin/peridot
 
 lint: install
 	vendor/bin/php-cs-fixer fix
@@ -22,7 +25,7 @@ install: vendor/autoload.php
 docs: install
 	vendor/bin/apigen generate
 
-.PHONY: test coverage ci-coverage lint install
+.PHONY: test coverage ci-coverage hhvm-test lint install
 
 vendor/autoload.php: composer.lock
 	composer install
