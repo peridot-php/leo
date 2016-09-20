@@ -22,7 +22,7 @@ use Peridot\Leo\Matcher\TruthyMatcher;
 use Peridot\Leo\Matcher\TypeMatcher;
 
 return function (Assertion $assertion) {
-    /**
+    /*
      * Default language chains.
      */
     $chains = [
@@ -30,7 +30,7 @@ return function (Assertion $assertion) {
         'is', 'and', 'has',
         'have', 'with', 'that',
         'at', 'of', 'same',
-        'an', 'a'
+        'an', 'a',
     ];
 
     foreach ($chains as $chain) {
@@ -51,24 +51,27 @@ return function (Assertion $assertion) {
         return $this->flag('loosely', true);
     });
 
-    $assertion->addMethod('equal', function ($expected, $message = "") {
+    $assertion->addMethod('equal', function ($expected, $message = '') {
         $this->flag('message', $message);
         if ($this->flag('loosely')) {
             return new EqualMatcher($expected);
         }
+
         return new SameMatcher($expected);
     });
 
-    $assertion->addMethod('throw', function ($exceptionType, $exceptionMessage = '', $message = "") {
+    $assertion->addMethod('throw', function ($exceptionType, $exceptionMessage = '', $message = '') {
         $this->flag('message', $message);
         $matcher = new ExceptionMatcher($exceptionType);
         $matcher->setExpectedMessage($exceptionMessage);
         $matcher->setArguments($this->flag('arguments') ?: []);
+
         return $matcher;
     });
 
-    $type = function ($expected, $message = "") {
+    $type = function ($expected, $message = '') {
         $this->flag('message', $message);
+
         return new TypeMatcher($expected);
     };
 
@@ -76,8 +79,9 @@ return function (Assertion $assertion) {
         ->addMethod('a', $type)
         ->addMethod('an', $type);
 
-    $include = function ($expected, $message = "") {
+    $include = function ($expected, $message = '') {
         $this->flag('message', $message);
+
         return new InclusionMatcher($expected);
     };
 
@@ -93,8 +97,9 @@ return function (Assertion $assertion) {
         ->addProperty('contain', $contain)
         ->addProperty('include', $contain);
 
-    $truthy = function ($message = "") {
+    $truthy = function ($message = '') {
         $this->flag('message', $message);
+
         return new TruthyMatcher();
     };
 
@@ -102,8 +107,9 @@ return function (Assertion $assertion) {
         ->addMethod('ok', $truthy)
         ->addProperty('ok', $truthy);
 
-    $true = function ($message = "") {
+    $true = function ($message = '') {
         $this->flag('message', $message);
+
         return new TrueMatcher();
     };
 
@@ -111,9 +117,10 @@ return function (Assertion $assertion) {
         ->addMethod('true', $true)
         ->addProperty('true', $true);
 
-    $false = function ($message = "") {
+    $false = function ($message = '') {
         $this->flag('message', $message);
         $matcher = new TrueMatcher();
+
         return $matcher->invert();
     };
 
@@ -121,8 +128,9 @@ return function (Assertion $assertion) {
         ->addMethod('false', $false)
         ->addProperty('false', $false);
 
-    $null = function ($message = "") {
+    $null = function ($message = '') {
         $this->flag('message', $message);
+
         return new NullMatcher();
     };
 
@@ -130,8 +138,9 @@ return function (Assertion $assertion) {
         ->addMethod('null', $null)
         ->addProperty('null', $null);
 
-    $empty = function ($message = "") {
+    $empty = function ($message = '') {
         $this->flag('message', $message);
+
         return new EmptyMatcher();
     };
 
@@ -143,7 +152,7 @@ return function (Assertion $assertion) {
         return $this->flag('length', $this->getActual());
     });
 
-    /**
+    /*
      * Define a helper for creating countable matchers. A countable
      * matcher is a matcher that matches against a single numeric
      * value, or a value that can be reduced to a single numeric value
@@ -153,13 +162,14 @@ return function (Assertion $assertion) {
      * @return callable
      */
     $countable = function ($className) {
-        return function ($expected, $message = "") use ($className) {
+        return function ($expected, $message = '') use ($className) {
             $this->flag('message', $message);
             $class = "Peridot\\Leo\\Matcher\\$className";
             $matcher = new $class($expected);
             if ($countable = $this->flag('length')) {
                 $matcher->setCountable($countable);
             }
+
             return $matcher;
         };
     };
@@ -169,17 +179,19 @@ return function (Assertion $assertion) {
     $assertion->addMethod('below', $countable('LessThanMatcher'));
     $assertion->addMethod('most', $countable('LessThanOrEqualMatcher'));
 
-    $assertion->addMethod('within', function ($lower, $upper, $message = "") {
+    $assertion->addMethod('within', function ($lower, $upper, $message = '') {
         $this->flag('message', $message);
         $matcher = new RangeMatcher($lower, $upper);
         if ($countable = $this->flag('length')) {
             $matcher->setCountable($countable);
         }
+
         return $matcher;
     });
 
-    $assertion->addMethod('instanceof', function ($expected, $message = "") {
+    $assertion->addMethod('instanceof', function ($expected, $message = '') {
         $this->flag('message', $message);
+
         return new InstanceofMatcher($expected);
     });
 
@@ -187,35 +199,41 @@ return function (Assertion $assertion) {
         return $this->flag('deep', true);
     });
 
-    $assertion->addMethod('property', function ($name, $value = "", $message = "") {
+    $assertion->addMethod('property', function ($name, $value = '', $message = '') {
         $this->flag('message', $message);
         $matcher = new PropertyMatcher($name, $value);
         $matcher->setAssertion($this);
+
         return $matcher->setIsDeep($this->flag('deep'));
     });
 
-    $assertion->addMethod('length', function ($expected, $message = "") {
+    $assertion->addMethod('length', function ($expected, $message = '') {
         $this->flag('message', $message);
+
         return new LengthMatcher($expected);
     });
 
-    $assertion->addMethod('match', function ($pattern, $message = "") {
+    $assertion->addMethod('match', function ($pattern, $message = '') {
         $this->flag('message', $message);
+
         return new PatternMatcher($pattern);
     });
 
-    $assertion->addMethod('string', function ($expected, $message = "") {
+    $assertion->addMethod('string', function ($expected, $message = '') {
         $this->flag('message', $message);
+
         return new SubStringMatcher($expected);
     });
 
-    $assertion->addMethod('keys', function (array $keys, $message = "") {
+    $assertion->addMethod('keys', function (array $keys, $message = '') {
         $this->flag('message', $message);
+
         return new KeysMatcher($keys);
     });
 
-    $assertion->addMethod('satisfy', function (callable $predicate, $message = "") {
+    $assertion->addMethod('satisfy', function (callable $predicate, $message = '') {
         $this->flag('message', $message);
+
         return new PredicateMatcher($predicate);
     });
 };

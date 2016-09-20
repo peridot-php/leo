@@ -2,17 +2,17 @@
 
 use Peridot\Leo\Responder\Exception\AssertionException;
 
-describe('AssertionException', function() {
-    describe('::trim()', function() {
-        it('handles traces without a Leo call', function() {
+describe('AssertionException', function () {
+    describe('::trim()', function () {
+        it('handles traces without a Leo call', function () {
             $exception = new Exception();
             AssertionException::trim($exception);
             expect(count($exception->getTrace()))->to->equal(0);
         });
     });
 
-    describe('::traceLeoCall()', function() {
-        it('handles method call traces', function() {
+    describe('::traceLeoCall()', function () {
+        it('handles method call traces', function () {
             $trace = [
                 [
                     'file' => '/path/to/file/a',
@@ -43,7 +43,7 @@ describe('AssertionException', function() {
             expect(AssertionException::traceLeoCall($trace))->to->equal($expected);
         });
 
-        it('handles function call traces', function() {
+        it('handles function call traces', function () {
             $trace = [
                 [
                     'file' => '/path/to/file/a',
@@ -71,7 +71,7 @@ describe('AssertionException', function() {
             expect(AssertionException::traceLeoCall($trace))->to->equal($expected);
         });
 
-        it('handles traces with no external calls', function() {
+        it('handles traces with no external calls', function () {
             $trace = [
                 [
                     'file' => '/path/to/file/a',
@@ -94,7 +94,7 @@ describe('AssertionException', function() {
             expect(AssertionException::traceLeoCall($trace))->to->equal($expected);
         });
 
-        it('handles empty traces', function() {
+        it('handles empty traces', function () {
             expect(AssertionException::traceLeoCall([]))->to->equal(null);
         });
     });

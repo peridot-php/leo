@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -21,7 +22,7 @@ class PredicateMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to satisfy {{expected}}',
-            'negated' => 'Expected {{actual}} to not satisfy {{expected}}'
+            'negated' => 'Expected {{actual}} to not satisfy {{expected}}',
         ]);
     }
 

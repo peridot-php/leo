@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo;
 
 use Peridot\Leo\Matcher\MatcherInterface;
@@ -102,7 +103,7 @@ final class Assertion
     }
 
     /**
-     * Delegate methods to assertion methods
+     * Delegate methods to assertion methods.
      *
      * @param $method
      * @param $args
@@ -145,7 +146,7 @@ final class Assertion
      * A request to an Assertion will attempt to resolve
      * the result as an assertion before returning the result.
      *
-     * @param callable $fn
+     * @param  callable $fn
      * @return mixed
      */
     public function request(callable $fn, array $arguments = [])
@@ -176,7 +177,7 @@ final class Assertion
             return call_user_func($fn, $this);
         }
 
-        throw new \InvalidArgumentException("Assertion::extend requires a callable or a file that returns one");
+        throw new \InvalidArgumentException('Assertion::extend requires a callable or a file that returns one');
     }
 
     /**
@@ -188,6 +189,7 @@ final class Assertion
     public function setActual($actual)
     {
         $this->actual = $actual;
+
         return $this;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher\Template;
 
 /**
@@ -31,7 +32,7 @@ interface TemplateInterface
     /**
      * Set the template vars assigned to the template.
      *
-     * @param array $vars
+     * @param  array $vars
      * @return mixed
      */
     public function setTemplateVars(array $vars);
@@ -47,7 +48,7 @@ interface TemplateInterface
     /**
      * Set the default template that is used when negation is not specified.
      *
-     * @param string $template
+     * @param  string $template
      * @return mixed
      */
     public function setDefaultTemplate($template);
@@ -62,7 +63,7 @@ interface TemplateInterface
     /**
      * Set the template used for a failed negated match.
      *
-     * @param string $template
+     * @param  string $template
      * @return mixed
      */
     public function setNegatedTemplate($template);

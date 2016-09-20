@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\ObjectPath;
 
 /**

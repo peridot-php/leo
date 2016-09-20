@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Assertion;
@@ -57,21 +58,23 @@ abstract class AbstractMatcher implements MatcherInterface
     public function invert()
     {
         $this->negated = !$this->negated;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return Match
      */
-    public function match($actual = "")
+    public function match($actual = '')
     {
         $isMatch = $this->doMatch($actual);
         if ($this->isNegated()) {
             $isMatch = !$isMatch;
         }
+
         return new Match($isMatch, $this->expected, $actual, $this->isNegated());
     }
 
@@ -82,33 +85,36 @@ abstract class AbstractMatcher implements MatcherInterface
      */
     public function getTemplate()
     {
-        if (! isset($this->template)) {
+        if (!isset($this->template)) {
             return $this->getDefaultTemplate();
         }
+
         return $this->template;
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return $this
      */
     public function setTemplate(TemplateInterface $template)
     {
         $this->template = $template;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param Assertion $assertion
+     * @param  Assertion $assertion
      * @return $this
      */
     public function setAssertion(Assertion $assertion)
     {
         $this->assertion = $assertion;
+
         return $this;
     }
 
@@ -116,7 +122,7 @@ abstract class AbstractMatcher implements MatcherInterface
      * The actual matching algorithm for the matcher. This is called by ->match()
      * to create a Match result.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return bool
      */
     abstract protected function doMatch($actual);

@@ -1,10 +1,10 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 use Peridot\Leo\ObjectPath\ObjectPath;
-use Peridot\Leo\ObjectPath\ObjectPathValue;
 
 /**
  * PropertyMatcher determines if the actual array or object has the expected property, and optionally matches
@@ -40,10 +40,10 @@ class PropertyMatcher extends AbstractMatcher
     protected $isDeep = false;
 
     /**
-     * @param mixed $key
+     * @param mixed  $key
      * @param string $value
      */
-    public function __construct($key, $value = "")
+    public function __construct($key, $value = '')
     {
         $this
             ->setKey($key)
@@ -63,12 +63,13 @@ class PropertyMatcher extends AbstractMatcher
     /**
      * Set the expected object or array key.
      *
-     * @param int|string $key
+     * @param  int|string $key
      * @return $this
      */
     public function setKey($key)
     {
         $this->key = $key;
+
         return $this;
     }
 
@@ -85,12 +86,13 @@ class PropertyMatcher extends AbstractMatcher
     /**
      * Set the expected property value.
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
@@ -105,13 +107,13 @@ class PropertyMatcher extends AbstractMatcher
 
         $template = new ArrayTemplate([
             'default' => $default,
-            'negated' => $negated
+            'negated' => $negated,
         ]);
 
         return $template->setTemplateVars([
             'key' => $this->getKey(),
             'value' => $this->getValue(),
-            'actualValue' => $this->getActualValue()
+            'actualValue' => $this->getActualValue(),
         ]);
     }
 
@@ -129,13 +131,14 @@ class PropertyMatcher extends AbstractMatcher
      * Set the actual value given to the matcher. Used to
      * store whether or not the actual value was set.
      *
-     * @param mixed $actualValue
+     * @param  mixed $actualValue
      * @return $this
      */
     public function setActualValue($actualValue)
     {
         $this->actualValue = $actualValue;
         $this->actualValueSet = true;
+
         return $this;
     }
 
@@ -157,6 +160,7 @@ class PropertyMatcher extends AbstractMatcher
     public function setIsDeep($isDeep)
     {
         $this->isDeep = $isDeep;
+
         return $this;
     }
 
@@ -181,7 +185,7 @@ class PropertyMatcher extends AbstractMatcher
      *
      * @endcode
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return mixed
      */
     protected function doMatch($actual)
@@ -200,7 +204,7 @@ class PropertyMatcher extends AbstractMatcher
     /**
      * Convert the actual value to an array, whether it is an object or an array.
      *
-     * @param object|array $actual
+     * @param  object|array $actual
      * @return array|object
      */
     protected function actualToArray($actual)
@@ -208,6 +212,7 @@ class PropertyMatcher extends AbstractMatcher
         if (is_object($actual)) {
             return get_object_vars($actual);
         }
+
         return $actual;
     }
 
@@ -222,6 +227,7 @@ class PropertyMatcher extends AbstractMatcher
     {
         if (isset($actual[$this->getKey()])) {
             $this->assertion->setActual($actual[$this->getKey()]);
+
             return $this->isExpected($actual[$this->getKey()]);
         }
 
@@ -259,6 +265,7 @@ class PropertyMatcher extends AbstractMatcher
     {
         if ($expected = $this->getValue()) {
             $this->setActualValue($value);
+
             return $this->getActualValue() === $expected;
         }
 
@@ -273,7 +280,7 @@ class PropertyMatcher extends AbstractMatcher
     protected function validateActual($actual)
     {
         if (!is_object($actual) && !is_array($actual)) {
-            throw new \InvalidArgumentException("PropertyMatcher expects an object or an array");
+            throw new \InvalidArgumentException('PropertyMatcher expects an object or an array');
         }
     }
 
@@ -284,12 +291,12 @@ class PropertyMatcher extends AbstractMatcher
      */
     protected function getTemplateStrings()
     {
-        $default = "Expected {{actual}} to have a{{deep}}property {{key}}";
-        $negated = "Expected {{actual}} to not have a{{deep}}property {{key}}";
-        
+        $default = 'Expected {{actual}} to have a{{deep}}property {{key}}';
+        $negated = 'Expected {{actual}} to not have a{{deep}}property {{key}}';
+
         if ($this->getValue() && $this->isActualValueSet()) {
-            $default = "Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}";
-            $negated = "Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}";
+            $default = 'Expected {{actual}} to have a{{deep}}property {{key}} of {{value}}, but got {{actualValue}}';
+            $negated = 'Expected {{actual}} to not have a{{deep}}property {{key}} of {{value}}';
         }
 
         $deep = ' ';

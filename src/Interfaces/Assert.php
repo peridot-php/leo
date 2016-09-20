@@ -1,12 +1,12 @@
 <?php
+
 namespace Peridot\Leo\Interfaces;
 
+use Peridot\Leo\Assertion;
 use Peridot\Leo\Interfaces\Assert\CollectionAssertTrait;
 use Peridot\Leo\Interfaces\Assert\ObjectAssertTrait;
 use Peridot\Leo\Interfaces\Assert\TypeAssertTrait;
-use Peridot\Leo\Assertion;
 use Peridot\Leo\Leo;
-use Peridot\Leo\Responder\ResponderInterface;
 
 /**
  * Assert is a non-chainable, object oriented interface
@@ -36,7 +36,7 @@ class Assert
         '<' => 'below',
         '<=' => 'most',
         '!=' => 'not->loosely->equal',
-        '!==' => 'not->equal'
+        '!==' => 'not->equal',
     ];
 
     /**
@@ -58,26 +58,28 @@ class Assert
     /**
      * Perform an a loose equality assertion.
      *
-     * @param mixed $actual
-     * @param mixed $expected
+     * @param mixed  $actual
+     * @param mixed  $expected
      * @param string $message
      */
-    public function equal($actual, $expected, $message = "")
+    public function equal($actual, $expected, $message = '')
     {
         $this->assertion->setActual($actual);
+
         return $this->assertion->to->loosely->equal($expected, $message);
     }
 
     /**
      * Perform a negated loose equality assertion.
      *
-     * @param mixed $actual
-     * @param mixed $expected
+     * @param mixed  $actual
+     * @param mixed  $expected
      * @param string $message
      */
-    public function notEqual($actual, $expected, $message = "")
+    public function notEqual($actual, $expected, $message = '')
     {
         $this->assertion->setActual($actual);
+
         return $this->assertion->to->not->equal($expected, $message);
     }
 
@@ -89,9 +91,10 @@ class Assert
      * @param string $exceptionMessage
      * @param string $message
      */
-    public function throws(callable $fn, $exceptionType, $exceptionMessage = "", $message = "")
+    public function throws(callable $fn, $exceptionType, $exceptionMessage = '', $message = '')
     {
         $this->assertion->setActual($fn);
+
         return $this->assertion->to->throw($exceptionType, $exceptionMessage, $message);
     }
 
@@ -103,59 +106,64 @@ class Assert
      * @param string $exceptionMessage
      * @param string $message
      */
-    public function doesNotThrow(callable $fn, $exceptionType, $exceptionMessage = "", $message = "")
+    public function doesNotThrow(callable $fn, $exceptionType, $exceptionMessage = '', $message = '')
     {
         $this->assertion->setActual($fn);
+
         return $this->assertion->not->to->throw($exceptionType, $exceptionMessage, $message);
     }
 
     /**
      * Perform an ok assertion.
      *
-     * @param mixed $object
+     * @param mixed  $object
      * @param string $message
      */
-    public function ok($object, $message = "")
+    public function ok($object, $message = '')
     {
         $this->assertion->setActual($object);
+
         return $this->assertion->to->be->ok($message);
     }
 
     /**
      * Perform a negated assertion.
      *
-     * @param mixed $object
+     * @param mixed  $object
      * @param string $message
      */
-    public function notOk($object, $message = "")
+    public function notOk($object, $message = '')
     {
         $this->assertion->setActual($object);
+
         return $this->assertion->to->not->be->ok($message);
     }
 
     /**
      * Perform a strict equality assertion.
      *
-     * @param mixed $actual
-     * @param mixed $expected
+     * @param mixed  $actual
+     * @param mixed  $expected
      * @param string $message
      */
-    public function strictEqual($actual, $expected, $message = "")
+    public function strictEqual($actual, $expected, $message = '')
     {
         $this->assertion->setActual($actual);
+
         return $this->assertion->to->equal($expected, $message);
     }
 
     /**
      * Perform a negated strict equality assertion.
      *
-     * @param mixed $actual
-     * @param mixed $expected
+     * @param mixed  $actual
+     * @param mixed  $expected
      * @param string $message
      */
-    public function notStrictEqual($actual, $expected, $message = "")
+    public function notStrictEqual($actual, $expected, $message = '')
     {
         $this->assertion->setActual($actual);
+
         return $this->assertion->to->not->equal($expected, $message);
     }
 
@@ -166,9 +174,10 @@ class Assert
      * @param string $pattern
      * @param string $message
      */
-    public function match($value, $pattern, $message = "")
+    public function match($value, $pattern, $message = '')
     {
         $this->assertion->setActual($value);
+
         return $this->assertion->to->match($pattern, $message);
     }
 
@@ -179,26 +188,28 @@ class Assert
      * @param string $pattern
      * @param string $message
      */
-    public function notMatch($value, $pattern, $message = "")
+    public function notMatch($value, $pattern, $message = '')
     {
         $this->assertion->setActual($value);
+
         return $this->assertion->to->not->match($pattern, $message);
     }
 
     /**
      * Compare two values using the given operator.
      *
-     * @param mixed $left
+     * @param mixed  $left
      * @param string $operator
-     * @param mixed $right
+     * @param mixed  $right
      * @param string $message
      */
-    public function operator($left, $operator, $right, $message = "")
+    public function operator($left, $operator, $right, $message = '')
     {
         if (!isset(static::$operators[$operator])) {
             throw new \InvalidArgumentException("Invalid operator $operator");
         }
         $this->assertion->setActual($left);
+
         return $this->assertion->{static::$operators[$operator]}($right, $message);
     }
 

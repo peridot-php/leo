@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Formatter;
 
 use Peridot\Leo\Matcher\Match;
@@ -29,7 +30,7 @@ interface FormatterInterface
      * Applies the match to the given TemplateInterface
      * and return a formatted string.
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return mixed|string
      */
     public function getMessage(TemplateInterface $template);
@@ -38,7 +39,7 @@ interface FormatterInterface
      * Should return a string representation for any
      * PHP type.
      *
-     * @param mixed $obj
+     * @param  mixed  $obj
      * @return string
      */
     public function objectToString($obj);

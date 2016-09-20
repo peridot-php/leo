@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Responder;
 
 use Exception;
@@ -33,13 +34,13 @@ class ExceptionResponder implements ResponderInterface
      *
      * Throws an exception containing the formatted message.
      *
-     * @param Match $match
-     * @param TemplateInterface $template
-     * @param string $message
+     * @param  Match             $match
+     * @param  TemplateInterface $template
+     * @param  string            $message
      * @return void
      * @throws Exception
      */
-    public function respond(Match $match, TemplateInterface $template, $message = "")
+    public function respond(Match $match, TemplateInterface $template, $message = '')
     {
         if ($match->isMatch()) {
             return;

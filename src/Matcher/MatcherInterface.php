@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Assertion;
@@ -32,7 +33,7 @@ interface MatcherInterface
     /**
      * Perform a match against an actual value.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return Match
      */
     public function match($actual);
@@ -48,7 +49,7 @@ interface MatcherInterface
      * Set the Assertion bound to the matcher. Useful for checking
      * flags from within a matcher.
      *
-     * @param Assertion $assertion
+     * @param  Assertion $assertion
      * @return mixed
      */
     public function setAssertion(Assertion $assertion);
@@ -56,7 +57,7 @@ interface MatcherInterface
     /**
      * Set the TemplateInterface to use for formatting match results.
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return $this
      */
     public function setTemplate(TemplateInterface $template);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Formatter;
 
 use Peridot\Leo\Matcher\Match;
@@ -18,7 +19,6 @@ class Formatter implements FormatterInterface
 
     public function __construct()
     {
-
     }
 
     /**
@@ -34,19 +34,20 @@ class Formatter implements FormatterInterface
     /**
      * {@inheritdoc}
      *
-     * @param Match $match
+     * @param  Match $match
      * @return $this
      */
     public function setMatch(Match $match)
     {
         $this->match = $match;
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return mixed|string
      */
     public function getMessage(TemplateInterface $template)
@@ -67,7 +68,7 @@ class Formatter implements FormatterInterface
     /**
      * {@inheritdoc}
      *
-     * @param mixed $obj
+     * @param  mixed  $obj
      * @return string
      */
     public function objectToString($obj)
@@ -94,14 +95,14 @@ class Formatter implements FormatterInterface
     /**
      * Applies match results to other template variables.
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return array
      */
     protected function getTemplateVars(TemplateInterface $template)
     {
         $vars = [
             'expected' => $this->match->getExpected(),
-            'actual' => $this->match->getActual()
+            'actual' => $this->match->getActual(),
         ];
 
         if ($tplVars = $template->getTemplateVars()) {

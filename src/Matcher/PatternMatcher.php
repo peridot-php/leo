@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -12,7 +13,7 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 class PatternMatcher extends AbstractMatcher
 {
     /**
-     * Match the actual value against a regular expression
+     * Match the actual value against a regular expression.
      *
      * @param $actual
      * @return mixed
@@ -20,7 +21,7 @@ class PatternMatcher extends AbstractMatcher
     protected function doMatch($actual)
     {
         if (!is_string($actual)) {
-            throw new \InvalidArgumentException("PatternMatcher expects a string");
+            throw new \InvalidArgumentException('PatternMatcher expects a string');
         }
 
         return (bool) preg_match($this->expected, $actual);
@@ -35,7 +36,7 @@ class PatternMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to match {{expected}}',
-            'negated' => 'Expected {{actual}} not to match {{expected}}'
+            'negated' => 'Expected {{actual}} not to match {{expected}}',
         ]);
     }
 }

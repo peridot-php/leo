@@ -14,12 +14,15 @@ ci-coverage: install
 	phpdbg -qrr vendor/bin/peridot specs -r clover-code-coverage --code-coverage-path "coverage/clover.xml"
 	vendor/bin/peridot specs
 
+lint: install
+	vendor/bin/php-cs-fixer fix
+
 install: vendor/autoload.php
 
 docs: install
 	vendor/bin/apigen generate
 
-.PHONY: test coverage ci-coverage install
+.PHONY: test coverage ci-coverage lint install
 
 vendor/autoload.php: composer.lock
 	composer install

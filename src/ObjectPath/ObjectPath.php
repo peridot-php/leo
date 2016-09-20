@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\ObjectPath;
 
 /**
@@ -17,7 +18,7 @@ class ObjectPath
     protected $subject;
 
     /**
-     * A pattern for matching array keys
+     * A pattern for matching array keys.
      *
      * @var string
      */
@@ -51,7 +52,7 @@ class ObjectPath
      *
      * @endcode
      *
-     * @param string $path
+     * @param  string          $path
      * @return ObjectPathValue
      */
     public function get($path)
@@ -64,12 +65,13 @@ class ObjectPath
             $key = $this->normalizeKey($key);
             $pathValue = $this->getPathValue($key, $properties);
 
-            if (! array_key_exists($key, $properties)) {
+            if (!array_key_exists($key, $properties)) {
                 break;
             }
 
             $properties = $this->getPropertyCollection($properties[$key]);
         }
+
         return $pathValue;
     }
 
@@ -116,8 +118,10 @@ class ObjectPath
     {
         if (preg_match(self::$arrayKey, $key, $matches)) {
             $key = $matches[1];
+
             return $key;
         }
+
         return $key;
     }
 
@@ -131,7 +135,7 @@ class ObjectPath
      */
     protected function getPathValue($key, $properties)
     {
-        if (! array_key_exists($key, $properties)) {
+        if (!array_key_exists($key, $properties)) {
             return null;
         }
 

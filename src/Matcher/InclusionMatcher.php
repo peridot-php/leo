@@ -45,7 +45,7 @@ class InclusionMatcher extends AbstractMatcher
             return strpos($actual, $this->expected) !== false;
         }
 
-        throw new InvalidArgumentException("Inclusion matcher requires a string or array");
+        throw new InvalidArgumentException('Inclusion matcher requires a string or array');
     }
 
     /**
@@ -57,7 +57,7 @@ class InclusionMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to include {{expected}}',
-            'negated' => 'Expected {{actual}} to not include {{expected}}'
+            'negated' => 'Expected {{actual}} to not include {{expected}}',
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -25,6 +26,7 @@ class TypeMatcher extends AbstractMatcher
     public function match($actual)
     {
         $match = parent::match($actual);
+
         return $match->setActual($this->type);
     }
 
@@ -38,6 +40,7 @@ class TypeMatcher extends AbstractMatcher
     public function doMatch($actual)
     {
         $this->type = gettype($actual);
+
         return $this->expected === $this->type;
     }
 
@@ -50,7 +53,7 @@ class TypeMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{expected}}, got {{actual}}',
-            'negated' => 'Expected a type other than {{expected}}'
+            'negated' => 'Expected a type other than {{expected}}',
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo;
 
 use Peridot\Leo\Formatter\Formatter;
@@ -42,7 +43,7 @@ class Leo
     protected $assertion;
 
     /**
-     * Private access Constructor
+     * Private access Constructor.
      */
     private function __construct()
     {
@@ -72,6 +73,7 @@ class Leo
     public function setAssertion($assertion)
     {
         $this->assertion = $assertion;
+
         return $this;
     }
 
@@ -88,12 +90,13 @@ class Leo
     /**
      * Set the FormatterInterface used by Leo.
      *
-     * @param FormatterInterface $formatter
+     * @param  FormatterInterface $formatter
      * @return $this
      */
     public function setFormatter(FormatterInterface $formatter)
     {
         $this->formatter = $formatter;
+
         return $this;
     }
 
@@ -110,12 +113,13 @@ class Leo
     /**
      * Set the ResponderInterface used by Leo.
      *
-     * @param ResponderInterface $responder
+     * @param  ResponderInterface $responder
      * @return $this
      */
     public function setResponder(ResponderInterface $responder)
     {
         $this->responder = $responder;
+
         return $this;
     }
 
@@ -140,9 +144,10 @@ class Leo
      */
     public static function instance()
     {
-        if (! self::$instance) {
-            self::$instance = new Leo();
+        if (!self::$instance) {
+            self::$instance = new self();
         }
+
         return self::$instance;
     }
 
@@ -153,6 +158,6 @@ class Leo
      */
     public static function assertion()
     {
-        return Leo::instance()->getAssertion();
+        return self::instance()->getAssertion();
     }
 }

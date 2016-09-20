@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -33,7 +34,7 @@ class GreaterThanOrEqualMatcher extends CountableMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to be at least {{expected}}',
-            'negated' => 'Expected {{actual}} to be below {{expected}}'
+            'negated' => 'Expected {{actual}} to be below {{expected}}',
         ]);
     }
 
@@ -45,9 +46,10 @@ class GreaterThanOrEqualMatcher extends CountableMatcher
     public function getDefaultCountableTemplate()
     {
         $count = $this->getCount();
+
         return new ArrayTemplate([
             'default' => "Expected {{actual}} to have a length at least {{expected}} but got $count",
-            'negated' => 'Expected {{actual}} to have a length below {{expected}}'
+            'negated' => 'Expected {{actual}} to have a length below {{expected}}',
         ]);
     }
 }

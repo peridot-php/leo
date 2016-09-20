@@ -1,4 +1,5 @@
 <?php
+
 use Peridot\Leo\Assertion;
 use Peridot\Leo\Leo;
 
@@ -7,12 +8,13 @@ use Peridot\Leo\Leo;
  * the actual value on it. The returned Assertion can then
  * be used for extension and chainable assertions.
  *
- * @param mixed $actual
+ * @param  mixed     $actual
  * @return Assertion
  */
 function expect($actual)
 {
     $instance = Leo::instance();
     $assertion = $instance->getAssertion();
+
     return $assertion->setActual($actual);
 }

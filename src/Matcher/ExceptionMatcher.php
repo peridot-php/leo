@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Exception;
@@ -22,12 +23,12 @@ class ExceptionMatcher extends AbstractMatcher
     /**
      * @var string
      */
-    protected $expectedMessage = "";
+    protected $expectedMessage = '';
 
     /**
-     * A captured exception message
+     * A captured exception message.
      *
-     * @var string $message
+     * @var string
      */
     protected $message;
 
@@ -47,24 +48,26 @@ class ExceptionMatcher extends AbstractMatcher
     /**
      * Set arguments to be passed to the callable.
      *
-     * @param array $arguments
+     * @param  array $arguments
      * @return $this
      */
     public function setArguments(array $arguments)
     {
         $this->arguments = $arguments;
+
         return $this;
     }
 
     /**
      * Set the expected message of the exception.
      *
-     * @param string $message
+     * @param  string $message
      * @return $this
      */
     public function setExpectedMessage($message)
     {
         $this->expectedMessage = $message;
+
         return $this;
     }
 
@@ -122,18 +125,20 @@ class ExceptionMatcher extends AbstractMatcher
         if ($this->expectedMessage) {
             return $this->getMessageTemplate();
         }
+
         return parent::getTemplate();
     }
 
     /**
      * Set the template to be used when an expected exception message is provided.
      *
-     * @param TemplateInterface $template
+     * @param  TemplateInterface $template
      * @return $this
      */
     public function setMessageTemplate(TemplateInterface $template)
     {
         $this->messageTemplate = $template;
+
         return $this;
     }
 
@@ -147,6 +152,7 @@ class ExceptionMatcher extends AbstractMatcher
         if ($this->messageTemplate) {
             return $this->messageTemplate;
         }
+
         return $this->getDefaultMessageTemplate();
     }
 
@@ -159,7 +165,7 @@ class ExceptionMatcher extends AbstractMatcher
     {
         $template = new ArrayTemplate([
             'default' => 'Expected exception of type {{expected}}',
-            'negated' => 'Expected type of exception not to be {{expected}}'
+            'negated' => 'Expected type of exception not to be {{expected}}',
         ]);
 
         return $template;
@@ -174,7 +180,7 @@ class ExceptionMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected exception message {{expected}}, got {{actual}}',
-            'negated' => 'Expected exception message {{actual}} not to equal {{expected}}'
+            'negated' => 'Expected exception message {{actual}} not to equal {{expected}}',
         ]);
     }
 
@@ -243,7 +249,7 @@ class ExceptionMatcher extends AbstractMatcher
     {
         if (!is_callable($callable)) {
             $callable = rtrim(print_r($callable, true));
-            throw new \BadFunctionCallException("Invalid callable " . $callable . " given");
+            throw new \BadFunctionCallException('Invalid callable ' . $callable . ' given');
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -23,8 +24,8 @@ class RangeMatcher extends CountableMatcher
     protected $upperBound;
 
     /**
-     * @param int|float|double $lower
-     * @param int|float|double $upper
+     * @param int|float|float $lower
+     * @param int|float|float $upper
      */
     public function __construct($lower, $upper)
     {
@@ -41,7 +42,7 @@ class RangeMatcher extends CountableMatcher
     {
         return new ArrayTemplate([
             'default' => "Expected {{actual}} to be within {$this->lowerBound}..{$this->upperBound}",
-            'negated' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}"
+            'negated' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}",
         ]);
     }
 
@@ -54,39 +55,41 @@ class RangeMatcher extends CountableMatcher
     {
         return new ArrayTemplate([
             'default' => "Expected {{actual}} to be within {$this->lowerBound}..{$this->upperBound}",
-            'negated' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}"
+            'negated' => "Expected {{actual}} to not be within {$this->lowerBound}..{$this->upperBound}",
         ]);
     }
 
     /**
      * Set the lower bound of the range matcher.
      *
-     * @param mixed $lowerBound
+     * @param  mixed $lowerBound
      * @return $this
      */
     public function setLowerBound($lowerBound)
     {
         if (!is_numeric($lowerBound)) {
-            throw new \InvalidArgumentException("Lower bound must be a numeric value");
+            throw new \InvalidArgumentException('Lower bound must be a numeric value');
         }
 
         $this->lowerBound = $lowerBound;
+
         return $this;
     }
 
     /**
      * Set the upper bound of the range matcher.
      *
-     * @param mixed $upperBound
+     * @param  mixed $upperBound
      * @return $this
      */
     public function setUpperBound($upperBound)
     {
         if (!is_numeric($upperBound)) {
-            throw new \InvalidArgumentException("Upper bound must be a numeric value");
+            throw new \InvalidArgumentException('Upper bound must be a numeric value');
         }
 
         $this->upperBound = $upperBound;
+
         return $this;
     }
 

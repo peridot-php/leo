@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -14,7 +15,7 @@ class SameMatcher extends AbstractMatcher
      * Match if the actual value is identical to the expected value using an ===
      * comparison.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return bool
      */
     public function doMatch($actual)
@@ -31,7 +32,7 @@ class SameMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to be identical to {{expected}}',
-            'negated' => 'Expected {{actual}} not to be identical to {{expected}}'
+            'negated' => 'Expected {{actual}} not to be identical to {{expected}}',
         ]);
     }
 }

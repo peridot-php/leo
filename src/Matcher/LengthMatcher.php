@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Countable;
@@ -28,7 +29,7 @@ class LengthMatcher extends AbstractMatcher
     {
         $template = new ArrayTemplate([
             'default' => 'Expected {{actual}} to have a length of {{expected}} but got {{count}}',
-            'negated' => 'Expected {{actual}} to not have a length of {{expected}}'
+            'negated' => 'Expected {{actual}} to not have a length of {{expected}}',
         ]);
 
         return $template->setTemplateVars(['count' => $this->count]);
@@ -38,7 +39,7 @@ class LengthMatcher extends AbstractMatcher
      * Match the length of the countable interface or string against
      * the expected value.
      *
-     * @param string|array|Countable $actual
+     * @param  string|array|Countable $actual
      * @return mixed
      */
     protected function doMatch($actual)
@@ -55,14 +56,14 @@ class LengthMatcher extends AbstractMatcher
             return $this->expected === $this->count;
         }
 
-        throw new InvalidArgumentException("Length matcher requires a string, array, or Countable");
+        throw new InvalidArgumentException('Length matcher requires a string, array, or Countable');
     }
 
     /**
      * Determine if the native count() function can return a valid result
      * on the actual value.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return bool
      */
     protected function isCountable($actual)

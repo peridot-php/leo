@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "apigen/apigen": "^4",
+        "friendsofphp/php-cs-fixer": "^1",
         "peridot-php/peridot-jumpstart": "^1",
         "peridot-php/peridot-prophecy-plugin": "^1"
     },

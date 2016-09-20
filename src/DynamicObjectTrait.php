@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo;
 
 /**
@@ -25,13 +26,14 @@ trait DynamicObjectTrait
     /**
      * Add a method identified by the given name.
      *
-     * @param string $name
-     * @param callable $method the body of the method
+     * @param  string   $name
+     * @param  callable $method the body of the method
      * @return $this
      */
     public function addMethod($name, callable $method)
     {
         $this->methods[$name] = \Closure::bind($method, $this, $this);
+
         return $this;
     }
 
@@ -39,14 +41,15 @@ trait DynamicObjectTrait
      * Adds a lazy property identified by the given name. The property
      * is lazy because it is not evaluated until asked for via __get().
      *
-     * @param string $name
-     * @param callable $factory
-     * @param bool $memoize
+     * @param  string   $name
+     * @param  callable $factory
+     * @param  bool     $memoize
      * @return $this
      */
     public function addProperty($name, callable $factory, $memoize = false)
     {
         $this->properties[$name] = ['factory' => \Closure::bind($factory, $this, $this), 'memoize' => $memoize];
+
         return $this;
     }
 
@@ -63,6 +66,7 @@ trait DynamicObjectTrait
 
         if ($num > 1) {
             $this->flags[$args[0]] = $args[1];
+
             return $this;
         }
 
@@ -79,6 +83,7 @@ trait DynamicObjectTrait
     public function clearFlags()
     {
         $this->flags = [];
+
         return $this;
     }
 }

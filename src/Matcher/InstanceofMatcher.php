@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -15,7 +16,7 @@ class InstanceofMatcher extends AbstractMatcher
     /**
      * See if actual value is an instance of the expected class.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return bool
      */
     protected function doMatch($actual)
@@ -32,7 +33,7 @@ class InstanceofMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to be instance of {{expected}}',
-            'negated' => 'Expected {{actual}} to not be an instance of {{expected}}'
+            'negated' => 'Expected {{actual}} to not be an instance of {{expected}}',
         ]);
     }
 }

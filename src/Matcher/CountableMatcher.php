@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\TemplateInterface;
@@ -20,12 +21,13 @@ abstract class CountableMatcher extends AbstractMatcher
     /**
      * Set the countable value used by the CountableMatcher.
      *
-     * @param mixed $countable
+     * @param  mixed $countable
      * @return $this
      */
     public function setCountable($countable)
     {
         $this->countable = $countable;
+
         return $this;
     }
 
@@ -81,7 +83,7 @@ abstract class CountableMatcher extends AbstractMatcher
         }
 
         if (!is_numeric($actual)) {
-            throw new \InvalidArgumentException(get_class($this) . " requires a numeric value");
+            throw new \InvalidArgumentException(get_class($this) . ' requires a numeric value');
         }
 
         return $this->matchNumeric($actual);
@@ -95,7 +97,7 @@ abstract class CountableMatcher extends AbstractMatcher
     abstract public function getDefaultCountableTemplate();
 
     /**
-     * Determine if a number matches a specified condition
+     * Determine if a number matches a specified condition.
      *
      * @param $number
      * @return bool

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 /**
@@ -29,10 +30,10 @@ class Match
     protected $isNegated;
 
     /**
-     * @param bool $isMatch
+     * @param bool  $isMatch
      * @param mixed $expected
      * @param mixed $actual
-     * @param bool $isNegated
+     * @param bool  $isNegated
      */
     public function __construct($isMatch, $expected, $actual, $isNegated)
     {
@@ -75,7 +76,7 @@ class Match
     /**
      * Returns whether or not the match was negated.
      *
-     * @return boolean
+     * @return bool
      */
     public function isNegated()
     {
@@ -85,24 +86,26 @@ class Match
     /**
      * Set the actual value used in the match.
      *
-     * @param mixed $actual
+     * @param  mixed $actual
      * @return $this
      */
     public function setActual($actual)
     {
         $this->actual = $actual;
+
         return $this;
     }
 
     /**
      * Set the expected value used in the match.
      *
-     * @param mixed $expected
+     * @param  mixed $expected
      * @return $this
      */
     public function setExpected($expected)
     {
         $this->expected = $expected;
+
         return $this;
     }
 }

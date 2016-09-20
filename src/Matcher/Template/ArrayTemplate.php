@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher\Template;
 
 /**
@@ -63,6 +64,7 @@ class ArrayTemplate implements TemplateInterface
     public function setDefaultTemplate($default)
     {
         $this->default = $default;
+
         return $this;
     }
 
@@ -84,6 +86,7 @@ class ArrayTemplate implements TemplateInterface
     public function setNegatedTemplate($negated)
     {
         $this->negated = $negated;
+
         return $this;
     }
 
@@ -100,12 +103,13 @@ class ArrayTemplate implements TemplateInterface
     /**
      * {@inheritdoc}
      *
-     * @param array $vars
+     * @param  array $vars
      * @return $this
      */
     public function setTemplateVars(array $vars)
     {
         $this->vars = $vars;
+
         return $this;
     }
 }

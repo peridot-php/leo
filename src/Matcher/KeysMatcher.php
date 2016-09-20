@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -30,12 +31,12 @@ class KeysMatcher extends AbstractMatcher
         $subject = 'key';
 
         if (count($this->expected) > 1) {
-            $subject = "keys";
+            $subject = 'keys';
         }
 
         $template = new ArrayTemplate([
             'default' => "Expected {{actual}} to {$this->verb} $subject {{keys}}",
-            'negated' => "Expected {{actual}} to not {$this->verb} $subject {{keys}}"
+            'negated' => "Expected {{actual}} to not {$this->verb} $subject {{keys}}",
         ]);
 
         return $template->setTemplateVars(['keys' => $this->getKeyString()]);
@@ -52,9 +53,11 @@ class KeysMatcher extends AbstractMatcher
         $actual = $this->getArrayValue($actual);
         if ($this->assertion->flag('contain')) {
             $this->verb = 'contain';
+
             return $this->matchInclusion($actual);
         }
         $keys = array_keys($actual);
+
         return $keys == $this->expected;
     }
 
@@ -74,7 +77,7 @@ class KeysMatcher extends AbstractMatcher
             return $actual;
         }
 
-        throw new \InvalidArgumentException("KeysMatcher expects object or array");
+        throw new \InvalidArgumentException('KeysMatcher expects object or array');
     }
 
     /**
@@ -101,7 +104,7 @@ class KeysMatcher extends AbstractMatcher
      * Used when the 'contain' flag exists on the Assertion. Checks
      * if the expected keys are included in the object or array.
      *
-     * @param array $actual
+     * @param  array $actual
      * @return true
      */
     protected function matchInclusion($actual)
@@ -111,6 +114,7 @@ class KeysMatcher extends AbstractMatcher
                 return false;
             }
         }
+
         return true;
     }
 }

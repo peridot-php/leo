@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -13,7 +14,6 @@ class NullMatcher extends AbstractMatcher
 {
     public function __construct()
     {
-
     }
 
     /**
@@ -36,7 +36,7 @@ class NullMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to be null',
-            'negated' => 'Expected {{actual}} not to be null'
+            'negated' => 'Expected {{actual}} not to be null',
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peridot\Leo\Matcher;
 
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
@@ -13,7 +14,6 @@ class TruthyMatcher extends AbstractMatcher
 {
     public function __construct()
     {
-        
     }
 
     /**
@@ -36,7 +36,7 @@ class TruthyMatcher extends AbstractMatcher
     {
         return new ArrayTemplate([
             'default' => 'Expected {{actual}} to be truthy',
-            'negated' => 'Expected {{actual}} to be falsy'
+            'negated' => 'Expected {{actual}} to be falsy',
         ]);
     }
 }
