@@ -79,7 +79,7 @@ describe('assert', function() {
             $this->assert->throws(function() {
                 $this->assert->doesNotThrow(function() {
                     throw new Exception('failure');
-                }, 'RuntimeException', 'failure');
+                }, 'Exception', 'failure');
             }, 'Exception');
         });
 
@@ -87,7 +87,7 @@ describe('assert', function() {
             $this->assert->throws(function() {
                 $this->assert->doesNotThrow(function() {
                     throw new Exception('failure');
-                }, 'RuntimeException', 'failure', 'oooooops');
+                }, 'Exception', 'failure', 'oooooops');
             }, 'Exception', 'oooooops');
         });
     });
