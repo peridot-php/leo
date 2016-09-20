@@ -88,7 +88,7 @@ class KeysMatcher extends AbstractMatcher
         $keys = '';
         $tail = array_pop($expected);
 
-        if ($expected) {
+        if (!empty($expected)) {
             $keys = implode('","', $expected) . '", and "';
         }
 

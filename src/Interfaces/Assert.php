@@ -45,11 +45,11 @@ class Assert
     protected $assertion;
 
     /**
-     * @param ResponderInterface $responder
+     * @param Assertion $assertion
      */
     public function __construct(Assertion $assertion = null)
     {
-        if (is_null($assertion)) {
+        if ($assertion === null) {
             $assertion = Leo::assertion();
         }
         $this->assertion = $assertion;

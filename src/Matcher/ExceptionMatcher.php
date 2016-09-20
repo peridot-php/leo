@@ -37,7 +37,7 @@ class ExceptionMatcher extends AbstractMatcher
     protected $messageTemplate;
 
     /**
-     * @param callable $expected
+     * @param string $exceptionType
      */
     public function __construct($exceptionType)
     {
