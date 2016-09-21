@@ -8,7 +8,6 @@ Next level assertion library for PHP
 
 [![Current version image][version-image]][current version]
 [![Current build status image][build-image]][current build status]
-[![Tested against HHVM][hhvm-image]][current hhvm build status]
 [![Current Scrutinizer code quality image][scrutinizer-image]][current scrutinizer code quality]
 [![Current coverage status image][coverage-image]][current coverage status]
 
@@ -16,10 +15,8 @@ Next level assertion library for PHP
 [coverage-image]: https://img.shields.io/codecov/c/github/peridot-php/leo/master.svg?style=flat-square "Current test coverage for the master branch"
 [current build status]: https://travis-ci.org/peridot-php/leo
 [current coverage status]: https://codecov.io/github/peridot-php/leo
-[current hhvm build status]: http://hhvm.h4cc.de/package/peridot-php/leo
 [current scrutinizer code quality]: https://scrutinizer-ci.com/g/peridot-php/leo/?branch=master
 [current version]: https://packagist.org/packages/peridot-php/leo
-[hhvm-image]: https://img.shields.io/hhvm/peridot-php/leo/master.svg?style=flat-square "Tested against HHVM"
 [scrutinizer-image]: https://img.shields.io/scrutinizer/g/peridot-php/leo/master.svg?style=flat-square "Current Scrutinizer code quality for the master branch"
 [version-image]: https://img.shields.io/packagist/v/peridot-php/leo.svg?style=flat-square "This project uses semantic versioning"
 
