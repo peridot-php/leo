@@ -73,20 +73,15 @@ class Formatter implements FormatterInterface
      */
     public function objectToString($obj)
     {
-        if ($obj === false) {
-            return 'false';
-        }
+        switch (gettype($obj)) {
+            case 'boolean':
+                return var_export($obj, true);
 
-        if ($obj === true) {
-            return 'true';
-        }
+            case 'NULL':
+                return 'null';
 
-        if ($obj === null) {
-            return 'null';
-        }
-
-        if (is_string($obj)) {
-            return '"' . $obj . '"';
+            case 'string':
+                return '"' . $obj . '"';
         }
 
         return rtrim(print_r($obj, true));

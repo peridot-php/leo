@@ -13,29 +13,9 @@ use Throwable;
  *
  * @package Peridot\Leo\Matcher
  */
-class ExceptionMatcher extends AbstractMatcher
+class ExceptionMatcher implements MatcherInterface
 {
-    /**
-     * @var array
-     */
-    protected $arguments = [];
-
-    /**
-     * @var string
-     */
-    protected $expectedMessage = '';
-
-    /**
-     * A captured exception message.
-     *
-     * @var string
-     */
-    protected $message;
-
-    /**
-     * @var TemplateInterface
-     */
-    protected $messageTemplate;
+    use MatcherTrait;
 
     /**
      * @param string $exceptionType
@@ -126,7 +106,11 @@ class ExceptionMatcher extends AbstractMatcher
             return $this->getMessageTemplate();
         }
 
-        return parent::getTemplate();
+        if (!isset($this->template)) {
+            return $this->getDefaultTemplate();
+        }
+
+        return $this->template;
     }
 
     /**
@@ -163,12 +147,10 @@ class ExceptionMatcher extends AbstractMatcher
      */
     public function getDefaultTemplate()
     {
-        $template = new ArrayTemplate([
+        return new ArrayTemplate([
             'default' => 'Expected exception of type {{expected}}',
             'negated' => 'Expected type of exception not to be {{expected}}',
         ]);
-
-        return $template;
     }
 
     /**
@@ -193,50 +175,11 @@ class ExceptionMatcher extends AbstractMatcher
     public function match($actual)
     {
         $this->validateCallable($actual);
-        $exception = null;
 
-        try {
-            call_user_func_array($actual, $this->arguments);
-        } catch (Exception $exception) {
-            // fall-through ...
-        } catch (Throwable $exception) {
-            // fall-through ...
-        }
+        list($exception, $message) = $this->callableException($actual);
+        $this->setMessage($message);
 
-        if ($exception) {
-            $isMatch = $exception instanceof $this->expected;
-            $message = $exception->getMessage();
-            $this->setMessage($message);
-        } else {
-            $isMatch = false;
-        }
-
-        if ($isMatch && $this->expectedMessage) {
-            $isMatch = $message == $this->expectedMessage;
-            $expected = $this->expectedMessage;
-            $actual = $message;
-        } else {
-            $expected = $this->expected;
-        }
-
-        $isNegated = $this->isNegated();
-
-        if ($isNegated) {
-            $isMatch = !$isMatch;
-        }
-
-        return new Match($isMatch, $expected, $actual, $isNegated);
-    }
-
-    /**
-     * Executes the callable and matches the exception type and exception message.
-     *
-     * @param $actual
-     * @return bool
-     */
-    protected function doMatch($actual)
-    {
-        // unused
+        return $this->matchMessage($actual, $exception, $message);
     }
 
     /**
@@ -251,4 +194,68 @@ class ExceptionMatcher extends AbstractMatcher
             throw new \BadFunctionCallException('Invalid callable ' . $callable . ' given');
         }
     }
+
+    private function callableException($callable)
+    {
+        $exception = null;
+        $message = null;
+
+        try {
+            call_user_func_array($callable, $this->arguments);
+        } catch (Exception $exception) {
+            $message = $exception->getMessage();
+            // fall-through ...
+        } catch (Throwable $exception) {
+            $message = $exception->getMessage();
+            // fall-through ...
+        }
+
+        return array($exception, $message);
+    }
+
+    private function matchMessage($actual, $exception, $message)
+    {
+        if (!$this->expectedMessage || $message === $this->expectedMessage) {
+            return $this->matchType($actual, $exception);
+        }
+
+        $isNegated = $this->isNegated();
+
+        return new Match($isNegated, $this->expectedMessage, $message, $isNegated);
+    }
+
+    private function matchType($actual, $exception)
+    {
+        $isMatch = $exception instanceof $this->expected;
+        $isNegated = $this->isNegated();
+
+        return new Match($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
+    }
+
+    /**
+     * @var mixed
+     */
+    protected $expected;
+
+    /**
+     * @var array
+     */
+    protected $arguments = [];
+
+    /**
+     * @var string
+     */
+    protected $expectedMessage = '';
+
+    /**
+     * A captured exception message.
+     *
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * @var TemplateInterface
+     */
+    protected $messageTemplate;
 }

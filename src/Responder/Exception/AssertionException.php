@@ -23,31 +23,21 @@ final class AssertionException extends Exception
     public static function trim(Exception $exception)
     {
         $reflector = new ReflectionClass('Exception');
-
         $traceProperty = $reflector->getProperty('trace');
         $traceProperty->setAccessible(true);
-        $fileProperty = $reflector->getProperty('file');
-        $fileProperty->setAccessible(true);
-        $lineProperty = $reflector->getProperty('line');
-        $lineProperty->setAccessible(true);
-
         $call = static::traceLeoCall($traceProperty->getValue($exception));
 
         if ($call) {
-            $traceProperty->setValue($exception, array($call));
-            $fileProperty->setValue(
-                $exception,
-                isset($call['file']) ? $call['file'] : null
-            );
-            $lineProperty->setValue(
-                $exception,
-                isset($call['line']) ? $call['line'] : null
-            );
+            $trace = array($call);
+            list($file, $line) = self::traceCallPosition($call);
         } else {
-            $traceProperty->setValue($exception, array());
-            $fileProperty->setValue($exception, null);
-            $lineProperty->setValue($exception, null);
+            $trace = array();
+            $file = null;
+            $line = null;
         }
+
+        $traceProperty->setValue($exception, $trace);
+        self::updateExceptionPosition($reflector, $exception, $file, $line);
     }
 
     /**
@@ -59,17 +49,9 @@ final class AssertionException extends Exception
      */
     public static function traceLeoCall(array $trace)
     {
-        $prefix = 'Peridot\\Leo\\';
-
         for ($i = count($trace) - 1; $i >= 0; --$i) {
-            $entry = $trace[$i];
-
-            if (isset($entry['class'])) {
-                if (0 === strpos($entry['class'], $prefix)) {
-                    return $entry;
-                }
-            } elseif (0 === strpos($entry['function'], $prefix)) {
-                return $entry;
+            if (self::isLeoTraceEntry($trace[$i])) {
+                return $trace[$i];
             }
         }
 
@@ -86,5 +68,35 @@ final class AssertionException extends Exception
         parent::__construct($message);
 
         static::trim($this);
+    }
+
+    private static function isLeoTraceEntry($entry)
+    {
+        $prefix = 'Peridot\\Leo\\';
+
+        if (isset($entry['class'])) {
+            return 0 === strpos($entry['class'], $prefix);
+        }
+
+        return 0 === strpos($entry['function'], $prefix);
+    }
+
+    private static function traceCallPosition($call)
+    {
+        return array(
+            isset($call['file']) ? $call['file'] : null,
+            isset($call['line']) ? $call['line'] : null,
+        );
+    }
+
+    private static function updateExceptionPosition($reflector, $exception, $file, $line)
+    {
+        $fileProperty = $reflector->getProperty('file');
+        $fileProperty->setAccessible(true);
+        $fileProperty->setValue($exception, $file);
+
+        $lineProperty = $reflector->getProperty('line');
+        $lineProperty->setAccessible(true);
+        $lineProperty->setValue($exception, $line);
     }
 }

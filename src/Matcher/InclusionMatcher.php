@@ -24,17 +24,7 @@ class InclusionMatcher extends AbstractMatcher
     protected function doMatch($actual)
     {
         if ($actual instanceof Traversable) {
-            $isMatch = false;
-
-            foreach ($actual as $value) {
-                if ($value === $this->expected) {
-                    $isMatch = true;
-
-                    break;
-                }
-            }
-
-            return $isMatch;
+            return $this->matchTraversable($actual);
         }
 
         if (is_array($actual)) {
@@ -59,5 +49,16 @@ class InclusionMatcher extends AbstractMatcher
             'default' => 'Expected {{actual}} to include {{expected}}',
             'negated' => 'Expected {{actual}} to not include {{expected}}',
         ]);
+    }
+
+    private function matchTraversable(Traversable $actual)
+    {
+        foreach ($actual as $value) {
+            if ($value === $this->expected) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

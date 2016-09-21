@@ -143,6 +143,17 @@ describe('ExceptionMatcher', function () {
                 expect($this->matcher->getTemplate())->to->equal($template);
             });
         });
+
+        context('when a custom template has been set', function () {
+            beforeEach(function () {
+                $this->template = new ArrayTemplate([]);
+                $this->matcher->setTemplate($this->template);
+            });
+
+            it('should return the set template', function () {
+                expect($this->matcher->getTemplate())->to->equal($this->template);
+            });
+        });
     });
 
     describe('->getArguments()', function () {
