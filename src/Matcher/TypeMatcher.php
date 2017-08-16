@@ -23,7 +23,7 @@ class TypeMatcher extends AbstractMatcher
      * @param $actual
      * @return Match
      */
-    public function match($actual)
+    public function match($actual = '')
     {
         $match = parent::match($actual);
 
