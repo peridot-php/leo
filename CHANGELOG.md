@@ -1,5 +1,12 @@
 # Leo changelog
 
+## 1.6.1 (2017-08-17)
+
+- **[FIXED]** Support for PHP 7.2 ([#28] - thanks [@tomdxw]).
+
+[#28]: https://github.com/peridot-php/leo/pull/28
+[@tomdxw]:  https://github.com/tomdxw
+
 ## 1.6.0 (2016-09-21)
 
 - **[NEW]** Support for PHP 7 engine exceptions in `ExceptionMatcher`
