@@ -98,6 +98,7 @@ class Formatter implements FormatterInterface
         $vars = [
             'expected' => $this->match->getExpected(),
             'actual' => $this->match->getActual(),
+            'diff' => is_callable($this->match->differ)?call_user_func($this->match->differ, $this->match->getActual(), $this->match->getExpected()):""
         ];
 
         if ($tplVars = $template->getTemplateVars()) {

@@ -31,8 +31,13 @@ abstract class AbstractMatcher implements MatcherInterface
     {
         $isMatch = $this->doMatch($actual);
         $isNegated = $this->isNegated();
+        $fulfillsExpectation = ($isMatch xor $isNegated);
 
-        return new Match($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
+        $match = new Match($fulfillsExpectation, $this->expected, $actual, $isNegated);
+        if ((!$fulfillsExpectation) && method_exists($this, "differ")) {
+            $match->differ = [$this, "differ"];
+        }
+        return $match;
     }
 
     /**
