@@ -95,10 +95,11 @@ class Formatter implements FormatterInterface
      */
     protected function getTemplateVars(TemplateInterface $template)
     {
+        $differExists = (property_exists($this->match, "differ") && is_callable($this->match->differ));
         $vars = [
             'expected' => $this->match->getExpected(),
             'actual' => $this->match->getActual(),
-            'diff' => is_callable($this->match->differ)?call_user_func($this->match->differ, $this->match->getActual(), $this->match->getExpected()):""
+            'diff' => $differExists?call_user_func($this->match->differ, $this->match->getActual(), $this->match->getExpected()):"",
         ];
 
         if ($tplVars = $template->getTemplateVars()) {
