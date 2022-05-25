@@ -2,7 +2,7 @@
 
 namespace Peridot\Leo\Formatter;
 
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 /**
@@ -15,16 +15,16 @@ interface FormatterInterface
     /**
      * Return the match being formatted.
      *
-     * @return Match
+     * @return MatchClass
      */
     public function getMatch();
 
     /**
      * Set the match to format results for.
      *
-     * @param Match $match
+     * @param MatchClass $match
      */
-    public function setMatch(Match $match);
+    public function setMatch(MatchClass $match);
 
     /**
      * Applies the match to the given TemplateInterface

@@ -2,7 +2,7 @@
 
 namespace Peridot\Leo\Responder;
 
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 /**
@@ -14,12 +14,12 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 interface ResponderInterface
 {
     /**
-     * Respond to a Match given a TemplateInterface to format the message.
+     * Respond to a MatchClass given a TemplateInterface to format the message.
      *
-     * @param  Match             $match
+     * @param  MatchClass             $match
      * @param  TemplateInterface $template
      * @param  string            $message  a user provided messaged
      * @return mixed
      */
-    public function respond(Match $match, TemplateInterface $template, $message);
+    public function respond(MatchClass $match, TemplateInterface $template, $message);
 }

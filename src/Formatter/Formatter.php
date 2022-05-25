@@ -2,7 +2,7 @@
 
 namespace Peridot\Leo\Formatter;
 
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 /**
@@ -13,7 +13,7 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 class Formatter implements FormatterInterface
 {
     /**
-     * @var Match
+     * @var MatchClass
      */
     protected $match;
 
@@ -24,7 +24,7 @@ class Formatter implements FormatterInterface
     /**
      * {@inheritdoc}
      *
-     * @return Match
+     * @return MatchClass
      */
     public function getMatch()
     {
@@ -34,10 +34,10 @@ class Formatter implements FormatterInterface
     /**
      * {@inheritdoc}
      *
-     * @param  Match $match
+     * @param  MatchClass $match
      * @return $this
      */
-    public function setMatch(Match $match)
+    public function setMatch(MatchClass $match)
     {
         $this->match = $match;
 

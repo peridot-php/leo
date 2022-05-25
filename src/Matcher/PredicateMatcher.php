@@ -7,7 +7,7 @@ use Peridot\Leo\Matcher\Template\TemplateInterface;
 
 /**
  * PredicateMatcher executes a function with the actual value. The PredicateMatcher returns
- * the result of that function call as a Match result.
+ * the result of that function call as a MatchClass result.
  *
  * @package Peridot\Leo\Matcher
  */

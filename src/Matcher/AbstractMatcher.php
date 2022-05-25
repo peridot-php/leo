@@ -25,14 +25,14 @@ abstract class AbstractMatcher implements MatcherInterface
      * {@inheritdoc}
      *
      * @param  mixed $actual
-     * @return Match
+     * @return MatchClass
      */
     public function match($actual = '')
     {
         $isMatch = $this->doMatch($actual);
         $isNegated = $this->isNegated();
 
-        return new Match($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
+        return new MatchClass($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
     }
 
     /**
@@ -51,7 +51,7 @@ abstract class AbstractMatcher implements MatcherInterface
 
     /**
      * The actual matching algorithm for the matcher. This is called by ->match()
-     * to create a Match result.
+     * to create a MatchClass result.
      *
      * @param  mixed $actual
      * @return bool

@@ -170,7 +170,7 @@ class ExceptionMatcher implements MatcherInterface
      * Executes the callable and matches the exception type and exception message.
      *
      * @param $actual
-     * @return Match
+     * @return MatchClass
      */
     public function match($actual)
     {
@@ -221,7 +221,7 @@ class ExceptionMatcher implements MatcherInterface
 
         $isNegated = $this->isNegated();
 
-        return new Match($isNegated, $this->expectedMessage, $message, $isNegated);
+        return new MatchClass($isNegated, $this->expectedMessage, $message, $isNegated);
     }
 
     private function matchType($actual, $exception)
@@ -229,7 +229,7 @@ class ExceptionMatcher implements MatcherInterface
         $isMatch = $exception instanceof $this->expected;
         $isNegated = $this->isNegated();
 
-        return new Match($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
+        return new MatchClass($isMatch xor $isNegated, $this->expected, $actual, $isNegated);
     }
 
     /**
