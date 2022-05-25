@@ -1,6 +1,6 @@
 <?php
 
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 use Peridot\Leo\Responder\Exception\AssertionException;
 use Peridot\Leo\Responder\ExceptionResponder;
@@ -15,7 +15,7 @@ describe('ExceptionResponder', function () {
     describe('->respond()', function () {
         beforeEach(function () {
             $this->formatter->getMessage(Argument::any())->willReturn('FAIL');
-            $this->match = new Match(false, 4, 3, false);
+            $this->match = new MatchClass(false, 4, 3, false);
             $this->template = new ArrayTemplate([
                 'default' => 'Default',
                 'negated' => 'Negated',
@@ -55,7 +55,7 @@ describe('ExceptionResponder', function () {
         });
 
         it('should do nothing for a true match', function () {
-            $match = new Match(true, 3, 3, false);
+            $match = new MatchClass(true, 3, 3, false);
             $template = new ArrayTemplate(['default' => '', 'negated' => '']);
             $this->formatter->getMessage(Argument::any())->shouldNotBeCalled();
             $this->formatter->setMatch($match)->shouldNotBeCalled();

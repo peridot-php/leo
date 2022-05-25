@@ -1,14 +1,14 @@
 <?php
 
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 
-describe('Match', function () {
+describe('MatchClass', function () {
     beforeEach(function () {
         $this->isMatch = false;
         $this->expected = 'expected';
         $this->actual = 'actual';
         $this->isNegated = false;
-        $this->subject = new Match($this->isMatch, $this->expected, $this->actual, $this->isNegated);
+        $this->subject = new MatchClass($this->isMatch, $this->expected, $this->actual, $this->isNegated);
     });
 
     it('should retain the data passed to the constructor', function () {

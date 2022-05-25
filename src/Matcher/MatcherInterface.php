@@ -34,7 +34,7 @@ interface MatcherInterface
      * Perform a match against an actual value.
      *
      * @param  mixed $actual
-     * @return Match
+     * @return MatchClass
      */
     public function match($actual);
 

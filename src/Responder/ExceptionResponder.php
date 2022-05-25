@@ -4,7 +4,7 @@ namespace Peridot\Leo\Responder;
 
 use Exception;
 use Peridot\Leo\Formatter\FormatterInterface;
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\TemplateInterface;
 use Peridot\Leo\Responder\Exception\AssertionException;
 
@@ -34,13 +34,13 @@ class ExceptionResponder implements ResponderInterface
      *
      * Throws an exception containing the formatted message.
      *
-     * @param  Match             $match
+     * @param  MatchClass             $match
      * @param  TemplateInterface $template
      * @param  string            $message
      * @return void
      * @throws Exception
      */
-    public function respond(Match $match, TemplateInterface $template, $message = '')
+    public function respond(MatchClass $match, TemplateInterface $template, $message = '')
     {
         if ($match->isMatch()) {
             return;

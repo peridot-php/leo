@@ -1,7 +1,7 @@
 <?php
 
 use Peridot\Leo\Formatter\Formatter;
-use Peridot\Leo\Matcher\Match;
+use Peridot\Leo\Matcher\MatchClass;
 use Peridot\Leo\Matcher\Template\ArrayTemplate;
 
 describe('Formatter', function () {
@@ -11,7 +11,7 @@ describe('Formatter', function () {
 
     describe('match accessors', function () {
         it('should allow access to match', function () {
-            $match = new Match(false, 4, 3, false);
+            $match = new MatchClass(false, 4, 3, false);
             $this->formatter->setMatch($match);
             expect($this->formatter->getMatch())->to->equal($match);
         });
@@ -55,13 +55,13 @@ describe('Formatter', function () {
         });
 
         it('should return a default message based on a template', function () {
-            $match = new Match(false, 4, 3, false);
+            $match = new MatchClass(false, 4, 3, false);
             $message = $this->formatter->setMatch($match)->getMessage($this->template);
             expect($message)->to->equal('Expected 4, got 3');
         });
 
         it('should return a negated message based on a template', function () {
-            $match = new Match(false, 4, 4, true);
+            $match = new MatchClass(false, 4, 4, true);
             $message = $this->formatter->setMatch($match)->getMessage($this->template);
             expect($message)->to->equal('Expected 4 not to be 4');
         });
